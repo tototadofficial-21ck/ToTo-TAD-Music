@@ -3,7 +3,7 @@
 - Mốc đã ghi nhận: `8dd8f3b0620473ab4c26466f3b6b8b7d08aaab12`
 - Upstream hiện tại: `c7d4a6a5180810833e6b8171fba7568e5f843f21`
 - Commit cần review: 21
-- Working tree có thay đổi: True
+- Working tree có thay đổi: False
 
 Công cụ chỉ fetch/so sánh; không merge, reset, cài APK hoặc cập nhật mốc.
 

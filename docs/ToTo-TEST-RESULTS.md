@@ -232,3 +232,12 @@ Theo yêu cầu mới đã được người dùng chấp thuận, thay thế ch
 - Build 45s thành công, 144 tests qua, diff check qua. APK 89621995 byte, SHA-256 `6a1eb750741dee07a15683ed9a6bdee8f5339683a44ab0a86bcc5c70a7a40410`.
 
 - USB install -r Success. Đã mở Hồ sơ và cuộn cuối trang: Đăng xuất hiện ngay dưới Mở cài đặt; toàn bộ hàng nằm trên mini player, chữ không bị cắt/che. Chưa bấm đăng xuất trong lượt này để giữ phiên đang dùng; liên kết tới hàm logout hiện có đã kiểm tra mã.
+
+
+## Rà bug upstream và bảo toàn bản cá nhân — 07/11/2026
+
+- Người dùng ưu tiên ổn định, chỉ sửa bug thực sự của bản đang dùng. Đã đọc 8 issue đang mở gắn nhãn bug trên repo gốc và đối chiếu đường mã; chưa tái hiện đầy đủ các ca đó trên bản cá nhân, không sửa engine/Room/source order theo suy đoán. Chi tiết và mức xác minh ở ToTo-UPSTREAM-BUG-AUDIT.md.
+- Chỉ fetch main từ origin chính thức: 21 commit mới, 223 file thay đổi, 60 file trùng vùng cá nhân. Không merge/cherry-pick/apply commit nào; không đổi APK trên điện thoại trong lượt này.
+- Tạo nhánh cục bộ toto/personal, lưu toàn bộ bản cá nhân đã kiểm tra và tag toto-stable-20261107. Không push. Local.properties, phiên đăng nhập, khóa ký và APK build không đưa vào Git.
+- Công cụ review_upstream.py chạy online và --no-fetch qua; check_personal_contract.py và check_personal_resources.py qua; diff check qua. Không chạy lại build/JVM vì lượt này chỉ thêm script/config/tài liệu, không sửa mã Android. APK nền hiện tại là bản 144 tests đã qua trước đó.
+- Guard chỉ là kiểm tra hồi quy tích hợp/nhận diện, không chứng minh an toàn quyền truy cập hay tự giải quyết xung đột. Quy trình nhận commit phải review và thử trên nhánh riêng/USB trước khi cập nhật bản ổn định.
