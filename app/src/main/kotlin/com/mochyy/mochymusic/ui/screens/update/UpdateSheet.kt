@@ -1,5 +1,7 @@
 package com.mochyy.mochymusic.ui.screens.update
 
+import com.mochyy.mochymusic.i18n.UiText
+
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.SizeTransform
@@ -114,7 +116,7 @@ private suspend fun checkUpdate(force: Boolean): UpdateState =
 /** shows the app version sheet as a PopupSheet, see docs/popup-sheet.skill.md */
 fun PopupSheetState.showUpdateSheet(updateState: UpdateState, onOpenDevSpace: (Int) -> Unit = {}) {
     val popup = this
-    show(buttonBar = { SheetPrimaryButton(text = "Done", onClick = popup::dismiss) }) {
+    show(buttonBar = { SheetPrimaryButton(text = UiText.get(R.string.done), onClick = popup::dismiss) }) {
         UpdateSheetContent(initialState = updateState, popup = popup, onOpenDevSpace = onOpenDevSpace)
     }
 }
@@ -186,7 +188,7 @@ private fun ColumnScope.UpdateSheetContent(
     Box(Modifier.fillMaxWidth()) {
         // centred just inside the sheet's top-right corner so its edge cuts the ring off, no size of its own so it never pushes content around
         VersionRing(
-            text = "MOCHY $installed",
+            text = UiText.get(R.string.toto_format_version_badge, installed),
             modifier = Modifier
                 .align(Alignment.TopEnd)
                 .layout { measurable, constraints ->
@@ -215,7 +217,7 @@ private fun ColumnScope.UpdateSheetContent(
             }
 
             Spacer(Modifier.height(14.dp))
-            Text("Mochy", fontSize = 17.sp, fontWeight = FontWeight.Bold, letterSpacing = (-0.5).sp)
+            Text(UiText.get(R.string.app_icon_family_mark), fontSize = 17.sp, fontWeight = FontWeight.Bold, letterSpacing = (-0.5).sp)
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Text(
                     installed,
@@ -236,7 +238,7 @@ private fun ColumnScope.UpdateSheetContent(
             )
 
             Spacer(Modifier.height(22.dp))
-            Text("Actions", fontSize = 17.sp, fontWeight = FontWeight.Bold, letterSpacing = (-0.5).sp)
+            Text(UiText.get(R.string.toto_ui_more_actions_c3cd63), fontSize = 17.sp, fontWeight = FontWeight.Bold, letterSpacing = (-0.5).sp)
             Spacer(Modifier.height(10.dp))
             Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                 ActionRow(
@@ -330,15 +332,15 @@ private fun UpdateStatusCard(
         ) { shown ->
             when (shown) {
                 is UpdateState.Available -> StatusRow(
-                    title = "New update!",
+                    title = UiText.get(R.string.toto_ui_more_new_update_a83df4),
                     big = shortVersion(shown.release.version),
                     action = "UPDATE NOW",
                     onAction = { onUpdate(shown.release) },
                 )
-                UpdateState.Checking -> StatusRow(title = "Looking for updates", big = "…", pulsing = true)
-                UpdateState.UpToDate -> StatusRow(title = "You're on the latest", big = "All good")
+                UpdateState.Checking -> StatusRow(title = UiText.get(R.string.toto_ui_more_looking_for_updates_94ed78), big = "…", pulsing = true)
+                UpdateState.UpToDate -> StatusRow(title = UiText.get(R.string.toto_ui_more_you_re_on_the_latest_e753e5), big = "All good")
                 is UpdateState.Failed -> StatusRow(
-                    title = "Couldn't check for updates",
+                    title = UiText.get(R.string.toto_ui_more_couldn_t_check_for_updates_1c6953),
                     big = "Offline?",
                     action = "TRY AGAIN",
                     onAction = onRetry,
@@ -504,7 +506,7 @@ private fun ColumnScope.UpdateDetailContent(
     ) {
         Icon(
             painter = painterResource(R.drawable.arrow_back),
-            contentDescription = "Back",
+            contentDescription = UiText.get(R.string.back_button_desc),
             modifier = Modifier.size(18.dp),
         )
         Spacer(modifier = Modifier.width(8.dp))
@@ -533,7 +535,7 @@ private fun ColumnScope.UpdateDetailContent(
             .padding(16.dp)
             .animateContentSize()
     ) {
-        Text(text = "Changelog", fontSize = 20.sp, fontWeight = FontWeight.Bold)
+        Text(text = UiText.get(R.string.changelog_title), fontSize = 20.sp, fontWeight = FontWeight.Bold)
         Spacer(modifier = Modifier.height(4.dp))
         ChangelogMarkdown(
             markdown = release.body,
@@ -545,7 +547,7 @@ private fun ColumnScope.UpdateDetailContent(
     Spacer(modifier = Modifier.height(18.dp))
 
     Text(
-        text = "To Be Installed -",
+        text = UiText.get(R.string.toto_ui_more_to_be_installed_0124bd),
         color = MaterialTheme.colorScheme.onSurfaceVariant,
         fontSize = 11.sp,
         fontWeight = FontWeight.SemiBold,
@@ -658,7 +660,7 @@ private fun ColumnScope.UpdateDetailContent(
                 onClick = { context.openUrl(release.htmlUrl) },
             )
     ) {
-        Text(text = "Open the web", fontSize = 14.sp, fontWeight = FontWeight.Bold)
+        Text(text = UiText.get(R.string.toto_ui_more_open_the_web_bf304d), fontSize = 14.sp, fontWeight = FontWeight.Bold)
     }
     }
 }

@@ -2,6 +2,8 @@
 
 package com.mochyy.mochymusic.ui.screens.settings
 
+import com.mochyy.mochymusic.i18n.UiText
+
 import com.mochyy.mochymusic.ui.component.navigateToTab
 import androidx.activity.compose.BackHandler
 import androidx.compose.animation.AnimatedVisibility
@@ -190,7 +192,7 @@ private val SettingsIndex = listOf(
 
     // Audio Lab
     SettingsEntry("Audio Lab", "Audio Lab", "audio_lab", "sound effects equalizer fx quality"),
-    SettingsEntry("Crossfade", "Audio Lab", "crossmix_settings", "crossmix automix transition gapless blend"),
+    SettingsEntry(UiText.get(R.string.toto_more_crossfade), "Audio Lab", "crossmix_settings", "crossmix automix transition gapless blend"),
     SettingsEntry("Equalizer", "Audio Lab", "equalizer", "eq bass treble band parametric graph autoeq headphones correction preset"),
     SettingsEntry("AutoEQ", "Audio Lab", "equalizer", "headphones earbuds correction harman database model"),
     SettingsEntry("Audio Quality", "Audio Lab", "audio_quality", "bitrate stream high low lossless hi-res flac monochrome"),
@@ -227,14 +229,14 @@ private val SettingsIndex = listOf(
     SettingsEntry("Remove all downloads", "Storage", "storage_settings", "delete clear downloads offline space"),
 
     // Experimental
-    SettingsEntry("Import & sync", "Experimental", "experimental_settings", "import spotify apple music deezer tidal tunemymusic csv youtube sync export backup transfer"),
-    SettingsEntry("Big disc cover styles", "Experimental", "experimental_settings", "disc vinyl cover"),
-    SettingsEntry("Music haptics", "Experimental", "experimental_settings", "vibration haptic"),
-    SettingsEntry("Cipher", "Experimental", "experimental_settings", "player script signature refresh"),
-    SettingsEntry("Playback diagnostics", "Experimental", "experimental_settings", "logs potoken stream client debug"),
-    SettingsEntry("Repeat initial setup", "Experimental", "experimental_settings", "onboarding wizard setup"),
-    SettingsEntry("Show where songs play from", "Experimental", "experimental_settings", "source banner toast apple music monochrome youtube"),
-    SettingsEntry("Force playback", "Experimental", "experimental_settings", "fallback skip error stream failed youtube"),
+    SettingsEntry("Import & sync", UiText.get(R.string.toto_more_experimental), "experimental_settings", "import spotify apple music deezer tidal tunemymusic csv youtube sync export backup transfer"),
+    SettingsEntry("Big disc cover styles", UiText.get(R.string.toto_more_experimental), "experimental_settings", "disc vinyl cover"),
+    SettingsEntry("Music haptics", UiText.get(R.string.toto_more_experimental), "experimental_settings", "vibration haptic"),
+    SettingsEntry("Cipher", UiText.get(R.string.toto_more_experimental), "experimental_settings", "player script signature refresh"),
+    SettingsEntry(UiText.get(R.string.toto_more_playback_diagnostics), UiText.get(R.string.toto_more_experimental), "experimental_settings", "logs potoken stream client debug"),
+    SettingsEntry("Repeat initial setup", UiText.get(R.string.toto_more_experimental), "experimental_settings", "onboarding wizard setup"),
+    SettingsEntry("Show where songs play from", UiText.get(R.string.toto_more_experimental), "experimental_settings", "source banner toast apple music monochrome youtube"),
+    SettingsEntry("Force playback", UiText.get(R.string.toto_more_experimental), "experimental_settings", "fallback skip error stream failed youtube"),
 )
 
 private data class RecommendedSetting(
@@ -345,6 +347,7 @@ fun MochySettingsScreen(navController: NavController) {
                 .verticalScroll(scrollState)
         ) {
             Spacer(modifier = Modifier.height(searchTopBarHeight(titleBlockHeight = SettingsTitleBlockHeight)))
+            com.mochyy.mochymusic.auth.PersonalLogoutButton()
 
             // Search results view when user types
             AnimatedVisibility(
@@ -568,7 +571,7 @@ fun MochySettingsScreen(navController: NavController) {
                 Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
                     Icon(
                         painter = painterResource(R.drawable.ic_mochy_mark),
-                        contentDescription = "Mochy",
+                        contentDescription = UiText.get(R.string.app_icon_family_mark),
                         tint = Color.White,
                         modifier = Modifier.size(SettingsMarkSize),
                     )

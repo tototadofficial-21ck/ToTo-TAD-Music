@@ -2,6 +2,8 @@
 
 package com.mochyy.mochymusic.ui.screens.settings.devspace
 
+import com.mochyy.mochymusic.i18n.UiText
+
 import android.content.Context
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.FastOutSlowInEasing
@@ -86,12 +88,12 @@ internal fun DevPanel(modifier: Modifier = Modifier, content: @Composable Column
 internal fun PlaygroundCard(stats: DevSpaceStats?, settled: Boolean, onClick: () -> Unit, modifier: Modifier = Modifier) {
     val interaction = remember { MutableInteractionSource() }
     RepoFiguresCard(
-        title = "Developer playground",
+        title = UiText.get(R.string.toto_ui_more_developer_playground_101e3f),
         figures = listOf(
-            stats?.newIssues to "new reported issues",
-            stats?.newResolved to "new resolved issue",
-            stats?.commits to "commits",
-            stats?.releases to "releases",
+            stats?.newIssues to UiText.get(R.string.toto_repo_issues),
+            stats?.newResolved to UiText.get(R.string.toto_repo_resolved),
+            stats?.commits to UiText.get(R.string.toto_repo_commits),
+            stats?.releases to UiText.get(R.string.toto_repo_releases),
         ),
         settled = settled,
         showChevron = true,
@@ -175,7 +177,7 @@ internal fun RepoIssuesSection(
 
     Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
         DevPanel {
-            Text("Repo issues", style = devText(17f, tracking = -0.6f))
+            Text(UiText.get(R.string.toto_ui_more_repo_issues_15a3a0), style = devText(17f, tracking = -0.6f))
             Spacer(Modifier.height(10.dp))
             FilterChips(
                 selected = filter,
@@ -200,7 +202,7 @@ internal fun RepoIssuesSection(
         if (stats != null && shownResolved.isNotEmpty()) {
             DevPanel {
                 Row(verticalAlignment = Alignment.CenterVertically) {
-                    Text("Resolved", style = devText(17f, tracking = -0.6f), modifier = Modifier.weight(1f))
+                    Text(UiText.get(R.string.toto_ui_more_resolved_d999ae), style = devText(17f, tracking = -0.6f), modifier = Modifier.weight(1f))
                     Text("${shownResolved.size}", style = devText(15f, FontWeight.SemiBold, DevMuted))
                 }
                 Spacer(Modifier.height(12.dp))
@@ -240,7 +242,7 @@ private fun IssueList(issues: List<DevIssue>, showAll: Boolean, context: Context
         visible.forEach { IssueRow(it) { context.openDevUrl(it.url) } }
         if (!showAll && issues.size > IssueRowsShown) {
             Text(
-                "Show all ${issues.size}",
+                UiText.get(R.string.toto_format_show_issues, issues.size),
                 style = devText(13f, FontWeight.SemiBold, Color.White, -0.2f),
                 modifier = Modifier
                     .align(Alignment.CenterHorizontally)
@@ -316,7 +318,7 @@ private fun RetryNote(text: String, onRetry: () -> Unit) {
         Text(text, style = devText(13f, FontWeight.Medium, DevMuted, -0.2f), modifier = Modifier.weight(1f))
         Spacer(Modifier.width(10.dp))
         Text(
-            "Try again",
+            UiText.get(R.string.try_again),
             style = devText(13f, FontWeight.SemiBold, Color.Black, -0.2f),
             modifier = Modifier
                 .clip(CircleShape)

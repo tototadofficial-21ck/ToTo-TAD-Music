@@ -1,12 +1,14 @@
 // LibraryGridScreen.kt
 //
-// The two-column cover grid behind "Albums" and "Recently added". Both mockups are the same page —
+// The two-column cover grid behind UiText.get(R.string.toto_more_albums) and UiText.get(R.string.toto_more_recently_added). Both mockups are the same page —
 // title, subtitle, search, Play bar, 2-up grid — so they share one implementation.
 //
 // A grid rather than the A-Z pill list because these are browsed by cover, not scanned by name;
 // that's also why neither has an alphabet rail.
 
 package com.mochyy.mochymusic.ui.screens.library
+
+import com.mochyy.mochymusic.i18n.UiText
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement

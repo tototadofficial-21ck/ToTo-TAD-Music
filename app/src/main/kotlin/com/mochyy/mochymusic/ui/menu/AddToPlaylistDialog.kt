@@ -2,6 +2,8 @@
 
 package com.mochyy.mochymusic.ui.menu
 
+import com.mochyy.mochymusic.i18n.UiText
+
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Column
@@ -149,7 +151,7 @@ fun AddToPlaylistDialog(
             sheet[0] = menuState.showWithHandle(
                 buttonBar = {
                     SheetPillButton(
-                        text = "Create playlist",
+                        text = UiText.get(R.string.wrapped_create_playlist),
                         onClick = { showCreate = true },
                     )
                 },
@@ -266,7 +268,7 @@ private fun AddToPlaylistContent(
         SheetSearchField(
             value = query,
             onValueChange = { query = it },
-            placeholder = "Search your playlist",
+            placeholder = UiText.get(R.string.toto_ui_more_search_your_playlist_c1d4c1),
         )
         Spacer(Modifier.height(16.dp))
 

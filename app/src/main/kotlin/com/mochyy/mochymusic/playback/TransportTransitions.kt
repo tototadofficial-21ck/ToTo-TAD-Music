@@ -114,6 +114,7 @@ class TransportTransitions(
     }
 
     fun play() {
+        if (!com.mochyy.mochymusic.auth.PersonalAuth.allowed) return
         val player = host.player
         val resumingFrom = if (phase == Phase.Pausing) currentLevel() else 0f
         if (phase != Phase.Pausing && player.playWhenReady && player.playbackState != Player.STATE_ENDED) {

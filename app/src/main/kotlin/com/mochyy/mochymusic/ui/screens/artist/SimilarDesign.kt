@@ -6,6 +6,8 @@
 
 package com.mochyy.mochymusic.ui.screens.artist
 
+import com.mochyy.mochymusic.i18n.UiText
+
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.spring
@@ -373,7 +375,7 @@ internal fun SimilarPage(
                     ) {
                         item(key = "empty") {
                             Text(
-                                text = "Nothing to show here yet",
+                                text = UiText.get(R.string.toto_ui_more_nothing_to_show_here_yet_baa6ac),
                                 style = TrackSubtitleStyle.copy(fontSize = 13.sp),
                                 color = Color.White.copy(alpha = 0.6f),
                                 modifier = Modifier.padding(horizontal = PlaylistInset, vertical = 28.dp),
@@ -487,7 +489,7 @@ internal fun StartOfTheLine(modifier: Modifier = Modifier) {
     ) {
         ReceiptLine()
         Text(
-            text = "START OF THE LINE",
+            text = UiText.get(R.string.toto_ui_more_start_of_the_line_ead3b5),
             style = ReceiptCenterStyle,
             color = Color.White.copy(alpha = 0.78f),
             maxLines = 1,

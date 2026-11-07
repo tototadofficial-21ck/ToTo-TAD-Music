@@ -2,6 +2,8 @@
 
 package com.mochyy.mochymusic.ui.component
 
+import com.mochyy.mochymusic.i18n.UiText
+
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -77,7 +79,7 @@ inline fun <reified T : Enum<T>> SortHeader(
         },
         trailingButton = {
             if (displayDescending) {
-                val description = "Toggle sort order"
+                val description = androidx.compose.ui.res.stringResource(R.string.toto_ui_more_toggle_sort_order_d801e0)
                 TooltipBox(
                     positionProvider = TooltipDefaults.rememberTooltipPositionProvider(TooltipAnchorPosition.Above),
                     tooltip = { PlainTooltip { Text(description) } },
@@ -111,6 +113,9 @@ inline fun <reified T : Enum<T>> SortHeader(
                     }
                 }
             } else {
+                val sortDescription = androidx.compose.ui.res.stringResource(R.string.toto_ui_more_show_sort_options_6a0c6e)
+                val expandedDescription = androidx.compose.ui.res.stringResource(R.string.toto_sort_expanded)
+                val collapsedDescription = androidx.compose.ui.res.stringResource(R.string.toto_sort_collapsed)
                 SplitButtonDefaults.TrailingButton(
                     checked = menuExpanded,
                     onCheckedChange = { menuExpanded = it },
@@ -119,8 +124,8 @@ inline fun <reified T : Enum<T>> SortHeader(
                         contentColor = MaterialTheme.colorScheme.onPrimary
                     ),
                     modifier = Modifier.semantics {
-                        stateDescription = if (menuExpanded) "Expanded" else "Collapsed"
-                        contentDescription = "Show sort options"
+                        stateDescription = if (menuExpanded) expandedDescription else collapsedDescription
+                        contentDescription = sortDescription
                     },
                 ) {
                     val rotation: Float by animateFloatAsState(

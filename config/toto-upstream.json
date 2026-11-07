@@ -1,0 +1,38 @@
+{
+  "repository": "https://github.com/realidkroo/Mochy-Music.git",
+  "remote": "origin",
+  "branch": "main",
+  "review_base": "8dd8f3b0620473ab4c26466f3b6b8b7d08aaab12",
+  "asset_sha256": {
+    "app/src/main/res/drawable/toto_logo.png": "a591183ec255625a9568aa4a000ee771b1ec2d6c8b85ede9b35da43965d23fbe",
+    "app/src/main/res/drawable/toto_donate_qr.jpg": "2cbe1dd15cd755cda835899ce9eb5027335a322749396463f1b29aacc66024dd"
+  },
+  "protected_paths": [
+    "app/build.gradle.kts",
+    "app/src/*/AndroidManifest.xml",
+    "app/src/main/kotlin/com/mochyy/mochymusic/auth/*",
+    "app/src/main/kotlin/com/mochyy/mochymusic/branding/*",
+    "app/src/main/kotlin/com/mochyy/mochymusic/i18n/*",
+    "app/src/main/kotlin/com/mochyy/mochymusic/MainActivity.kt",
+    "app/src/main/kotlin/com/mochyy/mochymusic/App.kt",
+    "app/src/main/kotlin/com/mochyy/mochymusic/playback/*",
+    "app/src/*/kotlin/com/mochyy/mochymusic/playback/*",
+    "app/src/main/kotlin/com/mochyy/mochymusic/widget/*",
+    "app/src/main/res/values-vi/*",
+    "app/src/main/res/*/toto*",
+    "app/src/main/res/*/ic_splash_mark.xml",
+    "app/src/main/res/xml/backup_rules.xml",
+    "app/src/main/res/xml/data_extraction_rules.xml",
+    "app/src/main/res/xml/shortcuts.xml",
+    "supabase/*",
+    "scripts/check_personal*",
+    "config/toto-upstream.json",
+    "app/src/main/kotlin/com/mochyy/mochymusic/core/updater/*",
+    "app/src/main/kotlin/com/mochyy/mochymusic/utils/AppIcons.kt",
+    "app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/settings/ProfileScreen.kt",
+    "app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/profile/*",
+    "app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/donate/*",
+    "app/src/main/res/mipmap-*/*",
+    "app/src/debug/res/*/*"
+  ]
+}

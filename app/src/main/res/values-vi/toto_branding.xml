@@ -1,0 +1,25 @@
+<resources>
+  <string name="toto_owner_title">Chủ app · ToTo TAD Music</string>
+  <string name="toto_owner_bio">Bản cá nhân dựa trên Mochy Music, được ToTo TAD Music tùy chỉnh và duy trì.</string>
+  <string name="toto_owner_links_pending">Thông tin liên hệ và cộng đồng chưa được cấu hình.</string>
+  <string name="toto_owner_support">Ủng hộ ToTo TAD Music</string>
+  <string name="toto_owner_website_label">Website</string>
+  <string name="toto_owner_social_label">Facebook</string>
+  <string name="toto_owner_community_label">Cộng đồng Discord</string>
+  <string name="toto_owner_contact_label">Liên hệ</string>
+  <string name="toto_owner_repo_label">Mã nguồn bản cá nhân</string>
+  <string name="toto_upstream_credits">Tác giả và người đóng góp dự án gốc</string>
+  <string name="toto_about_actions">Liên kết và ủng hộ</string>
+  <string name="toto_base_credits">Các dự án nền tảng</string>
+  <string name="toto_license_title">Giấy phép</string>
+  <string name="toto_contributors_title">Người đóng góp</string>
+  <string name="toto_personal_icon">Bản cá nhân sử dụng logo ToTo TAD Music.</string>
+  <string name="toto_module_community">Cộng đồng mô-đun của dự án gốc Mochy</string>
+  <string name="toto_module_no_account">Không cần tài khoản</string>
+  <string name="toto_credits_socials">Liên kết tác giả gốc</string>
+  <string name="toto_repo_issues">lỗi mới được báo</string>
+  <string name="toto_repo_resolved">lỗi mới đã sửa</string>
+  <string name="toto_repo_commits">lần cập nhật mã</string>
+  <string name="toto_repo_releases">bản phát hành</string>
+  <string name="toto_owner_instagram_label">Instagram</string>
+</resources>

@@ -5,6 +5,10 @@
 
 package com.mochyy.mochymusic.ui.player.share
 
+import com.mochyy.mochymusic.R
+
+import com.mochyy.mochymusic.i18n.UiText
+
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.SizeTransform
 import androidx.compose.animation.animateContentSize
@@ -120,7 +124,7 @@ private const val PaintStepPx = 8f
 
 internal fun PopupSheetState.showWordEditor(session: LyricsShareSession) {
     val popup = this
-    show(buttonBar = { SheetPillButton(text = "Done", onClick = popup::dismiss) }) {
+    show(buttonBar = { SheetPillButton(text = UiText.get(R.string.done), onClick = popup::dismiss) }) {
         WordEditorContent(session)
     }
 }

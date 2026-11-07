@@ -2,6 +2,8 @@
 
 package com.mochyy.mochymusic.ui.screens.settings.devspace
 
+import com.mochyy.mochymusic.i18n.UiText
+
 import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.spring
 import androidx.compose.foundation.background
@@ -199,6 +201,6 @@ private fun BackButton(onClick: () -> Unit) {
             .background(DevBarButtonFill)
             .clickable(interactionSource = interaction, indication = null, onClick = onClick),
     ) {
-        Icon(painterResource(R.drawable.chevron_leftpx), contentDescription = "Back", tint = Color.White, modifier = Modifier.size(20.dp))
+        Icon(painterResource(R.drawable.chevron_leftpx), contentDescription = UiText.get(R.string.back_button_desc), tint = Color.White, modifier = Modifier.size(20.dp))
     }
 }

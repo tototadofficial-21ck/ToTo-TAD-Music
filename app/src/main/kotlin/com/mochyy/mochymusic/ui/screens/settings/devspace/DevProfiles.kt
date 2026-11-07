@@ -2,6 +2,8 @@
 
 package com.mochyy.mochymusic.ui.screens.settings.devspace
 
+import com.mochyy.mochymusic.i18n.UiText
+
 import androidx.annotation.DrawableRes
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.CubicBezierEasing
@@ -72,7 +74,7 @@ internal val DevPeople = listOf(
         name = "idkroo",
         bio = "ui ux guy here uhh idk what to write here, pls star the repo",
         avatar = R.drawable.frame_51_3,
-        takesDonations = true,
+        takesDonations = false,
         socials = listOf(
             DevSocial("Instagram", InstagramUrl),
             DevSocial("Discord", DiscordUrl),
@@ -120,6 +122,7 @@ internal fun DevProfilePage(
 
     Column(modifier.fillMaxSize().verticalScroll(scrollState)) {
         ProfileHeader(person, scrollState, bannerHeight)
+        Text(UiText.get(R.string.toto_upstream_credits), modifier = Modifier.padding(horizontal = DevSideInset))
 
         Column(Modifier.padding(horizontal = DevSideInset)) {
             Text(
@@ -143,13 +146,13 @@ internal fun DevProfilePage(
                 Column(Modifier.rise(2).padding(top = 22.dp)) {
                     if (person.takesDonations) {
                         val popup = LocalZoomOutOverlayState.current
-                        SectionTitle("Donate")
-                        DevLinkRow("Donate me!") { popup.showDonateSheet() }
+                        SectionTitle(UiText.get(R.string.toto_owner_support))
+                        DevLinkRow(UiText.get(R.string.support_development)) { popup.showDonateSheet() }
                         Spacer(Modifier.height(14.dp))
                     }
                     if (person.socials.isNotEmpty()) {
                         val context = LocalContext.current
-                        SectionTitle("Socials")
+                        SectionTitle(UiText.get(R.string.toto_credits_socials))
                         Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                             person.socials.forEach { social ->
                                 DevLinkRow(social.label) { context.openDevUrl(social.url) }

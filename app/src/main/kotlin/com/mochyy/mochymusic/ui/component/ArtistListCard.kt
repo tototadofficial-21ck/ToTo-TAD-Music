@@ -2,6 +2,10 @@
 
 package com.mochyy.mochymusic.ui.component
 
+import com.mochyy.mochymusic.R
+
+import com.mochyy.mochymusic.i18n.UiText
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -86,7 +90,7 @@ fun ArtistListCard(
                 Spacer(modifier = Modifier.width(16.dp))
                 Column {
                     Text(
-                        text = "Similar to",
+                        text = UiText.get(R.string.similar_to),
                         style = MaterialTheme.typography.labelMedium,
                         color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.8f),
                         maxLines = 1,

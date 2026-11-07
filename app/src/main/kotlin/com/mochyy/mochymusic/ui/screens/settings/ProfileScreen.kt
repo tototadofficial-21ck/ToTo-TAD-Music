@@ -7,6 +7,11 @@
 
 package com.mochyy.mochymusic.ui.screens.settings
 
+import androidx.compose.ui.res.stringResource
+
+import com.mochyy.mochymusic.i18n.UiText
+import com.mochyy.mochymusic.branding.showOwnerSheet
+
 import com.mochyy.mochymusic.ui.component.BlurEffectCache
 import com.mochyy.mochymusic.ui.component.rememberDeviceTilt
 import androidx.activity.compose.BackHandler
@@ -192,12 +197,12 @@ import kotlin.math.sin
 import kotlin.random.Random
 
 private object MochyGreeting {
-    private fun pick() = listOf("Hello again", "Hey", "Welcome back", "Good to see you").random()
+    private fun pick() = listOf(R.string.toto_greeting_again, R.string.toto_greeting_hey, R.string.toto_greeting_back, R.string.toto_greeting_good).random()
 
-    private val greetingState = mutableStateOf("Hello again")
+    private val greetingState = mutableStateOf(R.string.toto_greeting_again)
     private var wasBackgrounded = false
 
-    val current: String get() = greetingState.value
+    val current: String get() = UiText.get(greetingState.value)
 
     init {
         ProcessLifecycleOwner.get().lifecycle.addObserver(
@@ -539,7 +544,7 @@ fun ProfileScreen(navController: NavController) {
                     ) {
                         // greeting (in the header; its scrolled-away twin lives in the top bar)
                         Text(
-                            text = "${MochyGreeting.current}, ${accountName.ifBlank { "there" }}!",
+                            text = UiText.get(R.string.toto_greeting_name, MochyGreeting.current, accountName.ifBlank { UiText.get(R.string.toto_greeting_friend) }),
                             style = PageTitle,
                             maxLines = 1,
                             overflow = TextOverflow.Ellipsis,
@@ -640,7 +645,7 @@ fun ProfileScreen(navController: NavController) {
                         ) {
                             Icon(
                                 painter = painterResource(R.drawable.expand_more),
-                                contentDescription = "Pull down",
+                                contentDescription = UiText.get(R.string.toto_ui_more_pull_down_13a27a),
                                 tint = Color.White.copy(alpha = 0.35f),
                                 modifier = Modifier
                                     .size(30.dp)
@@ -654,7 +659,7 @@ fun ProfileScreen(navController: NavController) {
                             )
                             if (recapWaiting) {
                                 Text(
-                                    text = "swipe down here!!",
+                                    text = stringResource(R.string.toto_ui_swipe_down_here),
                                     style = MonoSmall.copy(color = Color.White.copy(alpha = 0.6f)),
                                     maxLines = 1,
                                     modifier = Modifier.graphicsLayer {
@@ -693,7 +698,7 @@ fun ProfileScreen(navController: NavController) {
                                     modifier = Modifier.padding(top = 6.dp),
                                 )
                                 Text(
-                                    text = "swipe up to close",
+                                    text = stringResource(R.string.toto_ui_swipe_up_to_close),
                                     style = MonoSmall.copy(color = Color.White.copy(alpha = 0.35f)),
                                     modifier = Modifier.padding(top = 26.dp),
                                 )
@@ -730,12 +735,14 @@ fun ProfileScreen(navController: NavController) {
                             },
                         )
                         Spacer(Modifier.height(16.dp))
-                        DeveloperCard(onClick = { navController.navigate("developer_space") })
+                        DeveloperCard(onClick = { zoomOutState.showOwnerSheet(onCredits = { openDevSpace(0) }) })
                         Spacer(Modifier.height(16.dp))
-                        DiscordCard(onClick = { context.openDevUrl(DiscordUrl) })
+                        DiscordCard(onClick = { context.openDevUrl(context.getString(R.string.toto_owner_community)) })
                         Spacer(Modifier.height(28.dp))
-                        Text("Settings", style = PageTitle.copy(fontSize = 15.sp), modifier = Modifier.padding(start = 2.dp, bottom = 10.dp))
+                        Text(stringResource(R.string.toto_ui_settings), style = PageTitle.copy(fontSize = 15.sp), modifier = Modifier.padding(start = 2.dp, bottom = 10.dp))
                         OpenSettingsRow(onClick = { navController.navigate("mochy_settings") })
+                        Spacer(Modifier.height(16.dp))
+                        ProfileSignOutRow(onClick = { com.mochyy.mochymusic.auth.PersonalAuth.logout(context) })
                         Spacer(Modifier.height(180.dp))
                     }
                 }
@@ -777,10 +784,9 @@ fun ProfileScreen(navController: NavController) {
             }
 
             // ---- logo, and the greeting sliding into the bar beside it ----
-            Icon(
-                painter = painterResource(R.drawable.ic_mochy_mark),
-                contentDescription = "Mochy",
-                tint = Color.White,
+            Image(
+                painter = painterResource(R.drawable.toto_logo),
+                contentDescription = UiText.get(R.string.app_icon_family_mark),
                 modifier = Modifier
                     .padding(start = HomeContentInset, top = statusBarTop + TopBarLogoTop)
                     .size(width = 31.dp, height = 34.dp)
@@ -793,7 +799,7 @@ fun ProfileScreen(navController: NavController) {
             )
             if (collapseProgress > 0.01f) {
                 Text(
-                    text = "${MochyGreeting.current}, ${accountName.ifBlank { "there" }}!",
+                    text = UiText.get(R.string.toto_greeting_name, MochyGreeting.current, accountName.ifBlank { UiText.get(R.string.toto_greeting_friend) }),
                     style = PageTitle.copy(fontSize = 18.sp),
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
@@ -929,7 +935,7 @@ private fun ListeningTimeCard(totalMs: Long, onViewStats: () -> Unit) {
                 TimeValue((totalMinutes % 60).toString(), "m", k)
                 Spacer(Modifier.width(10.dp))
                 Text(
-                    "Total Listening\ntime",
+                    stringResource(R.string.toto_ui_total_listening_ntime),
                     style = TextStyle(fontFamily = FontFamily.Monospace, fontSize = 14.sp, lineHeight = 18.sp, color = Color(0xFF8A8A8A), textAlign = TextAlign.End),
                     modifier = Modifier.weight(1f),
                 )
@@ -939,7 +945,7 @@ private fun ListeningTimeCard(totalMs: Long, onViewStats: () -> Unit) {
         Box(Modifier.fillMaxWidth().height(1.dp).background(Color(0xFF474747)))
         Spacer(Modifier.height(12.dp))
         Text(
-            "View Stats  >",
+            stringResource(R.string.toto_ui_view_stats),
             style = TextStyle(fontFamily = InterFontFamily, fontWeight = FontWeight.SemiBold, fontSize = 13.sp, color = Color(0xFF8A8A8A)),
         )
     }
@@ -982,7 +988,7 @@ private fun VersionCard(
                 .padding(CardPadding),
         ) {
             Column(modifier = Modifier.weight(1f)) {
-                Text("Version & about app", style = TextStyle(fontFamily = InterFontFamily, fontWeight = FontWeight.SemiBold, fontSize = 13.sp, color = Color(0xFF9A9A9A)))
+                Text(stringResource(R.string.toto_ui_version_about_app), style = TextStyle(fontFamily = InterFontFamily, fontWeight = FontWeight.SemiBold, fontSize = 13.sp, color = Color(0xFF9A9A9A)))
                 Text(
                     // "7.1.1 build#1093" -> "7.1.1"
                     BuildConfig.VERSION_NAME.substringBefore(' '),
@@ -1007,7 +1013,7 @@ private fun VersionCard(
  */
 @Composable
 private fun VersionCapsule(update: Boolean, onAbout: () -> Unit) {
-    val shown = if (update) "Update" else "About app"
+    val shown = stringResource(if (update) R.string.update_available else R.string.toto_ui_more_about_app_3c6773)
 
     // the pop: a quick squash, then a spring that carries past full size and settles
     val pop = remember { Animatable(1f) }
@@ -1088,20 +1094,10 @@ private fun DeveloperCard(onClick: () -> Unit) {
             .padding(horizontal = 16.dp, vertical = 12.dp),
     ) {
         // room for every face at rest, 40% of a face apart; pressed they spill to the right
-        Box(Modifier.size(width = face + face * 0.4f * (DevPeople.size - 1), height = face)) {
-            DevPeople.forEachIndexed { i, person ->
-                DevAvatar(
-                    person,
-                    Modifier
-                        .size(face)
-                        .graphicsLayer { translationX = i * face.toPx() * (0.4f + 0.35f * spread) }
-                        .border(1.5.dp, PageCard, CircleShape),
-                )
-            }
-        }
+        Image(painterResource(R.drawable.toto_logo), null, Modifier.size(40.dp))
         Spacer(Modifier.width(12.dp))
         Text(
-            "meet da dev and contributors :3",
+            stringResource(R.string.toto_owner_title),
             style = TextStyle(fontFamily = InterFontFamily, fontWeight = FontWeight.Bold, fontSize = 15.sp, letterSpacing = (-0.6).sp, color = Color(0xFF9A9A9A)),
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
@@ -1123,8 +1119,8 @@ private fun DiscordCard(onClick: () -> Unit) {
             .padding(horizontal = 16.dp, vertical = 12.dp),
     ) {
         Image(
-            painter = painterResource(R.drawable.mochy_discord),
-            contentDescription = "Discord",
+            painter = painterResource(R.drawable.toto_logo),
+            contentDescription = null,
             contentScale = ContentScale.Crop,
             modifier = Modifier
                 .size(face)
@@ -1133,7 +1129,7 @@ private fun DiscordCard(onClick: () -> Unit) {
         )
         Spacer(Modifier.width(12.dp))
         Text(
-            "Join mochy’s discord server!",
+            stringResource(R.string.toto_owner_community_label),
             style = TextStyle(fontFamily = InterFontFamily, fontWeight = FontWeight.Bold, fontSize = 15.sp, letterSpacing = (-0.6).sp, color = Color.White),
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
@@ -1164,6 +1160,22 @@ private fun OpenSettingsRow(onClick: () -> Unit) {
         ) {
             Icon(painterResource(R.drawable.settings), contentDescription = null, tint = Color(0xFF232323), modifier = Modifier.size(18.dp))
         }
-        Text("Open settings", style = PageTitle.copy(fontSize = 17.sp, fontWeight = FontWeight.SemiBold))
+        Text(stringResource(R.string.toto_ui_open_settings), style = PageTitle.copy(fontSize = 17.sp, fontWeight = FontWeight.SemiBold))
+    }
+}
+
+
+@Composable
+private fun ProfileSignOutRow(onClick: () -> Unit) {
+    val color = Color(0xFFFFB4AB)
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(14.dp),
+        modifier = Modifier.fillMaxWidth().height(64.dp)
+            .clip(RoundedCornerShape(22.dp)).background(PageCard)
+            .clickable(onClick = onClick).padding(horizontal = 16.dp),
+    ) {
+        Icon(painterResource(R.drawable.logout), contentDescription = null, tint = color, modifier = Modifier.size(24.dp))
+        Text(stringResource(R.string.scrobble_sign_out), style = PageTitle.copy(fontSize = 17.sp, fontWeight = FontWeight.SemiBold, color = color))
     }
 }

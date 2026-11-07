@@ -1,5 +1,7 @@
 package com.mochyy.mochymusic.ui.screens.settings.importsync
 
+import com.mochyy.mochymusic.i18n.UiText
+
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.Spacer
@@ -38,11 +40,11 @@ fun ImportProvidersScreen(
     }
 
     SubSettingsScaffold(
-        title = "Import",
+        title = UiText.get(R.string.toto_setup_import),
         onBack = { navController.navigateUp() },
     ) {
         SettingsGroup(
-            title = "Sign in and choose",
+            title = UiText.get(R.string.toto_ui_more_sign_in_and_choose_8fc871),
             style = SettingsGroupStyle.Grouped,
             items = listOf(
                 AccountService.SPOTIFY to "Liked Songs and your playlists",
@@ -64,7 +66,7 @@ fun ImportProvidersScreen(
         Spacer(Modifier.height(16.dp))
 
         SettingsGroup(
-            title = "Or paste a public link",
+            title = UiText.get(R.string.toto_ui_more_or_paste_a_public_link_627fa6),
             style = SettingsGroupStyle.Grouped,
             items = LinkSource.entries.map { source ->
                 SettingsItem(
@@ -87,11 +89,11 @@ fun ImportProvidersScreen(
         Spacer(Modifier.height(16.dp))
 
         SettingsGroup(
-            title = "From a file",
+            title = UiText.get(R.string.toto_ui_more_from_a_file_e91bc6),
             style = SettingsGroupStyle.Grouped,
             items = listOf(
                 SettingsItem(
-                    title = { Text("Mochy backup") },
+                    title = { Text(UiText.get(R.string.toto_ui_more_mochy_backup_f93cb0)) },
                     highlightKey = "Mochy backup",
                     descriptionText = "A CSV from Export to Mochy CSV. Restores exact songs",
                     icon = painterResource(R.drawable.backup),
@@ -99,7 +101,7 @@ fun ImportProvidersScreen(
                     onClick = { backupPicker.launch(arrayOf("text/*", "application/csv", "application/vnd.ms-excel", "application/octet-stream")) },
                 ),
                 SettingsItem(
-                    title = { Text("TuneMyMusic CSV") },
+                    title = { Text(UiText.get(R.string.toto_ui_more_tunemymusic_csv_85cdbd)) },
                     highlightKey = "TuneMyMusic CSV",
                     descriptionText = "Private playlists, liked songs, and every other service",
                     icon = painterResource(R.drawable.web_link),
@@ -112,11 +114,11 @@ fun ImportProvidersScreen(
         Spacer(Modifier.height(16.dp))
 
         SettingsGroup(
-            title = "Other services",
+            title = UiText.get(R.string.toto_ui_more_other_services_4c1838),
             style = SettingsGroupStyle.Grouped,
             items = listOf(
                 SettingsItem(
-                    title = { Text("Amazon Music, SoundCloud, Pandora…") },
+                    title = { Text(UiText.get(R.string.toto_ui_more_amazon_music_soundcloud_pandora_06af5e)) },
                     descriptionText = "Goes through TuneMyMusic",
                     detail = "These go through TuneMyMusic, which can sign in to them for you",
                     icon = painterResource(R.drawable.library_music),

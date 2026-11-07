@@ -8,6 +8,10 @@
 
 package com.mochyy.mochymusic.ui.screens.recap
 
+import com.mochyy.mochymusic.R
+
+import com.mochyy.mochymusic.i18n.UiText
+
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.spring
 import androidx.compose.animation.core.tween
@@ -140,7 +144,7 @@ internal fun StatsRuler(
         modifier = modifier
             .fillMaxWidth()
             .height(RulerHeight)
-            .semantics { contentDescription = "Showing ${labelOf(selected)}. Drag to pick another." }
+            .semantics { contentDescription = UiText.get(R.string.toto_format_ruler_hint, labelOf(selected)) }
             .pointerInput(items) {
                 val tracker = VelocityTracker()
                 detectHorizontalDragGestures(

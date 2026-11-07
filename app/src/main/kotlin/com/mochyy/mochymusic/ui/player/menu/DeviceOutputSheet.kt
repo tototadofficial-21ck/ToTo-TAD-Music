@@ -2,6 +2,8 @@
 
 package com.mochyy.mochymusic.ui.player.menu
 
+import com.mochyy.mochymusic.i18n.UiText
+
 import android.media.AudioManager
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.animateFloatAsState
@@ -135,7 +137,7 @@ fun DeviceOutputSheet(onDismiss: () -> Unit) {
 
             VolumeCard(
                 icon = R.drawable.music_note,
-                title = "Music volume",
+                title = UiText.get(R.string.toto_ui_more_music_volume_0d49fc),
                 value = musicVolume.floatValue,
                 onValueChange = { next ->
                     musicVolume.floatValue = next

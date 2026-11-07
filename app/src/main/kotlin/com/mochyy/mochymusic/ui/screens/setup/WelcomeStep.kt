@@ -1,5 +1,9 @@
 package com.mochyy.mochymusic.ui.screens.setup
 
+import com.mochyy.mochymusic.R
+
+import com.mochyy.mochymusic.i18n.UiText
+
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.*
@@ -186,16 +190,16 @@ fun WelcomeStep(isHiding: Boolean = false) {
                 .padding(start = 32.dp, bottom = 175.dp, end = 32.dp)
         ) {
             Text(
-                text = "Welcome to\nmochy!",
-                fontSize = 42.sp,
-                lineHeight = 44.sp,
+                text = UiText.get(R.string.toto_setup_welcome, UiText.get(R.string.app_name)),
+                fontSize = 34.sp,
+                lineHeight = 40.sp,
                 fontWeight = FontWeight.ExtraBold,
                 color = Color.White,
                 letterSpacing = (-1).sp
             )
             Spacer(modifier = Modifier.height(4.dp))
             Text(
-                text = "A way to listen and own your\nmusic, differently.",
+                text = UiText.get(R.string.toto_setup_intro),
                 fontSize = 16.sp,
                 color = Color(0xFFB3B3B3),
                 lineHeight = 22.sp,

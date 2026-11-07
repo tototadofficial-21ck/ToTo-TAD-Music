@@ -74,6 +74,7 @@ constructor(
         session: MediaSession,
         controller: MediaSession.ControllerInfo,
     ): MediaSession.ConnectionResult {
+        if (!com.mochyy.mochymusic.auth.PersonalAuth.allowed) return MediaSession.ConnectionResult.reject()
         val connectionResult = super.onConnect(session, controller)
         return MediaSession.ConnectionResult.accept(
             connectionResult.availableSessionCommands
@@ -88,12 +89,17 @@ constructor(
         )
     }
 
+    @Deprecated("Deprecated in MediaSession.Callback")
+    override fun onPlayerCommandRequest(session: MediaSession, controller: MediaSession.ControllerInfo, playerCommand: Int): Int =
+        if (com.mochyy.mochymusic.auth.PersonalAuth.allowed) SessionResult.RESULT_SUCCESS else SessionResult.RESULT_ERROR_PERMISSION_DENIED
+
     override fun onCustomCommand(
         session: MediaSession,
         controller: MediaSession.ControllerInfo,
         customCommand: SessionCommand,
         args: Bundle,
     ): ListenableFuture<SessionResult> {
+        if (!com.mochyy.mochymusic.auth.PersonalAuth.allowed) return Futures.immediateFuture(SessionResult(SessionResult.RESULT_ERROR_PERMISSION_DENIED))
         when (customCommand.customAction) {
             MediaSessionConstants.ACTION_TOGGLE_LIKE -> toggleLike()
             MediaSessionConstants.ACTION_TOGGLE_START_RADIO -> toggleStartRadio()
@@ -120,7 +126,7 @@ constructor(
         params: MediaLibraryService.LibraryParams?,
     ): ListenableFuture<LibraryResult<MediaItem>> =
         Futures.immediateFuture(
-            LibraryResult.ofItem(
+            if (!com.mochyy.mochymusic.auth.PersonalAuth.allowed) LibraryResult.ofError(SessionError.ERROR_PERMISSION_DENIED) else LibraryResult.ofItem(
                 rootMediaItem(),
                 params.withContentStyleHints(),
             ),
@@ -135,6 +141,7 @@ constructor(
         params: MediaLibraryService.LibraryParams?,
     ): ListenableFuture<LibraryResult<ImmutableList<MediaItem>>> =
         scope.future(Dispatchers.IO) {
+            if (!com.mochyy.mochymusic.auth.PersonalAuth.allowed) return@future LibraryResult.ofError(SessionError.ERROR_PERMISSION_DENIED)
             val children =
                 when (parentId) {
                     MusicService.ROOT -> rootChildren()
@@ -278,6 +285,7 @@ constructor(
         mediaId: String,
     ): ListenableFuture<LibraryResult<MediaItem>> =
         scope.future(Dispatchers.IO) {
+            if (!com.mochyy.mochymusic.auth.PersonalAuth.allowed) return@future LibraryResult.ofError(SessionError.ERROR_PERMISSION_DENIED)
             getMediaItem(mediaId)?.let {
                 LibraryResult.ofItem(it, null)
             } ?: LibraryResult.ofError(SessionError.ERROR_UNKNOWN)
@@ -289,6 +297,7 @@ constructor(
         query: String,
         params: MediaLibraryService.LibraryParams?
     ): ListenableFuture<LibraryResult<Void>> {
+        if (!com.mochyy.mochymusic.auth.PersonalAuth.allowed) return Futures.immediateFuture(LibraryResult.ofError(SessionError.ERROR_PERMISSION_DENIED))
         session.notifySearchResultChanged(browser, query, 1, params)
         return Futures.immediateFuture(LibraryResult.ofVoid())
     }
@@ -302,6 +311,7 @@ constructor(
         params: MediaLibraryService.LibraryParams?
     ): ListenableFuture<LibraryResult<ImmutableList<MediaItem>>> {
         return scope.future(Dispatchers.IO) {
+            if (!com.mochyy.mochymusic.auth.PersonalAuth.allowed) return@future LibraryResult.ofError(SessionError.ERROR_PERMISSION_DENIED)
             if (query.isEmpty()) {
                 return@future LibraryResult.ofItemList(emptyList(), params.withContentStyleHints())
             }
@@ -386,6 +396,7 @@ constructor(
         startPositionMs: Long,
     ): ListenableFuture<MediaItemsWithStartPosition> =
         scope.future {
+            if (!com.mochyy.mochymusic.auth.PersonalAuth.allowed) return@future MediaItemsWithStartPosition(emptyList(), startIndex, startPositionMs)
             val defaultResult = MediaItemsWithStartPosition(emptyList(), startIndex, startPositionMs)
             val path = mediaItems.firstOrNull()?.mediaId?.split("/")
                 ?: return@future defaultResult

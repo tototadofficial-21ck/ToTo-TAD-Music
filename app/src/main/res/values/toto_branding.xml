@@ -1,0 +1,25 @@
+<resources>
+  <string name="toto_owner_title">App owner · ToTo TAD Music</string>
+  <string name="toto_owner_bio">A personal edition of Mochy Music, maintained by ToTo TAD Music.</string>
+  <string name="toto_owner_links_pending">Contact and community links have not been configured.</string>
+  <string name="toto_owner_support">Support ToTo TAD Music</string>
+  <string name="toto_owner_website_label">Website</string>
+  <string name="toto_owner_social_label">Facebook</string>
+  <string name="toto_owner_community_label">Discord community</string>
+  <string name="toto_owner_contact_label">Contact</string>
+  <string name="toto_owner_repo_label">Personal edition source code</string>
+  <string name="toto_upstream_credits">Original project authors and contributors</string>
+  <string name="toto_about_actions">Links and support</string>
+  <string name="toto_base_credits">Projects this app builds on</string>
+  <string name="toto_license_title">License</string>
+  <string name="toto_contributors_title">Contributors</string>
+  <string name="toto_personal_icon">This personal edition uses the ToTo TAD Music logo.</string>
+  <string name="toto_module_community">Module community of the original Mochy project</string>
+  <string name="toto_module_no_account">No account needed</string>
+  <string name="toto_credits_socials">Original author links</string>
+  <string name="toto_repo_issues">new reported issues</string>
+  <string name="toto_repo_resolved">new resolved issues</string>
+  <string name="toto_repo_commits">commits</string>
+  <string name="toto_repo_releases">releases</string>
+  <string name="toto_owner_instagram_label">Instagram</string>
+</resources>

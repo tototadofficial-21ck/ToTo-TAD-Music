@@ -1,5 +1,9 @@
 package com.mochyy.mochymusic.ui.screens.settings.importsync
 
+import com.mochyy.mochymusic.R
+
+import com.mochyy.mochymusic.i18n.UiText
+
 import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -93,20 +97,20 @@ fun LinkInputDialog(
     DefaultDialog(
         onDismiss = onDismiss,
         horizontalAlignment = Alignment.Start,
-        title = { Text("Import from ${source.label}") },
+        title = { Text(UiText.get(R.string.toto_format_import_from, source.label)) },
         buttons = {
             TextButton(onClick = {
                 clipboard.getText()?.text?.trim()?.takeIf { it.isNotEmpty() }?.let { link = it }
-            }) { Text("Paste") }
-            TextButton(onClick = onDismiss) { Text("Cancel") }
+            }) { Text(UiText.get(R.string.toto_ui_more_paste_db2483)) }
+            TextButton(onClick = onDismiss) { Text(UiText.get(R.string.cancel)) }
             TextButton(
                 enabled = link.isNotBlank(),
                 onClick = { onSubmit(link.trim()) },
-            ) { Text("Continue") }
+            ) { Text(UiText.get(R.string.cache_size_warning_confirm)) }
         },
     ) {
         Text(
-            text = "Paste a link to a public playlist or album. Share it from ${source.label} with \"Copy link\".",
+            text = UiText.get(R.string.toto_format_import_link, source.label),
             style = MaterialTheme.typography.bodyMedium,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
@@ -139,7 +143,7 @@ fun PendingImportHost(
         PendingImport.Idle -> Unit
         is PendingImport.Loading -> DefaultDialog(
             onDismiss = viewModel::dismissPending,
-            buttons = { TextButton(onClick = viewModel::dismissPending) { Text("Cancel") } },
+            buttons = { TextButton(onClick = viewModel::dismissPending) { Text(UiText.get(R.string.cancel)) } },
         ) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 CircularProgressIndicator(modifier = Modifier.size(28.dp), strokeWidth = 3.dp)
@@ -150,7 +154,7 @@ fun PendingImportHost(
         is PendingImport.Failed -> DefaultDialog(
             onDismiss = viewModel::dismissPending,
             horizontalAlignment = Alignment.Start,
-            title = { Text("Couldn't import") },
+            title = { Text(UiText.get(R.string.toto_ui_more_couldn_t_import_d9491c)) },
             buttons = { TextButton(onClick = viewModel::dismissPending) { Text("OK") } },
         ) {
             Text(state.message, style = MaterialTheme.typography.bodyMedium)
@@ -193,13 +197,13 @@ private fun ImportReviewDialog(
             )
         },
         buttons = {
-            TextButton(onClick = onDismiss) { Text("Cancel") }
-            TextButton(onClick = { onImport(mirror && signedIn) }) { Text("Import") }
+            TextButton(onClick = onDismiss) { Text(UiText.get(R.string.cancel)) }
+            TextButton(onClick = { onImport(mirror && signedIn) }) { Text(UiText.get(R.string.toto_setup_import)) }
         },
     ) {
         Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
             if (parsed.likedSongs.isNotEmpty()) {
-                Text("${parsed.likedSongs.size} liked songs", style = MaterialTheme.typography.bodyLarge)
+                Text(UiText.get(R.string.toto_format_liked_count, parsed.likedSongs.size), style = MaterialTheme.typography.bodyLarge)
             }
             if (names.isNotEmpty()) {
                 val songCount = parsed.playlists.values.sumOf { it.size }
@@ -220,7 +224,7 @@ private fun ImportReviewDialog(
             val needsSearch = parsed.likedSongs.any { it.videoId == null } || parsed.playlists.values.any { list -> list.any { it.videoId == null } }
             if (needsSearch) {
                 Text(
-                    "Each song is searched on YouTube Music. Large libraries take a few minutes; you can leave this page while it runs.",
+                    UiText.get(R.string.toto_ui_more_each_song_is_searched_on_youtube_music_large_librari_79c96e),
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
@@ -233,9 +237,9 @@ private fun ImportReviewDialog(
                 Spacer(Modifier.height(8.dp))
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Column(modifier = Modifier.weight(1f)) {
-                        Text("Also create on YouTube", style = MaterialTheme.typography.titleMedium)
+                        Text(UiText.get(R.string.toto_ui_more_also_create_on_youtube_9fd1f6), style = MaterialTheme.typography.titleMedium)
                         Text(
-                            "Playlists and likes are added to your YouTube account too.",
+                            UiText.get(R.string.toto_ui_more_playlists_and_likes_are_added_to_your_youtube_accoun_5ed17e),
                             style = MaterialTheme.typography.bodySmall,
                             color = MaterialTheme.colorScheme.onSurfaceVariant,
                         )
@@ -245,7 +249,7 @@ private fun ImportReviewDialog(
                 }
                 if (!mirror && parsed.likedSongs.isNotEmpty()) {
                     Text(
-                        "YouTube sync keeps likes the same on both sides, so these likes will still be added to YouTube the next time it syncs.",
+                        UiText.get(R.string.toto_ui_more_youtube_sync_keeps_likes_the_same_on_both_sides_so_t_49c4a1),
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                     )

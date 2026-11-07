@@ -1,0 +1,9 @@
+<resources>
+  <string name="toto_youtube_linked">YouTube account linked</string>
+  <string name="toto_youtube_finish_google">Finish signing in to Google and open YouTube Music, then try again.</string>
+  <string name="toto_youtube_wait_cookie">The YouTube session is not ready. Wait for YouTube Music to finish loading, then retry.</string>
+  <string name="toto_youtube_verify_error">Could not verify the YouTube account. Check the connection and tap Finish linking to retry.</string>
+  <string name="toto_youtube_finish_hint">After signing in, tap Finish linking if this page stays open.</string>
+  <string name="toto_youtube_finish_link">Finish linking</string>
+  <string name="toto_youtube_sync_hint">Needed for sync. Your login stays on this phone</string>
+</resources>

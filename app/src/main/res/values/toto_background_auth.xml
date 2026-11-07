@@ -1,0 +1,6 @@
+<resources>
+  <string name="toto_background_check_title">Could not check account access</string>
+  <string name="toto_background_check_detail">%1$s\n\nYou can keep listening with your previously verified session. Retry when connected.</string>
+  <string name="toto_access_changed_title">Account access changed</string>
+  <string name="toto_continue_listening">Continue listening</string>
+</resources>

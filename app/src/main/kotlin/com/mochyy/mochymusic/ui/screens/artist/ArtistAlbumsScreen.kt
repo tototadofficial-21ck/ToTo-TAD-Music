@@ -2,6 +2,10 @@
 
 package com.mochyy.mochymusic.ui.screens.artist
 
+import com.mochyy.mochymusic.R
+
+import com.mochyy.mochymusic.i18n.UiText
+
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsetsSides
 import androidx.compose.foundation.layout.asPaddingValues
@@ -109,7 +113,7 @@ fun ArtistAlbumsScreen(
         item(key = "header", contentType = "header") {
             ArtistSubpageHeader(
                 title = if (name.isNotBlank()) "$name albums" else "Albums",
-                subtitle = "${albums.size} in your library",
+                subtitle = UiText.get(R.string.toto_format_album_count, albums.size),
                 isGrid = isGrid,
                 onGridChange = { isGrid = it },
             )

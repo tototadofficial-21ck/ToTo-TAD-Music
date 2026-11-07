@@ -18,6 +18,7 @@ class UpdateDownloadWorker(private val context: Context, workerParams: WorkerPar
     CoroutineWorker(context, workerParams) {
 
     override suspend fun doWork(): Result = withContext(Dispatchers.IO) {
+        if (com.mochyy.mochymusic.BuildConfig.PERSONAL_BUILD) return@withContext Result.failure()
         val apkUrl = inputData.getString("apk_url") ?: return@withContext Result.failure()
         val version = inputData.getString("version") ?: "unknown"
         val fileSize = inputData.getString("file_size") ?: ""

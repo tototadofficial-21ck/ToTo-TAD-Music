@@ -133,6 +133,7 @@ class PassRouterSink(
     override fun getCurrentPositionUs(sourceEnded: Boolean): Long = (retiring ?: active).getCurrentPositionUs(sourceEnded)
 
     override fun play() {
+        if (!com.mochyy.mochymusic.auth.PersonalAuth.allowed) return
         playing = true
         retiring?.play() ?: active.play()
     }

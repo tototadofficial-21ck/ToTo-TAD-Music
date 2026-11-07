@@ -2,6 +2,10 @@
 
 package com.mochyy.mochymusic.ui.screens.settings.storage
 
+import com.mochyy.mochymusic.R
+
+import com.mochyy.mochymusic.i18n.UiText
+
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
@@ -163,7 +167,7 @@ private fun ManageDownloadsContent(viewModel: StorageViewModel, picks: DownloadP
     val totalBytes = remember(all) { all.orEmpty().sumOf { it.bytes } }
 
     Column(Modifier.fillMaxWidth().fillMaxHeight()) {
-        SheetSearchField(value = query, onValueChange = { query = it }, placeholder = "Search your downloads")
+        SheetSearchField(value = query, onValueChange = { query = it }, placeholder = UiText.get(R.string.toto_ui_more_search_your_downloads_09b44e))
         Text(
             all?.let { "${it.size} ${if (it.size == 1) "song" else "songs"} · ${formatSize(totalBytes)}" } ?: " ",
             style = storageText(12f, FontWeight.Medium, StorageMuted, 0f),
@@ -265,7 +269,7 @@ private fun SortSwitch(sort: DownloadSort, onNext: () -> Unit) {
             .clickable(onClick = onNext)
             .padding(vertical = 2.dp),
     ) {
-        Text("Sort by - ", style = storageText(12f, FontWeight.Medium, StorageMuted, 0f))
+        Text(UiText.get(R.string.toto_ui_more_sort_by_8ed347), style = storageText(12f, FontWeight.Medium, StorageMuted, 0f))
         AnimatedContent(
             targetState = sort,
             transitionSpec = { (slideInVertically { it } + fadeIn()).togetherWith(slideOutVertically { -it } + fadeOut()) },

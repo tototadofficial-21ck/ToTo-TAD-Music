@@ -1,0 +1,16 @@
+<resources>
+    <string name="toto_checking">Checking your account access…</string>
+    <string name="toto_config">Supabase is not configured. Contact the app owner.</string>
+    <string name="toto_blocked">This account is locked or has not been granted access. Contact the app owner.</string>
+    <string name="toto_credentials">Invalid credentials or expired session. Please sign in again.</string>
+    <string name="toto_network">Unable to verify access. Check your connection and retry. Playback is paused.</string>
+    <string name="toto_sign_in">Sign in</string>
+    <string name="toto_email">Email</string>
+    <string name="toto_password">Password</string>
+    <string name="toto_retry">Retry verification</string>
+    <string name="toto_logout">Sign out of ToTo TAD Music</string>
+    <string name="toto_support">Support the app owner with a cup of coffee for their efforts!</string>
+    <string name="toto_qr">Donation QR supplied by the owner: DO QUANG ANH THO, Techcombank</string>
+    <string name="toto_contact">Contact ToTo TAD Music on Facebook, Instagram or Discord below.</string>
+    <string name="toto_updates_disabled">This personal build has no release feed. Obtain updates from the app owner.</string>
+</resources>

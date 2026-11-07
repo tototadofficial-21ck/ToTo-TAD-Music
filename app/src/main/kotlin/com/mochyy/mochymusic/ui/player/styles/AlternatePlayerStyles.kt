@@ -1,5 +1,9 @@
 package com.mochyy.mochymusic.ui.player.styles
 
+import com.mochyy.mochymusic.R
+
+import com.mochyy.mochymusic.i18n.UiText
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.basicMarquee
 import androidx.compose.foundation.layout.Arrangement
@@ -788,7 +792,7 @@ private fun LyricsPlayerStyle(actions: StyleActions, modifier: Modifier, preview
                                 Column {
                                     ExpressiveTitle(text = song.track.title, baseSize = r.sp(0.112f, 32f, 56f), color = tones.ink.copy(alpha = 0.55f))
                                     Spacer(Modifier.height(10.dp))
-                                    Text("No synced lyrics for this song", color = tones.inkSoft, fontSize = r.sp(0.034f, 12f, 15f), fontWeight = FontWeight.Medium)
+                                    Text(UiText.get(R.string.toto_ui_more_no_synced_lyrics_for_this_song_139ca2), color = tones.inkSoft, fontSize = r.sp(0.034f, 12f, 15f), fontWeight = FontWeight.Medium)
                                 }
                             } else {
                                 ExpressiveLyrics(

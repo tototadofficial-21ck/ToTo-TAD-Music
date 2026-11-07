@@ -2,6 +2,8 @@
 
 package com.mochyy.mochymusic.ui.screens.audiolab
 
+import com.mochyy.mochymusic.i18n.UiText
+
 import android.content.Context
 import android.media.AudioManager
 import android.media.MediaCodecList
@@ -155,7 +157,7 @@ private fun LoudnessCard(viewModel: AudioLabViewModel) {
                 LabSlider("Compression", pct(loudness.compression), loudness.compression,
                     { v -> viewModel.updateLoudness { it.copy(compression = (v * 100).roundToInt() / 100f) } }, 0f..1f)
                 Text(
-                    "Compression lifts the quiet parts up toward the loud ones. Night mode keeps whispers and explosions close.",
+                    UiText.get(R.string.toto_ui_more_compression_lifts_the_quiet_parts_up_toward_the_loud_f44f5b),
                     fontFamily = InterFontFamily, fontSize = 12.sp, lineHeight = 16.sp, color = LabColors.Secondary,
                     modifier = Modifier.padding(top = 4.dp),
                 )
@@ -169,7 +171,7 @@ private fun LoudnessCard(viewModel: AudioLabViewModel) {
                 Spacer(Modifier.height(4.dp))
                 LabPanel {
                     Text(
-                        "REPLAYGAIN",
+                        UiText.get(R.string.toto_ui_more_replaygain_e3aae3),
                         fontFamily = InterFontFamily, fontWeight = FontWeight.SemiBold, fontSize = 11.sp, letterSpacing = 1.3.sp,
                         color = LabColors.Secondary,
                     )
@@ -185,7 +187,7 @@ private fun LoudnessCard(viewModel: AudioLabViewModel) {
                     LabSlider("Preamp", (if (rg.preampDb > 0) "+" else "") + String.format("%.1f dB", rg.preampDb), rg.preampDb,
                         { v -> viewModel.updateNormalize { it.copy(preampDb = (v * 2).roundToInt() / 2f) } }, -6f..6f)
                     Text(
-                        "Songs that carry ReplayGain (Monochrome's FLACs, many of your own files) even out by it: Track keeps every song level, Album keeps an album's quiet and loud songs as mastered. YouTube songs use YouTube's loudness.",
+                        UiText.get(R.string.toto_ui_more_songs_that_carry_replaygain_monochrome_s_flacs_many__de66a4),
                         fontFamily = InterFontFamily, fontSize = 12.sp, lineHeight = 16.sp, color = LabColors.Secondary,
                         modifier = Modifier.padding(top = 4.dp),
                     )
@@ -249,7 +251,7 @@ private fun SpatialCard(viewModel: AudioLabViewModel) {
                     LabSlider("Amount", pct(spatial.amount), spatial.amount,
                         { v -> viewModel.updateSpatial { it.copy(amount = v) } }, 0f..1f)
                     Text(
-                        "Two virtual speakers in front of a modelled head: the far ear hears each one a little later and darker, as in a room. 30° is a studio pair.",
+                        UiText.get(R.string.toto_ui_more_two_virtual_speakers_in_front_of_a_modelled_head_the_e41ba4),
                         fontFamily = InterFontFamily, fontSize = 12.sp, lineHeight = 16.sp, color = LabColors.Secondary,
                         modifier = Modifier.padding(top = 4.dp),
                     )
@@ -266,8 +268,8 @@ private fun MonoCard(viewModel: AudioLabViewModel) {
     val spatial by viewModel.spatial.collectAsState()
     LabCard(padding = 10.dp) {
         LabToggleRow(
-            title = "Mono audio",
-            subtitle = "Both ears hear the whole mix: for one earbud, or hearing in one ear",
+            title = UiText.get(R.string.toto_ui_more_mono_audio_b977b4),
+            subtitle = UiText.get(R.string.toto_ui_more_both_ears_hear_the_whole_mix_for_one_earbud_or_heari_6972cc),
             checked = spatial.mono,
             onCheckedChange = { on -> viewModel.updateSpatial { it.copy(mono = on) } },
             leadingDot = true,
@@ -288,8 +290,8 @@ private fun AtmosCard(viewModel: AudioLabViewModel) {
         picture = { AtmosPicture(enabled = spatial.surround, renderOnHeadphones = spatial.surround) },
         header = {
             LabToggleRow(
-                title = "Dolby Atmos & surround",
-                subtitle = "Plays 5.1, 7.1 and Atmos beds as 3D sound on any headphones, with Mochy's head model, instead of folding them to stereo. From the next song.",
+                title = UiText.get(R.string.toto_ui_more_dolby_atmos_surround_45bff1),
+                subtitle = UiText.get(R.string.toto_ui_more_plays_5_1_7_1_and_atmos_beds_as_3d_sound_on_any_head_9078e1),
                 checked = spatial.surround,
                 onCheckedChange = { on -> viewModel.updateSpatial { it.copy(surround = on) } },
             )
@@ -370,7 +372,7 @@ private fun SpeedCard(viewModel: AudioLabViewModel) {
         header = {
             Row(Modifier.fillMaxWidth().padding(horizontal = 6.dp, vertical = 6.dp), verticalAlignment = Alignment.CenterVertically) {
                 Column(Modifier.weight(1f)) {
-                    Text("Playback speed", fontFamily = InterFontFamily, fontWeight = FontWeight.SemiBold, fontSize = 15.sp, color = Color.White)
+                    Text(UiText.get(R.string.toto_ui_more_playback_speed_6ff42b), fontFamily = InterFontFamily, fontWeight = FontWeight.SemiBold, fontSize = 15.sp, color = Color.White)
                     Text(
                         if (playback.preservePitch) "Pitch stays where it is" else "Pitch follows the speed, like a record",
                         fontFamily = InterFontFamily, fontSize = 12.sp, color = LabColors.Secondary,
@@ -483,7 +485,7 @@ private fun VolumeCard(viewModel: AudioLabViewModel) {
                 LabSlider("Volume limit", pct(volume.limit), volume.limit,
                     { v -> viewModel.updateVolume { it.copy(limit = (v * 100).roundToInt() / 100f) } }, 0.2f..1f)
                 Text(
-                    "Shapes Mochy's own volume (the player's slider, fades and ducking). The limit caps how loud the app ever plays.",
+                    UiText.get(R.string.toto_ui_more_shapes_mochy_s_own_volume_the_player_s_slider_fades__d8c3d1),
                     fontFamily = InterFontFamily, fontSize = 12.sp, lineHeight = 16.sp, color = LabColors.Secondary,
                     modifier = Modifier.padding(top = 4.dp),
                 )

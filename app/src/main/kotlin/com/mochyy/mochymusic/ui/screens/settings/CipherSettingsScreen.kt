@@ -1,5 +1,9 @@
 package com.mochyy.mochymusic.ui.screens.settings
 
+import androidx.compose.ui.res.stringResource
+
+import com.mochyy.mochymusic.i18n.UiText
+
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -151,23 +155,22 @@ fun CipherSettingsScreen(navController: NavController) {
                 Spacer(Modifier.height(4.dp))
 
                 Text(
-                    text = "YouTube signs its stream URLs with a player script that changes " +
-                        "periodically. mochy caches that script and re-downloads it automatically.",
+                    text = UiText.get(R.string.toto_cipher_intro),
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
 
                 Spacer(Modifier.height(16.dp))
 
-                CipherInfoRow("Player ID", status.playerHash ?: "—")
+                CipherInfoRow(UiText.get(R.string.toto_more_player_id), status.playerHash ?: "—")
                 CipherInfoRow(
-                    "Last updated",
+                    UiText.get(R.string.toto_more_last_updated),
                     status.lastUpdatedMs?.let {
                         DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.SHORT).format(Date(it))
                     } ?: "—",
                 )
                 CipherInfoRow(
-                    "Script size",
+                    UiText.get(R.string.toto_more_script_size),
                     if (status.sizeBytes > 0) "${status.sizeBytes / 1024} KB" else "—",
                 )
                 CipherInfoRow(
@@ -226,7 +229,7 @@ fun CipherSettingsScreen(navController: NavController) {
                     },
                 ),
                 SettingsItem(
-                    title = { Text("Clear cached script") },
+                    title = { Text(stringResource(R.string.toto_ui_clear_cached_script)) },
                     descriptionText = "Forces a fresh download on the next stream",
                     icon = painterResource(R.drawable.restore),
                     iconShape = CircleShape,

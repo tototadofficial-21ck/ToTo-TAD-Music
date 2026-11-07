@@ -2,6 +2,8 @@
 
 package com.mochyy.mochymusic.ui.component
 
+import com.mochyy.mochymusic.i18n.UiText
+
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -153,7 +155,7 @@ fun ThumbnailCornerRadiusModal(
                             },
                             label = {
                                 Text(
-                                    text = "Custom",
+                                    text = UiText.get(R.string.eq_label_custom),
                                     style = MaterialTheme.typography.bodyMedium
                                 )
                             },
@@ -183,7 +185,7 @@ fun ThumbnailCornerRadiusModal(
                             enabled = isCustomSelected,
                             label = {
                                 Text(
-                                    text = "Value",
+                                    text = UiText.get(R.string.toto_ui_more_value_8dce17),
                                     style = MaterialTheme.typography.bodyMedium
                                 )
                             },
@@ -203,7 +205,7 @@ fun ThumbnailCornerRadiusModal(
                     Spacer(modifier = Modifier.height(24.dp))
                     Column(modifier = Modifier.fillMaxWidth()) {
                         Text(
-                            text = "Or adjust Radius",
+                            text = UiText.get(R.string.toto_ui_more_or_adjust_radius_4d36be),
                             style = MaterialTheme.typography.bodyMedium,
                             color = MaterialTheme.colorScheme.onSurfaceVariant
                         )
@@ -246,7 +248,7 @@ fun ThumbnailCornerRadiusModal(
                         }
 
                         Text(
-                            text = "Corner Radius: ${thumbnailCornerRadius.roundToInt()}dp",
+                            text = UiText.get(R.string.toto_format_corner_radius, thumbnailCornerRadius.roundToInt()),
                             style = MaterialTheme.typography.bodyMedium,
                             modifier = Modifier
                                 .fillMaxWidth()

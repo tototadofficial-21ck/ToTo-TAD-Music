@@ -1,5 +1,9 @@
 package com.mochyy.mochymusic.ui.screens.setup
 
+import com.mochyy.mochymusic.R
+
+import com.mochyy.mochymusic.i18n.UiText
+
 import android.net.Uri
 import androidx.activity.compose.BackHandler
 import androidx.activity.compose.rememberLauncherForActivityResult
@@ -107,6 +111,10 @@ fun SetupWizardScreen(
 ) {
     val vm: OnboardingViewModel = hiltViewModel()
     val scope = rememberCoroutineScope()
+    val profileContext = androidx.compose.ui.platform.LocalContext.current
+    var profileSaving by remember { mutableStateOf(false) }
+    var legacyProfile by remember { mutableStateOf<Pair<String, Uri?>?>(null) }
+    LaunchedEffect(Unit) { legacyProfile = com.mochyy.mochymusic.auth.AccountProfile.legacy(profileContext) }
 
     val history = remember { mutableStateListOf(Step.Welcome) }
     var forward by remember { mutableStateOf(true) }
@@ -122,7 +130,7 @@ fun SetupWizardScreen(
 
     // ---- profile ----
     var username by rememberSaveable { mutableStateOf("") }
-    var profilePicUri by remember { mutableStateOf<Uri?>(null) }
+    var profilePicUri by rememberSaveable { mutableStateOf<Uri?>(null) }
     var selectedUncroppedUri by remember { mutableStateOf<Uri?>(null) }
     var lastPickedUri by remember { mutableStateOf<Uri?>(null) }
     var prefilled by remember { mutableStateOf(false) }
@@ -343,7 +351,7 @@ fun SetupWizardScreen(
                         Step.Welcome -> Box(Modifier.fillMaxSize().background(Color.Black)) {
                             WelcomeStep(isHiding = isLeavingWelcome)
                             OnbButton(
-                                text = "Next",
+                                text = UiText.get(R.string.toto_setup_next),
                                 onClick = {
                                     isLeavingWelcome = true
                                     scope.launch {
@@ -442,7 +450,22 @@ fun SetupWizardScreen(
                             },
                             cardNumber = vm.cardNumber,
                             joinedText = vm.joinedText,
-                            onNext = { if (username.isNotBlank()) go(Step.Hello) },
+                            saving = profileSaving,
+                            onUseLegacy = legacyProfile?.let { old -> { username = old.first; profilePicUri = old.second } },
+                            onNext = {
+                                if (username.isNotBlank() && !profileSaving) {
+                                    profileSaving = true
+                                    scope.launch {
+                                        try {
+                                            com.mochyy.mochymusic.ui.screens.profile.ProfileStore.save(profileContext, username.trim(), profilePicUri)
+                                            go(Step.Hello)
+                                        } catch (e: kotlinx.coroutines.CancellationException) { throw e }
+                                        catch (_: Exception) {
+                                            android.widget.Toast.makeText(profileContext, com.mochyy.mochymusic.R.string.toto_profile_save_error, android.widget.Toast.LENGTH_LONG).show()
+                                        } finally { profileSaving = false }
+                                    }
+                                }
+                            },
                         )
 
                         Step.Hello -> HelloCardStep(
@@ -491,7 +514,6 @@ fun SetupWizardScreen(
                         Step.Done -> DoneStep(
                             card = card,
                             onFinished = {
-                                vm.saveCard()
                                 vm.closeProvider()
                                 onComplete(username.trim(), profilePicUri)
                             },

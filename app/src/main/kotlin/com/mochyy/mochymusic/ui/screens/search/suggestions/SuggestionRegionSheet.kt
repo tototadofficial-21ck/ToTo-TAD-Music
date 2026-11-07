@@ -2,6 +2,10 @@
 
 package com.mochyy.mochymusic.ui.screens.search.suggestions
 
+import com.mochyy.mochymusic.R
+
+import com.mochyy.mochymusic.i18n.UiText
+
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -51,7 +55,7 @@ fun SuggestionRegionSheet(
     ) {
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
             Text(
-                text = "Choose Suggestions Region",
+                text = UiText.get(R.string.toto_ui_more_choose_suggestions_region_92cff2),
                 style = MaterialTheme.typography.labelLarge
             )
 
@@ -63,11 +67,11 @@ fun SuggestionRegionSheet(
                         onSearch = {},
                         expanded = false,
                         onExpandedChange = {},
-                        placeholder = { Text("Search regions...") },
+                        placeholder = { Text(UiText.get(R.string.toto_ui_more_search_regions_cf5a41)) },
                         leadingIcon = {
                             Icon(
                                 Icons.Default.Search,
-                                contentDescription = "Search"
+                                contentDescription = UiText.get(R.string.search)
                             )
                         },
                     )
@@ -89,7 +93,7 @@ fun SuggestionRegionSheet(
 
                 item {
                     Text(
-                        text = "System",
+                        text = UiText.get(R.string.toto_ui_more_system_bc0792),
                         style = MaterialTheme.typography.titleSmall,
                         modifier = Modifier.padding(start = 16.dp, end = 16.dp, bottom = 16.dp)
                     )
@@ -97,7 +101,7 @@ fun SuggestionRegionSheet(
                 item {
                     val isSelected = currentRegionSlug == "system"
                     RegionListItem(
-                        headlineContent = { Text("System Default") },
+                        headlineContent = { Text(UiText.get(R.string.toto_ui_more_system_default_4b857b)) },
                         selected = isSelected,
                         items = 1,
                         index = 0,
@@ -118,7 +122,7 @@ fun SuggestionRegionSheet(
 
                 item {
                     Text(
-                        text = "Countries & Regions",
+                        text = UiText.get(R.string.toto_ui_more_countries_regions_fb4c22),
                         style = MaterialTheme.typography.titleSmall,
                         modifier = Modifier.padding(
                             top = 14.dp,
@@ -197,7 +201,7 @@ fun RegionListItem(
             {
                 Icon(
                     Icons.Default.Check,
-                    contentDescription = "Selected"
+                    contentDescription = UiText.get(R.string.toto_setup_selected)
                 )
             }
         } else null,

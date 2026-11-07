@@ -6,6 +6,8 @@
 
 package com.mochyy.mochymusic.ui.screens.artist
 
+import com.mochyy.mochymusic.i18n.UiText
+
 import android.graphics.Shader
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.animateContentSize
@@ -606,7 +608,7 @@ private fun ReleaseCard(
                 }
                 CircleAction(
                     icon = if (isPlaying) R.drawable.ic_untitled_pause else R.drawable.ic_untitled_play,
-                    contentDescription = "Play",
+                    contentDescription = UiText.get(R.string.flagship_play),
                     onClick = onPlay,
                 )
                 if (release.album != null) {
@@ -627,7 +629,7 @@ private fun BioCard(name: String, bio: String, onClick: () -> Unit) {
     ArtistCard(onClick = onClick) {
         Column(modifier = Modifier.fillMaxSize()) {
             Text(
-                text = "About $name",
+                text = UiText.get(R.string.toto_format_about_name, name),
                 style = CardLabelStyle,
                 color = Color.White,
                 maxLines = 1,
@@ -691,7 +693,7 @@ internal fun ArtistShelfTitle(
                 ) {
                     Icon(
                         painter = painterResource(R.drawable.more_horiz),
-                        contentDescription = "More",
+                        contentDescription = UiText.get(R.string.show_more),
                         tint = Color.White.copy(alpha = 0.78f),
                         modifier = Modifier.size(18.dp),
                     )
@@ -715,7 +717,7 @@ internal fun ArtistShelfTitle(
                 ) {
                     Icon(
                         painter = painterResource(R.drawable.ic_chevron_right),
-                        contentDescription = "See all",
+                        contentDescription = UiText.get(R.string.toto_ui_more_see_all_2941c5),
                         tint = Color.White.copy(alpha = 0.6f),
                         modifier = Modifier.size(18.dp),
                     )
@@ -798,7 +800,7 @@ internal fun ArtistTopBar(
             ) {
                 Icon(
                     painter = painterResource(R.drawable.arrow_back_ios),
-                    contentDescription = "Back",
+                    contentDescription = UiText.get(R.string.back_button_desc),
                     tint = Color.White,
                     modifier = Modifier
                         .size(16.dp)

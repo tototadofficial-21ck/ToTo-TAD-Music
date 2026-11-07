@@ -39,6 +39,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.mochyy.mochymusic.branding.showOwnerSheet
 import com.mochyy.mochymusic.R
 import com.mochyy.mochymusic.core.updater.DiscordUrl
 import com.mochyy.mochymusic.modules.ModuleEntry
@@ -67,7 +68,7 @@ fun ModulesScreen(navController: NavController, viewModel: ModulesViewModel = hi
         titleBadge = { BetaBadge() },
     ) {
         // mochy's bar is where people share modules, so it leads the page
-        ModulesBarBanner { context.openDevUrl(DiscordUrl) }
+        ModulesBarBanner { context.openDevUrl(context.getString(R.string.toto_owner_community)) }
         Spacer(Modifier.height(16.dp))
         Text(
             stringResource(R.string.modules_intro),
@@ -162,13 +163,13 @@ private fun ModulesBarBanner(onClick: () -> Unit) {
     ) {
         // the drawing ends at her jacket, so sitting on the card's bottom edge cuts her off there like the design
         Image(
-            painterResource(R.drawable.modules_bar_mochy), null,
+            painterResource(R.drawable.toto_logo), null,
             contentScale = ContentScale.Fit,
             modifier = Modifier.align(Alignment.Bottom).padding(top = 8.dp).fillMaxHeight(),
         )
         Spacer(Modifier.width(22.dp))
         Text(
-            stringResource(R.string.modules_bar),
+            stringResource(R.string.toto_owner_community_label),
             fontFamily = InterFontFamily, fontWeight = FontWeight.Bold, fontSize = 20.sp, lineHeight = 22.sp,
             letterSpacing = (-0.6).sp, color = Color.White, modifier = Modifier.weight(1f),
         )

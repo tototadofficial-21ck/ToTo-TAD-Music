@@ -2,6 +2,10 @@
 
 package com.mochyy.mochymusic.ui.player.info
 
+import com.mochyy.mochymusic.R
+
+import com.mochyy.mochymusic.i18n.UiText
+
 import android.content.Context
 import android.media.AudioManager
 import android.media.MediaCodecList
@@ -150,11 +154,11 @@ private fun ProviderRow(service: MusicService, from: PlayingFrom?, onForce: () -
                 // only a module that publishes its code gets the star; others say nothing rather than a dead button
                 val sourceUrl = service.sourceModules.module(from.providerId)?.info?.sourceUrl
                 if (sourceUrl != null) {
-                    InfoPill(text = "Star on GitHub", filled = false, onClick = { runCatching { uriHandler.openUri(sourceUrl) } })
+                    InfoPill(text = UiText.get(R.string.toto_ui_star_on_github), filled = false, onClick = { runCatching { uriHandler.openUri(sourceUrl) } })
                 }
                 // a file on the phone has nowhere else to come from
                 if (from.providerId != PlayingFrom.Device) {
-                    InfoPill(text = "Force change", filled = true, onClick = onForce)
+                    InfoPill(text = UiText.get(R.string.toto_ui_more_force_change_87537f), filled = true, onClick = onForce)
                 }
             }
         }

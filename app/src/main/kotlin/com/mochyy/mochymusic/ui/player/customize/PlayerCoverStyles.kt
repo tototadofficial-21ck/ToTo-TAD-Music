@@ -2,6 +2,8 @@
 
 package com.mochyy.mochymusic.ui.player.customize
 
+import com.mochyy.mochymusic.i18n.UiText
+
 import androidx.annotation.DrawableRes
 import androidx.datastore.preferences.core.Preferences
 import com.mochyy.mochymusic.R
@@ -72,24 +74,24 @@ sealed interface CoverOption {
 }
 
 private val AnimatedCanvasOption = CoverOption.Switch(
-    title = "Animated canvas",
-    description = "Animated canvas ( not from youtube )",
+    title = UiText.get(R.string.toto_ui_more_animated_canvas_2d8362),
+    description = UiText.get(R.string.toto_ui_more_animated_canvas_not_from_youtube_4dc757),
     icon = R.drawable.sparks,
     key = CanvasThumbnailAnimationKey,
     default = true,
 )
 
 private val YtVideoOption = CoverOption.Switch(
-    title = "Yt video background",
-    description = "Plays yt videos on canvas",
+    title = UiText.get(R.string.toto_ui_more_yt_video_background_03403e),
+    description = UiText.get(R.string.toto_ui_more_plays_yt_videos_on_canvas_fa733d),
     icon = R.drawable.slow_motion_video,
     key = PlayVideoBackgroundKey,
     default = false,
 )
 
 private val TimestampMatchingOption = CoverOption.Switch(
-    title = "Timestamp matching",
-    description = "Based on subtitle",
+    title = UiText.get(R.string.appearance_timestamp_matching),
+    description = UiText.get(R.string.appearance_timestamp_matching_desc),
     icon = R.drawable.lyrics,
     key = YtVideoBackgroundLyricsSyncKey,
     default = true,
@@ -97,27 +99,27 @@ private val TimestampMatchingOption = CoverOption.Switch(
 )
 
 private val RotatingAnimationOption = CoverOption.Switch(
-    title = "Rotating animation",
-    description = "For the disc",
+    title = UiText.get(R.string.toto_ui_more_rotating_animation_13b416),
+    description = UiText.get(R.string.toto_ui_more_for_the_disc_7176a9),
     icon = R.drawable.refresh,
     key = DiscRotatingAnimationKey,
     default = true,
 )
 
 private val RealisticModeOption = CoverOption.Switch(
-    title = "Realistic mode",
-    description = "For the disc",
+    title = UiText.get(R.string.toto_ui_more_realistic_mode_2afb99),
+    description = UiText.get(R.string.toto_ui_more_for_the_disc_7176a9),
     icon = R.drawable.palette,
     key = DiscRealisticModeKey,
     default = true,
 )
 
 private val DiscNameOption = CoverOption.Text(
-    title = "Disc name",
-    description = "Printed on the platter",
+    title = UiText.get(R.string.toto_ui_more_disc_name_910cf2),
+    description = UiText.get(R.string.toto_ui_more_printed_on_the_platter_105f40),
     icon = R.drawable.edit,
     key = DiscNameKey,
-    placeholder = "Leave empty to hide",
+    placeholder = UiText.get(R.string.toto_ui_more_leave_empty_to_hide_35a6e1),
 )
 
 private val DiscOptions = listOf(RotatingAnimationOption, RealisticModeOption, DiscNameOption)

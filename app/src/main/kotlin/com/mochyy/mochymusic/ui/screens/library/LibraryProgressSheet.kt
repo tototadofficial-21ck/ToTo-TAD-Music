@@ -6,6 +6,12 @@
 
 package com.mochyy.mochymusic.ui.screens.library
 
+import com.mochyy.mochymusic.R
+
+import androidx.compose.ui.res.stringResource
+
+import com.mochyy.mochymusic.i18n.UiText
+
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.Arrangement
@@ -103,7 +109,7 @@ private fun ColumnScope.TransferSheetContent(kind: TransferKind, batch: Transfer
     Spacer(Modifier.height(8.dp))
     Row(verticalAlignment = Alignment.CenterVertically) {
         Text(
-            text = if (batch.isEmpty) "0" else "${batch.doneCount} of ${batch.items.size}",
+            text = if (batch.isEmpty) "0" else UiText.get(R.string.toto_progress_count, batch.doneCount, batch.items.size),
             color = SearchColors.Primary,
             fontSize = 13.sp,
             fontWeight = FontWeight.Bold,
@@ -171,7 +177,7 @@ private fun TransferRow(item: TransferItem) {
 private fun CancelDownloadsButton(batchFlow: StateFlow<TransferBatch>, onCancel: () -> Unit) {
     val batch by batchFlow.collectAsState()
     SheetPillButton(
-        text = "Cancel all downloads",
+        text = stringResource(R.string.toto_ui_cancel_all_downloads),
         enabled = batch.isRunning,
         onClick = onCancel,
     )
@@ -191,7 +197,7 @@ private fun CreatePlaylistButton(
     val songIds = batch.finishedSongIds
 
     SheetPillButton(
-        text = "Create playlist",
+        text = stringResource(R.string.toto_ui_create_playlist),
         enabled = !batch.isRunning && songIds.isNotEmpty(),
         onClick = { creating = true },
     )

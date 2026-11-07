@@ -2,6 +2,8 @@
 
 package com.mochyy.mochymusic.ui.player.menu
 
+import com.mochyy.mochymusic.i18n.UiText
+
 import androidx.activity.compose.BackHandler
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.Animatable
@@ -85,7 +87,7 @@ fun SleepTimerSheet(onDismiss: () -> Unit) {
                 .animateContentSize(animationSpec = tween(420, easing = SheetEasing))
         ) {
             Text(
-                text = "Sleep timer",
+                text = UiText.get(R.string.sleep_timer),
                 color = Color.White,
                 fontSize = 15.sp,
                 fontWeight = FontWeight.SemiBold,
@@ -115,7 +117,7 @@ fun SleepTimerSheet(onDismiss: () -> Unit) {
                     Spacer(modifier = Modifier.width(14.dp))
                     Icon(
                         painter = painterResource(R.drawable.arrow_forward),
-                        contentDescription = "Edit duration",
+                        contentDescription = UiText.get(R.string.toto_ui_more_edit_duration_1e9936),
                         tint = Color.White.copy(alpha = 0.8f),
                         modifier = Modifier.size(20.dp),
                     )
@@ -153,7 +155,7 @@ fun SleepTimerSheet(onDismiss: () -> Unit) {
             }
 
             Spacer(modifier = Modifier.height(18.dp))
-            Text(text = "or", color = Color(0xFF8A8A8A), fontSize = 13.sp)
+            Text(text = UiText.get(R.string.song_share_send_or), color = Color(0xFF8A8A8A), fontSize = 13.sp)
             Spacer(modifier = Modifier.height(10.dp))
 
             Row(
@@ -167,7 +169,7 @@ fun SleepTimerSheet(onDismiss: () -> Unit) {
                 SheetIcon(R.drawable.music_note)
                 Spacer(modifier = Modifier.width(14.dp))
                 Text(
-                    text = "end after this music ends",
+                    text = UiText.get(R.string.toto_ui_more_end_after_this_music_ends_b1c0b3),
                     color = Color.White,
                     fontSize = 14.sp,
                     fontWeight = FontWeight.SemiBold,
@@ -183,7 +185,7 @@ fun SleepTimerSheet(onDismiss: () -> Unit) {
             }
 
             Spacer(modifier = Modifier.height(18.dp))
-            Text(text = "or", color = Color(0xFF8A8A8A), fontSize = 13.sp)
+            Text(text = UiText.get(R.string.song_share_send_or), color = Color(0xFF8A8A8A), fontSize = 13.sp)
             Spacer(modifier = Modifier.height(10.dp))
 
             SheetButton(

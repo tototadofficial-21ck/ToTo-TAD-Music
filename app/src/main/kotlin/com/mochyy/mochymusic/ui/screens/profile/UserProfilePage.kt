@@ -7,6 +7,8 @@
 
 package com.mochyy.mochymusic.ui.screens.profile
 
+import com.mochyy.mochymusic.i18n.UiText
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.combinedClickable
@@ -160,7 +162,7 @@ internal fun UserProfilePage(
             if (photo != null) {
                 AsyncImage(
                     model = photo,
-                    contentDescription = "Profile picture",
+                    contentDescription = UiText.get(R.string.toto_setup_profile_picture),
                     contentScale = ContentScale.Crop,
                     modifier = Modifier.fillMaxSize(),
                 )
@@ -263,7 +265,7 @@ private fun NameLine(
 @Composable
 private fun EditProfilePill(onClick: () -> Unit, modifier: Modifier = Modifier) {
     Text(
-        text = "Edit profile",
+        text = UiText.get(R.string.toto_ui_more_edit_profile_15141e),
         style = TextStyle(
             fontFamily = InterFontFamily,
             fontWeight = FontWeight.SemiBold,
@@ -318,7 +320,7 @@ private fun ListensCard(total: ListenTotal, width: Dp, onClick: () -> Unit, modi
     ) {
         Row {
             Text(
-                text = "Total listens",
+                text = UiText.get(R.string.toto_ui_more_total_listens_14dd30),
                 style = TextStyle(fontFamily = InterFontFamily, fontWeight = FontWeight.Bold, fontSize = 17.sp, letterSpacing = (-0.04).em, color = Color.White),
                 modifier = Modifier.alignByBaseline(),
             )
@@ -415,7 +417,7 @@ private fun RecentSection(state: ProfileMorphState, viewModel: UserProfileViewMo
     val isPlaying by playerConnection.isPlaying.collectAsState()
 
     ProfileSection(
-        title = "Listening to",
+        title = UiText.get(R.string.toto_ui_more_listening_to_f61500),
         state = state,
         row = 3,
         items = songs,
@@ -460,7 +462,7 @@ private fun PlaylistsSection(state: ProfileMorphState, viewModel: UserProfileVie
     val shape = RoundedCornerShape(HomeCardCornerRadius)
 
     ProfileSection(
-        title = "Your playlists",
+        title = UiText.get(R.string.home_your_playlists),
         state = state,
         row = 4,
         items = entries,
@@ -513,7 +515,7 @@ private fun ArtistsSection(state: ProfileMorphState, viewModel: UserProfileViewM
     val scope = rememberCoroutineScope()
 
     ProfileSection(
-        title = "Top artists",
+        title = UiText.get(R.string.toto_ui_more_top_artists_4920f8),
         state = state,
         row = 5,
         items = artists,

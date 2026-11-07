@@ -1,5 +1,7 @@
 package com.mochyy.mochymusic.ui.player.studio
 
+import com.mochyy.mochymusic.i18n.UiText
+
 import androidx.activity.compose.BackHandler
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.core.RepeatMode
@@ -256,7 +258,7 @@ private fun StudioTopBar(studio: PlayerStudioState, glassState: GlassState) {
             ) {
                 Icon(
                     painter = painterResource(R.drawable.arrow_back_ios),
-                    contentDescription = "Back",
+                    contentDescription = UiText.get(R.string.back_button_desc),
                     tint = Color.White,
                     modifier = Modifier.size(16.dp).offset(x = 2.dp),
                 )
@@ -280,7 +282,7 @@ private fun StudioTopBar(studio: PlayerStudioState, glassState: GlassState) {
                     enter = fadeIn(tween(240)) + androidx.compose.animation.expandVertically(tween(300)),
                     exit = fadeOut(tween(160)) + androidx.compose.animation.shrinkVertically(tween(260)),
                 ) {
-                    Text("Hold to adjust position, tap to edit", color = Color.White.copy(alpha = 0.7f), style = inter(StudioType.Subtitle, FontWeight.Medium))
+                    Text(UiText.get(R.string.toto_ui_more_hold_to_adjust_position_tap_to_edit_a527fe), color = Color.White.copy(alpha = 0.7f), style = inter(StudioType.Subtitle, FontWeight.Medium))
                 }
             }
         }
@@ -552,7 +554,7 @@ private fun CoverEditor(
                     Icon(painterResource(R.drawable.tune), null, tint = Color.Black, modifier = Modifier.size(14.dp))
                 }
                 Spacer(Modifier.width(14.dp))
-                Text("Show more option for this cover", color = Color.White, style = inter(StudioType.Body, FontWeight.SemiBold))
+                Text(UiText.get(R.string.toto_ui_more_show_more_option_for_this_cover_f3f03f), color = Color.White, style = inter(StudioType.Body, FontWeight.SemiBold))
             }
         }
 

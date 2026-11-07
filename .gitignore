@@ -45,7 +45,13 @@ apk-generated/
 plan.md
 implementation_plan.md
 transcript_*.txt
-docs/
+docs/*
+!docs/ToTo-*.md
+!docs/verification/
+docs/verification/*
+!docs/verification/changed-files.txt
+!docs/verification/upstream-review.md
+!docs/verification/usb-*.png
 
 # Logs, crash dumps & API response dumps
 *.log

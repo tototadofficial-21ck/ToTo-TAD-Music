@@ -5,6 +5,10 @@
 
 package com.mochyy.mochymusic.ui.screens.library
 
+import com.mochyy.mochymusic.R
+
+import com.mochyy.mochymusic.i18n.UiText
+
 import com.mochyy.mochymusic.ui.screens.search.AvatarSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -46,10 +50,10 @@ fun LibraryImportedScreen(
     LibraryEntityListScreen(
         title = source?.label ?: "Imported",
         subtitle = when (songs.size) {
-            1 -> "1 song imported from $label."
-            else -> "${songs.size} songs imported from $label."
+            1 -> UiText.get(R.string.toto_imported_summary, 1, label)
+            else -> UiText.get(R.string.toto_imported_summary, songs.size, label)
         },
-        searchPlaceholder = "Find a song imported from $label",
+        searchPlaceholder = UiText.get(R.string.toto_find_imported, label),
         items = songs,
         idOf = { it.id },
         nameOf = { it.song.title },
@@ -61,7 +65,7 @@ fun LibraryImportedScreen(
             val ordered = sortForLibraryIndex(songs) { it.song.title }
             playerConnection.playQueue(
                 ListQueue(
-                    title = "Imported from $label",
+                    title = UiText.get(R.string.toto_imported_from, label),
                     items = ordered.map { it.toMediaItem() },
                     startIndex = ordered.indexOf(song).coerceAtLeast(0),
                 ),

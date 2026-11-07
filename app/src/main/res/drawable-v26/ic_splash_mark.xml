@@ -1,0 +1,4 @@
+<!-- Android masks the splash icon. Keep the complete square logo inside its safe circle. -->
+<inset xmlns:android="http://schemas.android.com/apk/res/android" android:inset="28%">
+    <bitmap android:src="@drawable/toto_logo" android:gravity="fill" />
+</inset>

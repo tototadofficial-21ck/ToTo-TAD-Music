@@ -7,6 +7,8 @@
 
 package com.mochyy.mochymusic.ui.screens.library
 
+import com.mochyy.mochymusic.i18n.UiText
+
 import android.content.Intent
 import android.net.Uri
 import android.provider.Settings
@@ -92,7 +94,7 @@ fun rememberLocalImportActions(viewModel: LibraryImportViewModel): LocalImportAc
     val picker = rememberLauncherForActivityResult(ActivityResultContracts.OpenMultipleDocuments()) { uris ->
         if (uris.isEmpty()) return@rememberLauncherForActivityResult
         if (!viewModel.importPicked(uris)) {
-            TopToaster.show("An import is still running. Try again once it's done.", iconRes = R.drawable.library_music)
+            TopToaster.show(UiText.get(R.string.toto_more_an_import_is_still_running_try_again_once_it_s_done), iconRes = R.drawable.library_music)
         }
         showProgress()
     }
@@ -104,9 +106,9 @@ fun rememberLocalImportActions(viewModel: LibraryImportViewModel): LocalImportAc
         } else {
             // a second "no" stops Android asking at all, so point to where it can still be turned on
             TopToaster.show(
-                text = "Mochy can't see your music without access",
+                text = UiText.get(R.string.toto_ui_mochy_can_t_see_your_music_without_access),
                 iconRes = R.drawable.storage,
-                actionLabel = "Settings",
+                actionLabel = context.getString(R.string.settings_title),
                 onAction = {
                     context.startActivity(
                         Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, Uri.fromParts("package", context.packageName, null))

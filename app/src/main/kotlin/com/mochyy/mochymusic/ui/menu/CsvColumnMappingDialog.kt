@@ -2,6 +2,8 @@
 
 package com.mochyy.mochymusic.ui.menu
 
+import com.mochyy.mochymusic.i18n.UiText
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
@@ -82,7 +84,7 @@ fun CsvColumnMappingDialog(
                     verticalArrangement = Arrangement.spacedBy(8.dp),
                 ) {
                     Text(
-                        text = "Preview",
+                        text = UiText.get(R.string.song_share_preview),
                         style = MaterialTheme.typography.labelMedium,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                     )

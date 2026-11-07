@@ -1,5 +1,11 @@
 package com.mochyy.mochymusic.ui.screens.settings
 
+import com.mochyy.mochymusic.R
+
+import androidx.compose.ui.res.stringResource
+
+import com.mochyy.mochymusic.i18n.UiText
+
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.spring
 import androidx.compose.animation.core.tween
@@ -115,14 +121,14 @@ fun CrossmixSettingsScreen(navController: NavController) {
     ListenToAudio()
 
     SubSettingsScaffold(
-        title = "Crossfade",
+        title = UiText.get(R.string.toto_more_crossfade),
         backLabel = "Audio Lab",
         onBack = { navController.navigateUp() },
     ) {
         LabCard(padding = 10.dp) {
             LabToggleRow(
-                title = "Off",
-                subtitle = "Boring boring boring",
+                title = UiText.get(R.string.toto_more_off),
+                subtitle = UiText.get(R.string.toto_more_boring_boring_boring),
                 checked = selectedMode == CrossmixMode.OFF,
                 onCheckedChange = { selectMode(CrossmixMode.OFF) },
                 leadingDot = true,
@@ -136,8 +142,8 @@ fun CrossmixSettingsScreen(navController: NavController) {
             }
             Spacer(Modifier.height(10.dp))
             LabToggleRow(
-                title = "Auto Crossfade",
-                subtitle = "A smooth ${AutoCrossfadeDurationSeconds.toInt()}-second blend from every song into the next",
+                title = UiText.get(R.string.toto_more_auto_crossfade),
+                subtitle = UiText.get(R.string.toto_format_crossfade_blend, AutoCrossfadeDurationSeconds.toInt()),
                 checked = selectedMode == CrossmixMode.AUTO_CROSSFADE,
                 onCheckedChange = { toggle(CrossmixMode.AUTO_CROSSFADE, it) },
             )
@@ -154,14 +160,14 @@ fun CrossmixSettingsScreen(navController: NavController) {
             }
             Spacer(Modifier.height(10.dp))
             LabToggleRow(
-                title = "Manual Crossfade",
-                subtitle = "Set custom crossfade",
+                title = UiText.get(R.string.toto_more_manual_crossfade),
+                subtitle = UiText.get(R.string.toto_more_set_custom_crossfade),
                 checked = selectedMode == CrossmixMode.MANUAL_CROSSFADE,
                 onCheckedChange = { toggle(CrossmixMode.MANUAL_CROSSFADE, it) },
             )
             Box(Modifier.padding(horizontal = 6.dp)) {
                 LabSlider(
-                    label = "Length",
+                    label = UiText.get(R.string.toto_more_length),
                     valueText = "${manualSeconds.roundToInt()}s",
                     value = manualSeconds,
                     onValueChange = { v ->
@@ -174,8 +180,8 @@ fun CrossmixSettingsScreen(navController: NavController) {
                 )
             }
             Row(Modifier.fillMaxWidth().padding(horizontal = 6.dp)) {
-                Text("1s", fontFamily = InterFontFamily, fontSize = 11.sp, color = LabColors.Secondary, modifier = Modifier.weight(1f))
-                Text("20s", fontFamily = InterFontFamily, fontSize = 11.sp, color = LabColors.Secondary)
+                Text(UiText.get(R.string.toto_more_1s), fontFamily = InterFontFamily, fontSize = 11.sp, color = LabColors.Secondary, modifier = Modifier.weight(1f))
+                Text(UiText.get(R.string.toto_more_20s), fontFamily = InterFontFamily, fontSize = 11.sp, color = LabColors.Secondary)
             }
         }
         Spacer(Modifier.height(12.dp))
@@ -194,7 +200,7 @@ fun CrossmixSettingsScreen(navController: NavController) {
             }
             Spacer(Modifier.height(10.dp))
             LabToggleRow(
-                title = "CrossMix",
+                title = UiText.get(R.string.toto_more_crossmix),
                 subtitle = if (CrossmixAvailable) {
                     "DJ-style: reads each song's tempo, beats, key, energy and where its voice is, then picks the one of 27 transitions that fits, so two voices never sing over each other"
                 } else {
@@ -214,8 +220,8 @@ fun CrossmixSettingsScreen(navController: NavController) {
         LabCollapsible(selectedMode != CrossmixMode.OFF) {
             LabCard(padding = 10.dp) {
                 LabToggleRow(
-                    title = "Keep gapless albums intact",
-                    subtitle = "Album tracks that run straight into each other play through unmixed",
+                    title = UiText.get(R.string.toto_more_keep_gapless_albums_intact),
+                    subtitle = UiText.get(R.string.toto_more_album_tracks_that_run_straight_into_each_other_play_through_),
                     checked = disableForGapless,
                     onCheckedChange = onDisableForGaplessChange,
                 )
@@ -335,7 +341,7 @@ private fun DrawScope.drawPlayhead(x: Float, cy: Float, reach: Float, alpha: Flo
 @Composable
 private fun InProgressTag(modifier: Modifier = Modifier) {
     Text(
-        "In progress",
+        stringResource(R.string.toto_ui_in_progress),
         fontFamily = InterFontFamily,
         fontWeight = FontWeight.SemiBold,
         fontSize = 11.sp,

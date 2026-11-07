@@ -2,6 +2,8 @@
 
 package com.mochyy.mochymusic.ui.screens.setup.onboarding
 
+import com.mochyy.mochymusic.i18n.UiText
+
 import com.mochyy.mochymusic.ui.component.rememberDeviceTilt
 import androidx.compose.ui.unit.em
 import com.mochyy.mochymusic.ui.theme.InterFontFamily
@@ -71,7 +73,7 @@ import com.mochyy.mochymusic.viewmodels.TransferStep
 import com.mochyy.mochymusic.viewmodels.YouTubeSyncChoices
 import com.music.innertube.models.ArtistItem
 
-private const val GoBack = "hell nah, go back"
+private val GoBack get() = UiText.get(R.string.toto_setup_hell_nah_go_back)
 
 /** "let's build your home" needs this many artists to have something to build from */
 internal const val MinArtists = 3
@@ -82,11 +84,11 @@ internal const val MinArtists = 3
 internal fun ImportAskPage(onYes: () -> Unit, onSkip: () -> Unit) {
     OnboardingPage(
         badge = { PageBadge(painterResource(R.drawable.download)) },
-        title = "Importing music",
-        subtitle = "Do you want to import music from other platforms like Spotify, Apple Music, Tidal or SoundCloud, or sync your data with YouTube Music?",
+        title = UiText.get(R.string.toto_setup_importing_music),
+        subtitle = UiText.get(R.string.toto_setup_do_you_want_to_import_music_from_other_platforms_like_spotify_),
         footer = {
-            OnbButton("Yes!", onClick = onYes)
-            OnbButton("Skip", onClick = onSkip, style = OnbButtonStyle.Secondary)
+            OnbButton(UiText.get(R.string.toto_setup_yes), onClick = onYes)
+            OnbButton(UiText.get(R.string.toto_setup_skip), onClick = onSkip, style = OnbButtonStyle.Secondary)
         },
     )
 }
@@ -103,27 +105,27 @@ internal fun ImportModePage(
 ) {
     OnboardingPage(
         badge = { PageBadge(painterResource(R.drawable.download)) },
-        title = "Importing music",
-        subtitle = "what do you want?",
+        title = UiText.get(R.string.toto_setup_importing_music),
+        subtitle = UiText.get(R.string.toto_setup_what_do_you_want),
         footer = { OnbButton(GoBack, onClick = onBack, style = OnbButtonStyle.Secondary) },
     ) {
         Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
             OnbChoiceCard(
                 icon = painterResource(R.drawable.restore),
-                title = "Import previous data",
-                description = "the .zip you exported from your old app, with your library, history, downloads and settings",
+                title = UiText.get(R.string.toto_setup_import_previous_data),
+                description = UiText.get(R.string.toto_setup_the_zip_you_exported_from_your_old_app_with_your_library_histo),
                 onClick = onPreviousData,
             )
             OnbChoiceCard(
                 icon = painterResource(R.drawable.playlist_add),
-                title = "Import",
-                description = "import music, playlists and albums from supported providers like Apple Music, Spotify, Tidal and YouTube Music",
+                title = UiText.get(R.string.toto_setup_import),
+                description = UiText.get(R.string.toto_setup_import_music_playlists_and_albums_from_supported_providers_lik),
                 onClick = onImport,
             )
             OnbChoiceCard(
                 icon = painterResource(R.drawable.backup),
-                title = "Import from backup",
-                description = "if you by any chance have a Mochy backup",
+                title = UiText.get(R.string.toto_setup_import_from_backup),
+                description = UiText.get(R.string.toto_setup_if_you_by_any_chance_have_a_mochy_backup),
                 onClick = onBackup,
             )
             if (backupError != null) {
@@ -141,12 +143,14 @@ internal fun RestoringPage(step: TransferStep, manifest: TransferManifest?) {
     val progress = if (done) 1f else (step as? TransferStep.Working)?.progress ?: 0f
     OnboardingPage(
         badge = { PageBadge(painterResource(if (done) R.drawable.check else R.drawable.restore)) },
-        title = if (done) "All set!" else "Bringing your music over",
+        title = if (done) UiText.get(R.string.toto_setup_all_set) else UiText.get(R.string.toto_setup_bringing_your_music_over),
         subtitle = when {
-            done -> "Mochy restarts once to finish. See you in a sec!"
-            manifest != null -> "${countOf(manifest.songs, "song")}, ${countOf(manifest.playlists, "playlist")} and " +
-                "${countOf(manifest.plays, "play")} from your old app."
-            else -> "Reading your export…"
+            done -> UiText.get(R.string.toto_setup_mochy_restarts_once_to_finish_see_you_in_a_sec)
+            manifest != null -> UiText.get(R.string.toto_setup_restore_details,
+                UiText.quantity(R.plurals.n_song, manifest.songs, manifest.songs),
+                UiText.quantity(R.plurals.n_playlist, manifest.playlists, manifest.playlists),
+                UiText.quantity(R.plurals.toto_setup_plays, manifest.plays, manifest.plays))
+            else -> UiText.get(R.string.toto_setup_reading_your_export)
         },
     ) {
         Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
@@ -160,7 +164,7 @@ internal fun RestoringPage(step: TransferStep, manifest: TransferManifest?) {
                     .clip(CircleShape),
             )
             Text(
-                if (done) "Restarting…" else "${(progress * 100).toInt()}% · keep Mochy open, it restarts by itself when it's done",
+                if (done) UiText.get(R.string.toto_setup_restarting) else UiText.get(R.string.toto_setup_restore_progress, (progress * 100).toInt()),
                 color = Onb.Subtitle,
                 fontSize = 13.sp,
                 fontWeight = FontWeight.SemiBold,
@@ -169,7 +173,6 @@ internal fun RestoringPage(step: TransferStep, manifest: TransferManifest?) {
     }
 }
 
-private fun countOf(count: Int, thing: String): String = "%,d %s".format(count, if (count == 1) thing else "${thing}s")
 
 // ---- 3. provider ----
 
@@ -177,15 +180,15 @@ private fun countOf(count: Int, thing: String): String = "%,d %s".format(count, 
 internal fun ProviderListPage(onPick: (AccountService) -> Unit, onBack: () -> Unit) {
     OnboardingPage(
         badge = { PageBadge(painterResource(R.drawable.library_music)) },
-        title = "Select provider",
+        title = UiText.get(R.string.toto_setup_select_provider),
         footer = { OnbButton(GoBack, onClick = onBack, style = OnbButtonStyle.Secondary) },
     ) {
         Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
             listOf(
-                AccountService.SPOTIFY to "Liked Songs and playlists",
-                AccountService.APPLE_MUSIC to "Library playlists and Favorite Songs",
-                AccountService.YOUTUBE_MUSIC to "Liked music and playlists · also supports sync",
-                AccountService.TIDAL to "My Tracks and your playlists",
+                AccountService.SPOTIFY to UiText.get(R.string.toto_setup_liked_songs_and_playlists),
+                AccountService.APPLE_MUSIC to UiText.get(R.string.toto_setup_library_playlists_and_favorite_songs),
+                AccountService.YOUTUBE_MUSIC to UiText.get(R.string.toto_setup_liked_music_and_playlists_also_supports_sync),
+                AccountService.TIDAL to UiText.get(R.string.toto_setup_my_tracks_and_your_playlists),
             ).forEach { (service, description) ->
                 OnbCard(modifier = Modifier.fillMaxWidth(), onClick = { onPick(service) }, shape = RoundedCornerShape(20.dp)) {
                     Row(
@@ -218,13 +221,13 @@ internal fun ProviderSetupPage(
 ) {
     OnboardingPage(
         badge = { ProviderSquircle(service, size = 40.dp) },
-        title = "${service.label} setup",
-        subtitle = "You will log in to your account. We never see your password. A web page will open.",
+        title = UiText.get(R.string.toto_setup_provider_setup, service.label),
+        subtitle = UiText.get(R.string.toto_setup_you_will_log_in_to_your_account_we_never_see_your_password_a_w),
         footer = {
             when (state) {
-                is AccountImportState.Failed -> OnbButton(if (state.signedOut) "Sign in again" else "Try again", onClick = onRetry)
+                is AccountImportState.Failed -> OnbButton(if (state.signedOut) UiText.get(R.string.toto_setup_sign_in_again) else UiText.get(R.string.toto_setup_try_again), onClick = onRetry)
                 is AccountImportState.Loading, is AccountImportState.Choosing -> Unit
-                else -> if (!browserOpen) OnbButton("Open sign-in", onClick = onOpenBrowser)
+                else -> if (!browserOpen) OnbButton(UiText.get(R.string.toto_setup_open_sign_in), onClick = onOpenBrowser)
             }
             OnbButton(GoBack, onClick = onBack, style = OnbButtonStyle.Secondary)
         },
@@ -237,7 +240,7 @@ internal fun ProviderSetupPage(
             }
             is AccountImportState.Failed -> Text(state.message, color = Color(0xFFFF8A80), fontSize = 15.sp, fontWeight = FontWeight.SemiBold)
             else -> Text(
-                "Sign in on ${service.label}'s own page. Once you're in, the page closes and your playlists show up here.",
+                UiText.get(R.string.toto_setup_provider_signin_help, service.label),
                 color = Onb.Muted,
                 fontSize = 14.sp,
             )
@@ -263,18 +266,18 @@ internal fun WhatToSyncPage(
     val selectedCount = choosing?.selected?.size ?: 0
     OnboardingPage(
         badge = { ProviderSquircle(service, size = 40.dp) },
-        title = "What to import",
-        subtitle = choosing?.accountName?.let { "Signed in as $it" },
+        title = UiText.get(R.string.toto_setup_what_to_import),
+        subtitle = choosing?.accountName?.let { UiText.get(R.string.toto_setup_signed_in_as, it) },
         scrollable = false,
         footer = {
             if (reading != null) {
-                OnbButton("Stop", onClick = onCancelReading, style = OnbButtonStyle.Secondary)
+                OnbButton(UiText.get(R.string.toto_setup_stop), onClick = onCancelReading, style = OnbButtonStyle.Secondary)
             } else {
                 OnbButton(
                     text = when {
-                        selectedCount == 0 -> "Choose what to import"
-                        service == AccountService.YOUTUBE_MUSIC -> "Next"
-                        else -> "Import $selectedCount"
+                        selectedCount == 0 -> UiText.get(R.string.toto_setup_choose_what_to_import)
+                        service == AccountService.YOUTUBE_MUSIC -> UiText.get(R.string.toto_setup_next)
+                        else -> UiText.get(R.string.toto_setup_import_count, selectedCount)
                     },
                     enabled = selectedCount > 0,
                     onClick = onConfirm,
@@ -284,7 +287,7 @@ internal fun WhatToSyncPage(
         },
     ) {
         if (reading != null) {
-            Text("${reading.label} (${reading.done + 1} of ${reading.total})", color = Onb.Subtitle, fontSize = 14.sp, fontWeight = FontWeight.SemiBold)
+            Text(UiText.get(R.string.toto_setup_reading_count, reading.label, reading.done + 1, reading.total), color = Onb.Subtitle, fontSize = 14.sp, fontWeight = FontWeight.SemiBold)
             Spacer(Modifier.height(10.dp))
             LinearProgressIndicator(
                 progress = { reading.done.toFloat() / reading.total.coerceAtLeast(1) },
@@ -297,7 +300,7 @@ internal fun WhatToSyncPage(
         if (choosing == null) return@OnboardingPage
         val allSelected = selectedCount == choosing.playlists.size && selectedCount > 0
         Text(
-            text = if (allSelected) "Select none" else "Select all",
+            text = if (allSelected) UiText.get(R.string.toto_setup_select_none) else UiText.get(R.string.toto_setup_select_all),
             color = Onb.Subtitle,
             fontSize = 14.sp,
             fontWeight = FontWeight.Bold,
@@ -318,7 +321,7 @@ internal fun WhatToSyncPage(
             ) {
                 if (choosing.playlists.isEmpty()) {
                     item(span = { GridItemSpan(maxLineSpan) }) {
-                        Text("Nothing in this account yet.", color = Onb.Muted, fontSize = 14.sp)
+                        Text(UiText.get(R.string.toto_setup_nothing_in_this_account_yet), color = Onb.Muted, fontSize = 14.sp)
                     }
                 }
                 items(choosing.playlists, key = { it.id }) { playlist ->
@@ -384,13 +387,13 @@ private fun CoverTile(playlist: RemotePlaylist, selected: Boolean, onClick: () -
                         .background(Color.White),
                     contentAlignment = Alignment.Center,
                 ) {
-                    Icon(painterResource(R.drawable.check), contentDescription = "Selected", tint = Color.Black, modifier = Modifier.size(18.dp))
+                    Icon(painterResource(R.drawable.check), contentDescription = UiText.get(R.string.toto_setup_selected), tint = Color.Black, modifier = Modifier.size(18.dp))
                 }
             }
         }
         Spacer(Modifier.height(8.dp))
         Text(playlist.name, color = Color.White, fontSize = 14.sp, fontWeight = FontWeight.Bold, maxLines = 1, overflow = TextOverflow.Ellipsis)
-        val detail = listOfNotNull(playlist.trackCount?.let { "$it songs" }, playlist.subtitle).joinToString(" · ")
+        val detail = listOfNotNull(playlist.trackCount?.let { UiText.quantity(R.plurals.n_song, it, it) }, playlist.subtitle).joinToString(" · ")
         if (detail.isNotEmpty()) Text(detail, color = Onb.Muted, fontSize = 11.sp, maxLines = 1, overflow = TextOverflow.Ellipsis)
     }
 }
@@ -408,12 +411,12 @@ internal fun SyncOptionsPage(
 ) {
     OnboardingPage(
         badge = { ProviderSquircle(AccountService.YOUTUBE_MUSIC, size = 40.dp) },
-        title = "Also keep in sync?",
-        subtitle = "YouTube Music can stay in step with Mochy: your playlists, likes and history, both ways.",
+        title = UiText.get(R.string.toto_setup_also_keep_in_sync),
+        subtitle = UiText.get(R.string.toto_setup_youtube_music_can_stay_in_step_with_mochy_your_playlists_likes),
         footer = {
             if (reading != null) {
                 Text(
-                    "${reading.label} (${reading.done + 1} of ${reading.total})",
+                    UiText.get(R.string.toto_setup_reading_count, reading.label, reading.done + 1, reading.total),
                     color = Onb.Subtitle,
                     fontSize = 14.sp,
                     fontWeight = FontWeight.SemiBold,
@@ -421,34 +424,34 @@ internal fun SyncOptionsPage(
                     overflow = TextOverflow.Ellipsis,
                 )
             } else {
-                OnbButton("Import & sync", onClick = onSync)
-                OnbButton("Just import", onClick = onJustImport, style = OnbButtonStyle.Secondary)
+                OnbButton(UiText.get(R.string.toto_setup_import_sync), onClick = onSync)
+                OnbButton(UiText.get(R.string.toto_setup_just_import), onClick = onJustImport, style = OnbButtonStyle.Secondary)
                 OnbButton(GoBack, onClick = onBack, style = OnbButtonStyle.Secondary)
             }
         },
     ) {
         Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
             OnbToggleCard(
-                title = "Sync library on launch",
-                description = "Likes, library and the playlists you picked, each time Mochy opens",
+                title = UiText.get(R.string.toto_setup_sync_library_on_launch),
+                description = UiText.get(R.string.toto_setup_likes_library_and_the_playlists_you_picked_each_time_mochy_ope),
                 checked = choices.syncOnLaunch,
                 onCheckedChange = { onChange(choices.copy(syncOnLaunch = it)) },
             )
             OnbToggleCard(
-                title = "New playlists go to YouTube",
-                description = "Playlists you make here are created on YouTube too",
+                title = UiText.get(R.string.toto_setup_new_playlists_go_to_youtube),
+                description = UiText.get(R.string.toto_setup_playlists_you_make_here_are_created_on_youtube_too),
                 checked = choices.newPlaylistsToYouTube,
                 onCheckedChange = { onChange(choices.copy(newPlaylistsToYouTube = it)) },
             )
             OnbToggleCard(
-                title = "Push plays to YouTube history",
-                description = "What you play here shows up in your YouTube history",
+                title = UiText.get(R.string.toto_setup_push_plays_to_youtube_history),
+                description = UiText.get(R.string.toto_setup_what_you_play_here_shows_up_in_your_youtube_history),
                 checked = choices.reportPlays,
                 onCheckedChange = { onChange(choices.copy(reportPlays = it)) },
             )
             OnbToggleCard(
-                title = "Bring YouTube history here",
-                description = "Plays from your other devices join Mochy's history",
+                title = UiText.get(R.string.toto_setup_bring_youtube_history_here),
+                description = UiText.get(R.string.toto_setup_plays_from_your_other_devices_join_mochy_s_history),
                 checked = choices.copyHistory,
                 onCheckedChange = { onChange(choices.copy(copyHistory = it)) },
             )
@@ -467,26 +470,29 @@ internal fun ProfilePage(
     cardNumber: String,
     joinedText: String,
     onNext: () -> Unit,
+    saving: Boolean = false,
+    onUseLegacy: (() -> Unit)? = null,
 ) {
     OnboardingPage(
         badge = { PageBadge(painterResource(R.drawable.person)) },
-        title = "Let's create your profile!",
+        title = UiText.get(R.string.toto_setup_let_s_create_your_profile),
         footer = {
             Text(
-                "Mochy will never store your data online!",
+                UiText.get(R.string.toto_setup_mochy_will_never_store_your_data_online),
                 color = Onb.Faint,
                 fontSize = 12.sp,
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier.padding(start = 4.dp),
             )
-            OnbButton("Next", onClick = onNext, enabled = username.isNotBlank())
+            if (onUseLegacy != null) OnbButton(UiText.get(R.string.toto_profile_use_legacy), onClick = onUseLegacy, enabled = !saving, style = OnbButtonStyle.Secondary)
+            OnbButton(UiText.get(if (saving) R.string.toto_profile_saving else R.string.toto_setup_next), onClick = onNext, enabled = username.isNotBlank() && !saving)
         },
     ) {
-        Text("what's your username?", color = Onb.Muted, fontSize = 18.sp, fontWeight = FontWeight.Bold)
+        Text(UiText.get(R.string.toto_setup_what_s_your_username), color = Onb.Muted, fontSize = 18.sp, fontWeight = FontWeight.Bold)
         Spacer(Modifier.height(10.dp))
-        OnbTextField(value = username, onValueChange = { onUsernameChange(it.take(32)) }, placeholder = "username")
+        OnbTextField(value = username, onValueChange = { onUsernameChange(it.take(32)) }, placeholder = UiText.get(R.string.toto_setup_username))
         Spacer(Modifier.height(24.dp))
-        Text("Set a profile picture here!", color = Onb.Muted, fontSize = 18.sp, fontWeight = FontWeight.Bold)
+        Text(UiText.get(R.string.toto_setup_set_a_profile_picture_here), color = Onb.Muted, fontSize = 18.sp, fontWeight = FontWeight.Bold)
         Spacer(Modifier.height(12.dp))
         val deviceTilt = rememberDeviceTilt()
         ProfileIdCard(
@@ -518,16 +524,16 @@ internal fun BuildHomePage(
 ) {
     OnboardingPage(
         badge = { PageBadge(painterResource(R.drawable.home)) },
-        title = "Let's build your home",
-        subtitle = "Select any artist you really like",
+        title = UiText.get(R.string.toto_setup_let_s_build_your_home),
+        subtitle = UiText.get(R.string.toto_setup_select_any_artist_you_really_like),
         scrollable = false,
         footer = {
             OnbButton(
                 text = when (selected.size) {
-                    0 -> "you need to pick 3 artists"
-                    1 -> "2 more"
-                    2 -> "one more artist to pick"
-                    else -> "next"
+                    0 -> UiText.get(R.string.toto_setup_you_need_to_pick_3_artists)
+                    1 -> UiText.get(R.string.toto_setup_2_more)
+                    2 -> UiText.get(R.string.toto_setup_one_more_artist_to_pick)
+                    else -> UiText.get(R.string.toto_setup_next)
                 },
                 enabled = selected.size >= MinArtists,
                 onClick = onNext,
@@ -551,7 +557,7 @@ internal fun BuildHomePage(
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
                     Box {
-                        if (query.isEmpty()) Text("Search artists", color = Onb.Faint, fontSize = 15.sp)
+                        if (query.isEmpty()) Text(UiText.get(R.string.toto_setup_search_artists), color = Onb.Faint, fontSize = 15.sp)
                         inner()
                     }
                 }
@@ -613,7 +619,7 @@ private fun ArtistBubble(artist: ArtistItem, selected: Boolean, onClick: () -> U
                         .background(Color.Black.copy(alpha = 0.35f)),
                     contentAlignment = Alignment.Center,
                 ) {
-                    Icon(painterResource(R.drawable.check), contentDescription = "Selected", tint = Color.White, modifier = Modifier.size(30.dp))
+                    Icon(painterResource(R.drawable.check), contentDescription = UiText.get(R.string.toto_setup_selected), tint = Color.White, modifier = Modifier.size(30.dp))
                 }
             }
         }
@@ -649,10 +655,10 @@ internal fun BlurWarningPage(
                 Column(modifier = Modifier.padding(horizontal = side)) {
                     PageBadge(painterResource(R.drawable.warning))
                     Spacer(Modifier.height(22.dp))
-                    Text("Warning", color = Onb.Title, fontSize = 34.sp, lineHeight = 38.sp, fontWeight = FontWeight.Bold, letterSpacing = OnbTitleTracking)
+                    Text(UiText.get(R.string.toto_setup_warning), color = Onb.Title, fontSize = 34.sp, lineHeight = 38.sp, fontWeight = FontWeight.Bold, letterSpacing = OnbTitleTracking)
                     Spacer(Modifier.height(10.dp))
                     Text(
-                        "Your phone may be too weak to run blurs. Do you want to disable blur? You can always change this in Settings.",
+                        UiText.get(R.string.toto_setup_your_phone_may_be_too_weak_to_run_blurs_do_you_want_to_disable),
                         color = Onb.Subtitle,
                         fontSize = 18.sp,
                         lineHeight = 23.sp,
@@ -661,8 +667,8 @@ internal fun BlurWarningPage(
                     )
                     Spacer(Modifier.height(22.dp))
                     OnbToggleCard(
-                        title = "Disable Blur",
-                        description = detected?.let { "Measured: $it" } ?: "",
+                        title = UiText.get(R.string.toto_setup_disable_blur),
+                        description = detected?.let { UiText.get(R.string.toto_setup_measured, it) } ?: "",
                         checked = disableBlur,
                         onCheckedChange = onDisableBlurChange,
                         leading = { Box(Modifier.size(22.dp).clip(CircleShape).background(Onb.Badge)) },
@@ -708,7 +714,7 @@ internal fun BlurWarningPage(
                     ),
             )
             OnbButton(
-                text = if (disableBlur) "continue" else "no, continue",
+                text = if (disableBlur) UiText.get(R.string.toto_setup_continue) else UiText.get(R.string.toto_setup_no_continue),
                 onClick = onContinue,
                 modifier = Modifier
                     .align(Alignment.BottomCenter)
@@ -732,21 +738,21 @@ internal fun LastOnePage(
 ) {
     OnboardingPage(
         badge = { PageBadge(painterResource(R.drawable.tune)) },
-        title = "Last one",
-        subtitle = "Disable anything that you don't like",
-        footer = { OnbButton("next", onClick = onNext) },
+        title = UiText.get(R.string.toto_setup_last_one),
+        subtitle = UiText.get(R.string.toto_setup_disable_anything_that_you_don_t_like),
+        footer = { OnbButton(UiText.get(R.string.toto_setup_next), onClick = onNext) },
     ) {
         Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
             OnbToggleCard(
-                title = "Auto Crossfade",
-                description = "Automatically crossfades, analysing the pitch, tempo and more to pick the perfect moment",
+                title = UiText.get(R.string.toto_setup_auto_crossfade),
+                description = UiText.get(R.string.toto_setup_automatically_crossfades_analysing_the_pitch_tempo_and_more_to),
                 checked = autoCrossfade,
                 onCheckedChange = onAutoCrossfadeChange,
                 header = { CrossfadeBanner() },
             )
             OnbToggleCard(
-                title = "AI Artist filter",
-                description = "Turning this off may give you AI slop recommendations",
+                title = UiText.get(R.string.toto_setup_ai_artist_filter),
+                description = UiText.get(R.string.toto_setup_turning_this_off_may_give_you_ai_slop_recommendations),
                 checked = aiArtistFilter,
                 onCheckedChange = onAiArtistFilterChange,
             )

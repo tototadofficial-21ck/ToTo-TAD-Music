@@ -2,6 +2,8 @@
 
 package com.mochyy.mochymusic.ui.component
 
+import com.mochyy.mochymusic.i18n.UiText
+
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
@@ -498,7 +500,7 @@ fun HomeTrackRow(
             ) {
                 Icon(
                     painter = painterResource(R.drawable.more_horiz),
-                    contentDescription = "More",
+                    contentDescription = UiText.get(R.string.show_more),
                     tint = Color.White.copy(alpha = 0.85f),
                     modifier = Modifier.size(17.dp),
                 )

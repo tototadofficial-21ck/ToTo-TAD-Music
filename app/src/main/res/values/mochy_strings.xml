@@ -927,7 +927,7 @@
     <string name="feat_quality_desc">Stream and download.</string>
 
     <string name="feat_update_title">Dynamic Updates</string>
-    <string name="feat_update_desc">Always stay updated with our built-in updater.</string>
+    <string name="feat_update_desc">This personal build has no release feed. Obtain APK updates from the app owner.</string>
 
     <string name="feat_license_title">License</string>
     <string name="feat_license_desc">General Public License v3.0</string>
@@ -939,7 +939,7 @@
     <string name="welcome_update_status">Updated</string>
     <string name="welcome_update_intro">Ensuring you have the latest features and security improvements.</string>
     <string name="welcome_checking_updates">Checking for updates…</string>
-    <string name="welcome_up_to_date">mochy is up to date!</string>
+    <string name="welcome_up_to_date">No personal release feed configured</string>
     <string name="welcome_update_available">New version is available: %s</string>
     <string name="welcome_everything_ready">Everything is now up to date</string>
     <string name="commits_title">Commits</string>

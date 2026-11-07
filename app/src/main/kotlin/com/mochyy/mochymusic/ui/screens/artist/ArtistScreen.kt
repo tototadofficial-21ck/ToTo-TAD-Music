@@ -2,6 +2,8 @@
 
 package com.mochyy.mochymusic.ui.screens.artist
 
+import com.mochyy.mochymusic.i18n.UiText
+
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
@@ -442,19 +444,19 @@ fun ArtistScreen(
                             onSimilarTitle = { navController.navigate("artist/${viewModel.artistId}/similar") },
                             topSongsMenu = { dismiss ->
                                 page?.artist?.shuffleEndpoint?.let { endpoint ->
-                                    ArtistMenuItem(text = "Shuffle", icon = R.drawable.shuffle) {
+                                    ArtistMenuItem(text = UiText.get(R.string.shuffle), icon = R.drawable.shuffle) {
                                         dismiss()
                                         playerConnection.playQueue(YouTubeQueue(endpoint))
                                     }
                                 }
                                 page?.artist?.radioEndpoint?.let { endpoint ->
-                                    ArtistMenuItem(text = "Start radio", icon = R.drawable.radio) {
+                                    ArtistMenuItem(text = UiText.get(R.string.start_radio), icon = R.drawable.radio) {
                                         dismiss()
                                         playerConnection.playQueue(YouTubeQueue(endpoint))
                                     }
                                 }
                                 page?.artist?.shareLink?.let { link ->
-                                    ArtistMenuItem(text = "Copy link", icon = R.drawable.link) {
+                                    ArtistMenuItem(text = UiText.get(R.string.copy_link), icon = R.drawable.link) {
                                         dismiss()
                                         val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
                                         clipboard.setPrimaryClip(ClipData.newPlainText("Artist Link", link))
@@ -548,7 +550,7 @@ private fun LazyListScope.artistShelves(
         val songs = section.items.filterIsInstance<SongItem>().distinctBy { it.id }
         item(key = "top_songs_title", contentType = "shelf_title") {
             ArtistShelfTitle(
-                title = "Top songs",
+                title = UiText.get(R.string.toto_ui_more_top_songs_ad7864),
                 onClick = section.moreEndpoint?.let { { onOpenMore(it) } },
                 menu = topSongsMenu,
                 modifier = Modifier
@@ -616,7 +618,7 @@ private fun LazyListScope.artistShelves(
 
     videoShelf(
         key = "videos",
-        title = "Videos",
+        title = UiText.get(R.string.filter_videos),
         videos = shelves.videos,
         moreEndpoint = shelves.videoShelf?.moreEndpoint,
         screenWidth = screenWidth,
@@ -631,7 +633,7 @@ private fun LazyListScope.artistShelves(
 
     videoShelf(
         key = "live",
-        title = "Concert",
+        title = UiText.get(R.string.toto_ui_more_concert_6a2fd2),
         videos = shelves.live,
         moreEndpoint = shelves.liveShelf?.moreEndpoint,
         screenWidth = screenWidth,
@@ -667,7 +669,7 @@ private fun LazyListScope.artistShelves(
             FeaturedArtistsRow(
                 artists = artists,
                 onArtistClick = { artist -> onOpen(section.items.first { it.id == artist.id }) },
-                title = "Similar Artist",
+                title = UiText.get(R.string.toto_ui_more_similar_artist_d8f6af),
                 onTitleClick = onSimilarTitle,
                 modifier = Modifier
                     .padding(top = 30.dp)
@@ -818,7 +820,7 @@ private fun LazyListScope.librarySection(
 ) {
     item(key = "library_title", contentType = "shelf_title") {
         ArtistShelfTitle(
-            title = "In your library",
+            title = UiText.get(R.string.toto_ui_more_in_your_library_00cc72),
             onClick = onSongsTitle,
             modifier = Modifier.padding(top = 30.dp, bottom = 2.dp),
         )
@@ -842,7 +844,7 @@ private fun LazyListScope.librarySection(
     if (albums.isNotEmpty()) {
         item(key = "library_albums_title", contentType = "shelf_title") {
             ArtistShelfTitle(
-                title = "Albums of $artistName you saved",
+                title = UiText.get(R.string.toto_format_artist_albums, artistName),
                 onClick = onAlbumsTitle,
                 modifier = Modifier.padding(top = 22.dp, bottom = 8.dp),
             )
@@ -881,7 +883,7 @@ private fun ArtistAbout(name: String, bio: String, modifier: Modifier = Modifier
             .padding(horizontal = PlaylistInset)
     ) {
         Text(
-            text = "About $name",
+            text = UiText.get(R.string.toto_format_about_name, name),
             style = AboutTitleStyle,
             color = Color.White,
             maxLines = 2,
@@ -911,7 +913,7 @@ private fun ArtistRetry(onRetry: () -> Unit) {
             .padding(top = 40.dp)
     ) {
         Text(
-            text = "Couldn't load this artist. Tap to try again",
+            text = UiText.get(R.string.toto_ui_more_couldn_t_load_this_artist_tap_to_try_again_1aeae9),
             style = PlaylistStatsStyle,
             color = Color.White.copy(alpha = 0.7f),
             modifier = Modifier

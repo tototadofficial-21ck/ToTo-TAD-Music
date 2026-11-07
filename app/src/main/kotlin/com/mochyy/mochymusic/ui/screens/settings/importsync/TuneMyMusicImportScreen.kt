@@ -1,5 +1,7 @@
 package com.mochyy.mochymusic.ui.screens.settings.importsync
 
+import com.mochyy.mochymusic.i18n.UiText
+
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.net.Uri
@@ -43,12 +45,12 @@ fun TuneMyMusicImportScreen(
     }
 
     SubSettingsScaffold(
-        title = "TuneMyMusic CSV",
+        title = UiText.get(R.string.toto_ui_more_tunemymusic_csv_85cdbd),
         onBack = { navController.navigateUp() },
     ) {
         ImportInfoCard {
             Text(
-                "Works with any service TuneMyMusic supports, including private playlists and liked songs.",
+                UiText.get(R.string.toto_ui_more_works_with_any_service_tunemymusic_supports_includin_1f931c),
                 style = MaterialTheme.typography.bodyLarge,
             )
             Spacer(Modifier.height(16.dp))
@@ -66,7 +68,7 @@ fun TuneMyMusicImportScreen(
             style = SettingsGroupStyle.Grouped,
             items = listOf(
                 SettingsItem(
-                    title = { Text("Open TuneMyMusic") },
+                    title = { Text(UiText.get(R.string.toto_ui_more_open_tunemymusic_4cb60f)) },
                     descriptionText = "tunemymusic.com in your browser",
                     icon = painterResource(R.drawable.web_link),
                     iconShape = CircleShape,
@@ -79,7 +81,7 @@ fun TuneMyMusicImportScreen(
                     },
                 ),
                 SettingsItem(
-                    title = { Text("Choose CSV file") },
+                    title = { Text(UiText.get(R.string.toto_ui_more_choose_csv_file_833395)) },
                     descriptionText = "Exportify and other playlist CSVs work too",
                     icon = painterResource(R.drawable.playlist_add),
                     iconShape = CircleShape,

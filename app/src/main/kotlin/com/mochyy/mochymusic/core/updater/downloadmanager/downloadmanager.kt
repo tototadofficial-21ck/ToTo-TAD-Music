@@ -20,6 +20,10 @@ class CustomDownloadManager {
         onDownloadComplete: (File) -> Unit,
         onError: (String) -> Unit,
     ) {
+        if (com.mochyy.mochymusic.BuildConfig.PERSONAL_BUILD) {
+            onError(context.getString(R.string.toto_updates_disabled))
+            return
+        }
         downloadJob?.cancel()
         isPaused = false
 

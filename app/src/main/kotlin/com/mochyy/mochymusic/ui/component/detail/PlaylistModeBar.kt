@@ -2,6 +2,8 @@
 
 package com.mochyy.mochymusic.ui.component.detail
 
+import com.mochyy.mochymusic.i18n.UiText
+
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.SizeTransform
 import androidx.compose.animation.core.animateFloatAsState
@@ -98,14 +100,14 @@ internal fun PlaylistModeBarRow(
                 Spacer(Modifier.width(8.dp))
                 ModeCircleButton(
                     icon = R.drawable.more_horiz,
-                    contentDescription = "Actions for the picked songs",
+                    contentDescription = UiText.get(R.string.toto_ui_more_actions_for_the_picked_songs_4e3901),
                     enabled = mode.count > 0,
                     onClick = mode.onMore,
                 )
                 Spacer(Modifier.width(8.dp))
                 ModeCircleButton(
                     icon = R.drawable.close,
-                    contentDescription = "Stop selecting",
+                    contentDescription = UiText.get(R.string.toto_ui_more_stop_selecting_44d00e),
                     onClick = mode.onClose,
                 )
             }
@@ -116,14 +118,14 @@ internal fun PlaylistModeBarRow(
                 if (mode.onMore != null) {
                     ModeCircleButton(
                         icon = R.drawable.more_horiz,
-                        contentDescription = "Options",
+                        contentDescription = UiText.get(R.string.options),
                         onClick = mode.onMore,
                     )
                     Spacer(Modifier.width(8.dp))
                 }
                 ModeCircleButton(
                     icon = R.drawable.check,
-                    contentDescription = "Done",
+                    contentDescription = UiText.get(R.string.done),
                     filled = true,
                     onClick = mode.onDone,
                 )
@@ -272,7 +274,7 @@ private fun EditOrderPill(
                 )
             }
             Text(
-                text = "Edit order",
+                text = UiText.get(R.string.toto_ui_more_edit_order_3f1214),
                 style = PillLabelStyle,
                 color = Color.White,
                 maxLines = 1,

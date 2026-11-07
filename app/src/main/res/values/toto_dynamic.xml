@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <string name="toto_cipher_intro">YouTube signs stream URLs with a player script that changes periodically. The app caches it and downloads it again automatically.</string>
+  <string name="toto_library_query">Nothing in your library matches “%1$s”</string>
+  <string name="toto_add_count">Add %1$s</string>
+  <string name="toto_remove_count">Remove %1$s</string>
+  <string name="toto_delete_imports_body">Every imported song, like and playlist leaves your library. Existing music and music maintained by YouTube sync stay.</string>
+  <string name="toto_undo_import_body">Songs, likes and playlists from your last import leave the library. Anything there before stays.</string>
+  <string name="toto_delete_source">Delete %1$s imports</string>
+  <string name="toto_delete_source_title">Delete %1$s imports?</string>
+  <string name="toto_delete_source_body">Everything imported from %1$s leaves your library, including playlists.</string>
+  <string name="toto_keep_yt_sync"> Music maintained by YouTube sync stays.</string>
+  <string name="toto_clear_cache_body">Cached songs are deleted from this phone and stream again next time. Your library and downloads stay.</string>
+  <string name="toto_imported_from">Imported from %1$s</string>
+  <string name="toto_find_imported">Find a song imported from %1$s</string>
+  <string name="toto_imported_summary">%1$d songs imported from %2$s.</string>
+  <string name="toto_progress_count">%1$d of %2$d</string>
+  <string name="toto_greeting_again">Hello again</string>
+  <string name="toto_greeting_hey">Hey</string>
+  <string name="toto_greeting_back">Welcome back</string>
+  <string name="toto_greeting_good">Good to see you</string>
+  <string name="toto_greeting_name">%1$s, %2$s!</string>
+  <string name="toto_greeting_friend">friend</string>
+  <string name="toto_auto_crossfade_subtitle">A smooth %1$d-second blend between songs</string>
+</resources>

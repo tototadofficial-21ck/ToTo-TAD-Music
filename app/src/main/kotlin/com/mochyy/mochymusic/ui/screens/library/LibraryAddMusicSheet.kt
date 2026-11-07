@@ -1,11 +1,13 @@
 // LibraryAddMusicSheet.kt
 //
-// Picking songs in a sheet: "Add music" lists what a storage scan found on the phone (all ticked,
-// so bringing everything in is one tap), "Remove from list" lists the files already imported and
-// "Remove from cache" the cached songs (none ticked). All the same list with a search field and a
+// Picking songs in a sheet: UiText.get(R.string.toto_more_add_music) lists what a storage scan found on the phone (all ticked,
+// so bringing everything in is one tap), UiText.get(R.string.toto_more_remove_from_list) lists the files already imported and
+// UiText.get(R.string.toto_more_remove_from_cache) the cached songs (none ticked). All the same list with a search field and a
 // checkbox per song.
 
 package com.mochyy.mochymusic.ui.screens.library
+
+import com.mochyy.mochymusic.i18n.UiText
 
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.animateFloatAsState
@@ -92,14 +94,14 @@ fun PopupSheetState.showAddLocalMusicSheet(viewModel: LibraryImportViewModel, on
             val scan by viewModel.scan.collectAsState()
             val count = selection.keys.size
             SheetPillButton(
-                text = if (count == 0) "Done" else "Add ${songCount(count)}",
+                text = if (count == 0) UiText.get(R.string.done) else UiText.get(R.string.toto_add_count, songCount(count)),
                 onClick = {
                     val found = (scan as? DeviceScan.Found)?.songs.orEmpty()
                     val picked = found.filter { it.uri.toString() in selection.keys }
                     sheet?.dismiss()
                     if (picked.isEmpty()) return@SheetPillButton
                     if (!viewModel.importDeviceSongs(picked)) {
-                        TopToaster.show("An import is still running. Try again once it's done.", iconRes = R.drawable.library_music)
+                        TopToaster.show(UiText.get(R.string.toto_more_an_import_is_still_running_try_again_once_it_s_done), iconRes = R.drawable.library_music)
                     }
                     onStarted()
                 },
@@ -117,11 +119,11 @@ fun PopupSheetState.showAddLocalMusicSheet(viewModel: LibraryImportViewModel, on
             }
         }
         SongPickerContent(
-            title = "Add music",
+            title = UiText.get(R.string.toto_more_add_music),
             songs = songs,
             selection = selection,
-            loadingText = "Looking for music on your phone…",
-            emptyText = "Every song on your phone is already in your library.",
+            loadingText = UiText.get(R.string.toto_more_looking_for_music_on_your_phone),
+            emptyText = UiText.get(R.string.toto_more_every_song_on_your_phone_is_already_in_your_library),
         )
     }
 }
@@ -130,9 +132,9 @@ fun PopupSheetState.showAddLocalMusicSheet(viewModel: LibraryImportViewModel, on
 fun PopupSheetState.showRemoveLocalSheet(localFiles: List<Song>, viewModel: LibraryImportViewModel) =
     showRemoveSongsSheet(
         songs = localFiles,
-        title = "Remove from list",
-        emptyText = "No files from your phone in your library yet.",
-        hint = "The files stay on your phone.",
+        title = UiText.get(R.string.toto_more_remove_from_list),
+        emptyText = UiText.get(R.string.toto_more_no_files_from_your_phone_in_your_library_yet),
+        hint = UiText.get(R.string.toto_more_the_files_stay_on_your_phone),
         onRemove = { viewModel.removeLocalSongs(it) },
     )
 
@@ -140,9 +142,9 @@ fun PopupSheetState.showRemoveLocalSheet(localFiles: List<Song>, viewModel: Libr
 fun PopupSheetState.showRemoveCachedSheet(cachedSongs: List<Song>, onRemove: (Set<String>) -> Unit) =
     showRemoveSongsSheet(
         songs = cachedSongs,
-        title = "Remove from cache",
-        emptyText = "Nothing cached yet.",
-        hint = "They'll stream again the next time you play them.",
+        title = UiText.get(R.string.toto_more_remove_from_cache),
+        emptyText = UiText.get(R.string.toto_more_nothing_cached_yet),
+        hint = UiText.get(R.string.toto_more_they_ll_stream_again_the_next_time_you_play_them),
         onRemove = onRemove,
     )
 
@@ -160,7 +162,7 @@ private fun PopupSheetState.showRemoveSongsSheet(
         buttonBar = {
             val count = selection.keys.size
             SheetPillButton(
-                text = if (count == 0) "Pick songs to remove" else "Remove ${songCount(count)}",
+                text = if (count == 0) UiText.get(R.string.toto_more_pick_songs_to_remove) else UiText.get(R.string.toto_remove_count, songCount(count)),
                 enabled = count > 0,
                 onClick = {
                     onRemove(selection.keys)
@@ -180,7 +182,7 @@ private fun PopupSheetState.showRemoveSongsSheet(
     }
 }
 
-private fun songCount(count: Int) = if (count == 1) "1 song" else "$count songs"
+private fun songCount(count: Int) = UiText.quantity(R.plurals.n_song, count, count)
 
 /** Title, search, then the songs with their checkboxes. A null [songs] is still loading. */
 @Composable
@@ -229,7 +231,7 @@ private fun ColumnScope.SongPickerContent(
         Text(text = hint, color = SearchColors.Secondary, fontSize = 13.sp)
     }
     Spacer(Modifier.height(14.dp))
-    SheetSearchField(value = query, onValueChange = { query = it }, placeholder = "Search")
+    SheetSearchField(value = query, onValueChange = { query = it }, placeholder = UiText.get(R.string.search))
     Spacer(Modifier.height(14.dp))
 
     val message = when {

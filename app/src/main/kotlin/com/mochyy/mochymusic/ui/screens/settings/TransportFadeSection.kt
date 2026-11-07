@@ -1,5 +1,9 @@
 package com.mochyy.mochymusic.ui.screens.settings
 
+import androidx.compose.ui.res.stringResource
+
+import com.mochyy.mochymusic.i18n.UiText
+
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.spring
@@ -80,7 +84,7 @@ fun TransportFadeSection() {
     val seconds = storedSeconds.coerceIn(TransportFadeMinSeconds, TransportFadeMaxSeconds)
 
     Text(
-        text = "Pause, play, forward and backward transition",
+        text = stringResource(R.string.toto_ui_pause_play_forward_and_backward_transition),
         fontFamily = InterFontFamily,
         fontWeight = FontWeight.SemiBold,
         fontSize = 26.sp,
@@ -96,15 +100,15 @@ fun TransportFadeSection() {
         }
         Spacer(Modifier.height(10.dp))
         LabToggleRow(
-            title = "Enable fade",
-            subtitle = "Eases the music out when you pause or skip, and back in when you play",
+            title = UiText.get(R.string.toto_more_enable_fade),
+            subtitle = UiText.get(R.string.toto_more_eases_the_music_out_when_you_pause_or_skip_and_back_in_when_),
             checked = enabled,
             onCheckedChange = onEnabledChange,
         )
         LabCollapsible(enabled) {
             Box(Modifier.padding(horizontal = 6.dp)) {
                 LabSlider(
-                    label = "Length",
+                    label = UiText.get(R.string.toto_more_length),
                     valueText = secondsText(seconds),
                     value = seconds,
                     onValueChange = { onSecondsChange((it * 2f).roundToInt() / 2f) },
@@ -118,9 +122,9 @@ fun TransportFadeSection() {
             }
             Spacer(Modifier.height(14.dp))
             Column(Modifier.padding(horizontal = 6.dp)) {
-                Text("Layered effect", fontFamily = InterFontFamily, fontWeight = FontWeight.SemiBold, fontSize = 15.sp, color = LabColors.Primary)
+                Text(stringResource(R.string.toto_ui_layered_effect), fontFamily = InterFontFamily, fontWeight = FontWeight.SemiBold, fontSize = 15.sp, color = LabColors.Primary)
                 Text(
-                    "A CrossMix effect over the fade, like an echo trail or the record spinning back",
+                    stringResource(R.string.toto_ui_a_crossmix_effect_over_the_fade_like_an_echo_trail_or_the_record_),
                     fontFamily = InterFontFamily,
                     fontSize = 12.sp,
                     lineHeight = 15.sp,
@@ -136,6 +140,16 @@ fun TransportFadeSection() {
 
 private fun secondsText(seconds: Float): String =
     if (seconds % 1f == 0f) "${seconds.toInt()}s" else "${"%.1f".format(seconds)}s"
+
+private fun transportEffectLabel(effect: TransportEffect): String = UiText.get(when (effect) {
+    TransportEffect.OFF -> R.string.toto_transport_off
+    TransportEffect.ECHO -> R.string.toto_transport_echo
+    TransportEffect.REWIND -> R.string.toto_transport_rewind
+    TransportEffect.TAPE_STOP -> R.string.toto_transport_tape_stop
+    TransportEffect.FAR_AWAY -> R.string.toto_transport_far_away
+    TransportEffect.REVERB -> R.string.toto_transport_reverb
+    TransportEffect.FILTER -> R.string.toto_transport_filter
+})
 
 // the dark pill from the design: the chosen effect in the middle, a chevron that flips while the list is open
 @Composable
@@ -155,7 +169,7 @@ private fun EffectPicker(selected: TransportEffect, onSelect: (TransportEffect) 
         ) {
             Spacer(Modifier.size(24.dp))
             Text(
-                text = selected.label,
+                text = transportEffectLabel(selected),
                 fontFamily = InterFontFamily,
                 fontWeight = FontWeight.SemiBold,
                 fontSize = 17.sp,
@@ -165,7 +179,7 @@ private fun EffectPicker(selected: TransportEffect, onSelect: (TransportEffect) 
             )
             Icon(
                 painter = painterResource(R.drawable.expand_more),
-                contentDescription = "Choose an effect",
+                contentDescription = UiText.get(R.string.toto_ui_more_choose_an_effect_2c3547),
                 tint = Color.White,
                 modifier = Modifier.size(24.dp).graphicsLayer { rotationZ = chevron },
             )
@@ -180,7 +194,7 @@ private fun EffectPicker(selected: TransportEffect, onSelect: (TransportEffect) 
                 DropdownMenuItem(
                     text = {
                         Text(
-                            option.label,
+                            transportEffectLabel(option),
                             fontFamily = InterFontFamily,
                             fontWeight = if (option == selected) FontWeight.SemiBold else FontWeight.Normal,
                             fontSize = 15.sp,

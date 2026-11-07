@@ -6,6 +6,8 @@
 
 package com.mochyy.mochymusic.ui.screens.library
 
+import com.mochyy.mochymusic.i18n.UiText
+
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -58,35 +60,33 @@ fun PopupSheetState.showManageImportsSheet(
         }
     sheet = showWithHandle {
         ManageLayout(
-            ManageAction(R.drawable.delete, "Delete all imports") {
+            ManageAction(R.drawable.delete, UiText.get(R.string.toto_more_delete_all_imports)) {
                 confirmThen(
-                    title = "Delete all imports?",
-                    message = "Every song, like and playlist you imported leaves your library. Songs that were " +
-                        "already in it stay, and so does music YouTube sync keeps up to date.",
-                    action = "Delete all imports",
+                    title = UiText.get(R.string.toto_more_delete_all_imports_question),
+                    message = UiText.get(R.string.toto_delete_imports_body),
+                    action = UiText.get(R.string.toto_more_delete_all_imports),
                     run = viewModel::deleteAllImports,
                 )
             },
-            ManageAction(R.drawable.undo, "Undo import session") {
+            ManageAction(R.drawable.undo, UiText.get(R.string.toto_more_undo_import_session)) {
                 confirmThen(
-                    title = "Undo your last import?",
-                    message = "The songs, likes and playlists your last import brought in leave your library. " +
-                        "Anything that was there before stays.",
-                    action = "Undo import",
+                    title = UiText.get(R.string.toto_more_undo_your_last_import),
+                    message = UiText.get(R.string.toto_undo_import_body),
+                    action = UiText.get(R.string.toto_more_undo_import),
                     run = viewModel::undoLatestImport,
                 )
             },
-            wide = ManageAction(R.drawable.sync, "Re-sync all") {
+            wide = ManageAction(R.drawable.sync, UiText.get(R.string.toto_more_re_sync_all)) {
                 sheet?.dismiss()
                 onResyncAll()
             },
             rows = sources.map { source ->
-                ManageAction(R.drawable.delete, "Delete ${source.label} imports") {
+                ManageAction(R.drawable.delete, UiText.get(R.string.toto_delete_source, source.label)) {
                     confirmThen(
-                        title = "Delete ${source.label} imports?",
-                        message = "Everything you imported from ${source.label} leaves your library, playlists included." +
-                            if (source == ImportSource.YOUTUBE_MUSIC) " Music YouTube sync keeps up to date stays." else "",
-                        action = "Delete",
+                        title = UiText.get(R.string.toto_delete_source_title, source.label),
+                        message = UiText.get(R.string.toto_delete_source_body, source.label) +
+                            if (source == ImportSource.YOUTUBE_MUSIC) UiText.get(R.string.toto_keep_yt_sync) else "",
+                        action = UiText.get(R.string.toto_more_delete),
                         run = { viewModel.deleteImportsFrom(source) },
                     )
                 }
@@ -108,7 +108,7 @@ fun PopupSheetState.showManageLocalSheet(
     var sheet: PopupSheetHandle? = null
     sheet = showWithHandle {
         ManageLayout(
-            ManageAction(R.drawable.refresh, "Re-scan local") {
+            ManageAction(R.drawable.refresh, UiText.get(R.string.toto_more_re_scan_local)) {
                 sheet?.dismiss()
                 onRescan()
             },
@@ -121,11 +121,11 @@ fun PopupSheetState.showManageLocalSheet(
                 onAddFolder()
             },
             rows = listOf(
-                ManageAction(R.drawable.undo, "Undo import session") {
+                ManageAction(R.drawable.undo, UiText.get(R.string.toto_more_undo_import_session)) {
                     showConfirm(
-                        title = "Undo your last local import?",
-                        message = "The songs it added leave your library. The files stay on your phone.",
-                        action = "Undo import",
+                        title = UiText.get(R.string.toto_more_undo_your_last_local_import),
+                        message = UiText.get(R.string.toto_more_the_songs_it_added_leave_your_library_the_files_stay_on_your),
+                        action = UiText.get(R.string.toto_more_undo_import),
                     ) {
                         viewModel.undoLatestLocalImport()
                         sheet?.dismiss()
@@ -148,12 +148,11 @@ fun PopupSheetState.showManageCachedSheet(
     var sheet: PopupSheetHandle? = null
     sheet = showWithHandle {
         ManageLayout(
-            ManageAction(R.drawable.clear_all, "Clear cache") {
+            ManageAction(R.drawable.clear_all, UiText.get(R.string.toto_more_clear_cache)) {
                 showConfirm(
-                    title = "Clear your cache?",
-                    message = "Every cached song is deleted from this phone and streams again the next time " +
-                        "you play it. Your library and your downloads stay as they are.",
-                    action = "Clear cache",
+                    title = UiText.get(R.string.toto_more_clear_your_cache),
+                    message = UiText.get(R.string.toto_clear_cache_body),
+                    action = UiText.get(R.string.toto_more_clear_cache),
                 ) {
                     onClearCache()
                     sheet?.dismiss()

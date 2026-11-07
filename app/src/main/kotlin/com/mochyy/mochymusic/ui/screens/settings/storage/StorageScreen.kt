@@ -2,6 +2,8 @@
 
 package com.mochyy.mochymusic.ui.screens.settings.storage
 
+import com.mochyy.mochymusic.i18n.UiText
+
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.expandVertically
 import androidx.compose.animation.fadeIn
@@ -62,7 +64,7 @@ fun StorageScreen(navController: NavController, viewModel: StorageViewModel = hi
     // songs removed from the Manage downloads sheet change the numbers here too
     LaunchedEffect(downloads?.size) { viewModel.measure() }
 
-    SubSettingsScaffold(title = "Storage", onBack = { navController.navigateUp() }) {
+    SubSettingsScaffold(title = UiText.get(R.string.storage), onBack = { navController.navigateUp() }) {
         OverallCard(usage)
 
         Spacer(Modifier.height(22.dp))
@@ -78,7 +80,7 @@ fun StorageScreen(navController: NavController, viewModel: StorageViewModel = hi
 
         Spacer(Modifier.height(26.dp))
         Text(
-            "So, here's a list of things you can do to cut the junk",
+            UiText.get(R.string.toto_ui_more_so_here_s_a_list_of_things_you_can_do_to_cut_the_jun_edc8cc),
             style = storageText(17f, FontWeight.SemiBold),
             modifier = Modifier.padding(horizontal = 2.dp),
         )
@@ -101,7 +103,7 @@ fun StorageScreen(navController: NavController, viewModel: StorageViewModel = hi
                 enabled = !busy && downloadCount > 0,
                 onClick = {
                     menuState.showConfirm(
-                        title = "Remove all downloads?",
+                        title = UiText.get(R.string.toto_ui_more_remove_all_downloads_195c93),
                         message = "Every downloaded song is deleted from this phone. They stay in your library " +
                             "and stream again when you play them, so they'll need a connection.",
                         action = "Remove all downloads",
@@ -116,7 +118,7 @@ fun StorageScreen(navController: NavController, viewModel: StorageViewModel = hi
                 enabled = !busy,
                 onClick = {
                     menuState.showConfirm(
-                        title = "Clear the cache?",
+                        title = UiText.get(R.string.toto_ui_more_clear_the_cache_807446),
                         message = "Songs kept from streaming and saved cover pictures are deleted. They come back " +
                             "as you play and browse. Your library and your downloads stay as they are.",
                         action = "Clear cache",
@@ -151,7 +153,7 @@ private fun percentOf(part: Long, total: Long): String {
 @Composable
 private fun OverallCard(usage: StorageUsage?) {
     StorageCardColumn {
-        Text("Overall", style = storageText(17f))
+        Text(UiText.get(R.string.toto_ui_more_overall_8a5285), style = storageText(17f))
         Spacer(Modifier.height(14.dp))
         UsageBar(
             parts = listOf(
@@ -164,13 +166,13 @@ private fun OverallCard(usage: StorageUsage?) {
         Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.fillMaxWidth()) {
             LegendSwatch(MochyGreen)
             Spacer(Modifier.width(8.dp))
-            Text("Mochy", style = storageText(16f, FontWeight.SemiBold))
+            Text(UiText.get(R.string.app_icon_family_mark), style = storageText(16f, FontWeight.SemiBold))
             Spacer(Modifier.width(16.dp))
             LegendSwatch(OthersGrey)
             Spacer(Modifier.width(8.dp))
-            Text("Your storage", style = storageText(16f, FontWeight.SemiBold), modifier = Modifier.weight(1f), maxLines = 1)
+            Text(UiText.get(R.string.toto_ui_more_your_storage_6e1663), style = storageText(16f, FontWeight.SemiBold), modifier = Modifier.weight(1f), maxLines = 1)
             if (usage != null) {
-                Text("${formatSize(usage.deviceFree)} free", style = storageText(12f, FontWeight.Medium, StorageMuted, 0f))
+                Text(UiText.get(R.string.toto_format_free_space, formatSize(usage.deviceFree)), style = storageText(12f, FontWeight.Medium, StorageMuted, 0f))
             }
         }
     }
@@ -179,7 +181,7 @@ private fun OverallCard(usage: StorageUsage?) {
 @Composable
 private fun BreakdownCard(usage: StorageUsage?) {
     StorageCardColumn {
-        Text("Mochy app data usage", style = storageText(17f))
+        Text(UiText.get(R.string.toto_ui_more_mochy_app_data_usage_163599), style = storageText(17f))
         Spacer(Modifier.height(14.dp))
         UsageBar(
             parts = listOf(
@@ -234,14 +236,14 @@ private fun CacheLimitCard(limit: Int, onLimitChange: (Int) -> Unit, appliesLate
                 Icon(painterResource(R.drawable.cached), contentDescription = null, tint = StorageCard, modifier = Modifier.size(16.dp))
             }
             Spacer(Modifier.width(12.dp))
-            Text("Set music cache limit", style = storageText(15f, FontWeight.SemiBold), modifier = Modifier.weight(1f))
+            Text(UiText.get(R.string.toto_ui_more_set_music_cache_limit_326e4a), style = storageText(15f, FontWeight.SemiBold), modifier = Modifier.weight(1f))
             Text(cacheLimitLabel(limit), style = storageText(15f, FontWeight.Bold))
         }
         Spacer(Modifier.height(10.dp))
         StepSlider(steps = CacheLimitSteps, value = limit, onValueChange = onLimitChange)
         Row {
-            Text("No cache", style = storageText(10f, FontWeight.Medium, StorageMuted, 0f), modifier = Modifier.weight(1f))
-            Text("Unlimited", style = storageText(10f, FontWeight.Medium, StorageMuted, 0f))
+            Text(UiText.get(R.string.toto_ui_more_no_cache_2ae383), style = storageText(10f, FontWeight.Medium, StorageMuted, 0f), modifier = Modifier.weight(1f))
+            Text(UiText.get(R.string.unlimited), style = storageText(10f, FontWeight.Medium, StorageMuted, 0f))
         }
         AnimatedVisibility(
             visible = appliesLater,
@@ -249,7 +251,7 @@ private fun CacheLimitCard(limit: Int, onLimitChange: (Int) -> Unit, appliesLate
             exit = shrinkVertically() + fadeOut(),
         ) {
             Text(
-                "The new limit starts next time you open Mochy.",
+                UiText.get(R.string.toto_ui_more_the_new_limit_starts_next_time_you_open_mochy_87ac74),
                 style = storageText(12f, FontWeight.Medium, StorageMuted, -0.1f),
                 modifier = Modifier.padding(top = 8.dp),
             )

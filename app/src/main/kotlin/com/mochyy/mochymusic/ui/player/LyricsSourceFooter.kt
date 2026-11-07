@@ -2,6 +2,8 @@
 
 package com.mochyy.mochymusic.ui.player
 
+import androidx.compose.ui.res.stringResource
+
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.spring
 import androidx.compose.foundation.background
@@ -126,7 +128,7 @@ private fun SwitchSourceButton(onClick: () -> Unit) {
         background = Color.White.copy(alpha = 0.08f),
     ) {
         FooterIcon(Icons.Rounded.SwapVert, tint = LabelColor)
-        Text(text = "Switch", style = ButtonTextStyle.copy(color = LabelColor))
+        Text(text = stringResource(R.string.toto_ui_switch), style = ButtonTextStyle.copy(color = LabelColor))
     }
 }
 
@@ -144,7 +146,7 @@ private fun StarOnGitHubButton(onClick: () -> Unit) {
             tint = Color.White.copy(alpha = 0.85f),
             modifier = Modifier.size(15.dp),
         )
-        Text(text = "Star on GitHub", style = ButtonTextStyle.copy(color = Color.White.copy(alpha = 0.85f)))
+        Text(text = stringResource(R.string.toto_ui_star_on_github), style = ButtonTextStyle.copy(color = Color.White.copy(alpha = 0.85f)))
         FooterIcon(Icons.Rounded.Star, tint = StarColor)
     }
 }

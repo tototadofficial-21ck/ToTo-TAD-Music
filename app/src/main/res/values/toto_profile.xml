@@ -1,0 +1,6 @@
+<resources>
+  <string name="toto_profile_load_error">Could not load your account profile. Check the connection and profile migration, then retry.</string>
+  <string name="toto_profile_save_error">Profile was not saved. Check your connection and Supabase profile setup, then retry.</string>
+  <string name="toto_profile_use_legacy">Use the old profile on this device</string>
+  <string name="toto_profile_saving">Saving profile…</string>
+</resources>

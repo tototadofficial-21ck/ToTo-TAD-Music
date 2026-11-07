@@ -2,6 +2,8 @@
 
 package com.mochyy.mochymusic.ui.menu
 
+import com.mochyy.mochymusic.i18n.UiText
+
 import android.content.Context
 import android.content.Intent
 import androidx.compose.foundation.layout.Column
@@ -91,7 +93,7 @@ fun LocalPlaylistMenu(
             .padding(bottom = 8.dp + WindowInsets.systemBars.asPaddingValues().calculateBottomPadding()),
     ) {
         SheetSearchLauncher(
-            placeholder = "Search any song on playlist",
+            placeholder = UiText.get(R.string.toto_ui_more_search_any_song_on_playlist_442bd9),
             onClick = {
                 onDismiss()
                 onSearch()
@@ -117,7 +119,7 @@ fun LocalPlaylistMenu(
             // Over this menu rather than closing it: Done comes back here.
             SheetActionCard(
                 icon = R.drawable.edit,
-                title = "Edit playlist",
+                title = UiText.get(R.string.edit_playlist),
                 onClick = onEdit,
                 modifier = Modifier.weight(1f),
             )
@@ -136,7 +138,7 @@ fun LocalPlaylistMenu(
         Material3MenuGroup(
             items = listOfNotNull(
                 Material3MenuItemData(
-                    title = { Text("Play next") },
+                    title = { Text(UiText.get(R.string.play_next)) },
                     icon = {
                         Icon(
                             painter = painterResource(R.drawable.playlist_play),
@@ -151,7 +153,7 @@ fun LocalPlaylistMenu(
                     } else null,
                 ),
                 Material3MenuItemData(
-                    title = { Text("Sort by") },
+                    title = { Text(UiText.get(R.string.toto_ui_more_sort_by_a2a5bd)) },
                     icon = {
                         Icon(
                             painter = painterResource(R.drawable.drag_handle),
@@ -179,7 +181,7 @@ fun LocalPlaylistMenu(
                     )
                 } else null,
                 Material3MenuItemData(
-                    title = { Text("Add to playlist") },
+                    title = { Text(UiText.get(R.string.add_to_playlist)) },
                     icon = {
                         Icon(
                             painter = painterResource(R.drawable.playlist_add),
@@ -323,7 +325,7 @@ private fun QueueAndDownloadCards(
 ) {
     if (onSearch != null) {
         SheetSearchLauncher(
-            placeholder = "Search any song here",
+            placeholder = UiText.get(R.string.toto_ui_more_search_any_song_here_c067d9),
             onClick = {
                 onDismiss()
                 onSearch()

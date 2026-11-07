@@ -2,6 +2,8 @@
 
 package com.mochyy.mochymusic.ui.screens.settings.devspace
 
+import com.mochyy.mochymusic.i18n.UiText
+
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -33,14 +35,14 @@ fun DevPlaygroundScreen(navController: NavController) {
     val settled = stats != null || !loading
 
     SubSettingsScaffold(
-        title = "Developer playground",
+        title = UiText.get(R.string.toto_ui_more_developer_playground_101e3f),
         backLabel = "Dev Spaces",
         onBack = { navController.navigateUp() },
     ) {
         Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
             RepoFiguresCard(
-                title = "Since this build",
-                subtitle = "From when this build was made until today",
+                title = UiText.get(R.string.toto_ui_more_since_this_build_8433ca),
+                subtitle = UiText.get(R.string.toto_ui_more_from_when_this_build_was_made_until_today_d56451),
                 figures = listOf(
                     stats?.newIssues to "new reported issues",
                     stats?.newResolved to "new resolved issue",
@@ -50,7 +52,7 @@ fun DevPlaygroundScreen(navController: NavController) {
                 settled = settled,
             )
             RepoFiguresCard(
-                title = "In total",
+                title = UiText.get(R.string.toto_ui_more_in_total_29a05c),
                 figures = listOf(
                     stats?.reportedTotal to "reported issues",
                     stats?.closedTotal to "resolved issue",
@@ -60,7 +62,7 @@ fun DevPlaygroundScreen(navController: NavController) {
             RepoIssuesSection(stats = stats, loading = loading, error = error, onRetry = { reload++ })
             Spacer(Modifier.height(6.dp))
             CategoryBubble(
-                title = "Experimental settings",
+                title = UiText.get(R.string.toto_ui_more_experimental_settings_2502ec),
                 iconRes = R.drawable.biotech,
                 onClick = { navController.navigate("experimental_settings") },
             )

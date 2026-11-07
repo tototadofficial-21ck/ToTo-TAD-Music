@@ -31,6 +31,7 @@ class TurntableWidgetReceiver : AppWidgetProvider() {
 
     override fun onReceive(context: Context, intent: Intent) {
         super.onReceive(context, intent)
+        if (!com.mochyy.mochymusic.auth.PersonalAuth.allowed) return
 
         when (intent.action) {
             ACTION_TURNTABLE_PLAY_PAUSE, ACTION_TURNTABLE_NEXT, ACTION_TURNTABLE_PREVIOUS -> {

@@ -2,6 +2,8 @@
 
 package com.mochyy.mochymusic.ui.screens.equalizer
 
+import com.mochyy.mochymusic.i18n.UiText
+
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.spring
@@ -123,7 +125,7 @@ fun EqGraphSection(
         val node = nodes.getOrNull(index)
         Row(Modifier.fillMaxWidth().padding(horizontal = 6.dp, vertical = 4.dp), verticalAlignment = Alignment.CenterVertically) {
             Text(
-                "FREQUENCY RESPONSE",
+                UiText.get(R.string.toto_ui_more_frequency_response_f0c990),
                 fontFamily = InterFontFamily, fontWeight = FontWeight.Bold, fontSize = 12.sp, letterSpacing = 1.2.sp,
                 color = LabColors.Secondary, modifier = Modifier.weight(1f),
             )
@@ -139,7 +141,7 @@ fun EqGraphSection(
         EqGraph(nodes = nodes, selected = index, onSelect = onSelect, onMove = onMove, onAdd = onAdd)
         Spacer(Modifier.height(10.dp))
         Text(
-            "Drag a node to shape the sound · double-tap to add one",
+            UiText.get(R.string.toto_ui_more_drag_a_node_to_shape_the_sound_double_tap_to_add_one_d13c09),
             fontFamily = InterFontFamily, fontSize = 12.sp, color = LabColors.Faint,
             modifier = Modifier.padding(horizontal = 6.dp),
         )
@@ -430,7 +432,7 @@ private fun NodeDetail(
             Spacer(Modifier.width(10.dp))
             Column(Modifier.weight(1f)) {
                 Text(
-                    "${frequencyLabel(node.frequency)} node",
+                    UiText.get(R.string.toto_format_frequency_node, frequencyLabel(node.frequency)),
                     fontFamily = InterFontFamily, fontWeight = FontWeight.Bold, fontSize = 20.sp, color = Color.White,
                 )
                 Text(
@@ -503,7 +505,7 @@ private fun NodeDetail(
                     .clickable(onClick = onRemove),
                 contentAlignment = Alignment.Center,
             ) {
-                Text("Remove node", fontFamily = InterFontFamily, fontWeight = FontWeight.SemiBold, fontSize = 14.sp,
+                Text(UiText.get(R.string.toto_ui_more_remove_node_b1194b), fontFamily = InterFontFamily, fontWeight = FontWeight.SemiBold, fontSize = 14.sp,
                     color = Color(0xFFFF8A80))
             }
         }

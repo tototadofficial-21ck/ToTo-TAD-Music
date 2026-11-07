@@ -2,7 +2,11 @@
 
 package com.mochyy.mochymusic.ui.screens.update
 
+import com.mochyy.mochymusic.i18n.UiText
+
 import androidx.annotation.DrawableRes
+import androidx.compose.foundation.Image
+import com.mochyy.mochymusic.branding.showOwnerSheet
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -41,6 +45,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.layout
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
@@ -115,13 +120,13 @@ private val LeadDevs = listOf(
 private val BaseCredits = listOf(
     CreditEntry(
         name = "vivizzz007",
-        subtitle = "Vivimusic dev, The base of this app",
+        subtitle = UiText.get(R.string.toto_ui_more_vivimusic_dev_the_base_of_this_app_3eac73),
         githubUser = "vivizzz007",
         url = "https://github.com/vivizzz007/vivi-music",
     ),
     CreditEntry(
         name = "Mostafa Alagamy",
-        subtitle = "Metrolist dev, The base of vivmusic too",
+        subtitle = UiText.get(R.string.toto_ui_more_metrolist_dev_the_base_of_vivmusic_too_dbf49f),
         githubUser = "mostafaalagamy",
         url = "https://github.com/mostafaalagamy/Metrolist",
     ),
@@ -130,49 +135,49 @@ private val BaseCredits = listOf(
 private val MoreCredits = listOf(
     CreditEntry(
         name = "maxrave-dev",
-        subtitle = "SimpMusic · lyrics API provider",
+        subtitle = UiText.get(R.string.toto_ui_more_simpmusic_lyrics_api_provider_49bfd4),
         githubUser = "maxrave-dev",
         url = "https://github.com/maxrave-dev/SimpMusic",
     ),
     CreditEntry(
         name = "Rukamori",
-        subtitle = "ArchiveTune · design & architecture inspiration",
+        subtitle = UiText.get(R.string.toto_ui_more_archivetune_design_architecture_inspiration_4e9367),
         githubUser = "rukamori",
         url = "https://github.com/rukamori/ArchiveTune",
     ),
     CreditEntry(
         name = "fast4x",
-        subtitle = "RiMusic · YouTube Music InnerTube service wrapper",
+        subtitle = UiText.get(R.string.toto_ui_more_rimusic_youtube_music_innertube_service_wrapper_d5fe2a),
         githubUser = "fast4x",
         url = "https://github.com/fast4x/RiMusic",
     ),
     CreditEntry(
         name = "tranxuanthang",
-        subtitle = "LRCLIB · synchronized LRC lyrics provider",
+        subtitle = UiText.get(R.string.toto_ui_more_lrclib_synchronized_lrc_lyrics_provider_9b0523),
         githubUser = "tranxuanthang",
         url = "https://github.com/tranxuanthang/lrclib",
     ),
     CreditEntry(
         name = "monochrome-music",
-        subtitle = "Monochrome Music · lossless FLAC streams",
+        subtitle = UiText.get(R.string.toto_ui_more_monochrome_music_lossless_flac_streams_8e4ec9),
         githubUser = "monochrome-music",
         url = "https://github.com/monochrome-music/monochrome",
     ),
     CreditEntry(
         name = "Jaakko Pasanen",
-        subtitle = "AutoEq · headphone equalizer database",
+        subtitle = UiText.get(R.string.toto_ui_more_autoeq_headphone_equalizer_database_1c6f90),
         githubUser = "jaakkopasanen",
         url = "https://github.com/jaakkopasanen/AutoEq",
     ),
     CreditEntry(
         name = "Ibra Al Tabian",
-        subtitle = "LyricsPlus · open source lyrics server",
+        subtitle = UiText.get(R.string.toto_ui_more_lyricsplus_open_source_lyrics_server_2ca52b),
         githubUser = "ibratabian17",
         url = "https://github.com/ibratabian17/LyricsPlus",
     ),
     CreditEntry(
         name = "Boidushya",
-        subtitle = "Better Lyrics API · synced syllable lyrics",
+        subtitle = UiText.get(R.string.toto_ui_more_better_lyrics_api_synced_syllable_lyrics_575619),
         githubUser = "boidushya",
         url = "https://github.com/better-lyrics/api",
     ),
@@ -182,49 +187,49 @@ private val Licenses = listOf(
     LicenseEntry(
         tag = "GPL-3.0",
         title = "Mochy Music · GNU General Public License v3.0",
-        subtitle = "Free and open source software, source code on GitHub",
+        subtitle = UiText.get(R.string.toto_ui_more_free_and_open_source_software_source_code_on_github_7ec2cf),
         url = "$GithubRepoUrl/blob/main/LICENSE",
     ),
     LicenseEntry(
         tag = "GPL-3.0",
         title = "ViviMusic · GNU General Public License v3.0",
-        subtitle = "by vivizzz007 · base project this app was forked from",
+        subtitle = UiText.get(R.string.toto_ui_more_by_vivizzz007_base_project_this_app_was_forked_from_31a8cb),
         url = "https://github.com/vivizzz007/vivi-music/blob/main/LICENSE",
     ),
     LicenseEntry(
         tag = "GPL-3.0",
         title = "Metrolist · GNU General Public License v3.0",
-        subtitle = "by Mostafa Alagamy · base framework",
+        subtitle = UiText.get(R.string.toto_ui_more_by_mostafa_alagamy_base_framework_9d055b),
         url = "https://github.com/mostafaalagamy/Metrolist/blob/main/LICENSE",
     ),
     LicenseEntry(
         tag = "GPL-3.0",
         title = "SimpMusic · GNU General Public License v3.0",
-        subtitle = "by maxrave-dev · lyrics provider integration",
+        subtitle = UiText.get(R.string.toto_ui_more_by_maxrave_dev_lyrics_provider_integration_91c028),
         url = "https://github.com/maxrave-dev/SimpMusic/blob/dev/LICENSE",
     ),
     LicenseEntry(
         tag = "GPL-3.0",
         title = "ArchiveTune · GNU General Public License v3.0",
-        subtitle = "by Rukamori · design and architectural inspiration",
+        subtitle = UiText.get(R.string.toto_ui_more_by_rukamori_design_and_architectural_inspiration_2c8ddc),
         url = "https://github.com/rukamori/ArchiveTune/blob/main/LICENSE",
     ),
     LicenseEntry(
         tag = "GPL-3.0",
         title = "RiMusic · GNU General Public License v3.0",
-        subtitle = "by fast4x · InnerTube API wrapper",
+        subtitle = UiText.get(R.string.toto_ui_more_by_fast4x_innertube_api_wrapper_ac72b7),
         url = "https://github.com/fast4x/RiMusic/blob/master/LICENSE",
     ),
     LicenseEntry(
         tag = "MIT",
         title = "LRCLIB · MIT License",
-        subtitle = "by tranxuanthang · synchronized lyrics database",
+        subtitle = UiText.get(R.string.toto_ui_more_by_tranxuanthang_synchronized_lyrics_database_ffdb10),
         url = "https://github.com/tranxuanthang/lrclib/blob/main/LICENSE",
     ),
     LicenseEntry(
         tag = "MIT",
         title = "AutoEq · MIT License",
-        subtitle = "by Jaakko Pasanen · headphone correction profiles",
+        subtitle = UiText.get(R.string.toto_ui_more_by_jaakko_pasanen_headphone_correction_profiles_d3e3ad),
         url = "https://github.com/jaakkopasanen/AutoEq/blob/master/LICENSE",
     ),
 )
@@ -296,21 +301,21 @@ private suspend fun fetchContributors(): List<ContributorEntry> {
 
 fun PopupSheetState.showAboutSheet(onOpenDevSpace: (Int) -> Unit = {}) {
     val popup = this
-    show(buttonBar = { SheetPrimaryButton(text = "Done", onClick = popup::dismiss) }) {
+    show(buttonBar = { SheetPrimaryButton(text = UiText.get(R.string.done), onClick = popup::dismiss) }) {
         AboutSheetContent(popup = popup, onOpenDevSpace = onOpenDevSpace)
     }
 }
 
 private fun PopupSheetState.showCreditsSheet() {
     val popup = this
-    show(buttonBar = { SheetPrimaryButton(text = "Done", onClick = popup::dismiss) }) {
+    show(buttonBar = { SheetPrimaryButton(text = UiText.get(R.string.done), onClick = popup::dismiss) }) {
         CreditsSheetContent()
     }
 }
 
 private fun PopupSheetState.showLicenseSheet() {
     val popup = this
-    show(buttonBar = { SheetPrimaryButton(text = "Done", onClick = popup::dismiss) }) {
+    show(buttonBar = { SheetPrimaryButton(text = UiText.get(R.string.done), onClick = popup::dismiss) }) {
         LicenseSheetContent()
     }
 }
@@ -333,7 +338,7 @@ private fun ColumnScope.AboutSheetContent(
     Box(Modifier.fillMaxWidth()) {
         // zero-size layout places the spinning ring behind the top icon without pushing the column down
         VersionRing(
-            text = "MOCHY $installed",
+            text = UiText.get(R.string.toto_format_version_badge, installed),
             scrollProgress = { scrollState.value / ringScrollRangePx },
             modifier = Modifier
                 .align(Alignment.TopCenter)
@@ -369,16 +374,15 @@ private fun ColumnScope.AboutSheetContent(
                         .background(MenuRowSurface),
                     contentAlignment = Alignment.Center,
                 ) {
-                    Icon(
-                        painter = painterResource(R.drawable.ic_mochy_mark),
+                    Image(
+                        painter = painterResource(R.drawable.toto_logo),
                         contentDescription = null,
-                        tint = Color.White,
-                        modifier = Modifier.size(38.dp),
+                        modifier = Modifier.size(68.dp),
                     )
                 }
                 Spacer(Modifier.height(14.dp))
                 Text(
-                    text = "About app",
+                    text = UiText.get(R.string.toto_ui_more_about_app_3c6773),
                     fontSize = 36.sp,
                     lineHeight = 38.sp,
                     fontWeight = FontWeight.Bold,
@@ -386,7 +390,7 @@ private fun ColumnScope.AboutSheetContent(
                 )
                 Spacer(Modifier.height(4.dp))
                 Text(
-                    text = "Mochy Music | $installed",
+                    text = UiText.get(R.string.toto_format_version_about, installed),
                     fontSize = 15.sp,
                     fontWeight = FontWeight.Bold,
                     letterSpacing = (-0.4).sp,
@@ -403,7 +407,7 @@ private fun ColumnScope.AboutSheetContent(
                     .padding(horizontal = 18.dp, vertical = 16.dp),
             ) {
                 Text(
-                    text = "Mochy Music is a music app but\nkinda cool.",
+                    text = UiText.get(R.string.toto_ui_more_mochy_music_is_a_music_app_but_nkinda_cool_d3a691),
                     fontSize = 15.sp,
                     lineHeight = 19.sp,
                     fontWeight = FontWeight.Bold,
@@ -412,21 +416,26 @@ private fun ColumnScope.AboutSheetContent(
             }
 
             Spacer(Modifier.height(18.dp))
-            SectionHeader("actions")
+            AboutPillRow(
+                text = stringResource(R.string.toto_owner_title),
+                onClick = { popup.showOwnerSheet(onCredits = { onOpenDevSpace(0) }) },
+            )
+            Spacer(Modifier.height(18.dp))
+            SectionHeader(stringResource(R.string.toto_about_actions))
             Spacer(Modifier.height(8.dp))
             Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                 AboutPillRow(
-                    text = "Support me please :3 \u2192",
+                    text = UiText.get(R.string.toto_ui_more_support_me_please_3_u2192_eb53c9),
                     onClick = { popup.showSupportSheet() },
                 )
                 AboutPillRow(
-                    text = "Mochy Music github \u2192",
+                    text = UiText.get(R.string.toto_ui_more_mochy_music_github_u2192_a5cc1a),
                     onClick = { context.openUrl(GithubRepoUrl) },
                 )
             }
 
             Spacer(Modifier.height(18.dp))
-            SectionHeader("meet the lead dev")
+            SectionHeader(stringResource(R.string.toto_upstream_credits))
             Spacer(Modifier.height(8.dp))
             Column(
                 modifier = Modifier
@@ -448,7 +457,7 @@ private fun ColumnScope.AboutSheetContent(
             }
 
             Spacer(Modifier.height(18.dp))
-            SectionHeader("we wont exist without these guys")
+            SectionHeader(stringResource(R.string.toto_base_credits))
             Spacer(Modifier.height(8.dp))
             Column(
                 modifier = Modifier
@@ -475,15 +484,15 @@ private fun ColumnScope.AboutSheetContent(
             )
 
             Spacer(Modifier.height(18.dp))
-            SectionHeader("License")
+            SectionHeader(stringResource(R.string.toto_license_title))
             Spacer(Modifier.height(8.dp))
             AboutCardButton(
-                text = "More about license",
+                text = UiText.get(R.string.toto_ui_more_more_about_license_d62efb),
                 onClick = { popup.showLicenseSheet() },
             )
 
             Spacer(Modifier.height(18.dp))
-            SectionHeader("Cool contributors")
+            SectionHeader(stringResource(R.string.toto_contributors_title))
             Spacer(Modifier.height(8.dp))
             Column(
                 modifier = Modifier
@@ -517,7 +526,7 @@ private fun ColumnScope.CreditsSheetContent() {
     ) {
         Spacer(Modifier.height(8.dp))
         Text(
-            text = "Credits",
+            text = UiText.get(R.string.toto_ui_more_credits_bfac50),
             fontSize = 36.sp,
             lineHeight = 38.sp,
             fontWeight = FontWeight.Bold,
@@ -555,7 +564,7 @@ private fun ColumnScope.LicenseSheetContent() {
     ) {
         Spacer(Modifier.height(8.dp))
         Text(
-            text = "License",
+            text = UiText.get(R.string.feat_license_title),
             fontSize = 36.sp,
             lineHeight = 38.sp,
             fontWeight = FontWeight.Bold,
@@ -723,7 +732,7 @@ private fun AndMoreRow(
         }
         Spacer(Modifier.width(12.dp))
         Text(
-            text = "And more \u2192",
+            text = UiText.get(R.string.toto_ui_more_and_more_u2192_be1161),
             fontSize = 15.sp,
             fontWeight = FontWeight.Bold,
             letterSpacing = (-0.4).sp,

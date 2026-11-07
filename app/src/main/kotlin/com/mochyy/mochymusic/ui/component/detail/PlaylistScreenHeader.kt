@@ -1,5 +1,7 @@
 package com.mochyy.mochymusic.ui.component.detail
 
+import com.mochyy.mochymusic.i18n.UiText
+
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.tween
@@ -239,7 +241,7 @@ fun PlaylistScreenHeader(
                 ) {
                     Icon(
                         painter = painterResource(R.drawable.shuffle),
-                        contentDescription = "Shuffle",
+                        contentDescription = UiText.get(R.string.shuffle),
                         tint = contentColor,
                         modifier = Modifier.size(22.dp)
                     )
@@ -257,7 +259,7 @@ fun PlaylistScreenHeader(
                 ) {
                     Icon(
                         painter = painterResource(R.drawable.more_vert),
-                        contentDescription = "Options",
+                        contentDescription = UiText.get(R.string.options),
                         tint = contentColor,
                         modifier = Modifier.size(22.dp)
                     )

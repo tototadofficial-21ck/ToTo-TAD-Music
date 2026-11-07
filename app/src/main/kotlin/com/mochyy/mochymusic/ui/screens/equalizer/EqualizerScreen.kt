@@ -2,6 +2,8 @@
 
 package com.mochyy.mochymusic.ui.screens.equalizer
 
+import com.mochyy.mochymusic.i18n.UiText
+
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.core.spring
 import androidx.compose.animation.core.tween
@@ -66,13 +68,13 @@ fun EqualizerScreen(
     ListenToAudio()
 
     SubSettingsScaffold(
-        title = "Equalizer",
+        title = UiText.get(R.string.equalizer_header),
         backLabel = "Audio Lab",
         onBack = { navController.navigateUp() },
     ) {
         LabCard(padding = 10.dp) {
             LabToggleRow(
-                title = "Equalizer",
+                title = UiText.get(R.string.equalizer_header),
                 subtitle = statusLine(eq, presets),
                 checked = eq.enabled,
                 onCheckedChange = viewModel::setEnabled,
@@ -138,15 +140,15 @@ fun EqualizerScreen(
 
     if (savingPreset) {
         TextFieldDialog(
-            title = { Text("Save preset") },
-            placeholder = { Text("My earbuds") },
+            title = { Text(UiText.get(R.string.toto_ui_more_save_preset_828897)) },
+            placeholder = { Text(UiText.get(R.string.toto_ui_more_my_earbuds_3b284d)) },
             onDone = viewModel::savePreset,
             onDismiss = { savingPreset = false },
         )
     }
     deleting?.let { preset ->
         ActionPromptDialog(
-            title = "Delete “${preset.name}”?",
+            title = UiText.get(R.string.toto_format_delete_preset, preset.name),
             onDismiss = { deleting = null },
             onCancel = { deleting = null },
             onConfirm = {
@@ -210,7 +212,7 @@ private fun Output(eq: EqSettings, headroom: Double, viewModel: AudioLabViewMode
         )
         Spacer(Modifier.height(6.dp))
         LabToggleRow(
-            title = "Auto preamp",
+            title = UiText.get(R.string.toto_ui_more_auto_preamp_0c89f4),
             subtitle = if (eq.autoPreamp) {
                 if (headroom < -0.05) "Lowering by ${String.format("%.1f", -headroom)} dB, the limiter catches the rest"
                 else "Nothing to lower, the limiter catches any peaks"

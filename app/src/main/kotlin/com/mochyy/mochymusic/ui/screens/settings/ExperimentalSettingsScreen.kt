@@ -1,5 +1,9 @@
 package com.mochyy.mochymusic.ui.screens.settings
 
+import androidx.compose.ui.res.stringResource
+
+import com.mochyy.mochymusic.i18n.UiText
+
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -71,7 +75,7 @@ fun ExperimentalSettingsScreen(navController: NavController) {
     val coroutineScope = rememberCoroutineScope()
 
     SubSettingsScaffold(
-        title = "Experimental",
+        title = UiText.get(R.string.toto_more_experimental),
         onBack = { navController.navigateUp() },
     ) {
             SettingsGroup(
@@ -79,7 +83,7 @@ fun ExperimentalSettingsScreen(navController: NavController) {
                 items = buildList {
                     add(
                         SettingsItem(
-                            title = { Text("Import & sync") },
+                            title = { Text(stringResource(R.string.toto_ui_import_sync)) },
                             highlightKey = "Import & sync",
                             descriptionText = "Bring playlists from other services, sync with YouTube, export a backup",
                             icon = painterResource(R.drawable.sync),
@@ -89,7 +93,7 @@ fun ExperimentalSettingsScreen(navController: NavController) {
                     )
                     add(
                         SettingsItem(
-                            title = { Text("Crossmix test tools") },
+                            title = { Text(stringResource(R.string.toto_ui_crossmix_test_tools)) },
                             highlightKey = "Crossmix test tools",
                             descriptionText = "Live status and a jump-to-mix button",
                             detail = "Live status and a button that jumps to just before the next mix; also shown in Crossmix",
@@ -107,7 +111,7 @@ fun ExperimentalSettingsScreen(navController: NavController) {
                     crossmixTools.forEach { add(it.copy(isSubOption = true)) }
                     add(
                         SettingsItem(
-                            title = { Text("Show where songs play from") },
+                            title = { Text(stringResource(R.string.toto_ui_show_where_songs_play_from)) },
                             highlightKey = "Show where songs play from",
                             descriptionText = "Banner showing each song's source and quality",
                             detail = "A banner at the top names each song's source: Apple Music, Monochrome or YouTube, and its quality",
@@ -121,7 +125,7 @@ fun ExperimentalSettingsScreen(navController: NavController) {
                     )
                     add(
                         SettingsItem(
-                            title = { Text("Force playback") },
+                            title = { Text(stringResource(R.string.toto_ui_force_playback)) },
                             highlightKey = "Force playback",
                             descriptionText = "If a provider fails, try the next one",
                             detail = "Never stop on a song: if one provider can't play it, the next in the provider order does; if none can, it's skipped. A banner says which",
@@ -135,7 +139,7 @@ fun ExperimentalSettingsScreen(navController: NavController) {
                     )
                     add(
                         SettingsItem(
-                            title = { Text("Force 1500 px YouTube blur") },
+                            title = { Text(stringResource(R.string.toto_ui_force_1500_px_youtube_blur)) },
                             highlightKey = "Force 1500 px YouTube blur",
                             descriptionText = "Override the 120 px default; may increase GPU load",
                             icon = painterResource(R.drawable.tune),
@@ -151,7 +155,7 @@ fun ExperimentalSettingsScreen(navController: NavController) {
                     )
                     add(
                         SettingsItem(
-                            title = { Text("Force show monthly recap") },
+                            title = { Text(stringResource(R.string.toto_ui_force_show_monthly_recap)) },
                             highlightKey = "Force show monthly recap",
                             descriptionText = "Unlock the recap early",
                             detail = "Unlock the recap behind the Mochy card now, before the 3rd or 10 songs",
@@ -168,7 +172,7 @@ fun ExperimentalSettingsScreen(navController: NavController) {
                     )
                     add(
                         SettingsItem(
-                            title = { Text("Big disc cover styles") },
+                            title = { Text(stringResource(R.string.toto_ui_big_disc_cover_styles)) },
                             highlightKey = "Big disc cover styles",
                             descriptionText = "Unfinished — oversized discs that bleed off screen",
                             icon = painterResource(R.drawable.album),
@@ -184,7 +188,7 @@ fun ExperimentalSettingsScreen(navController: NavController) {
                     )
                     add(
                         SettingsItem(
-                            title = { Text("Music haptics") },
+                            title = { Text(stringResource(R.string.toto_ui_music_haptics)) },
                             highlightKey = "Music haptics",
                             descriptionText = "Vibrate to the beat — uses battery",
                             icon = painterResource(R.drawable.music_note),
@@ -197,7 +201,7 @@ fun ExperimentalSettingsScreen(navController: NavController) {
                     )
                     add(
                         SettingsItem(
-                            title = { Text("Haptics sensitivity") },
+                            title = { Text(stringResource(R.string.toto_ui_haptics_sensitivity)) },
                             description = {
                                 Text(
                                     when (musicHapticsSensitivity) {
@@ -223,7 +227,7 @@ fun ExperimentalSettingsScreen(navController: NavController) {
                     )
                     add(
                         SettingsItem(
-                            title = { Text("Haptic focus") },
+                            title = { Text(stringResource(R.string.toto_ui_haptic_focus)) },
                             description = {
                                 Text(
                                     when (hapticFocus) {
@@ -251,7 +255,7 @@ fun ExperimentalSettingsScreen(navController: NavController) {
                     )
                     add(
                         SettingsItem(
-                            title = { Text("Cipher") },
+                            title = { Text(stringResource(R.string.toto_ui_cipher)) },
                             highlightKey = "Cipher",
                             descriptionText = "Player script status, countdown and refresh",
                             icon = painterResource(R.drawable.key),
@@ -261,8 +265,8 @@ fun ExperimentalSettingsScreen(navController: NavController) {
                     )
                     add(
                         SettingsItem(
-                            title = { Text("Playback diagnostics") },
-                            highlightKey = "Playback diagnostics",
+                            title = { Text(stringResource(R.string.toto_ui_playback_diagnostics)) },
+                            highlightKey = UiText.get(R.string.toto_more_playback_diagnostics),
                             descriptionText = "Which client served each track, and PoToken state",
                             icon = painterResource(R.drawable.info),
                             iconShape = androidx.compose.foundation.shape.CircleShape,
@@ -271,7 +275,7 @@ fun ExperimentalSettingsScreen(navController: NavController) {
                     )
                     add(
                         SettingsItem(
-                            title = { Text("Repeat initial setup") },
+                            title = { Text(stringResource(R.string.toto_ui_repeat_initial_setup)) },
                             highlightKey = "Repeat initial setup",
                             descriptionText = "Re-run the setup wizard",
                             icon = painterResource(R.drawable.restore),

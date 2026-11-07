@@ -6,6 +6,8 @@
 
 package com.mochyy.mochymusic.ui.screens.library
 
+import androidx.compose.ui.res.stringResource
+
 import androidx.compose.animation.Crossfade
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.LinearEasing
@@ -158,7 +160,7 @@ private fun ImportPromoBanner(onClick: () -> Unit) {
         ProviderMarquee()
         Spacer(Modifier.height(20.dp))
         Text(
-            text = "Import your music here!",
+            text = stringResource(R.string.toto_ui_import_your_music_here),
             color = SearchColors.Primary,
             fontSize = 21.sp,
             lineHeight = 25.sp,

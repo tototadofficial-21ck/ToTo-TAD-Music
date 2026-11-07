@@ -123,6 +123,7 @@ class CastConnectionHandler(
     }
 
     fun loadMedia(metadata: AppMediaMetadata) {
+        if (!com.mochyy.mochymusic.auth.PersonalAuth.allowed) return
         val target = renderer ?: return
         currentMediaId = metadata.id
         scope.launch {
@@ -148,11 +149,14 @@ class CastConnectionHandler(
                 artworkUrl = metadata.thumbnailUrl?.resize(1080, 1080),
                 durationMs = metadata.duration.toLong().coerceAtLeast(0L) * 1000L,
             )
+            if (!com.mochyy.mochymusic.auth.PersonalAuth.allowed) return@launch
             runCatching { target.load(media, start) }.onFailure { Timber.w(it, "Couldn't load the song on the receiver") }
         }
     }
 
-    fun play() = command { it.play() }
+    fun play() {
+        if (com.mochyy.mochymusic.auth.PersonalAuth.allowed) command { it.play() }
+    }
 
     fun pause() = command { it.pause() }
 

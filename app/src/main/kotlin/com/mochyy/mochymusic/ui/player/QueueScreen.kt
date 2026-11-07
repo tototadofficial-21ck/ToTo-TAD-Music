@@ -379,7 +379,7 @@ fun QueueScreen(
                     )
 
                     QueueRow.Empty -> Text(
-                        text = "Nothing else queued",
+                        text = stringResource(R.string.toto_ui_nothing_else_queued),
                         fontSize = 14.sp,
                         color = Color.White.copy(alpha = 0.45f),
                         modifier = Modifier
@@ -590,7 +590,7 @@ private fun QueueSectionHeader(
         }
         if (section == QueueSection.HISTORY) {
             Text(
-                text = "Clear",
+                text = stringResource(R.string.toto_ui_clear),
                 fontSize = 13.sp,
                 fontWeight = FontWeight.SemiBold,
                 color = Color.White.copy(alpha = 0.85f),

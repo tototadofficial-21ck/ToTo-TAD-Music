@@ -6,6 +6,8 @@
 
 package com.mochyy.mochymusic.ui.component
 
+import com.mochyy.mochymusic.i18n.UiText
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -85,7 +87,7 @@ fun OnDeviceIcon(modifier: Modifier = Modifier) {
     ) {
         Icon(
             painter = painterResource(R.drawable.arrow_downward),
-            contentDescription = "On this device",
+            contentDescription = UiText.get(R.string.toto_ui_more_on_this_device_a7f962),
             tint = Color.Black.copy(alpha = 0.8f),
             modifier = Modifier.size(12.dp),
         )

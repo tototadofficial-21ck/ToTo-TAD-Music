@@ -2,6 +2,8 @@
 
 package com.mochyy.mochymusic.ui.screens.library
 
+import com.mochyy.mochymusic.i18n.UiText
+
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -130,7 +132,7 @@ private fun ShelfAlbumsScreen(
     }
 
     LibraryGridScreen(
-        title = "Albums",
+        title = UiText.get(R.string.toto_more_albums),
         subtitle = when (shelf) {
             LibraryShelfKind.Local -> "Albums with music on this device."
             LibraryShelfKind.Cached -> "Albums with songs in your cache."

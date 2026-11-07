@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <string name="toto_hero_now">Now playing</string>
+  <string name="toto_hero_continue">Continue</string>
+  <string name="toto_hero_recent">Recently played</string>
+  <string name="toto_hero_may_like">You may also like</string>
+  <string name="toto_hero_because_like">Because you like</string>
+  <string name="toto_hero_more_from">More from</string>
+  <string name="toto_hero_because_played">Because you played</string>
+  <string name="toto_hero_inspired">Inspired by</string>
+  <string name="toto_hero_because_listen">Because you listen to</string>
+  <string name="toto_hero_similar">Similar to</string>
+  <string name="toto_hero_rotation">Back in rotation</string>
+  <string name="toto_hero_gacha">Gacha here!</string>
+  <string name="toto_hero_random">Random plays</string>
+  <string name="toto_hero_playlists">From your playlists</string>
+  <string name="toto_hero_import">From your import</string>
+  <string name="toto_hero_recommended">Recommended from</string>
+  <string name="toto_hero_got">You got</string>
+  <string name="toto_hero_play">Play</string>
+  <string name="toto_hero_pause">Pause</string>
+  <string name="toto_hero_view">View</string>
+  <string name="toto_hero_roll">roll!!</string>
+  <string name="toto_hero_rolling">rolling!!</string>
+</resources>

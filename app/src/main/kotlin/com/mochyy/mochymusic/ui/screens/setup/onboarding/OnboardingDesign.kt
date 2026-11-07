@@ -60,7 +60,7 @@ internal object Onb {
     val Title = Color.White
     val Subtitle = Color(0xFFBDBDBD)
     val Muted = Color(0xFF8C8C8C)
-    val Faint = Color(0xFF6A6A6A)
+    val Faint = Color(0xFF9D9D9D)
     val ButtonPrimary = Color(0xFF5E5E5E)
     val ButtonSecondary = Color(0xFF353535)
     val Badge = Color(0xFFD9D9D9)
@@ -191,10 +191,11 @@ internal fun OnbButton(
     ) {
         Text(
             text = text,
-            color = if (style == OnbButtonStyle.Primary) Color.White else Onb.Muted,
+            color = if (style == OnbButtonStyle.Primary) Color.White else Onb.Subtitle,
             fontSize = 15.sp,
             fontWeight = FontWeight.Bold,
-            maxLines = 1,
+            maxLines = 2,
+            textAlign = androidx.compose.ui.text.style.TextAlign.Center,
             overflow = TextOverflow.Ellipsis,
         )
     }

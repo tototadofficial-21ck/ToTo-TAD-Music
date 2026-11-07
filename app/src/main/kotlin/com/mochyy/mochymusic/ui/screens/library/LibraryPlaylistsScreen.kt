@@ -2,6 +2,10 @@
 
 package com.mochyy.mochymusic.ui.screens.library
 
+import com.mochyy.mochymusic.R
+
+import com.mochyy.mochymusic.i18n.UiText
+
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -39,7 +43,7 @@ fun LibraryPlaylistsScreen(
     val coroutineScope = rememberCoroutineScope()
 
     LibraryEntityListScreen(
-        title = "Playlist",
+        title = UiText.get(R.string.toto_more_playlist),
         subtitle = when {
             source != null -> "Playlists imported from ${source.label}."
             shelf == LibraryShelfKind.Local -> "Playlists with music on this device."

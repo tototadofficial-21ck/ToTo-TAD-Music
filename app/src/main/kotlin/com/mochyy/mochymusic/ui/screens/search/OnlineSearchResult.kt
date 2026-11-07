@@ -2,6 +2,8 @@
 
 package com.mochyy.mochymusic.ui.screens.search
 
+import com.mochyy.mochymusic.i18n.UiText
+
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -107,10 +109,10 @@ import com.mochyy.mochymusic.ui.component.navigateToTab
 private val SearchCategories = listOf(
     "All" to null,
     "Music" to FILTER_SONG,
-    "Artist" to FILTER_ARTIST,
+    UiText.get(R.string.toto_more_artist) to FILTER_ARTIST,
     "Video" to FILTER_VIDEO,
     "Album" to FILTER_ALBUM,
-    "Playlist" to FILTER_COMMUNITY_PLAYLIST,
+    UiText.get(R.string.toto_more_playlist) to FILTER_COMMUNITY_PLAYLIST,
     "Featured" to FILTER_FEATURED_PLAYLIST,
 )
 
@@ -256,7 +258,7 @@ fun OnlineSearchResult(
                     } else {
                         if (top != null) {
                             item(key = "top_header") {
-                                SearchSectionHeader(title = "Top Results", ruleAbove = false)
+                                SearchSectionHeader(title = UiText.get(R.string.toto_more_top_results), ruleAbove = false)
                             }
                             item(key = "top_card") {
                                 TopResultCard(
@@ -320,7 +322,7 @@ fun OnlineSearchResult(
                                 contentAlignment = Alignment.Center,
                             ) {
                                 Text(
-                                    text = "No results",
+                                    text = stringResource(R.string.toto_ui_no_results),
                                     style = MaterialTheme.typography.bodyLarge.copy(fontSize = 15.sp),
                                     color = SearchColors.Secondary,
                                 )
@@ -365,7 +367,7 @@ fun OnlineSearchResult(
                 value = query,
                 onValueChange = { query = it },
                 onSearch = submit,
-                placeholder = "Search for any tracks, albums, lyrics...",
+                placeholder = UiText.get(R.string.toto_ui_more_search_for_any_tracks_albums_lyrics_d6da87),
                 leading = {
                     Icon(
                         painter = painterResource(R.drawable.arrow_back),
@@ -409,8 +411,8 @@ private fun TopResultCard(
     val kind = when (item) {
         is SongItem -> if (item.isVideoSong) "Video" else "Song"
         is AlbumItem -> "Album"
-        is ArtistItem -> "Artist"
-        is PlaylistItem -> "Playlist"
+        is ArtistItem -> UiText.get(R.string.toto_more_artist)
+        is PlaylistItem -> UiText.get(R.string.toto_more_playlist)
     }
     val detail = when (item) {
         is SongItem -> listOfNotNull(
@@ -546,8 +548,8 @@ private fun ResultRow(
             item.artists?.joinToString { it.name }?.takeIf { it.isNotBlank() },
         ).joinToString("  •  ")
 
-        is ArtistItem -> "Artist"
-        is PlaylistItem -> listOfNotNull("Playlist", item.author?.name).joinToString("  •  ")
+        is ArtistItem -> UiText.get(R.string.toto_more_artist)
+        is PlaylistItem -> listOfNotNull(UiText.get(R.string.toto_more_playlist), item.author?.name).joinToString("  •  ")
     }
 
     val row: @Composable () -> Unit = {

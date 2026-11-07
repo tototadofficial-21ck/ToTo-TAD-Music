@@ -1,5 +1,7 @@
 package com.mochyy.mochymusic.ui.screens.settings.importsync
 
+import com.mochyy.mochymusic.i18n.UiText
+
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.Spacer
@@ -42,7 +44,7 @@ fun ImportSyncScreen(
     }
 
     SubSettingsScaffold(
-        title = "Import & sync",
+        title = UiText.get(R.string.toto_ui_import_sync),
         onBack = { navController.navigateUp() },
     ) {
         if (progress.isRunning || progress.isDone) {
@@ -88,7 +90,7 @@ fun ImportSyncScreen(
             style = SettingsGroupStyle.Grouped,
             items = listOf(
                 SettingsItem(
-                    title = { Text("Import") },
+                    title = { Text(UiText.get(R.string.toto_setup_import)) },
                     highlightKey = "Import",
                     descriptionText = "Sign in and pick playlists",
                     detail = "Sign in to Spotify, Apple Music, YouTube Music or Tidal and pick playlists",
@@ -97,7 +99,7 @@ fun ImportSyncScreen(
                     onClick = { navController.navigate(ImportProvidersRoute) },
                 ),
                 SettingsItem(
-                    title = { Text("Sync") },
+                    title = { Text(UiText.get(R.string.action_sync)) },
                     highlightKey = "Sync",
                     descriptionText = if (signedIn) "YouTube account connected: playlists, likes and history"
                     else "Connect your YouTube account to keep playlists, likes and history in step",
@@ -106,7 +108,7 @@ fun ImportSyncScreen(
                     onClick = { navController.navigate(YouTubeSyncRoute) },
                 ),
                 SettingsItem(
-                    title = { Text("TuneMyMusic CSV") },
+                    title = { Text(UiText.get(R.string.toto_ui_more_tunemymusic_csv_85cdbd)) },
                     highlightKey = "TuneMyMusic CSV",
                     descriptionText = "Amazon Music, SoundCloud, Deezer and more",
                     detail = "Any other service, such as Amazon Music, SoundCloud or Deezer libraries",
@@ -120,11 +122,11 @@ fun ImportSyncScreen(
         Spacer(Modifier.height(16.dp))
 
         SettingsGroup(
-            title = "Backup",
+            title = UiText.get(R.string.action_backup),
             style = SettingsGroupStyle.Grouped,
             items = listOf(
                 SettingsItem(
-                    title = { Text("Export to Mochy CSV") },
+                    title = { Text(UiText.get(R.string.toto_ui_more_export_to_mochy_csv_5bf333)) },
                     highlightKey = "Export to Mochy CSV",
                     descriptionText = "Liked songs and playlists",
                     detail = "Liked songs and playlists, import it back from Import → Mochy backup",

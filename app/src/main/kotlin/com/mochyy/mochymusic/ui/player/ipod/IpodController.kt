@@ -1,5 +1,9 @@
 package com.mochyy.mochymusic.ui.player.ipod
 
+import com.mochyy.mochymusic.R
+
+import com.mochyy.mochymusic.i18n.UiText
+
 import android.media.AudioManager
 import android.os.SystemClock
 import androidx.compose.runtime.Stable
@@ -126,7 +130,7 @@ internal class IpodController(
             IpodPick.Shuffle -> scope.launch {
                 val items = library?.shuffledLibrary().orEmpty()
                 if (items.isEmpty()) return@launch
-                connection?.playQueue(ListQueue(title = "Shuffle Songs", items = items))
+                connection?.playQueue(ListQueue(title = UiText.get(R.string.toto_ui_more_shuffle_songs_4c1060), items = items))
                 nav.showNowPlaying()
             }
             null -> Unit

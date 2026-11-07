@@ -1,0 +1,333 @@
+# Review cập nhật Mochy gốc
+
+- Mốc đã ghi nhận: `8dd8f3b0620473ab4c26466f3b6b8b7d08aaab12`
+- Upstream hiện tại: `c7d4a6a5180810833e6b8171fba7568e5f843f21`
+- Commit cần review: 21
+- Working tree có thay đổi: True
+
+Công cụ chỉ fetch/so sánh; không merge, reset, cài APK hoặc cập nhật mốc.
+
+## Commit
+- 609b5e91 something
+- 187474ce docs
+- 0e6e3b67 Merge branch 'main' of https://github.com/realidkroo/Mochy-Music
+- 12dd8944 pages
+- 4ff107b9 adjustment
+- 7a920b4a merging key brnch as addnignmore supportfor modules
+- f98a87a4 a
+- 24a501d1 changes site
+- 957f76e8 css
+- e83e7594 a
+- 86786fcf a
+- cb239d87 web again, wow theres anime now
+- c81798ba wrongbruh
+- e2686eb9 embed roadmap
+- caf9126b wow
+- 05e19f71 a
+- 42e89a13 homepage is live again
+- d56c4722 docs links to the new wiki address
+- 4fbf503f goat
+- 81393c40 cion
+- c7d4a6a5 j
+
+## File upstream chạm phần bảo vệ
+- `app/build.gradle.kts`
+- `app/src/main/AndroidManifest.xml`
+- `app/src/main/kotlin/com/mochyy/mochymusic/App.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/MainActivity.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/playback/DownloadExporter.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/playback/MusicService.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/playback/StorageMover.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/playback/StoragePlaces.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/donate/DonateParts.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/donate/DonateSheet.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/profile/EditProfileSheet.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/settings/ProfileScreen.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/widget/MetrolistWidgetManager.kt`
+
+## File cả upstream lẫn bản cá nhân đã sửa
+- `.gitignore`
+- `app/build.gradle.kts`
+- `app/src/main/AndroidManifest.xml`
+- `app/src/main/kotlin/com/mochyy/mochymusic/App.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/MainActivity.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/playback/MusicService.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/component/AppNavigation.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/component/HeroCarousel.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/component/detail/PlaylistDetail.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/component/detail/PlaylistModeBar.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/menu/AddToPlaylistDialog.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/player/LyricsScreen.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/player/LyricsSourceFooter.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/player/info/AboutSongSheet.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/player/info/ForceProviderSheet.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/player/info/InfoSheetKit.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/player/menu/DeviceOutputSheet.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/player/menu/LyricsOffsetSheet.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/player/menu/LyricsToolSheets.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/player/menu/PlaybackSpeedSheet.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/player/menu/PlayerActionMenu.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/player/menu/SleepTimerSheet.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/player/menu/SongDetailsSheet.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/player/share/ShareLineSheets.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/player/share/ShareWordEditor.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/player/styles/AlternatePlayerStyles.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/HomeScreen.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/artist/ArtistDesign.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/artist/ArtistScreen.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/audiolab/FxCardStack.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/donate/DonateSheet.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/gesture/CustomisationIcons.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/library/LibraryAddMusicSheet.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/library/LibraryDesign.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/playlist/GeneratedPlaylistKit.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/profile/EditProfileSheet.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/search/GenreScreen.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/search/OnlineSearchResult.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/search/SearchDesign.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/search/SearchScreen.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/search/suggestions/SuggestionRegionSheet.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/settings/MochySettingsScreen.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/settings/ProfileScreen.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/settings/devspace/DevProfiles.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/settings/devspace/DevRepoCards.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/settings/devspace/DeveloperSpaceScreen.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/settings/modules/ModuleParts.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/settings/modules/ModulesScreen.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/settings/storage/ManageDownloadsSheet.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/settings/storage/StorageScreen.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/settings/storage/TransferSection.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/setup/PhotoCropperOverlay.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/setup/SetupWizardScreen.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/setup/onboarding/OnboardingDesign.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/setup/onboarding/OnboardingPages.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/update/AboutSheet.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/update/UpdatePromptSheet.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/update/UpdateSheet.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/viewmodels/OnboardingViewModel.kt`
+- `app/src/main/res/values/mochy_strings.xml`
+
+## Tất cả file upstream thay đổi
+- `.github/workflows/build.yml`
+- `.github/workflows/build_pr.yml`
+- `.github/workflows/pages.yml`
+- `.gitignore`
+- `app/build.gradle.kts`
+- `app/src/main/AndroidManifest.xml`
+- `app/src/main/kotlin/androidx/media3/decoder/ffmpeg/FfmpegFallbackRenderer.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/App.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/MainActivity.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/constants/PreferenceKeys.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/di/AppModule.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/importer/LocalAudioImport.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/importer/transfer/TransferExport.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/importer/transfer/TransferRestore.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/modules/DeviceDecoders.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/modules/GitHubReleases.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/modules/ModuleCatalog.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/modules/ModuleLooks.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/modules/ModuleMetadata.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/modules/ModuleRegistry.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/modules/SourceModules.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/modules/local/LocalModule.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/modules/skin/ActiveSkin.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/modules/skin/ModuleMenu.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/modules/skin/ModuleSkin.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/modules/skin/SkinFiles.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/modules/skin/SkinParser.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/modules/skin/SkinPlayerParser.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/modules/skin/SkinValues.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/modules/web/ManifestSettings.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/modules/web/WebModule.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/modules/web/WebModuleManifest.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/playback/DownloadExporter.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/playback/MusicService.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/playback/StorageMover.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/playback/StoragePlaces.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/component/AppNavigation.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/component/BottomSheet.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/component/ButtonStyles.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/component/FrostedGlass.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/component/GlassKit.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/component/HeroCarousel.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/component/Menu.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/component/ModuleGlass.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/component/PageWipe.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/component/PlaylistCoverCarousel.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/component/PlaylistSheetKit.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/component/PopupSheet.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/component/TopToast.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/component/TouchFeedback.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/component/WideBar.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/component/detail/PlaylistDetail.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/component/detail/PlaylistModeBar.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/menu/AddToPlaylistDialog.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/player/BottomSheetPlayer.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/player/LyricsScreen.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/player/LyricsSourceFooter.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/player/MorphingCover.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/player/PlayerControls.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/player/SongInfoRow.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/player/TurntableControls.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/player/bedside/BedsideChrome.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/player/bedside/BedsidePlayerStyle.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/player/bedside/BedsideTilesStyle.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/player/flagship/AmbientColors.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/player/flagship/ControlsShade.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/player/flagship/FlagshipBottomBar.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/player/flagship/FlagshipLandscape.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/player/flagship/FlagshipTransport.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/player/flagship/PagesPill.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/player/info/AboutPreview.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/player/info/AboutSongSheet.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/player/info/AboutSourceSheet.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/player/info/ForceProviderSheet.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/player/info/InfoSheetKit.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/player/info/SongAbout.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/player/menu/DeviceOutputSheet.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/player/menu/LyricsOffsetSheet.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/player/menu/LyricsToolSheets.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/player/menu/MenuSheet.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/player/menu/ModuleMenuRows.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/player/menu/PlaybackSpeedSheet.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/player/menu/PlayerActionMenu.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/player/menu/SkinCustomiseSheet.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/player/menu/SleepTimerSheet.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/player/menu/SongDetailsSheet.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/player/share/ShareEditOutlines.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/player/share/ShareLineSheets.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/player/share/ShareWordEditor.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/player/share/song/SongShareEditor.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/player/share/song/SongSharePages.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/player/share/song/SongSharePicture.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/player/share/song/SongShareSendPage.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/player/studio/MiddleEditor.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/player/styles/AlternatePlayerStyles.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/player/styles/ModulePlayerStyle.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/player/styles/SkinBackdrops.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/player/styles/SkinElements.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/player/styles/SkinPulse.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/player/styles/SkinShader.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/player/styles/SkinVisualizer.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/player/styles/StyleKit.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/player/styles/TurnedFlingFix.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/player/styles/TurnedSheets.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/player/video/VideoModeControls.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/player/video/VideoModeLyrics.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/player/video/VideoModeMenu.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/player/video/VideoModeScreen.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/player/video/VideoModeState.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/HomeScreen.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/NavigationBuilder.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/artist/ArtistDesign.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/artist/ArtistScreen.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/audiolab/AudioLabKit.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/audiolab/FxCardStack.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/donate/DonateParts.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/donate/DonateSheet.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/gesture/CustomisationCards.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/gesture/CustomisationIcons.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/library/LibraryAddMusicSheet.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/library/LibraryDesign.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/library/LibraryImportFlow.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/library/LibraryTabs.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/playlist/AddMusicRows.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/playlist/GeneratedPlaylistKit.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/profile/EditProfileSheet.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/search/GenreScreen.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/search/OnlineSearchResult.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/search/SearchDesign.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/search/SearchScreen.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/search/suggestions/SuggestionRegionSheet.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/settings/AppBehaviourSettingsScreen.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/settings/MochySettingsScreen.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/settings/ProfileScreen.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/settings/SettingsPane.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/settings/devspace/DevPersonPicker.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/settings/devspace/DevProfiles.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/settings/devspace/DevRepoCards.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/settings/devspace/DeveloperSpaceScreen.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/settings/modules/FindModulesSheet.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/settings/modules/ModuleCards.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/settings/modules/ModuleList.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/settings/modules/ModuleLists.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/settings/modules/ModuleOptions.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/settings/modules/ModulePageScreen.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/settings/modules/ModuleParts.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/settings/modules/ModuleScreen.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/settings/modules/ModuleSettingsPages.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/settings/modules/ModuleTest.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/settings/modules/ModulesScreen.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/settings/storage/ExportDownloadsSheet.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/settings/storage/ManageDownloadsSheet.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/settings/storage/StorageParts.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/settings/storage/StoragePlaceSheet.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/settings/storage/StorageScreen.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/settings/storage/TransferSection.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/setup/PhotoCropperOverlay.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/setup/SetupWizardContainer.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/setup/SetupWizardScreen.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/setup/onboarding/OnboardingDesign.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/setup/onboarding/OnboardingPages.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/update/AboutSheet.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/update/UpdatePromptSheet.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/update/UpdateSheet.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/utils/HighRefreshVote.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/ui/utils/WindowLayout.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/utils/DataSaver.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/utils/DocumentTree.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/utils/YTPlayerUtils.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/viewmodels/ModulesViewModel.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/viewmodels/OnboardingViewModel.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/viewmodels/StorageViewModel.kt`
+- `app/src/main/kotlin/com/mochyy/mochymusic/widget/MetrolistWidgetManager.kt`
+- `app/src/main/res/drawable/sd_card.xml`
+- `app/src/main/res/drawable/smartphone.xml`
+- `app/src/main/res/values/app_language.xml`
+- `app/src/main/res/values/mochy_strings.xml`
+- `app/src/main/res/values/modules_strings.xml`
+- `app/src/main/res/values/storage_strings.xml`
+- `app/src/main/res/values/strings.xml`
+- `app/src/test/kotlin/com/mochyy/mochymusic/modules/skin/SkinParserTest.kt`
+- `app/src/test/kotlin/com/mochyy/mochymusic/modules/web/ManifestSettingsTest.kt`
+- `docs/.nojekyll`
+- `docs/assets/css/home.css`
+- `docs/assets/css/site.css`
+- `docs/assets/img/app-audiolab.webp`
+- `docs/assets/img/app-behaviour.webp`
+- `docs/assets/img/app-customisation.webp`
+- `docs/assets/img/app-home.webp`
+- `docs/assets/img/app-library.webp`
+- `docs/assets/img/app-lyrics.webp`
+- `docs/assets/img/app-module_page.webp`
+- `docs/assets/img/app-module_page2.webp`
+- `docs/assets/img/app-modules.webp`
+- `docs/assets/img/app-modules2.webp`
+- `docs/assets/img/app-player.webp`
+- `docs/assets/img/app-profile.webp`
+- `docs/assets/img/app-recap.webp`
+- `docs/assets/img/app-search.webp`
+- `docs/assets/img/app-settings.webp`
+- `docs/assets/img/app-stats.webp`
+- `docs/assets/img/app-styles.webp`
+- `docs/assets/img/logo.svg`
+- `docs/assets/img/mochy-hero.webp`
+- `docs/assets/img/mochy-phone.webp`
+- `docs/assets/img/mochy.webp`
+- `docs/assets/js/home.js`
+- `docs/assets/js/site.js`
+- `docs/assets/js/wiki.js`
+- `docs/index.html`
+- `docs/modules/index.html`
+- `docs/wiki/index.html`
+- `gradle/libs.versions.toml`
+- `modules/README.md`
+- `modules/api/src/main/kotlin/com/mochyy/mochymusic/module/MochyModule.kt`
+- `modules/bridge/src/main/kotlin/com/mochyy/mochymusic/module/bridge/BridgedModule.kt`
+- `modules/bridge/src/main/kotlin/com/mochyy/mochymusic/module/bridge/ModuleSide.kt`
+- `modules/bridge/src/main/kotlin/com/mochyy/mochymusic/module/bridge/Wire.kt`
+- `modules/bridge/src/test/kotlin/com/mochyy/mochymusic/module/bridge/BridgeTest.kt`
+- `modules/bridge/src/test/kotlin/com/mochyy/mochymusic/module/bridge/FakeModule.kt`
+- `modules/catalog.json`
+- `tools/perf/probe.sh`
+- `vercel.json`

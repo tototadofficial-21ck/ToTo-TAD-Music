@@ -24,7 +24,8 @@ extensions.configure<ApplicationExtension> {
     ndkVersion = "27.0.12077973"
 
     defaultConfig {
-        applicationId = "com.mochyy.mochymusic"
+        applicationId = "vn.ToTo.music"
+        buildConfigField("Boolean", "PERSONAL_BUILD", "true")
         minSdk = 24
         targetSdk = 36
         versionCode = 73
@@ -32,6 +33,15 @@ extensions.configure<ApplicationExtension> {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
+
+        for (name in listOf("SUPABASE_URL", "SUPABASE_PUBLISHABLE_KEY")) {
+            val value = localProperties.getProperty(name) ?: System.getenv(name) ?: ""
+            if (name == "SUPABASE_PUBLISHABLE_KEY") require(value.isEmpty() || value.startsWith("sb_publishable_")) {
+                "Use a Supabase Publishable key, never a secret/service_role key"
+            }
+            require(!value.contains('"') && !value.contains('\n') && !value.contains('\\')) { "Invalid $name" }
+            buildConfigField("String", name, "\"$value\"")
+        }
 
         // LastFM API keys from local.properties locally, GitHub Secrets on CI. never commit them
         val lastFmKey = localProperties.getProperty("LASTFM_API_KEY") ?: System.getenv("LASTFM_API_KEY") ?: ""
@@ -183,7 +193,7 @@ extensions.configure<ApplicationExtension> {
             }
         }
         debug {
-            applicationIdSuffix = ".debug"
+            // Personal debug uses the requested application ID.
             isDebuggable = true
             signingConfig = signingConfigs.getByName("debug")
         }

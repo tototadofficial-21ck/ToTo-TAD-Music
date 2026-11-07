@@ -1,5 +1,7 @@
 package com.mochyy.mochymusic.ui.screens.settings.importsync
 
+import com.mochyy.mochymusic.i18n.UiText
+
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
@@ -60,27 +62,27 @@ fun YouTubeSyncScreen(
     var confirmUndo by remember { mutableStateOf(false) }
 
     SubSettingsScaffold(
-        title = "Sync",
+        title = UiText.get(R.string.action_sync),
         onBack = { navController.navigateUp() },
     ) {
         SettingsGroup(
-            title = "YouTube account",
+            title = UiText.get(R.string.toto_ui_more_youtube_account_cba2dc),
             style = SettingsGroupStyle.Grouped,
             items = listOf(
                 if (signedIn) {
                     SettingsItem(
-                        title = { Text(accountName.ifBlank { "Signed in" }) },
+                        title = { Text(accountName.ifBlank { UiText.get(R.string.toto_youtube_linked) }) },
                         descriptionText = accountEmail.ifBlank { "YouTube Music" },
                         icon = painterResource(R.drawable.account),
                         iconShape = CircleShape,
                         trailingContent = {
-                            TextButton(onClick = { confirmSignOut = true }) { Text("Sign out") }
+                            TextButton(onClick = { confirmSignOut = true }) { Text(UiText.get(R.string.scrobble_sign_out)) }
                         },
                     )
                 } else {
                     SettingsItem(
-                        title = { Text("Sign in to YouTube") },
-                        descriptionText = "Needed for sync. Your login stays on this phone",
+                        title = { Text(UiText.get(R.string.toto_ui_more_sign_in_to_youtube_2bcb0f)) },
+                        descriptionText = UiText.get(R.string.toto_youtube_sync_hint),
                         icon = painterResource(R.drawable.login),
                         iconShape = CircleShape,
                         onClick = { navController.navigate(YouTubeLoginRoute) },
@@ -92,36 +94,36 @@ fun YouTubeSyncScreen(
         Spacer(Modifier.height(16.dp))
 
         SettingsGroup(
-            title = "Keep in sync",
+            title = UiText.get(R.string.toto_ui_more_keep_in_sync_efe09d),
             style = SettingsGroupStyle.Grouped,
             items = listOf(
                 toggleItem(
-                    title = "Sync library on launch",
-                    description = "Likes, library, artists and saved playlists from YouTube",
+                    title = UiText.get(R.string.toto_setup_sync_library_on_launch),
+                    description = UiText.get(R.string.toto_ui_more_likes_library_artists_and_saved_playlists_from_youtu_b4b953),
                     icon = R.drawable.sync,
                     checked = autoSync,
                     enabled = signedIn,
                     onChange = onAutoSyncChange,
                 ),
                 toggleItem(
-                    title = "New playlists go to YouTube",
-                    description = "Playlists you create here are created on YouTube too",
+                    title = UiText.get(R.string.toto_ui_more_new_playlists_go_to_youtube_14dae0),
+                    description = UiText.get(R.string.toto_ui_more_playlists_you_create_here_are_created_on_youtube_too_c87ec7),
                     icon = R.drawable.playlist_add,
                     checked = syncNewPlaylists,
                     enabled = signedIn,
                     onChange = onSyncNewPlaylistsChange,
                 ),
                 toggleItem(
-                    title = "Send plays to YouTube history",
-                    description = "Songs you play here show up in your YouTube history",
+                    title = UiText.get(R.string.toto_setup_push_plays_to_youtube_history),
+                    description = UiText.get(R.string.toto_ui_more_songs_you_play_here_show_up_in_your_youtube_history_abed89),
                     icon = R.drawable.history,
                     checked = reportPlays,
                     enabled = signedIn,
                     onChange = onReportPlaysChange,
                 ),
                 toggleItem(
-                    title = "Copy YouTube history here",
-                    description = "Plays from your other devices join Mochy's history on each sync",
+                    title = UiText.get(R.string.toto_ui_more_copy_youtube_history_here_1aa455),
+                    description = UiText.get(R.string.toto_ui_more_plays_from_your_other_devices_join_mochy_s_history_o_1572c9),
                     icon = R.drawable.history,
                     checked = pullHistory,
                     enabled = signedIn,
@@ -133,7 +135,7 @@ fun YouTubeSyncScreen(
         Spacer(Modifier.height(16.dp))
 
         SettingsGroup(
-            title = "Other apps",
+            title = UiText.get(R.string.toto_ui_more_other_apps_977376),
             style = SettingsGroupStyle.Grouped,
             items = listOf(
                 toggleItem(
@@ -150,11 +152,11 @@ fun YouTubeSyncScreen(
         Spacer(Modifier.height(16.dp))
 
         SettingsGroup(
-            title = "Now",
+            title = UiText.get(R.string.toto_ui_more_now_e3b820),
             style = SettingsGroupStyle.Grouped,
             items = listOf(
                 SettingsItem(
-                    title = { Text("Sync now") },
+                    title = { Text(UiText.get(R.string.toto_ui_more_sync_now_2b7d93)) },
                     descriptionText = if (pullHistory) "Library, playlists and history" else "Library and playlists",
                     icon = painterResource(R.drawable.refresh),
                     iconShape = CircleShape,
@@ -162,7 +164,7 @@ fun YouTubeSyncScreen(
                     onClick = viewModel::syncNow,
                 ),
                 SettingsItem(
-                    title = { Text("Copy YouTube history now") },
+                    title = { Text(UiText.get(R.string.toto_ui_more_copy_youtube_history_now_83eb07)) },
                     descriptionText = "Only adds plays Mochy doesn't have yet",
                     icon = painterResource(R.drawable.history),
                     iconShape = CircleShape,
@@ -178,7 +180,7 @@ fun YouTubeSyncScreen(
                     onClick = { confirmUndo = true },
                 ),
                 SettingsItem(
-                    title = { Text("Put local playlists on YouTube") },
+                    title = { Text(UiText.get(R.string.toto_ui_more_put_local_playlists_on_youtube_056e25)) },
                     descriptionText = "Copy local playlists to YouTube",
                     detail = "Creates a YouTube copy of every playlist that only exists here",
                     icon = painterResource(R.drawable.cloud),
@@ -208,7 +210,7 @@ fun YouTubeSyncScreen(
         if (!signedIn) {
             Spacer(Modifier.height(16.dp))
             Text(
-                "Import from a YouTube playlist link doesn't need an account. Use Import → YouTube Music.",
+                UiText.get(R.string.toto_ui_more_import_from_a_youtube_playlist_link_doesn_t_need_an__8c5b3c),
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
@@ -219,17 +221,17 @@ fun YouTubeSyncScreen(
         DefaultDialog(
             onDismiss = { confirmSignOut = false },
             horizontalAlignment = Alignment.Start,
-            title = { Text("Sign out of YouTube?") },
+            title = { Text(UiText.get(R.string.toto_ui_more_sign_out_of_youtube_af1cbf)) },
             buttons = {
-                TextButton(onClick = { confirmSignOut = false }) { Text("Cancel") }
+                TextButton(onClick = { confirmSignOut = false }) { Text(UiText.get(R.string.cancel)) }
                 TextButton(onClick = {
                     confirmSignOut = false
                     viewModel.signOut()
-                }) { Text("Sign out") }
+                }) { Text(UiText.get(R.string.scrobble_sign_out)) }
             },
         ) {
             Text(
-                "Everything already in your library stays. Sync stops until you sign in again.",
+                UiText.get(R.string.toto_ui_more_everything_already_in_your_library_stays_sync_stops__63dd60),
                 style = MaterialTheme.typography.bodyMedium,
             )
         }
@@ -241,7 +243,7 @@ fun YouTubeSyncScreen(
             horizontalAlignment = Alignment.Start,
             title = { Text(stringResource(R.string.yt_sync_undo_dialog_title)) },
             buttons = {
-                TextButton(onClick = { confirmUndo = false }) { Text("Cancel") }
+                TextButton(onClick = { confirmUndo = false }) { Text(UiText.get(R.string.cancel)) }
                 TextButton(onClick = {
                     confirmUndo = false
                     viewModel.undoLastSync(withYouTube = false)
@@ -272,17 +274,17 @@ fun YouTubeSyncScreen(
         DefaultDialog(
             onDismiss = { confirmUpload = false },
             horizontalAlignment = Alignment.Start,
-            title = { Text("Put local playlists on YouTube?") },
+            title = { Text(UiText.get(R.string.toto_ui_more_put_local_playlists_on_youtube_7babc1)) },
             buttons = {
-                TextButton(onClick = { confirmUpload = false }) { Text("Cancel") }
+                TextButton(onClick = { confirmUpload = false }) { Text(UiText.get(R.string.cancel)) }
                 TextButton(onClick = {
                     confirmUpload = false
                     viewModel.uploadLocalPlaylists()
-                }) { Text("Create") }
+                }) { Text(UiText.get(R.string.create_room)) }
             },
         ) {
             Text(
-                "Each playlist that only exists in Mochy gets a private copy on your YouTube account. After that, changes go to both.",
+                UiText.get(R.string.toto_ui_more_each_playlist_that_only_exists_in_mochy_gets_a_priva_018f73),
                 style = MaterialTheme.typography.bodyMedium,
             )
         }

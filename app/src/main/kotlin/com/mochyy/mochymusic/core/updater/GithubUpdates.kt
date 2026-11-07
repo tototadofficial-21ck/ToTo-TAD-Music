@@ -92,27 +92,8 @@ private val updateScope = kotlinx.coroutines.CoroutineScope(
 )
 
 /** Every published release, asked for once and shared for [CacheTtlMillis] unless [force]d. */
-private suspend fun getReleases(force: Boolean): Result<List<ParsedRelease>> {
-    val deferred = synchronized(cacheLock) {
-        if (!force) {
-            val cached = cachedResult
-            if (cached != null && System.currentTimeMillis() - cachedAt < CacheTtlMillis) {
-                return cached
-            }
-        }
-        inFlight ?: updateScope.async { fetchReleases() }.also { inFlight = it }
-    }
-
-    val result = deferred.await()
-    synchronized(cacheLock) {
-        if (inFlight === deferred) inFlight = null
-        if (result.isSuccess) {
-            cachedResult = result
-            cachedAt = System.currentTimeMillis()
-        }
-    }
-    return result
-}
+// Personal builds must never offer upstream APKs, including downgrade paths.
+private suspend fun getReleases(force: Boolean): Result<List<ParsedRelease>> = Result.success(emptyList())
 
 /** The newest release, whatever is installed. */
 suspend fun getLatestRelease(force: Boolean = false): Result<GithubRelease?> =
@@ -237,6 +218,7 @@ suspend fun downloadApk(
     onProgress: (Float) -> Unit,
 ): Result<File> = withContext(Dispatchers.IO) {
     runCatching {
+        check(!BuildConfig.PERSONAL_BUILD) { "Personal build: upstream APK installation is disabled" }
         val url = release.apkUrl ?: error("This release has no APK attached")
         val target = apkFileFor(context, release)
 
@@ -299,6 +281,7 @@ fun requestInstallPermission(context: Context) {
 }
 
 fun installApk(context: Context, apk: File): Boolean {
+    if (BuildConfig.PERSONAL_BUILD) return false
     if (!canInstallPackages(context)) {
         requestInstallPermission(context)
         return false

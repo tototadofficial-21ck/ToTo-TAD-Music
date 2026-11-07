@@ -6,6 +6,10 @@
 
 package com.mochyy.mochymusic.ui.screens.library
 
+import com.mochyy.mochymusic.R
+
+import com.mochyy.mochymusic.i18n.UiText
+
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -76,17 +80,17 @@ internal fun LazyListScope.libraryShelfCards(
         Spacer(modifier = Modifier.height(spaceAbove))
         LibraryCardGrid(
             listOf(
-                LibraryCardEntry("Songs", data.songs.size, data.songs.take(4).map { it.song.thumbnailUrl }, {
+                LibraryCardEntry(UiText.get(R.string.toto_more_songs), data.songs.size, data.songs.take(4).map { it.song.thumbnailUrl }, {
                     navController.navigate("auto_playlist/$key")
                 }),
-                LibraryCardEntry("Playlist", data.playlists.size, data.playlists.take(2).flatMap { it.thumbnails }, {
+                LibraryCardEntry(UiText.get(R.string.toto_more_playlist), data.playlists.size, data.playlists.take(2).flatMap { it.thumbnails }, {
                     navController.navigate("library/$key/playlists")
                 }),
-                LibraryCardEntry("Albums", data.albums.size, data.albums.take(4).map { it.thumbnailUrl }, {
+                LibraryCardEntry(UiText.get(R.string.toto_more_albums), data.albums.size, data.albums.take(4).map { it.thumbnailUrl }, {
                     navController.navigate("library/$key/albums")
                 }),
                 LibraryCardEntry(
-                    "Artist",
+                    UiText.get(R.string.toto_more_artist),
                     data.artists.size,
                     data.artists.take(4).map { it.artist.thumbnailUrl },
                     { navController.navigate("library/$key/artists") },
@@ -99,7 +103,7 @@ internal fun LazyListScope.libraryShelfCards(
 
     item(key = "${key}_recently_added") {
         LibraryWideCard(
-            title = "Recently added",
+            title = UiText.get(R.string.toto_more_recently_added),
             count = data.songs.size,
             covers = data.songs.take(4).map { it.song.thumbnailUrl },
             onClick = { navController.navigate("library/$key/added") },
@@ -112,7 +116,7 @@ internal fun LazyListScope.libraryShelfCards(
     if (data.liked.isNotEmpty()) {
         item(key = "${key}_liked") {
             LibraryWideCard(
-                title = "Liked",
+                title = UiText.get(R.string.toto_more_liked),
                 count = data.liked.size,
                 covers = data.liked.take(4).map { it.song.thumbnailUrl },
                 onClick = { navController.navigate("auto_playlist/${key}_liked") },

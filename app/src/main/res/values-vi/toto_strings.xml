@@ -1,0 +1,16 @@
+<resources>
+    <string name="toto_checking">Đang kiểm tra quyền truy cập…</string>
+    <string name="toto_config">Chưa cấu hình Supabase. Vui lòng liên hệ chủ app.</string>
+    <string name="toto_blocked">Tài khoản bị khóa hoặc chưa được cấp quyền. Vui lòng liên hệ chủ app.</string>
+    <string name="toto_credentials">Thông tin đăng nhập không đúng hoặc phiên đã hết hạn. Vui lòng đăng nhập lại.</string>
+    <string name="toto_network">Chưa thể xác minh quyền. Hãy kiểm tra kết nối và thử lại. Nhạc đã tạm dừng.</string>
+    <string name="toto_sign_in">Đăng nhập</string>
+    <string name="toto_email">Email</string>
+    <string name="toto_password">Mật khẩu</string>
+    <string name="toto_retry">Thử xác minh lại</string>
+    <string name="toto_logout">Đăng xuất khỏi ToTo TAD Music</string>
+    <string name="toto_support">Ủng hộ cho chủ app 1 ly cà phê vì sự cố gắng nào!</string>
+    <string name="toto_qr">Mã QR ủng hộ do chủ app cung cấp: DO QUANG ANH THO, Techcombank</string>
+    <string name="toto_contact">Liên hệ ToTo TAD Music qua Facebook, Instagram hoặc Discord bên dưới.</string>
+    <string name="toto_updates_disabled">Bản cá nhân chưa có nguồn phát hành riêng. Hãy nhận bản cập nhật từ chủ app.</string>
+</resources>

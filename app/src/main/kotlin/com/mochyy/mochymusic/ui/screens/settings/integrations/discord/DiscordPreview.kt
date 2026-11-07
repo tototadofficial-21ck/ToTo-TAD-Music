@@ -2,6 +2,8 @@
 
 package com.mochyy.mochymusic.ui.screens.settings.integrations.discord
 
+import com.mochyy.mochymusic.i18n.UiText
+
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.RepeatMode
@@ -97,7 +99,7 @@ internal fun DiscordToggleCard(
                 .weight(1f)
                 .padding(horizontal = 12.dp),
         ) {
-            Text("Enable rich presence", color = DiscordColors.Primary, fontSize = 15.sp, fontWeight = FontWeight.SemiBold)
+            Text(UiText.get(R.string.toto_ui_more_enable_rich_presence_fba74f), color = DiscordColors.Primary, fontSize = 15.sp, fontWeight = FontWeight.SemiBold)
             Text(status, color = DiscordColors.Secondary, fontSize = 12.sp, fontWeight = FontWeight.Medium)
         }
         AppSwitch(checked = checked, onCheckedChange = onCheckedChange, enabled = enabled)
@@ -197,7 +199,7 @@ private fun Avatar(url: String?, modifier: Modifier) {
             .background(Color(0xFFD9D9D9)),
     ) {
         if (url != null) {
-            AsyncImage(model = url, contentDescription = "Your Discord picture", contentScale = ContentScale.Crop, modifier = Modifier.fillMaxSize())
+            AsyncImage(model = url, contentDescription = UiText.get(R.string.toto_ui_more_your_discord_picture_da7522), contentScale = ContentScale.Crop, modifier = Modifier.fillMaxSize())
         }
     }
 }
@@ -279,7 +281,7 @@ private fun Times(activity: PresenceActivity, now: Long) {
     val mono = Modifier.padding(top = 6.dp)
     val end = activity.endMs
     if (end == null) {
-        Text("${clock(now - start)} elapsed", color = DiscordColors.Secondary, fontSize = 10.sp, fontFamily = FontFamily.Monospace, modifier = mono)
+        Text(UiText.get(R.string.toto_format_elapsed, clock(now - start)), color = DiscordColors.Secondary, fontSize = 10.sp, fontFamily = FontFamily.Monospace, modifier = mono)
         return
     }
     val total = (end - start).coerceAtLeast(1)
@@ -348,7 +350,7 @@ private fun PictureView(picture: PresencePicture) {
         PresencePicture.Logo -> Box(fill.background(Color(0xFF1A1A1A))) {
             Image(
                 painter = painterResource(R.drawable.ic_launcher_mark),
-                contentDescription = "Mochy",
+                contentDescription = UiText.get(R.string.app_icon_family_mark),
                 contentScale = ContentScale.Crop,
                 // the launcher picture has a safe margin around it, the github copy is cropped the same
                 modifier = fill.graphicsLayer {

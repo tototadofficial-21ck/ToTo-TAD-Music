@@ -2,6 +2,10 @@
 
 package com.mochyy.mochymusic.ui.player.info
 
+import com.mochyy.mochymusic.R
+
+import com.mochyy.mochymusic.i18n.UiText
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -97,7 +101,7 @@ internal fun NerdsDivider() {
     ) {
         Box(Modifier.weight(1f).height(1.dp).background(InfoLine))
         Text(
-            text = "STATS FOR NERDS",
+            text = UiText.get(R.string.toto_ui_more_stats_for_nerds_86a626),
             color = InfoMuted,
             fontSize = 10.sp,
             fontFamily = FontFamily.Monospace,

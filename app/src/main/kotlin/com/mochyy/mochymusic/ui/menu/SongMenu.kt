@@ -2,6 +2,8 @@
 
 package com.mochyy.mochymusic.ui.menu
 
+import com.mochyy.mochymusic.i18n.UiText
+
 import android.content.res.Configuration
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
@@ -692,8 +694,8 @@ fun SongMenu(
                     importMatch?.let { match ->
                         add(
                             Material3MenuItemData(
-                                title = { Text(text = "Choose different version") },
-                                description = { Text(text = "Wrong recording? Pick the right one from a list") },
+                                title = { Text(text = UiText.get(R.string.toto_ui_more_choose_different_version_c626df)) },
+                                description = { Text(text = UiText.get(R.string.toto_ui_more_wrong_recording_pick_the_right_one_from_a_list_b8e416)) },
                                 icon = {
                                     Icon(
                                         painter = painterResource(R.drawable.tune),
@@ -775,10 +777,10 @@ private fun refetchImported(context: android.content.Context, database: com.moch
     ImportedVersions.scope.launch {
         val switched = ImportedVersions.refetch(context.applicationContext, database, match)
         if (switched != null) {
-            TopToaster.show(text = "Found a closer match: ${switched.title}", thumbnail = switched.thumbnail, iconRes = R.drawable.sync)
+            TopToaster.show(text = UiText.get(R.string.toto_format_closer_match, switched.title), thumbnail = switched.thumbnail, iconRes = R.drawable.sync)
         } else {
             TopToaster.show(
-                text = "This is already the closest match we can find. Try Choose different version.",
+                text = UiText.get(R.string.toto_ui_more_this_is_already_the_closest_match_we_can_find_try_ch_09459d),
                 iconRes = R.drawable.sync,
                 durationMs = 4000L,
             )

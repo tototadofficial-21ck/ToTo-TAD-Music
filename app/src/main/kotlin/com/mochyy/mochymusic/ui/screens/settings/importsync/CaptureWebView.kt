@@ -1,5 +1,7 @@
 package com.mochyy.mochymusic.ui.screens.settings.importsync
 
+import com.mochyy.mochymusic.i18n.UiText
+
 import android.view.ContextThemeWrapper
 import android.content.Context
 import android.view.ViewGroup
@@ -424,7 +426,7 @@ fun WebLoginHeader(title: String, subtitle: String, onBack: () -> Unit) {
             .padding(horizontal = 8.dp, vertical = 4.dp),
     ) {
         IconButton(onClick = onBack) {
-            Icon(painterResource(R.drawable.arrow_back), contentDescription = "Back", tint = Color.White)
+            Icon(painterResource(R.drawable.arrow_back), contentDescription = UiText.get(R.string.back_button_desc), tint = Color.White)
         }
         Spacer(Modifier.width(4.dp))
         Column(modifier = Modifier.weight(1f)) {

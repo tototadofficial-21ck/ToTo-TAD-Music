@@ -2,6 +2,10 @@
 
 package com.mochyy.mochymusic.ui.screens.playlist
 
+import com.mochyy.mochymusic.R
+
+import com.mochyy.mochymusic.i18n.UiText
+
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
@@ -186,7 +190,7 @@ private fun AddMusicContent(playlistId: String, startInLibrary: Boolean, picks: 
             .fillMaxHeight(),
     ) {
         Text(
-            text = "Add music",
+            text = UiText.get(R.string.toto_more_add_music),
             color = Color.White,
             fontSize = 26.sp,
             fontWeight = FontWeight.Bold,
@@ -199,7 +203,7 @@ private fun AddMusicContent(playlistId: String, startInLibrary: Boolean, picks: 
         SheetSearchField(
             value = query,
             onValueChange = { query = it },
-            placeholder = "Search all songs",
+            placeholder = UiText.get(R.string.toto_ui_more_search_all_songs_e43986),
         )
 
         Spacer(Modifier.height(12.dp))
@@ -212,7 +216,7 @@ private fun AddMusicContent(playlistId: String, startInLibrary: Boolean, picks: 
                 .horizontalScroll(rememberScrollState()),
         ) {
             AddMusicChip(
-                text = "Recommended for this playlist",
+                text = UiText.get(R.string.toto_ui_more_recommended_for_this_playlist_adcad2),
                 selected = needle.isEmpty() && tab == AddMusicTab.Suggested,
                 onClick = {
                     query = ""
@@ -220,7 +224,7 @@ private fun AddMusicContent(playlistId: String, startInLibrary: Boolean, picks: 
                 },
             )
             AddMusicChip(
-                text = "In library",
+                text = UiText.get(R.string.toto_ui_more_in_library_d89f01),
                 selected = needle.isEmpty() && tab == AddMusicTab.Library,
                 onClick = {
                     query = ""

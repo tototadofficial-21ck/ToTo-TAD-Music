@@ -2,6 +2,10 @@
 
 package com.mochyy.mochymusic.ui.screens.equalizer
 
+import com.mochyy.mochymusic.R
+
+import com.mochyy.mochymusic.i18n.UiText
+
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -58,7 +62,7 @@ fun EqBandsSection(
         BandSliders(nodes, onGain)
         Spacer(Modifier.height(10.dp))
         Text(
-            "Sweep across the sliders to draw a curve",
+            UiText.get(R.string.toto_ui_more_sweep_across_the_sliders_to_draw_a_curve_7493c9),
             fontFamily = InterFontFamily, fontSize = 12.sp, color = LabColors.Faint,
             modifier = Modifier.padding(horizontal = 6.dp),
         )

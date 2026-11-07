@@ -2,6 +2,8 @@
 
 package com.mochyy.mochymusic.ui.screens.settings.integrations.discord
 
+import com.mochyy.mochymusic.i18n.UiText
+
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.spring
@@ -368,7 +370,7 @@ internal fun DiscordImageSourceCard(
                 onValueChange = { onSpinChange(spin.copy(fps = it)) },
             )
             Text(
-                text = "Turns forever. Discord can only show pictures from the web, so Mochy makes a GIF of " +
+                text = UiText.get(R.string.toto_ui_more_turns_forever_discord_can_only_show_pictures_from_th_68a868) +
                     "the artwork and puts it on a free file host (uguu.se, which deletes it after three hours). " +
                     "Slower, smoother turns make a bigger GIF that takes a little longer to show up; the still " +
                     "artwork stands in meanwhile. 50 fps is as smooth as a GIF can play.",
@@ -540,21 +542,21 @@ internal fun DiscordPlaceholderCard() {
         color = Color.White.copy(alpha = 0.85f),
     )
     DiscordCard {
-        Text("Placeholder list", color = DiscordColors.Primary, fontSize = 15.sp, fontWeight = FontWeight.Bold)
+        Text(UiText.get(R.string.toto_ui_more_placeholder_list_de9018), color = DiscordColors.Primary, fontSize = 15.sp, fontWeight = FontWeight.Bold)
         Spacer(Modifier.height(4.dp))
         PresenceText.Placeholders.forEach { (placeholder, meaning) ->
             Text("$placeholder = $meaning", style = body)
         }
         Spacer(Modifier.height(12.dp))
-        Text("For example, this activity name", style = body)
-        Text("{name} by {artist} on {album}", style = body.copy(color = DiscordColors.Primary, fontWeight = FontWeight.Medium))
+        Text(UiText.get(R.string.toto_ui_more_for_example_this_activity_name_8f63d5), style = body)
+        Text(UiText.get(R.string.toto_ui_more_name_by_artist_on_album_a1c3f4), style = body.copy(color = DiscordColors.Primary, fontWeight = FontWeight.Medium))
         Spacer(Modifier.height(12.dp))
-        Text("shows up as", style = body)
+        Text(UiText.get(R.string.toto_ui_more_shows_up_as_0e7e64), style = body)
         Text(
-            "Listening to Fake Plastic Trees by Radiohead on The Bends",
+            UiText.get(R.string.toto_ui_more_listening_to_fake_plastic_trees_by_radiohead_on_the__7e0118),
             style = body.copy(color = DiscordColors.Primary, fontWeight = FontWeight.Medium),
         )
         Spacer(Modifier.height(12.dp))
-        Text("They work everywhere on this page, buttons included.", style = body)
+        Text(UiText.get(R.string.toto_ui_more_they_work_everywhere_on_this_page_buttons_included_1ce44f), style = body)
     }
 }

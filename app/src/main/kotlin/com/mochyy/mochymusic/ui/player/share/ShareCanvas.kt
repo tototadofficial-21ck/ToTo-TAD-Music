@@ -6,6 +6,8 @@
 
 package com.mochyy.mochymusic.ui.player.share
 
+import com.mochyy.mochymusic.i18n.UiText
+
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.spring
 import androidx.compose.foundation.Image
@@ -99,7 +101,7 @@ internal fun MochyMark(color: Color, size: Float = 14f) {
             modifier = Modifier.size((size + 2f).dp),
         )
         Spacer(Modifier.width(6.dp))
-        Text("Mochy", style = shareText(size, color = color, tracking = -0.4f))
+        Text(UiText.get(R.string.app_icon_family_mark), style = shareText(size, color = color, tracking = -0.4f))
     }
 }
 

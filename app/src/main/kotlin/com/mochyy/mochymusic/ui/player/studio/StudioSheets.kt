@@ -1,5 +1,7 @@
 package com.mochyy.mochymusic.ui.player.studio
 
+import com.mochyy.mochymusic.i18n.UiText
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -176,12 +178,12 @@ fun StudioSheets(
             }
 
             StudioSheet.COVER_OPTIONS -> OptionSheet(
-                title = "Options for this cover",
+                title = UiText.get(R.string.toto_ui_more_options_for_this_cover_195e1a),
                 subtitle = null,
             ) {
                 val options = coverStyle.options
                 if (options.isEmpty()) {
-                    Text("This cover has nothing more to set", color = Color.White.copy(alpha = 0.6f), style = studioText(StudioType.Body, FontWeight.Normal), modifier = Modifier.padding(vertical = 8.dp))
+                    Text(UiText.get(R.string.toto_ui_more_this_cover_has_nothing_more_to_set_8469f4), color = Color.White.copy(alpha = 0.6f), style = studioText(StudioType.Body, FontWeight.Normal), modifier = Modifier.padding(vertical = 8.dp))
                 }
                 options.forEach { option ->
                     when (option) {
@@ -254,8 +256,8 @@ fun StyleSheets(studio: PlayerStudioState) {
 }
 
 private val PosterVisualizerOption = CoverOption.Switch(
-    title = "Visualizer",
-    description = "bars round the cover, moving with the music",
+    title = UiText.get(R.string.toto_ui_more_visualizer_7177c7),
+    description = UiText.get(R.string.toto_ui_more_bars_round_the_cover_moving_with_the_music_34490b),
     icon = R.drawable.graphic_eq,
     key = com.mochyy.mochymusic.constants.PosterVisualizerKey,
     default = false,
@@ -263,7 +265,7 @@ private val PosterVisualizerOption = CoverOption.Switch(
 
 @Composable
 private fun ColumnScope.PosterOptions() {
-    OptionSheet(title = "The poster") {
+    OptionSheet(title = UiText.get(R.string.toto_ui_more_the_poster_37da34)) {
         SwitchRow(PosterVisualizerOption)
     }
 }
@@ -278,7 +280,7 @@ internal fun ColumnScope.OptionSheet(
     val close = LocalMenuSheetClose.current
     Column(modifier = Modifier.padding(horizontal = 24.dp).navigationBarsPadding()) {
         Spacer(Modifier.height(10.dp))
-        Text("What to change with", color = Color.White, style = studioText(StudioType.Title, FontWeight.Bold))
+        Text(UiText.get(R.string.toto_ui_more_what_to_change_with_ed6000), color = Color.White, style = studioText(StudioType.Title, FontWeight.Bold))
         Spacer(Modifier.height(4.dp))
         Text(subtitle ?: title, color = Color.White.copy(alpha = 0.55f), style = studioText(StudioType.Subtitle, FontWeight.Medium))
         Spacer(Modifier.height(18.dp))
@@ -299,7 +301,7 @@ internal fun ColumnScope.OptionSheet(
                 .clickable { close() },
             contentAlignment = Alignment.Center,
         ) {
-            Text("Done", color = Color.White, style = studioText(StudioType.Button))
+            Text(UiText.get(R.string.done), color = Color.White, style = studioText(StudioType.Button))
         }
         Spacer(Modifier.height(16.dp))
     }

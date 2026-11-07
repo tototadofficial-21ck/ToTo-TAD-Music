@@ -2,6 +2,8 @@
 
 package com.mochyy.mochymusic.ui.screens.search
 
+import com.mochyy.mochymusic.i18n.UiText
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -204,7 +206,7 @@ fun SearchGlassTopBar(
     modifier: Modifier = Modifier,
     trailing: (@Composable () -> Unit)? = null,
 
-    /** Small line under the title, e.g. "All songs on your library listed here." */
+    /** Small line under the title, e.g. UiText.get(R.string.toto_more_all_songs_on_your_library_listed_here) */
     subtitle: String? = null,
 
     /**
@@ -430,7 +432,7 @@ fun SearchAvatar(
         if (model != null) {
             AsyncImage(
                 model = model,
-                contentDescription = "Profile",
+                contentDescription = UiText.get(R.string.profile_label),
                 contentScale = ContentScale.Crop,
                 modifier = Modifier.fillMaxSize(),
             )
@@ -662,7 +664,7 @@ fun MoodTile(
         }
 
         Text(
-            text = title,
+            text = localizedMoodTitle(title),
             style = MaterialTheme.typography.titleMedium.copy(
                 fontSize = 15.sp,
                 fontWeight = FontWeight.SemiBold,

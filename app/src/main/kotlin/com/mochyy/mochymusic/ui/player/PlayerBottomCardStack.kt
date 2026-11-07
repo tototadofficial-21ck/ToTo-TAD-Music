@@ -2,6 +2,10 @@
 
 package com.mochyy.mochymusic.ui.player
 
+import com.mochyy.mochymusic.R
+
+import androidx.compose.ui.res.stringResource
+
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.spring
 import androidx.compose.foundation.background
@@ -574,7 +578,7 @@ private fun NextSongRow(
         Column(modifier = Modifier.weight(1f).fadingRightEdge()) {
 
             Text(
-                text = "Next Song",
+                text = stringResource(R.string.toto_ui_next_song),
                 style = MaterialTheme.typography.labelSmall.copy(lineHeight = 11.sp),
                 color = Color.White.copy(alpha = 0.5f),
             )

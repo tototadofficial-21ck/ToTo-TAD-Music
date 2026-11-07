@@ -2,6 +2,8 @@
 
 package com.mochyy.mochymusic.ui.menu
 
+import com.mochyy.mochymusic.i18n.UiText
+
 import android.annotation.SuppressLint
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.PaddingValues
@@ -207,7 +209,7 @@ fun SelectionSongMenu(
                             onDismiss()
                             playerConnection.playQueue(
                                 ListQueue(
-                                    title = "Selection",
+                                    title = UiText.get(R.string.toto_ui_more_selection_d1f8e5),
                                     items = songSelection.map { it.toMediaItem() },
                                 ),
                             )
@@ -267,7 +269,7 @@ fun SelectionSongMenu(
                                     onDismiss()
                                     playerConnection.playQueue(
                                         ListQueue(
-                                            title = "Selection",
+                                            title = UiText.get(R.string.toto_ui_more_selection_d1f8e5),
                                             items = songSelection.shuffled().map { it.toMediaItem() },
                                         ),
                                     )

@@ -2,6 +2,8 @@
 
 package com.mochyy.mochymusic.ui.screens.audiolab
 
+import com.mochyy.mochymusic.i18n.UiText
+
 import android.os.Build
 import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.background
@@ -356,7 +358,7 @@ internal fun LabBackButton(onBack: () -> Unit, modifier: Modifier = Modifier) {
     ) {
         Icon(
             painter = painterResource(R.drawable.arrow_back_ios),
-            contentDescription = "Back",
+            contentDescription = UiText.get(R.string.back_button_desc),
             tint = Color.White,
             modifier = Modifier.size(15.dp).offset(x = 2.dp),
         )

@@ -1,0 +1,6 @@
+<resources>
+  <string name="toto_background_check_title">Chưa kiểm tra được quyền tài khoản</string>
+  <string name="toto_background_check_detail">%1$s\n\nBạn vẫn có thể nghe nhạc với phiên đã được xác minh trước đó. Hãy thử lại khi có kết nối.</string>
+  <string name="toto_access_changed_title">Quyền tài khoản đã thay đổi</string>
+  <string name="toto_continue_listening">Tiếp tục nghe nhạc</string>
+</resources>

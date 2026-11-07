@@ -2,6 +2,8 @@
 
 package com.mochyy.mochymusic.ui.player.menu
 
+import com.mochyy.mochymusic.i18n.UiText
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -104,7 +106,7 @@ fun SongDetailsSheet(
                         val artistId = artist.id!!
                         val avatar by rememberArtistAvatar(artistId)
                         DetailRow(
-                            title = "View ${artist.name}",
+                            title = UiText.get(R.string.toto_format_view_artist, artist.name),
                             onClick = { onOpenArtist(artistId) },
                         ) {
                             DetailImage(
@@ -116,7 +118,7 @@ fun SongDetailsSheet(
                     }
                     song.album?.let { album ->
                         DetailRow(
-                            title = "View ${album.title}",
+                            title = UiText.get(R.string.toto_format_view_album, album.title),
                             onClick = { onOpenAlbum(album.id) },
                         ) {
                             DetailImage(
@@ -127,13 +129,13 @@ fun SongDetailsSheet(
                         }
                     }
                     DetailRow(
-                        title = "About song",
+                        title = UiText.get(R.string.toto_ui_more_about_song_88f4a3),
                         onClick = { showAbout = true },
                     ) {
                         DetailGlyph(R.drawable.info)
                     }
                     DetailRow(
-                        title = "Stream info",
+                        title = UiText.get(R.string.toto_ui_more_stream_info_e2f446),
                         enabled = streaming,
                         onClick = { showStream = true },
                     ) {
@@ -316,7 +318,7 @@ private fun DoneButton(onClick: () -> Unit) {
                 onClick = onClick,
             ),
     ) {
-        Text(text = "done", color = Color.White, fontSize = 14.sp, fontWeight = FontWeight.Bold)
+        Text(text = UiText.get(R.string.toto_ui_more_done_e5fd9c), color = Color.White, fontSize = 14.sp, fontWeight = FontWeight.Bold)
     }
 }
 

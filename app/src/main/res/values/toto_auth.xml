@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <string name="toto_auth_tagline">Your music. Your own space.</string>
+  <string name="toto_auth_welcome">Welcome back</string>
+  <string name="toto_auth_instruction">Sign in with the account provided by the app owner.</string>
+  <string name="toto_auth_private">A private music app for approved accounts.</string>
+  <string name="toto_auth_show_password">Show password</string>
+  <string name="toto_auth_hide_password">Hide password</string>
+  <string name="toto_auth_other_account">Use another account</string>
+  <string name="toto_auth_not_granted">Your account has not been enabled for this app. Ask the owner to enable access, then sign in again.</string>
+  <string name="toto_auth_locked">This account is banned in Supabase Auth. Contact the app owner.</string>
+  <string name="toto_auth_unconfirmed">Your email has not been confirmed. Ask the app owner to confirm the account.</string>
+  <string name="toto_auth_database">The app could not read account permissions. Ask the owner to check the Supabase key, migration and database policies.</string>
+  <string name="toto_auth_storage">The device could not securely restore the session. Please sign in again.</string>
+</resources>

@@ -2,6 +2,10 @@
 
 package com.mochyy.mochymusic.ui.component
 
+import com.mochyy.mochymusic.R
+
+import com.mochyy.mochymusic.i18n.UiText
+
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.awaitEachGesture
@@ -195,7 +199,7 @@ private fun SearchBarInputField(
                     }
                 }
                 .semantics {
-                    contentDescription = "Search"
+                    contentDescription = UiText.get(R.string.search)
                     if (active) {
                         stateDescription = "Suggestions available"
                     }

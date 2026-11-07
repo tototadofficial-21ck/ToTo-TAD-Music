@@ -2,6 +2,8 @@
 
 package com.mochyy.mochymusic.ui.screens.playlist
 
+import com.mochyy.mochymusic.i18n.UiText
+
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.combinedClickable
@@ -427,7 +429,7 @@ fun OnlinePlaylistScreen(
             if (relatedItems.isNotEmpty()) {
                 item(key = "related_title") {
                     PlaylistSectionTitle(
-                        title = "Related Playlists",
+                        title = UiText.get(R.string.toto_ui_more_related_playlists_3b3733),
                         modifier = Modifier.padding(top = 28.dp, bottom = 8.dp),
                     )
                 }

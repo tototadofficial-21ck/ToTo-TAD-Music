@@ -53,6 +53,7 @@ class MusicWidgetReceiver : AppWidgetProvider() {
 
     override fun onReceive(context: Context, intent: Intent) {
         super.onReceive(context, intent)
+        if (!com.mochyy.mochymusic.auth.PersonalAuth.allowed) return
 
         when (intent.action) {
             ACTION_PLAY_PAUSE, ACTION_LIKE, ACTION_NEXT, ACTION_PREVIOUS -> {

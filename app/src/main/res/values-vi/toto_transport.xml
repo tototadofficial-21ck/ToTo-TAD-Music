@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <string name="toto_transport_off">Không dùng</string>
+  <string name="toto_transport_echo">Tiếng vọng</string>
+  <string name="toto_transport_rewind">Quay ngược</string>
+  <string name="toto_transport_tape_stop">Dừng băng</string>
+  <string name="toto_transport_far_away">Xa dần</string>
+  <string name="toto_transport_reverb">Âm vang lan tỏa</string>
+  <string name="toto_transport_filter">Quét bộ lọc</string>
+</resources>

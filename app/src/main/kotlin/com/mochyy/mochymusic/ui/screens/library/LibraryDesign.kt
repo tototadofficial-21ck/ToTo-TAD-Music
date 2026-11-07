@@ -10,6 +10,8 @@
 
 package com.mochyy.mochymusic.ui.screens.library
 
+import com.mochyy.mochymusic.i18n.UiText
+
 import com.mochyy.mochymusic.ui.component.containerTransformSource
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.animation.core.Animatable
@@ -355,7 +357,7 @@ fun LibraryCategoryCard(
     }
 }
 
-/** The full-width cards: "Recently added" and "Liked". */
+/** The full-width cards: UiText.get(R.string.toto_more_recently_added) and UiText.get(R.string.toto_more_liked). */
 @Composable
 fun LibraryWideCard(
     title: String,
@@ -485,7 +487,7 @@ fun LibraryPlayBar(
         Spacer(modifier = Modifier.width(9.dp))
         com.mochyy.mochymusic.ui.component.detail.CircleAction(
             icon = R.drawable.shuffle,
-            contentDescription = "Shuffle",
+            contentDescription = UiText.get(R.string.shuffle),
             onClick = onMore,
             spinOnClick = true,
         )

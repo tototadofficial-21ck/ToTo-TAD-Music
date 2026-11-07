@@ -7,6 +7,8 @@
 
 package com.mochyy.mochymusic.ui.screens.recap
 
+import com.mochyy.mochymusic.i18n.UiText
+
 import androidx.compose.animation.core.FastOutSlowInEasing
 import com.mochyy.mochymusic.ui.component.BlurEffectCache
 import androidx.compose.ui.graphics.TransformOrigin
@@ -184,10 +186,10 @@ fun StatsScreen(navController: NavController) {
                             .padding(horizontal = PagePadding)
                             .graphicsLayer { alpha = 1f - collapse },
                     ) {
-                        Text("Stats", style = statsText(44f, tracking = -1.6f))
+                        Text(UiText.get(R.string.stats), style = statsText(44f, tracking = -1.6f))
                         Spacer(Modifier.width(8.dp))
                         Text(
-                            "$year Re'cap  >",
+                            UiText.get(R.string.toto_format_recap_link, year),
                             style = statsText(22f, color = StatsInkMuted, tracking = -0.6f),
                             modifier = Modifier
                                 .padding(bottom = 6.dp)
@@ -234,7 +236,7 @@ fun StatsScreen(navController: NavController) {
                                 "Nothing played in ${if (kind == StatsRange.Kind.Month) "${monthFull(s.range.month)} ${s.range.year}" else "${s.range.year}"} yet.",
                                 style = statsText(17f),
                             )
-                            Text("Play a few songs and this fills itself in.", style = statsText(13f, FontWeight.Medium, StatsInkMuted, 0f), modifier = Modifier.padding(top = 4.dp))
+                            Text(UiText.get(R.string.toto_ui_more_play_a_few_songs_and_this_fills_itself_in_d14a56), style = statsText(13f, FontWeight.Medium, StatsInkMuted, 0f), modifier = Modifier.padding(top = 4.dp))
                         }
                     }
                 } else {
@@ -245,7 +247,7 @@ fun StatsScreen(navController: NavController) {
                     s.topSongs.firstOrNull()?.let { top -> item(key = "song") { SongCard(s, top, expanded) } }
                     item(key = "often") {
                         Text(
-                            "Let's see how often you like to listen to music",
+                            UiText.get(R.string.toto_ui_more_let_s_see_how_often_you_like_to_listen_to_music_eb2e21),
                             style = statsText(16f),
                             modifier = Modifier.padding(start = PagePadding, end = PagePadding, top = 18.dp, bottom = 12.dp),
                         )
@@ -254,7 +256,7 @@ fun StatsScreen(navController: NavController) {
                     item(key = "hour") { HourCard(s, expanded) }
                     item(key = "privacy") {
                         Text(
-                            "Everything here is collected by your usage on this app and WILL NEVER BE SENT to some random server! " +
+                            UiText.get(R.string.toto_ui_more_everything_here_is_collected_by_your_usage_on_this_a_77b694) +
                                 "(Genres are looked up by artist name only.)",
                             style = statsText(11f, FontWeight.SemiBold, StatsInkMuted, 0f),
                             modifier = Modifier.padding(horizontal = PagePadding + 4.dp, vertical = 10.dp),
@@ -311,7 +313,7 @@ fun StatsScreen(navController: NavController) {
             Box(contentAlignment = Alignment.CenterStart) {
                 Icon(
                     painter = painterResource(R.drawable.ic_mochy_mark),
-                    contentDescription = "Mochy",
+                    contentDescription = UiText.get(R.string.app_icon_family_mark),
                     tint = Color.White,
                     modifier = Modifier
                         .size(width = 31.dp, height = 34.dp)
@@ -333,15 +335,15 @@ fun StatsScreen(navController: NavController) {
                         }
                         .clickable(enabled = morph > 0.5f, onClick = ::openPicker),
                 ) {
-                    Text("Stats", style = statsText(28f, tracking = -1f))
+                    Text(UiText.get(R.string.stats), style = statsText(28f, tracking = -1f))
                     Spacer(Modifier.width(6.dp))
-                    Text("$year Re'cap", style = statsText(15f, color = StatsInkMuted, tracking = -0.3f), modifier = Modifier.padding(bottom = 4.dp))
+                    Text(UiText.get(R.string.toto_format_recap_year, year), style = statsText(15f, color = StatsInkMuted, tracking = -0.3f), modifier = Modifier.padding(bottom = 4.dp))
                 }
             }
             Spacer(Modifier.weight(1f))
             AsyncImage(
                 model = profilePicUri.takeIf { it.isNotBlank() }?.let { if (it.contains("://")) it else "file://$it" },
-                contentDescription = "Profile",
+                contentDescription = UiText.get(R.string.profile_label),
                 contentScale = ContentScale.Crop,
                 placeholder = painterResource(R.drawable.person),
                 error = painterResource(R.drawable.person),
@@ -458,7 +460,7 @@ private fun TotalCard(s: ListeningStats, thisWhat: String, expanded: MutableMap<
             }
         },
     ) {
-        Text("$thisWhat, you've been listening for", style = statsText(15f))
+        Text(UiText.get(R.string.toto_format_listening_period, thisWhat), style = statsText(15f))
         Row(verticalAlignment = Alignment.Bottom, modifier = Modifier.padding(top = 2.dp)) {
             OdometerText("${minutes / 60}", big, progress = roll)
             Text("h", style = unit, modifier = Modifier.padding(bottom = 8.dp))
@@ -510,11 +512,11 @@ private fun GenreCard(state: GenreState, expanded: MutableMap<String, Boolean>) 
             }
         },
     ) {
-        Text("Dominant Genre", style = statsText(15f))
+        Text(UiText.get(R.string.toto_ui_more_dominant_genre_6c9a5a), style = statsText(15f))
         when (state) {
-            GenreState.Loading -> Text("Sorting your genres…", style = statsText(14f, FontWeight.Medium, StatsInkMuted, 0f), modifier = Modifier.padding(vertical = 30.dp))
+            GenreState.Loading -> Text(UiText.get(R.string.toto_ui_more_sorting_your_genres_5a8206), style = statsText(14f, FontWeight.Medium, StatsInkMuted, 0f), modifier = Modifier.padding(vertical = 30.dp))
             GenreState.Unavailable -> Text(
-                "Couldn't name your genres right now - this needs a connection the first time.",
+                UiText.get(R.string.toto_ui_more_couldn_t_name_your_genres_right_now_this_needs_a_con_c9405b),
                 style = statsText(14f, FontWeight.Medium, StatsInkMuted, 0f),
                 modifier = Modifier.padding(vertical = 18.dp),
             )
@@ -559,7 +561,7 @@ private fun ArtistCard(s: ListeningStats, top: RecapArtist, expanded: MutableMap
             )
         },
     ) {
-        Text("You really love listening to this artist", style = statsText(15f))
+        Text(UiText.get(R.string.toto_ui_more_you_really_love_listening_to_this_artist_3a6709), style = statsText(15f))
         Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(top = 12.dp)) {
             AsyncImage(
                 model = top.thumbnailUrl?.resize(240, 240),
@@ -571,7 +573,7 @@ private fun ArtistCard(s: ListeningStats, top: RecapArtist, expanded: MutableMap
             Column {
                 Text(top.name, style = statsText(24f, tracking = -0.8f), maxLines = 2, overflow = TextOverflow.Ellipsis)
                 Text(
-                    "${shortDuration(top.playTimeMs)} playtime and ${top.plays} plays from ${top.name}",
+                    UiText.get(R.string.toto_format_artist_stats, shortDuration(top.playTimeMs), top.plays, top.name),
                     style = statsText(12f, FontWeight.SemiBold, StatsInkMuted, 0f),
                     maxLines = 2,
                     overflow = TextOverflow.Ellipsis,
@@ -595,7 +597,7 @@ private fun SongCard(s: ListeningStats, top: RecapSong, expanded: MutableMap<Str
             )
         },
     ) {
-        Text("And without noticing, this song is your #1", style = statsText(15f))
+        Text(UiText.get(R.string.toto_ui_more_and_without_noticing_this_song_is_your_1_6178d0), style = statsText(15f))
         Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(top = 12.dp)) {
             AsyncImage(
                 model = top.thumbnailUrl?.resize(240, 240),
@@ -605,9 +607,9 @@ private fun SongCard(s: ListeningStats, top: RecapSong, expanded: MutableMap<Str
             )
             Spacer(Modifier.width(16.dp))
             Column {
-                Text("${top.title} from ${top.artistName}", style = statsText(20f, tracking = -0.6f), maxLines = 2, overflow = TextOverflow.Ellipsis)
+                Text(UiText.get(R.string.toto_format_song_by, top.title, top.artistName), style = statsText(20f, tracking = -0.6f), maxLines = 2, overflow = TextOverflow.Ellipsis)
                 Text(
-                    "${shortDuration(top.playTimeMs)} playtime and ${top.plays} plays",
+                    UiText.get(R.string.toto_format_song_stats, shortDuration(top.playTimeMs), top.plays),
                     style = statsText(12f, FontWeight.SemiBold, StatsInkMuted, 0f),
                 )
             }
@@ -629,9 +631,9 @@ private fun WeekdayCard(s: ListeningStats, thisWhat: String, expanded: MutableMa
             )
         },
     ) {
-        Text("$thisWhat, you like to listen to music every", style = statsText(13f, FontWeight.SemiBold))
+        Text(UiText.get(R.string.toto_format_listen_weekday, thisWhat), style = statsText(13f, FontWeight.SemiBold))
         Text(day.getDisplayName(JavaTextStyle.FULL, Locale.getDefault()), style = statsText(32f, tracking = -1.2f), modifier = Modifier.padding(vertical = 2.dp))
-        Text("totaling ${formatHoursDecimal(s.weekdayMs[best])} hours", style = statsText(12f, FontWeight.SemiBold, StatsInkSecondary, 0f))
+        Text(UiText.get(R.string.toto_format_weekday_hours, formatHoursDecimal(s.weekdayMs[best])), style = statsText(12f, FontWeight.SemiBold, StatsInkSecondary, 0f))
     }
 }
 
@@ -649,9 +651,9 @@ private fun HourCard(s: ListeningStats, expanded: MutableMap<String, Boolean>) {
             )
         },
     ) {
-        Text("And you love to listen in the ${timeOfDayName(best)} exactly around", style = statsText(13f, FontWeight.SemiBold))
+        Text(UiText.get(R.string.toto_format_listen_time, timeOfDayName(best)), style = statsText(13f, FontWeight.SemiBold))
         Text(hourLabel(best), style = statsText(32f, tracking = -1.2f), modifier = Modifier.padding(vertical = 2.dp))
-        Text("totaling ${formatHoursDecimal(s.hourMs[best])} hours at this time!", style = statsText(12f, FontWeight.SemiBold, StatsInkSecondary, 0f))
+        Text(UiText.get(R.string.toto_format_hour_hours, formatHoursDecimal(s.hourMs[best])), style = statsText(12f, FontWeight.SemiBold, StatsInkSecondary, 0f))
     }
 }
 
@@ -682,7 +684,7 @@ private fun ColumnScope.StatsPicker(
     if (m !in months) m = months.last()
 
     Column(modifier = Modifier.padding(horizontal = 22.dp).padding(bottom = 20.dp)) {
-        Text("Show by", style = statsText(36f, tracking = -1.4f))
+        Text(UiText.get(R.string.toto_ui_more_show_by_f22295), style = statsText(36f, tracking = -1.4f))
         Spacer(Modifier.height(10.dp))
         listOf(StatsRange.Kind.Month to "Month", StatsRange.Kind.Year to "Year").forEach { (value, label) ->
             val on = k == value
@@ -702,15 +704,15 @@ private fun ColumnScope.StatsPicker(
                 }
                 Spacer(Modifier.width(14.dp))
                 Text(label, style = statsText(18f), modifier = Modifier.weight(1f))
-                if (on) Text("Selected", style = statsText(13f, FontWeight.SemiBold, StatsInkMuted, 0f))
+                if (on) Text(UiText.get(R.string.toto_setup_selected), style = statsText(13f, FontWeight.SemiBold, StatsInkMuted, 0f))
             }
         }
         Box(Modifier.padding(vertical = 18.dp).fillMaxWidth().height(1.dp).background(Color(0xFF555555)))
-        Text("What year?", style = statsText(36f, tracking = -1.4f))
+        Text(UiText.get(R.string.toto_ui_more_what_year_78e10f), style = statsText(36f, tracking = -1.4f))
         Wheel(items = years, selected = y, label = { "$it" }, onSelected = { y = it })
         AnimatedVisibility(visible = k == StatsRange.Kind.Month) {
             Column {
-                Text("What month?", style = statsText(36f, tracking = -1.4f), modifier = Modifier.padding(top = 10.dp))
+                Text(UiText.get(R.string.toto_ui_more_what_month_1b42ef), style = statsText(36f, tracking = -1.4f), modifier = Modifier.padding(top = 10.dp))
                 Wheel(
                     items = months,
                     selected = m,
@@ -729,7 +731,7 @@ private fun ColumnScope.StatsPicker(
                 .clickable { onDone(k, y, m) },
             contentAlignment = Alignment.Center,
         ) {
-            Text("Done", style = statsText(20f))
+            Text(UiText.get(R.string.done), style = statsText(20f))
         }
     }
 }

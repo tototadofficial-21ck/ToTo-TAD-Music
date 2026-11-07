@@ -2,6 +2,10 @@
 
 package com.mochyy.mochymusic.ui.player.info
 
+import com.mochyy.mochymusic.R
+
+import com.mochyy.mochymusic.i18n.UiText
+
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
@@ -92,7 +96,7 @@ fun ForceProviderSheet(currentProviderId: String?, onDismiss: () -> Unit) {
                 InfoSheetTitle("Play from")
                 Spacer(Modifier.height(4.dp))
                 Text(
-                    text = "The song stops while it's fetched from the one you pick.",
+                    text = UiText.get(R.string.toto_ui_more_the_song_stops_while_it_s_fetched_from_the_one_you_p_c66afe),
                     color = InfoMuted,
                     fontSize = 13.sp,
                 )
@@ -144,8 +148,8 @@ private fun SwitchStatus(state: ProviderSwitchState, nameOf: (String) -> String)
         ) {
             when (state) {
                 is ProviderSwitchState.Working -> {
-                    Text("Fetching from ${nameOf(state.providerId)}…", color = Color.White, fontSize = 14.sp, fontWeight = FontWeight.Bold)
-                    Text("Try ${state.attempt} of ${state.of}, up to a minute", color = InfoMuted, fontSize = 12.sp)
+                    Text(UiText.get(R.string.toto_format_fetching_source, nameOf(state.providerId)), color = Color.White, fontSize = 14.sp, fontWeight = FontWeight.Bold)
+                    Text(UiText.get(R.string.toto_format_source_attempt, state.attempt, state.of), color = InfoMuted, fontSize = 12.sp)
                     Spacer(Modifier.height(10.dp))
                     val progress by animateFloatAsState(state.attempt / state.of.toFloat(), label = "switchTries")
                     Box(Modifier.fillMaxWidth().height(4.dp).clip(CircleShape).background(Color.White.copy(alpha = 0.12f))) {
@@ -153,15 +157,15 @@ private fun SwitchStatus(state: ProviderSwitchState, nameOf: (String) -> String)
                     }
                 }
                 is ProviderSwitchState.Failed -> {
-                    Text("Source unavailable", color = Color(0xFFFF7A7A), fontSize = 14.sp, fontWeight = FontWeight.Bold)
+                    Text(UiText.get(R.string.toto_ui_more_source_unavailable_3775eb), color = Color(0xFFFF7A7A), fontSize = 14.sp, fontWeight = FontWeight.Bold)
                     Text(
-                        "${nameOf(state.providerId)} didn't answer after ${ProviderSwitch.MaxTries} tries, so the song kept playing where it was. Try another one.",
+                        UiText.get(R.string.toto_format_source_failed, nameOf(state.providerId), ProviderSwitch.MaxTries),
                         color = InfoMuted,
                         fontSize = 12.sp,
                     )
                 }
                 is ProviderSwitchState.Done -> {
-                    Text("Now playing from ${nameOf(state.providerId)}", color = Color.White, fontSize = 14.sp, fontWeight = FontWeight.Bold)
+                    Text(UiText.get(R.string.toto_format_source_playing, nameOf(state.providerId)), color = Color.White, fontSize = 14.sp, fontWeight = FontWeight.Bold)
                 }
                 ProviderSwitchState.Idle -> Unit
             }

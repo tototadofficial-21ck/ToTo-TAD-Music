@@ -7,6 +7,8 @@
 
 package com.mochyy.mochymusic.ui.menu
 
+import com.mochyy.mochymusic.i18n.UiText
+
 import android.content.Context
 import android.widget.Toast
 import androidx.compose.foundation.layout.padding
@@ -79,8 +81,8 @@ class PlaylistResyncState internal constructor(
     fun menuItem(): Material3MenuItemData? {
         val from = source ?: return null
         return Material3MenuItemData(
-            title = { Text("Re-sync with ${from.label}") },
-            description = { Text("Add the songs that are new on ${from.label}") },
+            title = { Text(UiText.get(R.string.toto_format_resync_with, from.label)) },
+            description = { Text(UiText.get(R.string.toto_format_new_songs, from.label)) },
             icon = { Icon(painter = painterResource(R.drawable.sync), contentDescription = null) },
             onClick = ::start,
         )
@@ -176,14 +178,14 @@ private fun resyncAllMessage(start: ResyncAllStart): String? {
 fun ResyncLinkDialog(sourceLabel: String, onDismiss: () -> Unit, onDone: (String) -> Unit) {
     TextFieldDialog(
         icon = { Icon(painter = painterResource(R.drawable.link), contentDescription = null) },
-        title = { Text("Paste its $sourceLabel link") },
+        title = { Text(UiText.get(R.string.toto_format_source_link, sourceLabel)) },
         placeholder = { Text("https://…") },
         keyboardType = KeyboardType.Uri,
         onDone = onDone,
         onDismiss = onDismiss,
         extraContent = {
             Text(
-                "This playlist was imported before Mochy saved where it came from. Its link is how Re-sync finds it again.",
+                UiText.get(R.string.toto_ui_more_this_playlist_was_imported_before_mochy_saved_where__9af276),
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 modifier = Modifier.padding(top = 12.dp),

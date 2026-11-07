@@ -2,6 +2,8 @@
 
 package com.mochyy.mochymusic.ui.player.menu
 
+import com.mochyy.mochymusic.i18n.UiText
+
 import androidx.activity.compose.BackHandler
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.CubicBezierEasing
@@ -197,7 +199,7 @@ fun PlayerActionMenu(
                     SheetActionCardRow {
                         SheetActionCard(
                             icon = R.drawable.translate,
-                            title = "Ai translation",
+                            title = UiText.get(R.string.toto_ui_more_ai_translation_ba6a7e),
                             // Greyed out until the AI translation settings are filled in — an
                             // enabled button that silently does nothing is worse than a disabled
                             // one that says so.
@@ -207,7 +209,7 @@ fun PlayerActionMenu(
                         )
                         SheetActionCard(
                             icon = R.drawable.edit,
-                            title = "Edit lyrics",
+                            title = UiText.get(R.string.edit_lyrics),
                             onClick = { showLyricsEditor = true },
                             modifier = Modifier.weight(1f),
                         )
@@ -220,7 +222,7 @@ fun PlayerActionMenu(
                     // outcome.
                     MenuRow(
                         icon = R.drawable.lyrics,
-                        title = "Lyrics provider",
+                        title = UiText.get(R.string.video_mode_lyrics_provider),
                         onClick = { showLyricsProvider = true },
                     )
 
@@ -228,7 +230,7 @@ fun PlayerActionMenu(
 
                     MenuRow(
                         icon = R.drawable.fast_forward,
-                        title = "Lyrics offset",
+                        title = UiText.get(R.string.video_mode_lyrics_offset),
                         onClick = { showLyricsOffset = true },
                     )
 
@@ -236,7 +238,7 @@ fun PlayerActionMenu(
 
                     MenuRow(
                         icon = R.drawable.translate,
-                        title = "lyrics translation",
+                        title = UiText.get(R.string.toto_ui_more_lyrics_translation_a62689),
                         onClick = { showLyricsTranslation = true },
                     )
 
@@ -247,7 +249,7 @@ fun PlayerActionMenu(
                 SheetActionCardRow {
                     SheetActionCard(
                         icon = R.drawable.radio,
-                        title = "Start Radio",
+                        title = UiText.get(R.string.toto_ui_more_start_radio_fa99da),
                         enabled = currentMetadata != null,
                         onClick = {
                             currentMetadata?.let { metadata ->
@@ -259,7 +261,7 @@ fun PlayerActionMenu(
                     )
                     SheetActionCard(
                         icon = R.drawable.playlist_add,
-                        title = "Add to playlist",
+                        title = UiText.get(R.string.add_to_playlist),
                         enabled = currentMetadata != null,
                         onClick = { showChoosePlaylistDialog = true },
                         modifier = Modifier.weight(1f),
@@ -310,7 +312,7 @@ fun PlayerActionMenu(
                 Spacer(modifier = Modifier.height(8.dp))
                 MenuRow(
                     icon = R.drawable.cast,
-                    title = "Change device output",
+                    title = UiText.get(R.string.toto_ui_more_change_device_output_6ed1aa),
                     onClick = { showAudioDevices = true },
                 )
                 Spacer(modifier = Modifier.height(8.dp))
@@ -320,7 +322,7 @@ fun PlayerActionMenu(
                 Spacer(modifier = Modifier.height(8.dp))
                 MenuRow(
                     icon = R.drawable.speed,
-                    title = "Playback speed and tempo",
+                    title = UiText.get(R.string.video_mode_speed),
                     onClick = { showPlaybackSpeed = true },
                 )
                 if (onEqualizer != null) {
@@ -379,7 +381,7 @@ fun PlayerActionMenu(
 
                 MenuRow(
                     icon = R.drawable.edit,
-                    title = "edit player",
+                    title = UiText.get(R.string.toto_ui_more_edit_player_d324dc),
                     onClick = {
                         onDismiss()
                         onEditPlayer()
@@ -475,7 +477,7 @@ private fun KeepScreenOnRow() {
     val (keepScreenOn, setKeepScreenOn) = rememberPreference(KeepScreenOn, defaultValue = false)
     MenuRow(
         icon = R.drawable.lock_open,
-        title = "Keep screen on",
+        title = UiText.get(R.string.toto_ui_more_keep_screen_on_d984ef),
         onClick = { setKeepScreenOn(!keepScreenOn) },
         trailing = { AppSwitch(checked = keepScreenOn, onCheckedChange = setKeepScreenOn) },
     )
@@ -504,12 +506,12 @@ private fun SleepTimerRow(onClick: () -> Unit) {
 
     MenuRow(
         icon = R.drawable.sleep_timer,
-        title = "Sleep timer",
+        title = UiText.get(R.string.sleep_timer),
         onClick = onClick,
         trailing = {
             if (remainingLabel.isNotEmpty()) {
                 Text(
-                    text = "$remainingLabel remaining",
+                    text = UiText.get(R.string.toto_format_remaining, remainingLabel),
                     color = Color(0xFF9A9A9A),
                     fontSize = 12.sp,
                 )

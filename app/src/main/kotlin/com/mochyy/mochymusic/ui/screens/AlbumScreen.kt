@@ -2,6 +2,10 @@
 
 package com.mochyy.mochymusic.ui.screens
 
+import com.mochyy.mochymusic.i18n.UiText
+
+import androidx.compose.ui.res.stringResource
+
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.clickable
@@ -349,7 +353,7 @@ fun AlbumScreen(
         )
         albumShelf(
             key = "other_versions",
-            title = "Other versions",
+            title = UiText.get(R.string.other_versions),
             albums = otherVersions,
             navController = navController,
             onLongClick = { item ->
@@ -361,7 +365,7 @@ fun AlbumScreen(
         )
         albumShelf(
             key = "releases_for_you",
-            title = "Releases for you",
+            title = UiText.get(R.string.releases_for_you),
             albums = releasesForYou,
             navController = navController,
             onLongClick = { item ->
@@ -445,7 +449,7 @@ private fun AlbumRetry(onRetry: () -> Unit) {
             .padding(top = 24.dp)
     ) {
         Text(
-            text = "Couldn't load this album. Tap to try again",
+            text = stringResource(R.string.toto_ui_couldn_t_load_this_album_tap_to_try_again),
             style = PlaylistStatsStyle,
             color = Color.White.copy(alpha = 0.7f),
             modifier = Modifier

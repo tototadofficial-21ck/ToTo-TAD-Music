@@ -1,5 +1,9 @@
 package com.mochyy.mochymusic.ui.screens.settings
 
+import androidx.compose.ui.res.stringResource
+
+import com.mochyy.mochymusic.i18n.UiText
+
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
@@ -49,7 +53,7 @@ fun PlaybackDiagnosticsScreen(navController: NavController) {
     val hasPoToken = YTPlayerUtils.hasPoToken
 
     SubSettingsScaffold(
-        title = "Playback diagnostics",
+        title = UiText.get(R.string.toto_more_playback_diagnostics),
         onBack = { navController.navigateUp() },
     ) {
         Card(
@@ -81,7 +85,7 @@ fun PlaybackDiagnosticsScreen(navController: NavController) {
             style = SettingsGroupStyle.Grouped,
             items = listOf(
                 SettingsItem(
-                    title = { Text("Copy logs") },
+                    title = { Text(stringResource(R.string.toto_ui_copy_logs)) },
                     descriptionText = "Copy the full playback log to the clipboard",
                     icon = painterResource(R.drawable.key),
                     iconShape = CircleShape,
@@ -91,7 +95,7 @@ fun PlaybackDiagnosticsScreen(navController: NavController) {
                     },
                 ),
                 SettingsItem(
-                    title = { Text("Clear logs") },
+                    title = { Text(stringResource(R.string.toto_ui_clear_logs)) },
                     descriptionText = "Discard everything captured so far",
                     icon = painterResource(R.drawable.delete),
                     iconShape = CircleShape,
@@ -102,7 +106,7 @@ fun PlaybackDiagnosticsScreen(navController: NavController) {
 
         if (recent.isEmpty()) {
             Text(
-                text = "Nothing captured yet. Play a track and come back.",
+                text = stringResource(R.string.toto_ui_nothing_captured_yet_play_a_track_and_come_back),
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 modifier = Modifier.padding(horizontal = 24.dp, vertical = 12.dp),

@@ -2,6 +2,8 @@
 
 package com.mochyy.mochymusic.ui.screens.settings.integrations.discord
 
+import com.mochyy.mochymusic.i18n.UiText
+
 import android.content.Intent
 import android.widget.Toast
 import androidx.compose.foundation.background
@@ -210,7 +212,7 @@ private fun AccountButton(
     }
     if (inviting) {
         Text(
-            text = "Opens Discord's own login page in your browser. Your password stays with Discord.",
+            text = UiText.get(R.string.toto_ui_more_opens_discord_s_own_login_page_in_your_browser_your__0f3075),
             color = DiscordColors.Secondary,
             fontSize = 12.sp,
             textAlign = TextAlign.Center,
@@ -278,7 +280,7 @@ private fun CustomizeSection(
 
     DiscordSectionTitle("Image customisation")
     DiscordImageSourceCard(
-        title = "Small image source",
+        title = UiText.get(R.string.toto_ui_more_small_image_source_39a492),
         selected = settings.smallImage,
         options = PresenceImage.ForSmall,
         onSelect = { image -> edit { copy(smallImage = image) } },
@@ -287,7 +289,7 @@ private fun CustomizeSection(
     )
     Spacer(gap)
     DiscordImageSourceCard(
-        title = "Big image source",
+        title = UiText.get(R.string.toto_ui_more_big_image_source_302922),
         selected = settings.largeImage,
         options = PresenceImage.ForLarge,
         onSelect = { image -> edit { copy(largeImage = image) } },
@@ -298,7 +300,7 @@ private fun CustomizeSection(
     Spacer(gap)
     DiscordButtonCard("2nd button", settings.button2) { button -> edit { copy(button2 = button) } }
     Text(
-        text = "Discord only shows the buttons to other people, never on your own profile.",
+        text = UiText.get(R.string.toto_ui_more_discord_only_shows_the_buttons_to_other_people_never_34034c),
         color = DiscordColors.Secondary,
         fontSize = 12.sp,
         modifier = Modifier.padding(start = 4.dp, top = 10.dp),

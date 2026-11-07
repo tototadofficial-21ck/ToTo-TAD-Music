@@ -375,6 +375,10 @@ class MainActivity : ComponentActivity() {
 
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
+        if (!com.mochyy.mochymusic.auth.PersonalAuth.navigationReady || !com.mochyy.mochymusic.auth.PersonalAuth.allowed) {
+            pendingIntent = intent
+            return
+        }
         if (intent.action == com.mochyy.mochymusic.ui.screens.update.ActionOpenUpdate) {
             openUpdateRequests++
             return
@@ -391,7 +395,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         installSplashScreen().handOffToLaunchIntro { introPlays }
         super.onCreate(savedInstanceState)
-        introRequested = savedInstanceState == null && intent?.action == Intent.ACTION_MAIN
+        introRequested = false // Standard branded splash; original path-drawn intro depicts Mochy.
         if (introRequested) LaunchGate.begin() else LaunchGate.skip()
         // kept in step with the icon in use, in case it was switched some way other than customisation
         com.mochyy.mochymusic.utils.AppIcons.syncSplash(this)
@@ -434,12 +438,14 @@ class MainActivity : ComponentActivity() {
             lifecycle,
         )
         setContent(parent = motionRecomposer) {
+            com.mochyy.mochymusic.auth.AuthGate {
             mochyApp(
                 playerConnection = playerConnection,
                 database = database,
                 downloadUtil = downloadUtil,
                 syncUtils = syncUtils,
             )
+            }
         }
     }
 
@@ -926,15 +932,9 @@ class MainActivity : ComponentActivity() {
                                 markOnboardedOnThisInstall(context)
                                 onboardedHere = true
                                 coroutineScope.launch(Dispatchers.IO) {
-                                    val savedUriStr = uri?.let { com.mochyy.mochymusic.ui.screens.profile.ProfileStore.copyPhoto(context, it) }.orEmpty()
-
                                     dataStore.updateData { prefs ->
                                         prefs.toMutablePreferences().apply {
                                             set(com.mochyy.mochymusic.constants.SetupCompletedKey, true)
-                                            set(com.mochyy.mochymusic.constants.UsernameKey, username)
-                                            if (savedUriStr.isNotEmpty()) {
-                                                set(com.mochyy.mochymusic.constants.ProfilePicUriKey, savedUriStr)
-                                            }
                                         }
                                     }
                                 }

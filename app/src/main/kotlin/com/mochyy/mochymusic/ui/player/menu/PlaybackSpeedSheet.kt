@@ -2,6 +2,10 @@
 
 package com.mochyy.mochymusic.ui.player.menu
 
+import com.mochyy.mochymusic.R
+
+import com.mochyy.mochymusic.i18n.UiText
+
 import androidx.activity.compose.BackHandler
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.CubicBezierEasing
@@ -80,7 +84,7 @@ fun PlaybackSpeedSheet(onDismiss: () -> Unit) {
         ) {
             Spacer(modifier = Modifier.height(22.dp))
             Text(
-                text = "Playback speed and tempo",
+                text = UiText.get(R.string.video_mode_speed),
                 color = Color.White,
                 fontSize = 15.sp,
                 fontWeight = FontWeight.SemiBold,
@@ -119,7 +123,7 @@ fun PlaybackSpeedSheet(onDismiss: () -> Unit) {
                     .padding(vertical = 14.dp)
             ) {
                 Text(
-                    text = "RESET TO NORMAL",
+                    text = UiText.get(R.string.toto_ui_more_reset_to_normal_25aeb2),
                     color = Color.White,
                     fontSize = 13.sp,
                     fontWeight = FontWeight.Bold,

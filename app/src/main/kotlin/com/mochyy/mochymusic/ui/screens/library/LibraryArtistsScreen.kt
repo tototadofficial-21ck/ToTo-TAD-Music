@@ -2,6 +2,10 @@
 
 package com.mochyy.mochymusic.ui.screens.library
 
+import com.mochyy.mochymusic.R
+
+import com.mochyy.mochymusic.i18n.UiText
+
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
@@ -31,7 +35,7 @@ fun LibraryArtistsScreen(
     val coroutineScope = rememberCoroutineScope()
 
     LibraryEntityListScreen(
-        title = "Artist",
+        title = UiText.get(R.string.toto_more_artist),
         subtitle = when (shelf) {
             LibraryShelfKind.Local -> "Artists with music on this device."
             LibraryShelfKind.Cached -> "Artists with songs in your cache."

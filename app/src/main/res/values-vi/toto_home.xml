@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <string name="toto_hero_now">Đang phát</string>
+  <string name="toto_hero_continue">Nghe tiếp</string>
+  <string name="toto_hero_recent">Mới nghe</string>
+  <string name="toto_hero_may_like">Có thể bạn thích</string>
+  <string name="toto_hero_because_like">Vì bạn thích</string>
+  <string name="toto_hero_more_from">Thêm nhạc từ</string>
+  <string name="toto_hero_because_played">Vì bạn đã nghe</string>
+  <string name="toto_hero_inspired">Lấy cảm hứng từ</string>
+  <string name="toto_hero_because_listen">Vì bạn nghe</string>
+  <string name="toto_hero_similar">Tương tự</string>
+  <string name="toto_hero_rotation">Nghe lại</string>
+  <string name="toto_hero_gacha">Thử chọn ngẫu nhiên</string>
+  <string name="toto_hero_random">Phát ngẫu nhiên</string>
+  <string name="toto_hero_playlists">Từ danh sách phát của bạn</string>
+  <string name="toto_hero_import">Từ nhạc đã nhập</string>
+  <string name="toto_hero_recommended">Gợi ý từ</string>
+  <string name="toto_hero_got">Đã chọn cho bạn</string>
+  <string name="toto_hero_play">Phát</string>
+  <string name="toto_hero_pause">Tạm dừng</string>
+  <string name="toto_hero_view">Xem</string>
+  <string name="toto_hero_roll">Ngẫu nhiên</string>
+  <string name="toto_hero_rolling">Đang chọn…</string>
+</resources>

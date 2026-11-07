@@ -2,6 +2,10 @@
 
 package com.mochyy.mochymusic.ui.screens.audiolab
 
+import com.mochyy.mochymusic.R
+
+import com.mochyy.mochymusic.i18n.UiText
+
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.spring
 import androidx.compose.animation.core.tween
@@ -75,7 +79,7 @@ internal fun ReverbCard(viewModel: AudioLabViewModel) {
 @Composable
 private fun FineTuneLabel() {
     Text(
-        "FINE TUNE",
+        UiText.get(R.string.toto_ui_more_fine_tune_303631),
         fontFamily = InterFontFamily, fontWeight = FontWeight.SemiBold, fontSize = 11.sp, letterSpacing = 1.3.sp,
         color = LabColors.Secondary, modifier = Modifier.padding(top = 8.dp, bottom = 2.dp),
     )

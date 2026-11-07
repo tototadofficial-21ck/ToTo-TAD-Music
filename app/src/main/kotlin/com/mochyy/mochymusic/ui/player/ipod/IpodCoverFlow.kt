@@ -1,5 +1,9 @@
 package com.mochyy.mochymusic.ui.player.ipod
 
+import com.mochyy.mochymusic.R
+
+import com.mochyy.mochymusic.i18n.UiText
+
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.spring
 import androidx.compose.foundation.Canvas
@@ -135,7 +139,7 @@ fun IpodCoverFlow(
     ) {
         if (albums.isEmpty()) {
             Text(
-                text = "No albums yet",
+                text = UiText.get(R.string.toto_ui_more_no_albums_yet_7b0a7b),
                 color = look.quietInk,
                 fontSize = scale.sp(18f),
                 fontWeight = FontWeight.Bold,

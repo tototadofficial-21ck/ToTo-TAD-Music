@@ -768,6 +768,19 @@ class MusicService :
         audioOutputs.start()
         audioPass.start()
         player = createExoPlayer()
+        com.mochyy.mochymusic.auth.PersonalAuth.stopPlayback = {
+            transport.cancel()
+            crossmixDirector.release()
+            crossfadeJob?.cancel()
+            crossfadeJob = null
+            secondaryPlayer?.pause()
+            fadingPlayer?.pause()
+            player.pause()
+            player.stop()
+            castConnectionHandler?.pause()
+            castConnectionHandler?.disconnect()
+            stopForeground(STOP_FOREGROUND_REMOVE)
+        }
         player.addListener(this@MusicService)
         observeOutputSettings()
         sleepTimer = SleepTimer(scope, player)
@@ -1331,6 +1344,9 @@ class MusicService :
             .build()
 
         player.addListener(object : Player.Listener {
+            override fun onPlayWhenReadyChanged(playWhenReady: Boolean, reason: Int) {
+                if (playWhenReady && !com.mochyy.mochymusic.auth.PersonalAuth.allowed) player.pause()
+            }
             override fun onTracksChanged(tracks: androidx.media3.common.Tracks) {
                 replayGain.update(tracks)
                 val mediaId = player.currentMediaItem?.mediaId
@@ -1871,6 +1887,7 @@ class MusicService :
         queue: Queue,
         playWhenReady: Boolean = true,
     ) {
+        if (!com.mochyy.mochymusic.auth.PersonalAuth.allowed) return
         if (!scope.isActive) scope = CoroutineScope(Dispatchers.Main) + Job()
 
         if (!playerInitialized.value) {
@@ -4120,6 +4137,7 @@ class MusicService :
     }
 
     override fun onDestroy() {
+        com.mochyy.mochymusic.auth.PersonalAuth.stopPlayback = null
         isRunning = false
 
         audioManager.unregisterAudioDeviceCallback(audioDeviceCallback)
@@ -4159,9 +4177,11 @@ class MusicService :
         super.onTaskRemoved(rootIntent)
     }
 
-    override fun onGetSession(controllerInfo: MediaSession.ControllerInfo) = mediaSession
+    override fun onGetSession(controllerInfo: MediaSession.ControllerInfo): MediaLibrarySession? =
+        if (com.mochyy.mochymusic.auth.PersonalAuth.allowed) mediaSession else null
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+        if (!com.mochyy.mochymusic.auth.PersonalAuth.allowed) return START_NOT_STICKY
         when (intent?.action) {
             MusicWidgetReceiver.ACTION_PLAY_PAUSE -> {
                 if (player.isPlaying) player.pause() else player.play()

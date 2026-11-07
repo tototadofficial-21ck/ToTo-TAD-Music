@@ -2,6 +2,8 @@
 
 package com.mochyy.mochymusic.ui.menu
 
+import com.mochyy.mochymusic.i18n.UiText
+
 import com.mochyy.mochymusic.ui.component.SheetHeaderGap
 import com.mochyy.mochymusic.ui.component.SheetHeaderButton
 import com.mochyy.mochymusic.ui.component.SheetHeader
@@ -63,7 +65,7 @@ fun YouTubeArtistMenu(
     SheetHeader(
         thumbnailUrl = artist.thumbnail,
         title = artist.title,
-        subtitle = "Artist",
+        subtitle = UiText.get(R.string.sort_by_artist),
     )
 
     Spacer(Modifier.height(SheetHeaderGap))

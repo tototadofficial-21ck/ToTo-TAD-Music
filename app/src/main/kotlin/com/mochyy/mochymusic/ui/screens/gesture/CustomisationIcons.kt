@@ -83,61 +83,10 @@ private const val SwatchesPerRow = 6
 
 @Composable
 internal fun IconsSection() {
-    val context = LocalContext.current
-    val haptic = LocalHapticFeedback.current
-    val scope = rememberCoroutineScope()
-    var picked by remember { mutableStateOf(AppIcons.current(context)) }
-    var expanded by rememberSaveable { mutableStateOf(false) }
-    // the family whose colours are open under its customize button
-    var customizing by remember { mutableStateOf<AppIconFamily?>(null) }
-    // each family's custom tile keeps the colour last picked for it, starting from the one in use
-    val customColors = remember { mutableStateMapOf<AppIconFamily, AppIconColor>().apply { picked.color?.let { put(picked.family, it) } } }
-    val art = rememberIconArt()
-
-    fun pick(icon: AppIcon) {
-        icon.color?.let { customColors[icon.family] = it }
-        if (icon == picked) return
-        haptic.performHapticFeedback(HapticFeedbackType.SegmentTick)
-        picked = icon
-        // the next launch's splash goes with it: the icon itself for an anime one, the bare mark for the rest
-        context.findActivity()?.let { AppIcons.syncSplash(it, icon) }
-        // the package manager is a call to the system, kept off the main thread
-        scope.launch(Dispatchers.IO) { AppIcons.apply(context.applicationContext, icon) }
-    }
-
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .clip(CardShape)
-            .background(LabColors.Card)
-            .padding(top = CardTextInset, bottom = 20.dp),
-    ) {
-        PickedIcon(icon = picked, art = art, expanded = expanded, onToggle = { expanded = !expanded })
-        AnimatedVisibility(
-            visible = expanded,
-            enter = expandVertically(expandFrom = Alignment.Top) + fadeIn(),
-            exit = shrinkVertically(shrinkTowards = Alignment.Top) + fadeOut(),
-        ) {
-            Column {
-                AppIconFamily.entries.forEach { family ->
-                    FamilyIcons(
-                        family = family,
-                        picked = picked,
-                        customColor = customColors[family] ?: AppIconColor.entries.first(),
-                        art = art,
-                        customizing = customizing == family,
-                        onPick = ::pick,
-                        onCustomize = { customizing = if (customizing == family) null else family },
-                    )
-                }
-                Text(
-                    text = stringResource(R.string.customise_icons_caption),
-                    style = CaptionStyle,
-                    color = Color.White.copy(alpha = 0.45f),
-                    modifier = Modifier.padding(start = CardTextInset, end = CardTextInset, top = 16.dp),
-                )
-            }
-        }
+    Column(Modifier.fillMaxWidth().clip(CardShape).background(LabColors.Card).padding(24.dp)) {
+        androidx.compose.foundation.Image(painterResource(R.drawable.toto_logo), stringResource(R.string.app_name), Modifier.size(96.dp))
+        Text(stringResource(R.string.app_name), color = Color.White)
+        Text(stringResource(R.string.toto_personal_icon), style = CaptionStyle)
     }
 }
 

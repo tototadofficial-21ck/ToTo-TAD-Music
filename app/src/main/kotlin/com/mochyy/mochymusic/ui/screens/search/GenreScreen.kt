@@ -2,6 +2,10 @@
 
 package com.mochyy.mochymusic.ui.screens.search
 
+import androidx.compose.ui.res.stringResource
+
+import com.mochyy.mochymusic.i18n.UiText
+
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
@@ -166,7 +170,7 @@ fun GenreScreen(
                                 contentAlignment = Alignment.Center,
                             ) {
                                 Text(
-                                    text = "Nothing here yet",
+                                    text = stringResource(R.string.toto_ui_nothing_here_yet),
                                     style = MaterialTheme.typography.bodyLarge.copy(fontSize = 15.sp),
                                     color = SearchColors.Secondary,
                                 )
@@ -218,7 +222,7 @@ fun GenreScreen(
                             if (cards == null || cards.isNotEmpty()) {
                                 item(key = "community_header") {
                                     SearchSectionHeader(
-                                        title = "From the community",
+                                        title = UiText.get(R.string.toto_more_from_the_community),
                                         ruleAbove = false,
                                         ruleBelow = false,
                                         large = false,
@@ -352,7 +356,7 @@ private fun GenreHeader(
                 },
         ) {
             Text(
-                text = title,
+                text = localizedMoodTitle(title),
                 style = MaterialTheme.typography.displaySmall.copy(
                     fontSize = 36.sp,
                     fontWeight = FontWeight.Bold,
@@ -460,7 +464,7 @@ private fun GenreTopBar(
             }
             Spacer(modifier = Modifier.width(14.dp))
             Text(
-                text = title,
+                text = localizedMoodTitle(title),
                 style = MaterialTheme.typography.titleLarge.copy(
                     fontSize = 20.sp,
                     fontWeight = FontWeight.Bold,
@@ -487,8 +491,8 @@ private fun GenreItemCard(
     val subtitle = when (item) {
         is SongItem -> item.artists.joinToString { it.name }
         is AlbumItem -> item.artists?.joinToString { it.name }.orEmpty().ifEmpty { "Album" }
-        is ArtistItem -> "Artist"
-        is PlaylistItem -> item.author?.name ?: "Playlist"
+        is ArtistItem -> UiText.get(R.string.toto_more_artist)
+        is PlaylistItem -> item.author?.name ?: UiText.get(R.string.toto_more_playlist)
     }
 
     Column(

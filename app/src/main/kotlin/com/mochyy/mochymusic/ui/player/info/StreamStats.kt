@@ -2,6 +2,10 @@
 
 package com.mochyy.mochymusic.ui.player.info
 
+import com.mochyy.mochymusic.R
+
+import com.mochyy.mochymusic.i18n.UiText
+
 import androidx.media3.common.C
 import com.mochyy.mochymusic.db.entities.FormatEntity
 import com.mochyy.mochymusic.playback.PlayingFrom
@@ -93,7 +97,7 @@ private fun formatCard(input: StatsInput): StatCard {
 private fun decoderCard(input: StatsInput): StatCard {
     val d = input.details
     return StatCard(
-        title = "Decoder",
+        title = UiText.get(R.string.larp_card_decoder),
         lines = listOfNotNull(
             d.decoderName?.let { "Decoder name" to it },
             input.decoderHardware?.let { "Runs on" to if (it) "Hardware" else "Software" },
@@ -123,7 +127,7 @@ private fun resamplerCard(input: StatsInput): StatCard {
         else -> "None, it plays at its own rate"
     }
     return StatCard(
-        title = "Resampler",
+        title = UiText.get(R.string.toto_ui_more_resampler_196a37),
         lines = listOfNotNull(
             "Type" to type,
             outRate?.let { "I/O rate" to if (resampling) "${kHz(inRate)} → ${kHz(it)}" else "${kHz(inRate)} in and out" },
@@ -138,7 +142,7 @@ private fun resamplerCard(input: StatsInput): StatCard {
 
 // mochy's own filter did the work, so android's mixer is handed the rate it already runs at
 private fun mochyResamplerCard(d: StreamDetails, effects: EffectsSnapshot): StatCard = StatCard(
-    title = "Resampler",
+    title = UiText.get(R.string.toto_ui_more_resampler_196a37),
     lines = listOfNotNull(
         "Type" to "Mochy hi-fi, windowed sinc (Kaiser)",
         "I/O rate" to "${kHz(d.resampledFrom!!)} → ${kHz(d.resampledTo!!)}",
@@ -167,7 +171,7 @@ private fun dspCard(input: StatsInput): StatCard {
     )
     val floatPath = d.outputEncoding == C.ENCODING_PCM_FLOAT
     return StatCard(
-        title = "DSP",
+        title = UiText.get(R.string.toto_ui_more_dsp_d3d45f),
         lines = listOfNotNull(
             d.outputEncoding?.let { "PCM format" to pcmName(it) },
             d.outputSampleRate?.let { "Sample rate" to kHz(it) },
@@ -190,7 +194,7 @@ private fun outputCard(input: StatsInput): StatCard {
     val bufferMs = d.outputBufferBytes?.let { bytes -> d.outputSampleRate?.takeIf { it > 0 }?.let { rate -> bytes * 1000L / (rate.toLong() * frameBytes) } }
     val mixer = input.mixer
     return StatCard(
-        title = "Output",
+        title = UiText.get(R.string.audiopass_info_output),
         lines = listOfNotNull(
             input.castingTo?.let { "Casting to" to it },
             device?.let { "Device" to deviceName(it) },

@@ -1,0 +1,9 @@
+<!-- Personal edition URLs. Leave blank until the owner provides a real link. -->
+<resources>
+  <string name="toto_owner_website" translatable="false"></string>
+  <string name="toto_owner_social" translatable="false">https://www.facebook.com/tho.do.188/</string>
+  <string name="toto_owner_instagram" translatable="false">https://www.instagram.com/tho.anh.do01/</string>
+  <string name="toto_owner_community" translatable="false">https://discord.com/invite/hQatWSBBe</string>
+  <string name="toto_owner_contact" translatable="false"></string>
+  <string name="toto_owner_repo" translatable="false"></string>
+</resources>

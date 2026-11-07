@@ -2,6 +2,8 @@
 
 package com.mochyy.mochymusic.ui.player.info
 
+import com.mochyy.mochymusic.i18n.UiText
+
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
@@ -183,7 +185,7 @@ private fun SourceChip(source: AboutSource, onClick: () -> Unit) {
     ) {
         Text(text = source.label, color = Color.White.copy(alpha = 0.7f), fontSize = 11.sp, fontWeight = FontWeight.SemiBold)
         Spacer(Modifier.width(6.dp))
-        Icon(Icons.Rounded.SwapVert, contentDescription = "Change source", tint = Color.White.copy(alpha = 0.7f), modifier = Modifier.size(14.dp))
+        Icon(Icons.Rounded.SwapVert, contentDescription = UiText.get(R.string.toto_ui_more_change_source_6ea1a7), tint = Color.White.copy(alpha = 0.7f), modifier = Modifier.size(14.dp))
     }
 }
 
@@ -228,7 +230,7 @@ private fun AboutCard(about: SongAbout, source: AboutSource, onSwitch: (AboutSou
                             val other = AboutSource.entries.firstOrNull { it != shownSource && textFor(about, it) != null }
                             if (other != null) {
                                 Spacer(Modifier.height(12.dp))
-                                InfoPill(text = "Read it on ${other.label}", filled = true, onClick = { onSwitch(other) })
+                                InfoPill(text = UiText.get(R.string.toto_format_read_source, other.label), filled = true, onClick = { onSwitch(other) })
                             }
                         }
                     }

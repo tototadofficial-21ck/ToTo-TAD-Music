@@ -2,6 +2,8 @@
 
 package com.mochyy.mochymusic.ui.component.detail
 
+import com.mochyy.mochymusic.i18n.UiText
+
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.AnimatedContentTransitionScope
 import androidx.compose.animation.ContentTransform
@@ -786,7 +788,7 @@ private fun PlaylistNormalBarRow(
             ) {
                 Icon(
                     painter = painterResource(R.drawable.more_horiz),
-                    contentDescription = "Options",
+                    contentDescription = UiText.get(R.string.options),
                     tint = Color.White,
                     modifier = Modifier.size(18.dp),
                 )
@@ -856,7 +858,7 @@ private fun BackPill(
         ) {
             Icon(
                 painter = painterResource(R.drawable.arrow_back_ios),
-                contentDescription = "Back",
+                contentDescription = UiText.get(R.string.back_button_desc),
                 tint = Color.White,
                 modifier = Modifier
                     .size(16.dp)
@@ -1002,7 +1004,7 @@ fun PlaylistHeader(
                 Spacer(Modifier.width(9.dp))
                 CircleAction(
                     icon = R.drawable.shuffle,
-                    contentDescription = "Shuffle",
+                    contentDescription = UiText.get(R.string.shuffle),
                     onClick = onShuffleClick,
                     spinOnClick = true,
                 )
@@ -1276,7 +1278,7 @@ private fun CreatorAvatar(creator: CreatorUi, size: Dp, modifier: Modifier = Mod
 @Composable
 fun PlaylistSearchControl(onClick: () -> Unit) {
     Text(
-        text = "search",
+        text = UiText.get(R.string.toto_ui_more_search_3559d7),
         style = PlaylistStatsStyle.copy(fontSize = 12.sp),
         color = Color.White.copy(alpha = 0.72f),
         modifier = Modifier
@@ -1521,7 +1523,7 @@ fun PlaylistEndOfLine(
                 modifier = Modifier.weight(1f),
             )
             Text(
-                text = "END OF LINE",
+                text = UiText.get(R.string.toto_ui_more_end_of_line_759b38),
                 style = ReceiptCenterStyle,
                 color = Color.White.copy(alpha = 0.78f),
                 maxLines = 1,

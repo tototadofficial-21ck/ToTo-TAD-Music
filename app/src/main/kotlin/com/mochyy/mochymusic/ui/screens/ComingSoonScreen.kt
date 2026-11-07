@@ -2,6 +2,10 @@
 
 package com.mochyy.mochymusic.ui.screens
 
+import com.mochyy.mochymusic.i18n.UiText
+
+import androidx.compose.ui.res.stringResource
+
 import com.mochyy.mochymusic.ui.utils.stableSystemBars
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -59,7 +63,7 @@ fun ComingSoonScreen(
             IconButton(onClick = { navController.navigateUp() }) {
                 Icon(
                     painter = painterResource(R.drawable.arrow_back),
-                    contentDescription = "Back",
+                    contentDescription = UiText.get(R.string.back_button_desc),
                     tint = MaterialTheme.colorScheme.onBackground
                 )
             }
@@ -95,14 +99,14 @@ fun ComingSoonScreen(
                 }
                 Spacer(modifier = Modifier.height(24.dp))
                 Text(
-                    text = "Coming Soon",
+                    text = stringResource(R.string.toto_ui_coming_soon),
                     style = MaterialTheme.typography.headlineSmall,
                     fontWeight = FontWeight.Bold,
                     color = MaterialTheme.colorScheme.onBackground
                 )
                 Spacer(modifier = Modifier.height(8.dp))
                 Text(
-                    text = "$sectionTitle is still a work in progress.",
+                    text = UiText.get(R.string.toto_format_coming_soon, sectionTitle),
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.7f)
                 )

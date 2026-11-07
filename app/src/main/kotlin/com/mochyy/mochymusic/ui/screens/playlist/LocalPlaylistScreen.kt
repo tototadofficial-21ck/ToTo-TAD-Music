@@ -2,6 +2,8 @@
 
 package com.mochyy.mochymusic.ui.screens.playlist
 
+import com.mochyy.mochymusic.i18n.UiText
+
 import android.annotation.SuppressLint
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.ExperimentalFoundationApi
@@ -725,7 +727,7 @@ fun LocalPlaylistScreen(
                                     ) {
                                         Icon(
                                             painter = painterResource(R.drawable.drag_handle),
-                                            contentDescription = "Drag to move",
+                                            contentDescription = UiText.get(R.string.toto_ui_more_drag_to_move_0d84b3),
                                             tint = Color.White.copy(alpha = 0.78f),
                                         )
                                     }
@@ -823,7 +825,7 @@ fun LocalPlaylistScreen(
                             .fillMaxWidth()
                             .padding(top = 28.dp)
                     ) {
-                        PlaylistSectionTitle(title = "Related Playlists")
+                        PlaylistSectionTitle(title = UiText.get(R.string.toto_ui_more_related_playlists_3b3733))
                         Spacer(Modifier.height(9.dp))
                         LazyRow(
                             contentPadding = PaddingValues(horizontal = 36.dp),
@@ -898,7 +900,7 @@ fun LocalPlaylistScreen(
     if (showSortDialog) {
         AlertDialog(
             onDismissRequest = { showSortDialog = false },
-            title = { Text("Sort order") },
+            title = { Text(UiText.get(R.string.toto_ui_more_sort_order_5601af)) },
             text = {
                 Column {
                     PlaylistSongSortType.entries.forEach { type ->

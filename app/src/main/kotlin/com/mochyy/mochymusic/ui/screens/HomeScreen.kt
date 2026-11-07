@@ -531,12 +531,12 @@ private fun HomeShell() {
             verticalAlignment = Alignment.CenterVertically
         ) {
             Icon(
-                painter = painterResource(R.drawable.ic_mochy_mark),
-                contentDescription = "Mochy",
-                tint = Color.White,
+                painter = painterResource(R.drawable.toto_logo),
+                contentDescription = stringResource(R.string.app_name),
+                tint = Color.Unspecified,
                 modifier = Modifier
                     .launchMarkTarget()
-                    .size(HomeMarkWidth, HomeMarkHeight)
+                    .size(44.dp)
             )
             Box(
                 modifier = Modifier
@@ -1808,12 +1808,12 @@ fun HomeScreen(
                     // it's also where the launch intro lands the splash mark
                     Box(contentAlignment = Alignment.CenterStart) {
                         Icon(
-                            painter = painterResource(R.drawable.ic_mochy_mark),
-                            contentDescription = "Mochy",
-                            tint = Color.White,
+                            painter = painterResource(R.drawable.toto_logo),
+                            contentDescription = stringResource(R.string.app_name),
+                            tint = Color.Unspecified,
                             modifier = Modifier
                                 .launchMarkTarget()
-                                .size(HomeMarkWidth, HomeMarkHeight)
+                                .size(44.dp)
                                 .graphicsLayer {
                                     alpha = 1f - topBarProgress
                                     val scale = 1f - topBarProgress * 0.25f

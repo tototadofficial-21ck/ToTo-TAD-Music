@@ -2,6 +2,8 @@
 
 package com.mochyy.mochymusic
 
+import com.mochyy.mochymusic.i18n.UiText
+
 import android.app.Application
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -63,6 +65,8 @@ class App : Application(), SingletonImageLoader.Factory {
         // before super, because that's where hilt builds the database and the player caches
         com.mochyy.mochymusic.importer.transfer.TransferRestore.applyPending(this)
         super.onCreate()
+        UiText.initialize(this)
+        com.mochyy.mochymusic.auth.PersonalAuth.restore(this)
 
         AppLanguage.initialize(this)
         CrashHandler.install(this)
@@ -223,7 +227,7 @@ class App : Application(), SingletonImageLoader.Factory {
                     try {
                         YouTube.cookie = cookie
                     } catch (e: Exception) {
-                        Timber.e(e, "Could not parse cookie. Clearing existing cookie.")
+                        Timber.e("Could not parse cookie. Clearing existing cookie.")
                         forgetAccount(this@App)
                     }
                 }
@@ -314,11 +318,9 @@ class App : Application(), SingletonImageLoader.Factory {
             Timber.d("forgetAccount: DataStore preferences cleared")
 
             Timber.d("forgetAccount: Clearing YouTube object auth state")
-            Timber.d("forgetAccount: Before - cookie=${YouTube.cookie?.take(50)}, visitorData=${YouTube.visitorData?.take(20)}, dataSyncId=${YouTube.dataSyncId?.take(20)}")
             YouTube.cookie = null
             YouTube.visitorData = null
             YouTube.dataSyncId = null
-            Timber.d("forgetAccount: After - cookie=${YouTube.cookie}, visitorData=${YouTube.visitorData}, dataSyncId=${YouTube.dataSyncId}")
 
             Timber.d("forgetAccount: Clearing WebView CookieManager")
             withContext(Dispatchers.Main) {

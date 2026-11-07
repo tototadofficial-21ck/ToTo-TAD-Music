@@ -1,5 +1,7 @@
 package com.mochyy.mochymusic.ui.screens.settings
 
+import androidx.compose.ui.res.stringResource
+
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -22,14 +24,14 @@ fun crossmixTestItems(isVisible: Boolean = true): List<SettingsItem> {
     val status by statusFlow.collectAsState()
     return listOf(
         SettingsItem(
-            title = { Text("Crossmix status") },
+            title = { Text(stringResource(R.string.toto_ui_crossmix_status)) },
             descriptionText = status.ifBlank { "Nothing yet. Play a song with another queued after it" },
             icon = painterResource(R.drawable.info),
             iconShape = androidx.compose.foundation.shape.CircleShape,
             isVisible = isVisible,
         ),
         SettingsItem(
-            title = { Text("Test on this song") },
+            title = { Text(stringResource(R.string.toto_ui_test_on_this_song)) },
             highlightKey = "Test on this song",
             descriptionText = "Mixes into the next song",
             detail = "Plans the mix into the next song, then jumps to a few seconds before it",

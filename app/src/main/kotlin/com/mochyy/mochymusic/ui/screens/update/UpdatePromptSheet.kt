@@ -1,5 +1,7 @@
 package com.mochyy.mochymusic.ui.screens.update
 
+import com.mochyy.mochymusic.i18n.UiText
+
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
@@ -139,7 +141,7 @@ fun UpdatePromptSheet(
                     .padding(16.dp)
             ) {
                 Text(
-                    text = "What changed on ${release.version}",
+                    text = UiText.get(R.string.toto_format_version_changes, release.version),
                     color = Color.White,
                     fontSize = 20.sp,
                     fontWeight = FontWeight.Bold,
@@ -151,7 +153,7 @@ fun UpdatePromptSheet(
             Spacer(modifier = Modifier.height(18.dp))
 
             Text(
-                text = "To Be Installed -",
+                text = UiText.get(R.string.toto_ui_more_to_be_installed_0124bd),
                 color = Color(0xFF8A8A8A),
                 fontSize = 11.sp,
                 fontWeight = FontWeight.SemiBold,

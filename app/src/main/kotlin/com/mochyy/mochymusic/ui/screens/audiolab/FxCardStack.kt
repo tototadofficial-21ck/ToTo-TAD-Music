@@ -2,6 +2,10 @@
 
 package com.mochyy.mochymusic.ui.screens.audiolab
 
+import com.mochyy.mochymusic.R
+
+import com.mochyy.mochymusic.i18n.UiText
+
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.spring
@@ -110,7 +114,7 @@ fun BoxScope.FxCardStack(effects: List<ActiveEffect>, hidden: State<Boolean>) {
     ) {
         if (count > ShownCards) {
             Text(
-                "and ${count - ShownCards} other",
+                UiText.get(R.string.toto_format_other_effects, count - ShownCards),
                 fontFamily = FontFamily.Monospace,
                 fontSize = 10.sp,
                 color = LabCardInk,

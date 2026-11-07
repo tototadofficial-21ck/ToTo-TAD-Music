@@ -1,5 +1,7 @@
 package com.mochyy.mochymusic.ui.screens.settings.importsync
 
+import com.mochyy.mochymusic.i18n.UiText
+
 import android.annotation.SuppressLint
 import android.graphics.Bitmap
 import android.webkit.CookieManager
@@ -26,6 +28,7 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
@@ -44,6 +47,7 @@ import androidx.compose.ui.viewinterop.AndroidView
 import androidx.datastore.preferences.core.edit
 import androidx.navigation.NavController
 import com.mochyy.mochymusic.LocalPlayerAwareWindowInsets
+import com.mochyy.mochymusic.BuildConfig
 import com.mochyy.mochymusic.R
 import com.mochyy.mochymusic.constants.AccountChannelHandleKey
 import com.mochyy.mochymusic.constants.AccountEmailKey
@@ -59,7 +63,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.json.JSONObject
-import timber.log.Timber
 import com.mochyy.mochymusic.ui.utils.stableStatusBarsPadding
 
 private const val LOGIN_URL = "https://accounts.google.com/ServiceLogin?continue=https%3A%2F%2Fmusic.youtube.com"
@@ -98,13 +101,13 @@ fun YouTubeLoginScreen(navController: NavController) {
                 .padding(horizontal = 8.dp, vertical = 4.dp),
         ) {
             IconButton(onClick = { navController.navigateUp() }) {
-                Icon(painterResource(R.drawable.arrow_back), contentDescription = "Back", tint = Color.White)
+                Icon(painterResource(R.drawable.arrow_back), contentDescription = UiText.get(R.string.back_button_desc), tint = Color.White)
             }
             Spacer(Modifier.width(4.dp))
             Column(modifier = Modifier.weight(1f)) {
-                Text("Sign in to YouTube", style = MaterialTheme.typography.titleLarge, color = Color.White)
+                Text(UiText.get(R.string.toto_ui_more_sign_in_to_youtube_2bcb0f), style = MaterialTheme.typography.titleLarge, color = Color.White)
                 Text(
-                    "Google's own sign-in page. Mochy never sees your password.",
+                    UiText.get(R.string.toto_ui_more_google_s_own_sign_in_page_mochy_never_sees_your_pass_e4c1d4),
                     style = MaterialTheme.typography.bodySmall,
                     color = Color.White.copy(alpha = 0.6f),
                 )
@@ -115,7 +118,7 @@ fun YouTubeLoginScreen(navController: NavController) {
         }
         YouTubeLoginWebContent(
             onSignedIn = { info ->
-                Toast.makeText(context, info?.name?.let { "Signed in as $it" } ?: "Signed in to YouTube", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, info?.name?.let { UiText.get(R.string.toto_setup_signed_in_as, it) } ?: UiText.get(R.string.toto_youtube_linked), Toast.LENGTH_SHORT).show()
                 navController.navigateUp()
             },
             onExit = { navController.navigateUp() },
@@ -143,17 +146,37 @@ fun YouTubeLoginWebContent(
     var webView by remember { mutableStateOf<WebView?>(null) }
     var saving by remember { mutableStateOf(false) }
     var finished by remember { mutableStateOf(false) }
+    var loginMessage by remember { mutableStateOf<Int?>(null) }
+    fun diagnostic(event: String) {
+        if (BuildConfig.DEBUG) android.util.Log.i("ToToYouTubeLogin", "event=$event")
+    }
 
-    fun finishLogin(view: WebView, url: String) {
+    fun finishLogin(view: WebView, url: String, manual: Boolean = false) {
         if (saving || finished) return
-        val cookie = CookieManager.getInstance().getCookie(url) ?: return
-        if ("SAPISID" !in runCatching { parseCookieString(cookie) }.getOrDefault(emptyMap())) return
+        val page = android.net.Uri.parse(url)
+        if (page.scheme != "https" || page.host != "music.youtube.com") {
+            if (manual && page.scheme == "https" && page.host in setOf("youtube.com", "www.youtube.com", "m.youtube.com")) {
+                view.loadUrl("https://music.youtube.com")
+            } else if (manual) loginMessage = R.string.toto_youtube_finish_google
+            return
+        }
+        val cookie = CookieManager.getInstance().getCookie("https://music.youtube.com").orEmpty()
+        if (runCatching { parseCookieString(cookie)["SAPISID"].isNullOrBlank() }.getOrDefault(true)) {
+            diagnostic("COOKIE_PENDING")
+            if (manual) loginMessage = R.string.toto_youtube_wait_cookie
+            return
+        }
+        loginMessage = null
+        diagnostic("VERIFYING")
         saving = true
         view.evaluateJavascript(READ_CONFIG_JS) { raw ->
             val config = runCatching { JSONObject(raw) }.getOrNull()
             val visitorData = config?.optString("visitorData")?.takeIf { it.isNotBlank() && it != "null" }
             val dataSyncId = config?.optString("dataSyncId")?.takeIf { it.isNotBlank() && it != "null" }
             scope.launch(Dispatchers.IO) {
+                val previousCookie = YouTube.cookie
+                val previousVisitor = YouTube.visitorData
+                val previousSync = YouTube.dataSyncId
                 try {
                     // account details need the new session, the app would set these from prefs anyway
                     YouTube.cookie = cookie
@@ -163,24 +186,37 @@ fun YouTubeLoginWebContent(
                             ?: it.takeIf { it.endsWith("||") }?.substringBefore("||")
                             ?: it.substringAfter("||")
                     }
-                    val info = YouTube.accountInfo().getOrNull()
+                    val info = YouTube.accountInfo().getOrThrow()
                     context.dataStore.edit { settings ->
                         settings[InnerTubeCookieKey] = cookie
                         visitorData?.let { settings[VisitorDataKey] = it }
                         dataSyncId?.let { settings[DataSyncIdKey] = it }
-                        settings[AccountNameKey] = info?.name.orEmpty()
-                        settings[AccountEmailKey] = info?.email.orEmpty()
-                        settings[AccountChannelHandleKey] = info?.channelHandle.orEmpty()
+                        settings[AccountNameKey] = info.name
+                        settings[AccountEmailKey] = info.email.orEmpty()
+                        settings[AccountChannelHandleKey] = info.channelHandle.orEmpty()
                     }
                     withContext(Dispatchers.Main) {
+                        CookieManager.getInstance().flush()
+                        diagnostic("LINKED")
                         finished = true
                         currentOnSignedIn(info)
                     }
                 } catch (e: Exception) {
-                    Timber.e(e, "Saving YouTube login failed")
+                    if (YouTube.cookie == cookie) {
+                        YouTube.cookie = previousCookie
+                        YouTube.visitorData = previousVisitor
+                        YouTube.dataSyncId = previousSync
+                    }
+                    if (e is kotlinx.coroutines.CancellationException) throw e
+                    diagnostic(when {
+                        e is java.io.IOException -> "NETWORK_FAILURE"
+                        e is NullPointerException || e is kotlinx.serialization.SerializationException -> "ACCOUNT_RESPONSE_FAILURE"
+                        e is io.ktor.client.plugins.ResponseException -> "ACCOUNT_HTTP_FAILURE"
+                        else -> "ACCOUNT_VERIFICATION_FAILED"
+                    })
                     withContext(Dispatchers.Main) {
                         saving = false
-                        Toast.makeText(context, "Couldn't finish signing in. Try again.", Toast.LENGTH_LONG).show()
+                        loginMessage = R.string.toto_youtube_verify_error
                     }
                 }
             }
@@ -202,7 +238,14 @@ fun YouTubeLoginWebContent(
         }
     }
 
-    Box(modifier = modifier) {
+    Column(modifier = modifier) {
+        Row(Modifier.fillMaxWidth().padding(horizontal = 12.dp), verticalAlignment = Alignment.CenterVertically) {
+            Text(UiText.get(loginMessage ?: R.string.toto_youtube_finish_hint), modifier = Modifier.weight(1f), style = MaterialTheme.typography.bodySmall)
+            TextButton(enabled = !saving && !finished, onClick = {
+                webView?.let { finishLogin(it, it.url.orEmpty(), manual = true) }
+            }) { Text(UiText.get(R.string.toto_youtube_finish_link)) }
+        }
+        Box(Modifier.weight(1f).fillMaxWidth()) {
         AndroidView(
             modifier = Modifier.fillMaxSize(),
             factory = { ctx ->
@@ -231,7 +274,7 @@ fun YouTubeLoginWebContent(
                         override fun onPageFinished(view: WebView, url: String?) {
                             currentOnLoadingChange(false)
                             url?.let(currentOnUrlChange)
-                            if (url != null && url.startsWith("https://music.youtube.com")) finishLogin(view, url)
+                            if (url != null) finishLogin(view, url)
                         }
                     }
                     loadUrl(LOGIN_URL)
@@ -250,4 +293,5 @@ fun YouTubeLoginWebContent(
             }
         }
     }
+}
 }

@@ -8,6 +8,8 @@
 
 package com.mochyy.mochymusic.ui.screens.playlist
 
+import com.mochyy.mochymusic.i18n.UiText
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -185,7 +187,7 @@ fun GeneratedSearchCapsule(
             ) {
                 Icon(
                     painter = painterResource(R.drawable.close),
-                    contentDescription = "Clear",
+                    contentDescription = UiText.get(R.string.proxy_login_clear),
                     tint = Color.White,
                     modifier = Modifier.size(14.dp),
                 )
@@ -210,7 +212,7 @@ fun GeneratedGroupHeader(text: String, modifier: Modifier = Modifier) {
 @Composable
 fun GeneratedNoResults(query: String, modifier: Modifier = Modifier) {
     Text(
-        text = "Nothing here matches \"$query\"",
+        text = UiText.get(R.string.toto_format_query_empty, query),
         style = PlaylistStatsStyle.copy(fontSize = 13.sp),
         color = Color.White.copy(alpha = 0.6f),
         modifier = modifier.padding(horizontal = PlaylistInset, vertical = 24.dp),

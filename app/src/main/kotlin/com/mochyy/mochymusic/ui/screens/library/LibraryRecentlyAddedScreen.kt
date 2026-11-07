@@ -8,6 +8,10 @@
 
 package com.mochyy.mochymusic.ui.screens.library
 
+import com.mochyy.mochymusic.R
+
+import com.mochyy.mochymusic.i18n.UiText
+
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
@@ -31,7 +35,7 @@ fun LibraryRecentlyAddedScreen(
     val viewModel: LibraryHomeViewModel = hiltViewModel()
     // with the lifecycle: the Cached shelf looks at the cache every couple of seconds while watched
     val songs by (shelf?.let(viewModel::shelf)?.songs ?: viewModel.songs).collectAsStateWithLifecycle()
-    val queueTitle = shelf?.label ?: "Recently added"
+    val queueTitle = shelf?.label ?: UiText.get(R.string.toto_more_recently_added)
     val playerConnection = LocalPlayerConnection.current ?: return
 
     val entries = remember(songs) {
@@ -58,8 +62,8 @@ fun LibraryRecentlyAddedScreen(
     }
 
     LibraryGridScreen(
-        title = "Added",
-        subtitle = "Recently",
+        title = UiText.get(R.string.toto_more_added),
+        subtitle = UiText.get(R.string.toto_more_recently),
         searchPlaceholder = "Find song listed here, by the lyrics, or the artist",
         entries = entries,
         onOpen = { entry -> play(songs.indexOfFirst { it.id == entry.id }.coerceAtLeast(0), shuffle = false) },

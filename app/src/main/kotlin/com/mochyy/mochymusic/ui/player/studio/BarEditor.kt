@@ -1,5 +1,9 @@
 package com.mochyy.mochymusic.ui.player.studio
 
+import com.mochyy.mochymusic.R
+
+import com.mochyy.mochymusic.i18n.UiText
+
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.tween
@@ -281,7 +285,7 @@ internal fun BarEditor(
                 }
             },
         ) {
-            Text("Card Style", color = Color.White, style = studioText(StudioType.Title, FontWeight.Bold))
+            Text(UiText.get(R.string.toto_ui_more_card_style_128f72), color = Color.White, style = studioText(StudioType.Title, FontWeight.Bold))
             AnimatedContent(
                 targetState = barStyles.getOrNull(focused)?.displayName.orEmpty(),
                 transitionSpec = {

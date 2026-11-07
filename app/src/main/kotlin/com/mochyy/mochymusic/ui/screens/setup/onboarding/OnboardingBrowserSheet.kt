@@ -2,6 +2,8 @@
 
 package com.mochyy.mochymusic.ui.screens.setup.onboarding
 
+import com.mochyy.mochymusic.i18n.UiText
+
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.AnimationVector1D
 import androidx.compose.animation.core.Spring
@@ -118,7 +120,7 @@ internal fun OnboardingBrowserSheet(
             }
             BrowserSheetBar(
                 icon = { ProviderSquircle(service, size = 38.dp) },
-                title = "Sign in to ${service.label}",
+                title = UiText.get(R.string.toto_setup_browser_signin, service.label),
                 url = url,
                 onClose = onClose,
             )
@@ -168,7 +170,7 @@ internal fun BrowserSheetBar(
                 .clickable(onClick = onClose),
             contentAlignment = Alignment.Center,
         ) {
-            Icon(painterResource(R.drawable.close), contentDescription = "Close", tint = Color.White, modifier = Modifier.size(20.dp))
+            Icon(painterResource(R.drawable.close), contentDescription = UiText.get(R.string.toto_setup_close), tint = Color.White, modifier = Modifier.size(20.dp))
         }
     }
 }

@@ -2,6 +2,10 @@
 
 package com.mochyy.mochymusic.ui.player
 
+import com.mochyy.mochymusic.R
+
+import androidx.compose.ui.res.stringResource
+
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.SizeTransform
 import androidx.compose.animation.core.Animatable
@@ -324,7 +328,7 @@ internal fun MiniLyricsTicker(
                     TickerSlot.LOADING -> LyricsLoadingDots(alignStart = true)
 
                     else -> Text(
-                        text = "No lyrics for this song",
+                        text = stringResource(R.string.toto_ui_no_lyrics_for_this_song),
                         style = MaterialTheme.typography.bodyLarge,
                         fontWeight = FontWeight.SemiBold,
                         color = Color.White.copy(alpha = 0.55f),

@@ -6,6 +6,8 @@
 
 package com.mochyy.mochymusic.ui.menu
 
+import com.mochyy.mochymusic.i18n.UiText
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -76,7 +78,7 @@ private fun ColumnScope.ChooseVersionContent(match: TrackMatch, onDone: () -> Un
     val sourceSeconds = match.durationMs?.takeIf { it > 0 }?.div(1000.0)
 
     Text(
-        text = "Choose a version",
+        text = UiText.get(R.string.toto_ui_more_choose_a_version_bd007d),
         color = SearchColors.Primary,
         fontSize = 26.sp,
         fontWeight = FontWeight.Bold,
@@ -125,7 +127,7 @@ private fun ColumnScope.ChooseVersionContent(match: TrackMatch, onDone: () -> Un
                 ImportedVersions.scope.launch {
                     ImportedVersions.choose(context.applicationContext, database, match, song)
                     TopToaster.show(
-                        text = "Switched to ${song.title}. Future imports will use this version too.",
+                        text = UiText.get(R.string.toto_format_switched_version, song.title),
                         thumbnail = song.thumbnail,
                         iconRes = R.drawable.sync,
                     )

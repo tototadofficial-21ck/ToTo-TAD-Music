@@ -6,6 +6,10 @@
 
 package com.mochyy.mochymusic.ui.player.share
 
+import com.mochyy.mochymusic.R
+
+import com.mochyy.mochymusic.i18n.UiText
+
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.animateFloatAsState
@@ -82,7 +86,7 @@ internal fun PopupSheetState.showLinePicker(session: LyricsShareSession): PopupS
     return showWithHandle(
         buttonBar = {
             SheetPillButton(
-                text = "Select",
+                text = UiText.get(R.string.toto_ui_more_select_859822),
                 enabled = session.lineCount > 0,
                 onClick = { session.onLinesPicked(popup) },
             )

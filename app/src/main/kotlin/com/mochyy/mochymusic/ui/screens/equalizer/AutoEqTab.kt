@@ -2,6 +2,8 @@
 
 package com.mochyy.mochymusic.ui.screens.equalizer
 
+import com.mochyy.mochymusic.i18n.UiText
+
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.animateFloatAsState
@@ -106,7 +108,7 @@ fun AutoEqTab(viewModel: AudioLabViewModel, eq: EqSettings) {
     LabSectionLabel("Headphone correction")
     LabCard(padding = 12.dp) {
         Row(Modifier.fillMaxWidth().padding(horizontal = 6.dp, vertical = 4.dp), verticalAlignment = Alignment.CenterVertically) {
-            Text("FREQUENCY RESPONSE", fontFamily = InterFontFamily, fontWeight = FontWeight.Bold, fontSize = 12.sp,
+            Text(UiText.get(R.string.toto_ui_more_frequency_response_f0c990), fontFamily = InterFontFamily, fontWeight = FontWeight.Bold, fontSize = 12.sp,
                 letterSpacing = 1.2.sp, color = LabColors.Secondary, modifier = Modifier.weight(1f))
             Legend(OriginalColor, "Original")
             Spacer(Modifier.width(10.dp))
@@ -240,8 +242,8 @@ private fun SelectedHeadphone(
         }
         Spacer(Modifier.height(8.dp))
         LabToggleRow(
-            title = "Apply correction",
-            subtitle = "Flattens these headphones toward the target, under your own curve",
+            title = UiText.get(R.string.toto_ui_more_apply_correction_ac56bf),
+            subtitle = UiText.get(R.string.toto_ui_more_flattens_these_headphones_toward_the_target_under_yo_9e1b0b),
             checked = enabled,
             onCheckedChange = viewModel::setCorrectionEnabled,
         )
@@ -316,8 +318,8 @@ private fun Database(viewModel: AudioLabViewModel, selectedPath: String?, loadin
     LabCard(padding = 14.dp) {
         Row(Modifier.padding(horizontal = 4.dp), verticalAlignment = Alignment.CenterVertically) {
             Column(Modifier.weight(1f)) {
-                Text("Database", fontFamily = InterFontFamily, fontWeight = FontWeight.Bold, fontSize = 17.sp, color = Color.White)
-                Text("AutoEq · measured by reviewers", fontFamily = InterFontFamily, fontSize = 12.sp, color = LabColors.Secondary)
+                Text(UiText.get(R.string.toto_ui_more_database_61074f), fontFamily = InterFontFamily, fontWeight = FontWeight.Bold, fontSize = 17.sp, color = Color.White)
+                Text(UiText.get(R.string.toto_ui_more_autoeq_measured_by_reviewers_68503b), fontFamily = InterFontFamily, fontSize = 12.sp, color = LabColors.Secondary)
             }
             val ready = index as? AutoEqIndex.Ready
             if (ready != null) {
@@ -357,7 +359,7 @@ private fun Database(viewModel: AudioLabViewModel, selectedPath: String?, loadin
                 }
                 is AutoEqIndex.Ready -> {
                     if (results.isEmpty()) {
-                        Text("No headphones match “$query”", fontFamily = InterFontFamily, fontSize = 14.sp,
+                        Text(UiText.get(R.string.toto_format_headphones_empty, query), fontFamily = InterFontFamily, fontSize = 14.sp,
                             color = LabColors.Secondary, modifier = Modifier.align(Alignment.Center))
                     }
                     LazyColumn(state = listState, modifier = Modifier.fillMaxSize().padding(end = 22.dp)) {
@@ -406,7 +408,7 @@ private fun SearchField(query: String, onQueryChange: (String) -> Unit) {
     ) {
         Box(Modifier.weight(1f)) {
             if (query.isEmpty()) {
-                Text("Search model (e.g. HD 600)", fontFamily = InterFontFamily, fontSize = 15.sp, color = LabColors.Faint)
+                Text(UiText.get(R.string.toto_ui_more_search_model_e_g_hd_600_7019de), fontFamily = InterFontFamily, fontSize = 15.sp, color = LabColors.Faint)
             }
             BasicTextField(
                 value = query,

@@ -2,6 +2,10 @@
 
 package com.mochyy.mochymusic.ui.component
 
+import com.mochyy.mochymusic.R
+
+import com.mochyy.mochymusic.i18n.UiText
+
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Spacer
@@ -89,7 +93,7 @@ internal fun PlaylistFormContent(
         SheetTextField(
             value = form.name,
             onValueChange = { form.name = it.take(MaxNameLength) },
-            placeholder = "Name your playlist",
+            placeholder = UiText.get(R.string.toto_ui_more_name_your_playlist_db5ce8),
             keyboardOptions = KeyboardOptions(
                 capitalization = KeyboardCapitalization.Sentences,
                 imeAction = ImeAction.Next,
@@ -103,7 +107,7 @@ internal fun PlaylistFormContent(
         SheetTextField(
             value = form.description,
             onValueChange = { form.description = it.take(MaxDescriptionLength) },
-            placeholder = "What is it about?",
+            placeholder = UiText.get(R.string.toto_ui_more_what_is_it_about_23a5be),
             singleLine = false,
             maxLines = 4,
             keyboardOptions = KeyboardOptions(capitalization = KeyboardCapitalization.Sentences),

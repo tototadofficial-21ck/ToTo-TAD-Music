@@ -97,7 +97,7 @@ internal fun moduleStatus(entry: ModuleEntry): String = when (val account = entr
     AccountState.SignedOut -> stringResource(R.string.module_status_signed_out)
     // a module with no account can't be signed in again, its reason is only that the server didn't answer
     is AccountState.Expired -> if (entry.module.signIn == null) account.reason else stringResource(R.string.module_status_expired, account.reason)
-    is AccountState.SignedIn -> stringResource(if (entry.enabled) R.string.module_status_on else R.string.module_status_off, account.label)
+    is AccountState.SignedIn -> stringResource(if (entry.enabled) R.string.module_status_on else R.string.module_status_off, if (account.label == com.mochyy.mochymusic.module.NO_ACCOUNT_LABEL) stringResource(R.string.toto_module_no_account) else account.label)
 }
 
 /** where it came from and its version */

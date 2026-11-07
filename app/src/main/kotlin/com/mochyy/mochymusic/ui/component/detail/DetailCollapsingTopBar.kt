@@ -2,6 +2,8 @@
 
 package com.mochyy.mochymusic.ui.component.detail
 
+import com.mochyy.mochymusic.i18n.UiText
+
 import android.os.Build
 import androidx.compose.foundation.background
 import androidx.compose.foundation.combinedClickable
@@ -174,7 +176,7 @@ fun DetailCollapsingTopBar(
             ) {
                 Icon(
                     painter = painterResource(R.drawable.arrow_back_ios),
-                    contentDescription = "Back",
+                    contentDescription = UiText.get(R.string.back_button_desc),
                     tint = Color.White,
                     modifier = Modifier.size(20.dp)
                 )

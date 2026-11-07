@@ -2,6 +2,8 @@
 
 package com.mochyy.mochymusic.ui.screens.setup.onboarding
 
+import com.mochyy.mochymusic.i18n.UiText
+
 import com.mochyy.mochymusic.ui.theme.InterFontFamily
 import androidx.compose.animation.core.withInfiniteAnimationFrameNanos
 import androidx.compose.foundation.Canvas
@@ -105,7 +107,7 @@ internal fun ProfileIdCard(
     /** true while a finger is down on the card, the whole card lights up a little */
     pressed: () -> Boolean = { false },
 ) {
-    val name = idCardName(username)
+    val name = if (username.isBlank()) UiText.get(R.string.toto_setup_name_hint) else idCardName(username)
     val shape = RoundedCornerShape(22.dp)
     val bodyText = if (silver) Color(0xFF111114) else Color.White
     val mutedText = if (silver) Color(0xFF3A3A40) else Color(0xFFB5B5B5)
@@ -133,7 +135,7 @@ internal fun ProfileIdCard(
             ) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Text(
-                        text = "PROFILE USR#$cardNumber",
+                        text = UiText.get(R.string.toto_setup_profile_number, cardNumber),
                         color = mutedText,
                         fontFamily = FontFamily.Monospace,
                         fontSize = (unit.value * 11f).sp,
@@ -157,14 +159,14 @@ internal fun ProfileIdCard(
                         if (photo != null) {
                             AsyncImage(
                                 model = photo,
-                                contentDescription = "Profile picture",
+                                contentDescription = UiText.get(R.string.toto_setup_profile_picture),
                                 contentScale = ContentScale.Crop,
                                 modifier = Modifier.fillMaxSize(),
                             )
                         } else if (onPhotoClick != null) {
                             Icon(
                                 painterResource(R.drawable.add),
-                                contentDescription = "Add a profile picture",
+                                contentDescription = UiText.get(R.string.toto_setup_add_a_profile_picture),
                                 tint = Color.White.copy(alpha = 0.7f),
                                 modifier = Modifier.size(unit * 34f),
                             )
@@ -174,7 +176,7 @@ internal fun ProfileIdCard(
                     Column(modifier = Modifier.weight(1f)) {
                         if (showIdCardOf) {
                             Text(
-                                "ID CARD OF",
+                                UiText.get(R.string.toto_setup_id_card_of),
                                 color = mutedText,
                                 fontFamily = FontFamily.Monospace,
                                 fontSize = (unit.value * 10f).sp,
@@ -212,7 +214,7 @@ internal fun ProfileIdCard(
                 Spacer(Modifier.weight(1f))
             }
             MarqueeStrip(
-                text = "${name}`s CARD",
+                text = UiText.get(R.string.toto_setup_profile_card, name),
                 color = if (silver) Color(0xFF2B2B30).copy(alpha = 0.75f) else Color(0xFF8A8A8A),
                 background = if (silver) Color.Black.copy(alpha = 0.18f) else Color(0xFF1B1B1B),
                 modifier = Modifier

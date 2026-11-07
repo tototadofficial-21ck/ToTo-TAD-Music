@@ -2,6 +2,10 @@
 
 package com.mochyy.mochymusic.importer.account
 
+import com.mochyy.mochymusic.R
+
+import com.mochyy.mochymusic.i18n.UiText
+
 import android.content.Context
 import com.mochyy.mochymusic.constants.AccountNameKey
 import com.mochyy.mochymusic.extensions.isUserLoggedIn
@@ -256,7 +260,7 @@ class AccountImportSession(
             var signedOut = false
 
             for ((index, playlist) in chosen.withIndex()) {
-                _state.value = AccountImportState.Reading("Reading \"${playlist.name}\"", index, chosen.size)
+                _state.value = AccountImportState.Reading(UiText.get(R.string.toto_setup_read_playlist, playlist.name), index, chosen.size)
                 try {
                     val tracks = lib.tracks(playlist)
                     when {
@@ -315,7 +319,7 @@ class AccountImportSession(
             val missing = mutableListOf<ResyncTarget>()
             var listed: List<RemotePlaylist>? = null
             for ((index, target) in targets.withIndex()) {
-                _state.value = AccountImportState.Reading("Reading \"${target.name}\"", index, targets.size)
+                _state.value = AccountImportState.Reading(UiText.get(R.string.toto_setup_read_playlist, target.name), index, targets.size)
                 // straight to it when the import saved its id: no need to list the whole library
                 val byId = target.remoteId?.let { readById(lib, it, target.name) }
                 if (!byId.isNullOrEmpty()) {
@@ -369,7 +373,7 @@ class AccountImportSession(
         workJob?.cancel()
         workJob = scope.launch(Dispatchers.IO) {
             try {
-                _state.value = AccountImportState.Reading("Reading \"${picked.name}\"", 0, 1)
+                _state.value = AccountImportState.Reading(UiText.get(R.string.toto_setup_read_playlist, picked.name), 0, 1)
                 val read = ResyncRead(lib.tracks(picked), PlaylistOrigin(remoteId = picked.id))
                 _resyncReads.value = ResyncReads(mapOf(target.playlistId to read), missing = emptyList())
             } catch (e: CancellationException) {

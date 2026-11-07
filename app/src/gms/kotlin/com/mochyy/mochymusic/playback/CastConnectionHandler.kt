@@ -284,6 +284,7 @@ class CastConnectionHandler(
                     Timber.d("Reloading Cast queue: ${queueItems.size} items, startIndex=$startIndex, shuffle=$shuffleEnabled")
 
                     withContext(Dispatchers.Main) {
+                        if (!com.mochyy.mochymusic.auth.PersonalAuth.allowed) return@withContext
                         remoteMediaClient?.queueLoad(
                             queueItems.toTypedArray(),
                             startIndex,
@@ -465,6 +466,7 @@ class CastConnectionHandler(
     }
 
     fun loadMedia(metadata: AppMediaMetadata) {
+        if (!com.mochyy.mochymusic.auth.PersonalAuth.allowed) return
         loadMediaWithQueue(metadata)
     }
 
@@ -558,6 +560,7 @@ class CastConnectionHandler(
                 Timber.d("Loading Cast queue: ${queueItems.size} items, startIndex=$startIndex, shuffle=$shuffleEnabled")
 
                 withContext(Dispatchers.Main) {
+                    if (!com.mochyy.mochymusic.auth.PersonalAuth.allowed) return@withContext
                     val client = remoteMediaClient ?: return@withContext
 
                     client.queueLoad(
@@ -584,6 +587,7 @@ class CastConnectionHandler(
     }
 
     fun play() {
+        if (!com.mochyy.mochymusic.auth.PersonalAuth.allowed) return
         remoteMediaClient?.play()
     }
 

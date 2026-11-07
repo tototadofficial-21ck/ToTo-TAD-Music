@@ -2,6 +2,10 @@
 
 package com.mochyy.mochymusic.ui.player.menu
 
+import com.mochyy.mochymusic.R
+
+import com.mochyy.mochymusic.i18n.UiText
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -117,7 +121,7 @@ fun LyricsOffsetSheet(onDismiss: () -> Unit) {
                 .padding(top = 16.dp, bottom = 24.dp)
         ) {
             Text(
-                text = "Lyrics offset",
+                text = UiText.get(R.string.video_mode_lyrics_offset),
                 color = Color.White,
                 fontSize = 28.sp,
                 fontWeight = FontWeight.Bold,
@@ -204,7 +208,7 @@ private fun AutoSyncStatus(state: LyricsAutoSync.State?, timed: Boolean, onUndo:
     )
     if (state is LyricsAutoSync.State.Synced && state.previousOffsetMs != state.offsetMs) {
         Text(
-            text = "Undo",
+            text = UiText.get(R.string.undo),
             color = Color.White,
             fontSize = 13.sp,
             fontWeight = FontWeight.Bold,

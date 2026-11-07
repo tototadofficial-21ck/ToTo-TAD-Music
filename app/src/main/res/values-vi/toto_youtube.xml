@@ -1,0 +1,9 @@
+<resources>
+  <string name="toto_youtube_linked">Đã liên kết tài khoản YouTube</string>
+  <string name="toto_youtube_finish_google">Hãy hoàn tất đăng nhập Google và mở YouTube Music rồi thử lại.</string>
+  <string name="toto_youtube_wait_cookie">Phiên YouTube chưa sẵn sàng. Đợi YouTube Music tải xong rồi thử lại.</string>
+  <string name="toto_youtube_verify_error">Chưa xác minh được tài khoản YouTube. Kiểm tra mạng rồi bấm Hoàn tất liên kết để thử lại.</string>
+  <string name="toto_youtube_finish_hint">Sau khi đăng nhập, bấm Hoàn tất liên kết nếu trang này vẫn mở.</string>
+  <string name="toto_youtube_finish_link">Hoàn tất liên kết</string>
+  <string name="toto_youtube_sync_hint">Cần để đồng bộ. Phiên đăng nhập chỉ lưu trên điện thoại này</string>
+</resources>

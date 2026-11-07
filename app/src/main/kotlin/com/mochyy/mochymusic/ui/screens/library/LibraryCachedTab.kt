@@ -6,6 +6,10 @@
 
 package com.mochyy.mochymusic.ui.screens.library
 
+import com.mochyy.mochymusic.R
+
+import androidx.compose.ui.res.stringResource
+
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.lazy.LazyListScope
@@ -34,7 +38,7 @@ internal fun LazyListScope.libraryCachedTab(
 ) {
     if (data.songs.isEmpty()) {
         item(key = "cached_empty") {
-            LibraryEmptyState(text = "Nothing cached yet. Songs you play show up here.")
+            LibraryEmptyState(text = stringResource(R.string.toto_ui_nothing_cached_yet_songs_you_play_show_up_here))
         }
     } else {
         libraryShelfCards(data, navController, spaceAbove = 0.dp)
@@ -43,7 +47,7 @@ internal fun LazyListScope.libraryCachedTab(
     // above the list rather than under it: with hundreds of songs cached it would be a long way down
     item(key = "cached_manage") {
         Spacer(modifier = Modifier.height(12.dp))
-        LibraryManagePill(text = "Manage cache", onClick = onManage)
+        LibraryManagePill(text = stringResource(R.string.toto_ui_manage_cache), onClick = onManage)
     }
 
     if (data.songs.isEmpty()) return

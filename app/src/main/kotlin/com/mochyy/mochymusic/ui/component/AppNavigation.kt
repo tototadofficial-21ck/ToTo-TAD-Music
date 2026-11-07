@@ -247,6 +247,7 @@ fun AppNavigationRail(
                     Icon(
                         painter = coil3.compose.rememberAsyncImagePainter(model = iconRes),
                         contentDescription = stringResource(screen.titleId),
+                        tint = if (screen == Screens.Settings) Color.Unspecified else androidx.compose.material3.LocalContentColor.current,
                         modifier = Modifier.size(28.dp)
                     )
                 }
@@ -426,7 +427,7 @@ private fun RowScope.NavTab(
     // Both icons stay loaded, so lighting a tab never shows an empty frame while its filled icon loads.
     val unlitIcon = coil3.compose.rememberAsyncImagePainter(model = screen.iconIdInactive)
     val litIcon = coil3.compose.rememberAsyncImagePainter(model = screen.iconIdActive)
-    val iconSize = if (screen == Screens.Home || screen == Screens.Search) 22.dp else 24.dp
+    val iconSize = if (screen == Screens.Settings) 32.dp else if (screen == Screens.Home || screen == Screens.Search) 22.dp else 24.dp
 
     Box(
         modifier = Modifier
@@ -465,7 +466,7 @@ private fun TabIcons(
         Icon(
             painter = unlitIcon,
             contentDescription = stringResource(screen.titleId),
-            tint = Color.White,
+            tint = if (screen == Screens.Settings) Color.Unspecified else Color.White,
             modifier = Modifier
                 .size(iconSize)
                 .graphicsLayer {
@@ -476,7 +477,7 @@ private fun TabIcons(
         Icon(
             painter = litIcon,
             contentDescription = null,
-            tint = Color.White,
+            tint = if (screen == Screens.Settings) Color.Unspecified else Color.White,
             modifier = Modifier
                 .size(iconSize)
                 .graphicsLayer {

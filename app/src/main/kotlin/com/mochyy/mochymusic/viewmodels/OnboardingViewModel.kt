@@ -81,8 +81,8 @@ class OnboardingViewModel @Inject constructor(
     var blur by mutableStateOf<BlurCapability.Result?>(null)
         private set
 
-    val cardNumber: String = (10_000_000_000L + Random.nextLong(89_999_999_999L)).toString()
-    val joinedText: String = "joined at " + LocalDate.now().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM))
+    val cardNumber: String = com.mochyy.mochymusic.auth.PersonalAuth.userId?.let { java.util.UUID.fromString(it).leastSignificantBits.toULong().toString().takeLast(11).padStart(11, '0') } ?: ""
+    val joinedText: String = com.mochyy.mochymusic.i18n.UiText.get(com.mochyy.mochymusic.R.string.toto_setup_joined, LocalDate.now().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)))
 
     private val _artistSuggestions = MutableStateFlow<List<ArtistItem>>(emptyList())
     val artistSuggestions: StateFlow<List<ArtistItem>> = _artistSuggestions.asStateFlow()

@@ -1,0 +1,6 @@
+<resources>
+  <string name="toto_profile_load_error">Không tải được hồ sơ tài khoản. Kiểm tra kết nối và migration hồ sơ rồi thử lại.</string>
+  <string name="toto_profile_save_error">Chưa lưu được hồ sơ. Kiểm tra mạng và cấu hình hồ sơ Supabase rồi thử lại.</string>
+  <string name="toto_profile_use_legacy">Dùng hồ sơ cũ trên máy</string>
+  <string name="toto_profile_saving">Đang lưu hồ sơ…</string>
+</resources>

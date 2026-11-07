@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <string name="toto_transport_off">None</string>
+  <string name="toto_transport_echo">Echo</string>
+  <string name="toto_transport_rewind">Rewind</string>
+  <string name="toto_transport_tape_stop">Tape stop</string>
+  <string name="toto_transport_far_away">Fade to far</string>
+  <string name="toto_transport_reverb">Reverb wash</string>
+  <string name="toto_transport_filter">Filter sweep</string>
+</resources>

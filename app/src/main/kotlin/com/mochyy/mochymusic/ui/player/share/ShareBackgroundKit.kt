@@ -5,6 +5,8 @@
 
 package com.mochyy.mochymusic.ui.player.share
 
+import com.mochyy.mochymusic.i18n.UiText
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -83,7 +85,7 @@ internal fun PictureBackgroundControls(
 ) {
     LabCard(padding = 10.dp) {
         LabToggleRow(
-            title = "Blur",
+            title = UiText.get(R.string.appearance_blur),
             subtitle = null,
             checked = picture.blur,
             onCheckedChange = { on -> onChange(picture.copy(blur = on)) },
@@ -98,7 +100,7 @@ internal fun PictureBackgroundControls(
             modifier = Modifier.padding(horizontal = 6.dp, vertical = 4.dp),
         )
         Text(
-            "Change picture",
+            UiText.get(R.string.toto_ui_more_change_picture_aac9de),
             fontFamily = InterFontFamily,
             fontWeight = FontWeight.SemiBold,
             fontSize = 14.sp,
@@ -135,7 +137,7 @@ internal fun ColourBackgroundControls(colour: Color, palette: List<Color>, onPic
         LabCard(padding = 10.dp) {
             Row(Modifier.padding(start = 6.dp, end = 6.dp, top = 2.dp, bottom = 10.dp)) {
                 Text(
-                    "Your own colour",
+                    UiText.get(R.string.toto_ui_more_your_own_colour_94072c),
                     fontFamily = InterFontFamily,
                     fontWeight = FontWeight.SemiBold,
                     fontSize = 13.sp,

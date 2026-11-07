@@ -8,6 +8,8 @@
 
 package com.mochyy.mochymusic.ui.player.menu
 
+import com.mochyy.mochymusic.i18n.UiText
+
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.expandVertically
 import androidx.compose.animation.fadeIn
@@ -119,7 +121,7 @@ fun LyricsEditorSheet(onDismiss: () -> Unit) {
         ) {
             Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.fillMaxWidth()) {
                 Text(
-                    text = "Edit lyrics",
+                    text = UiText.get(R.string.edit_lyrics),
                     color = Color.White,
                     fontSize = 15.sp,
                     fontWeight = FontWeight.Bold,
@@ -127,7 +129,7 @@ fun LyricsEditorSheet(onDismiss: () -> Unit) {
                 )
                 if (parsed.isNotEmpty()) {
                     Text(
-                        text = "Save",
+                        text = UiText.get(R.string.save_album),
                         color = Color.White,
                         fontSize = 14.sp,
                         fontWeight = FontWeight.Bold,
@@ -153,7 +155,7 @@ fun LyricsEditorSheet(onDismiss: () -> Unit) {
 
             if (parsed.isEmpty()) {
                 Text(
-                    text = "No lyrics to edit for this song.",
+                    text = UiText.get(R.string.toto_ui_more_no_lyrics_to_edit_for_this_song_c8910d),
                     color = Color(0xFF9A9A9A),
                     fontSize = 13.sp,
                     modifier = Modifier.padding(vertical = 24.dp),
@@ -273,7 +275,7 @@ fun LyricsProviderSheet(onDismiss: () -> Unit) {
                 .padding(top = 16.dp, bottom = 24.dp)
         ) {
             Text(
-                text = "Lyrics Provider",
+                text = UiText.get(R.string.toto_ui_more_lyrics_provider_ee0e07),
                 color = Color.White,
                 fontSize = 15.sp,
                 fontWeight = FontWeight.Bold,
@@ -418,9 +420,9 @@ fun LyricsTranslationSheet(onDismiss: () -> Unit) {
                 .padding(horizontal = 20.dp)
                 .padding(top = 16.dp, bottom = 24.dp)
         ) {
-            Text(text = "Lyrics translation", color = Color(0xFF9A9A9A), fontSize = 12.sp)
+            Text(text = UiText.get(R.string.video_mode_lyrics_translation), color = Color(0xFF9A9A9A), fontSize = 12.sp)
             Text(
-                text = "Translate from",
+                text = UiText.get(R.string.toto_ui_more_translate_from_3f7ef4),
                 color = Color.White,
                 fontSize = 16.sp,
                 fontWeight = FontWeight.Bold,
@@ -448,7 +450,7 @@ fun LyricsTranslationSheet(onDismiss: () -> Unit) {
             )
             AnimatedVisibility(visible = youtubeLanguages.isNotEmpty(), enter = fadeIn() + expandVertically()) {
                 Text(
-                    text = "A green tick means the video has its own captions in that language, so they're used as " +
+                    text = UiText.get(R.string.toto_ui_more_a_green_tick_means_the_video_has_its_own_captions_in_c3abd7) +
                         "the translation. You can turn this off in Settings > General.",
                     color = Color(0xFF9A9A9A),
                     fontSize = 12.sp,
@@ -458,7 +460,7 @@ fun LyricsTranslationSheet(onDismiss: () -> Unit) {
             }
 
             Spacer(modifier = Modifier.height(14.dp))
-            Text(text = "And", color = Color(0xFF9A9A9A), fontSize = 12.sp)
+            Text(text = UiText.get(R.string.toto_ui_more_and_a01e33), color = Color(0xFF9A9A9A), fontSize = 12.sp)
             Spacer(modifier = Modifier.height(8.dp))
 
             Row(
@@ -472,7 +474,7 @@ fun LyricsTranslationSheet(onDismiss: () -> Unit) {
                 SheetIcon(R.drawable.translate)
                 Spacer(modifier = Modifier.width(14.dp))
                 Text(
-                    text = "Translate this whole session",
+                    text = UiText.get(R.string.toto_ui_more_translate_this_whole_session_575179),
                     color = Color.White,
                     fontSize = 13.sp,
                     fontWeight = FontWeight.SemiBold,
@@ -533,7 +535,7 @@ fun LyricsTranslationSheet(onDismiss: () -> Unit) {
             (status as? LyricsTranslationHelper.TranslationStatus.Error)?.let { error ->
                 Spacer(modifier = Modifier.height(8.dp))
                 Text(
-                    text = "Couldn't translate: ${error.message}",
+                    text = UiText.get(R.string.toto_format_translation_error, error.message.orEmpty()),
                     color = Color(0xFFFF8A8A),
                     fontSize = 12.sp,
                 )
@@ -543,7 +545,7 @@ fun LyricsTranslationSheet(onDismiss: () -> Unit) {
 
     if (picking) {
         LanguagePickerSheet(
-            title = "Translate to",
+            title = UiText.get(R.string.toto_ui_more_translate_to_a1ba65),
             selected = target,
             marked = youtubeLanguages,
             // The picker closes itself (animated) after a pick; onDismiss then drops it. While a
@@ -554,7 +556,7 @@ fun LyricsTranslationSheet(onDismiss: () -> Unit) {
     }
     if (pickingSource) {
         LanguagePickerSheet(
-            title = "Translate from",
+            title = UiText.get(R.string.toto_ui_more_translate_from_3f7ef4),
             selected = source.ifBlank { "auto" },
             options = listOf("auto" to "Detect automatically") + TranslationTargets,
             onPick = { setSource(it) },
@@ -600,7 +602,7 @@ private fun YouTubeTick() {
     ) {
         Icon(
             painter = painterResource(R.drawable.check),
-            contentDescription = "Captions on YouTube",
+            contentDescription = UiText.get(R.string.toto_ui_more_captions_on_youtube_51b1e1),
             tint = Color.White,
             modifier = Modifier.size(18.dp),
         )
@@ -659,7 +661,7 @@ private fun LanguagePickerSheet(
                     .padding(horizontal = 16.dp)
             ) {
                 if (query.isEmpty()) {
-                    Text(text = "Search language", color = Color(0xFF8A8A8A), fontSize = 13.sp)
+                    Text(text = UiText.get(R.string.toto_ui_more_search_language_cdbed7), color = Color(0xFF8A8A8A), fontSize = 13.sp)
                 }
                 BasicTextField(
                     value = query,

@@ -5,6 +5,8 @@
 
 package com.mochyy.mochymusic.ui.screens.profile
 
+import com.mochyy.mochymusic.i18n.UiText
+
 import android.net.Uri
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.PickVisualMediaRequest
@@ -86,35 +88,40 @@ private fun EditProfileContent(currentName: String, currentPhoto: Any?, onSaved:
     ) {
         OnboardingPage(
             badge = { PageBadge(painterResource(R.drawable.person)) },
-            title = "Edit profile",
+            title = UiText.get(R.string.toto_ui_more_edit_profile_15141e),
             contentTop = 22.dp,
             modifier = Modifier.background(Onb.Page),
             footer = {
                 Text(
-                    "Mochy will never store your data online!",
+                    UiText.get(R.string.toto_ui_more_mochy_will_never_store_your_data_online_cfc2d0),
                     color = Onb.Faint,
                     fontSize = 12.sp,
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier.padding(start = 4.dp),
                 )
                 OnbButton(
-                    text = "Done",
+                    text = UiText.get(R.string.done),
                     enabled = name.isNotBlank() && !saving,
                     onClick = {
                         saving = true
                         scope.launch {
-                            ProfileStore.save(context, name.trim(), cropped)
-                            onSaved()
+                            try {
+                                ProfileStore.save(context, name.trim(), cropped)
+                                onSaved()
+                            } catch (e: kotlinx.coroutines.CancellationException) { throw e }
+                            catch (_: Exception) {
+                                android.widget.Toast.makeText(context, R.string.toto_profile_save_error, android.widget.Toast.LENGTH_LONG).show()
+                            } finally { saving = false }
                         }
                     },
                 )
             },
         ) {
-            Text("username", color = Onb.Muted, fontSize = 18.sp, fontWeight = FontWeight.Bold)
+            Text(UiText.get(R.string.toto_ui_more_username_249ba3), color = Onb.Muted, fontSize = 18.sp, fontWeight = FontWeight.Bold)
             Spacer(Modifier.height(10.dp))
-            OnbTextField(value = name, onValueChange = { name = it.take(32) }, placeholder = "username")
+            OnbTextField(value = name, onValueChange = { name = it.take(32) }, placeholder = UiText.get(R.string.toto_ui_more_username_249ba3))
             Spacer(Modifier.height(24.dp))
-            Text("profile picture", color = Onb.Muted, fontSize = 18.sp, fontWeight = FontWeight.Bold)
+            Text(UiText.get(R.string.toto_ui_more_profile_picture_e3184a), color = Onb.Muted, fontSize = 18.sp, fontWeight = FontWeight.Bold)
             Spacer(Modifier.height(12.dp))
             EditablePhoto(photo = cropped ?: currentPhoto, onClick = ::pickPhoto)
         }
@@ -142,14 +149,14 @@ private fun EditablePhoto(photo: Any?, onClick: () -> Unit) {
         if (photo != null) {
             AsyncImage(
                 model = photo,
-                contentDescription = "Profile picture",
+                contentDescription = UiText.get(R.string.toto_setup_profile_picture),
                 contentScale = ContentScale.Crop,
                 modifier = Modifier.fillMaxSize(),
             )
         } else {
             Icon(
                 painterResource(R.drawable.add),
-                contentDescription = "Add a profile picture",
+                contentDescription = UiText.get(R.string.toto_setup_set_a_profile_picture_here),
                 tint = Color.White.copy(alpha = 0.7f),
                 modifier = Modifier.size(34.dp),
             )

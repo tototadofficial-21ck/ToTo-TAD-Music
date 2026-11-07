@@ -6,6 +6,8 @@
 
 package com.mochyy.mochymusic.ui.screens.artist
 
+import com.mochyy.mochymusic.i18n.UiText
+
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.ExperimentalFoundationApi
@@ -110,9 +112,9 @@ internal fun ArtistSubpageHeader(
                 )
                 if (isGrid != null) {
                     Spacer(Modifier.width(10.dp))
-                    LayoutToggle(icon = R.drawable.grid_view, selected = isGrid, description = "Grid") { onGridChange(true) }
+                    LayoutToggle(icon = R.drawable.grid_view, selected = isGrid, description = UiText.get(R.string.toto_ui_more_grid_701c48)) { onGridChange(true) }
                     Spacer(Modifier.width(6.dp))
-                    LayoutToggle(icon = R.drawable.list, selected = !isGrid, description = "List") { onGridChange(false) }
+                    LayoutToggle(icon = R.drawable.list, selected = !isGrid, description = UiText.get(R.string.toto_ui_more_list_a1fffa)) { onGridChange(false) }
                 }
             }
             if (!subtitle.isNullOrBlank()) {

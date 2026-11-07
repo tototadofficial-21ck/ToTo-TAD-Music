@@ -5,6 +5,10 @@
 
 package com.mochyy.mochymusic.ui.screens.recap
 
+import com.mochyy.mochymusic.R
+
+import com.mochyy.mochymusic.i18n.UiText
+
 import androidx.compose.animation.core.Animatable
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
@@ -236,7 +240,7 @@ internal fun IdCardBack(
                 }
             }
             MarqueeStrip(
-                text = "${name}`s CARD",
+                text = UiText.get(R.string.toto_format_card_name, name),
                 color = Color(0xFF4B4B4B),
                 background = Color(0xFF131313),
                 modifier = Modifier

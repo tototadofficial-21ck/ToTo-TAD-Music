@@ -1,5 +1,7 @@
 package com.mochyy.mochymusic.ui.player.studio
 
+import com.mochyy.mochymusic.i18n.UiText
+
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
@@ -36,7 +38,7 @@ internal fun ColumnScope.IpodOptions() {
     var theme by rememberEnumPreference(IpodThemeKey, IpodTheme.SILVER)
     var wheel by rememberEnumPreference(IpodWheelColorKey, IpodWheelColor.THEME)
     var tall by rememberPreference(IpodTallScreenKey, defaultValue = false)
-    OptionSheet(title = "The iPod") {
+    OptionSheet(title = UiText.get(R.string.toto_ui_more_the_ipod_e46274)) {
         IpodTheme.entries.forEachIndexed { index, option ->
             OptionRow(
                 selected = theme == option,
@@ -119,8 +121,8 @@ private val IpodWheelColor.description: String
     }
 
 private val IpodShadowOption = CoverOption.Switch(
-    title = "Shadow",
-    description = "soft shading round the edges of the body",
+    title = UiText.get(R.string.toto_ui_more_shadow_aa0e7e),
+    description = UiText.get(R.string.toto_ui_more_soft_shading_round_the_edges_of_the_body_51b41c),
     icon = R.drawable.contrast,
     key = IpodShadowKey,
     default = true,

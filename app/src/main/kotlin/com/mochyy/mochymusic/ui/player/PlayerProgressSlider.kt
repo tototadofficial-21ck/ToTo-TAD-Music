@@ -2,6 +2,10 @@
 
 package com.mochyy.mochymusic.ui.player
 
+import com.mochyy.mochymusic.R
+
+import androidx.compose.ui.res.stringResource
+
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.core.RepeatMode
 import androidx.compose.animation.core.StartOffset
@@ -453,7 +457,7 @@ private fun rememberSettled(value: Boolean): State<Boolean> = produceState(initi
 private fun LoadingLabel(style: TextStyle, color: Color) {
     val transition = rememberInfiniteTransition(label = "loadingLabel")
     Row(verticalAlignment = Alignment.Bottom) {
-        Text(text = "Loading", style = style, color = color, maxLines = 1)
+        Text(text = stringResource(R.string.toto_ui_loading), style = style, color = color, maxLines = 1)
         repeat(3) { index ->
             val lit by transition.animateFloat(
                 initialValue = 0.15f,

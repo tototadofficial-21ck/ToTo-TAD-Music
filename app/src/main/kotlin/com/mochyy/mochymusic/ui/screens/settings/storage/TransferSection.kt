@@ -2,6 +2,10 @@
 
 package com.mochyy.mochymusic.ui.screens.settings.storage
 
+import com.mochyy.mochymusic.R
+
+import com.mochyy.mochymusic.i18n.UiText
+
 import android.net.Uri
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
@@ -64,7 +68,7 @@ internal fun TransferSection(viewModel: TransferViewModel = hiltViewModel()) {
     }
 
     Text(
-        "Moving to a new phone? Take everything with you",
+        UiText.get(R.string.toto_ui_more_moving_to_a_new_phone_take_everything_with_you_3e46d8),
         style = storageText(17f, FontWeight.SemiBold),
         modifier = Modifier.padding(horizontal = 2.dp),
     )
@@ -92,7 +96,7 @@ internal fun TransferSection(viewModel: TransferViewModel = hiltViewModel()) {
             enabled = export !is TransferStep.Working && import !is TransferStep.Working && import !is TransferStep.Done,
             onClick = {
                 menuState.showConfirm(
-                    title = "Replace your library?",
+                    title = UiText.get(R.string.toto_ui_more_replace_your_library_e2dddb),
                     message = "Everything in Mochy right now is replaced by what's in the export: library, history, " +
                         "downloads and settings. Your logins stay as they are. Mochy restarts once to finish.",
                     action = "Pick the .zip",

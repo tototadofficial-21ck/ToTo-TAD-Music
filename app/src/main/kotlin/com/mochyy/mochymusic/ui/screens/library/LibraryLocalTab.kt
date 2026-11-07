@@ -6,6 +6,10 @@
 
 package com.mochyy.mochymusic.ui.screens.library
 
+import com.mochyy.mochymusic.R
+
+import androidx.compose.ui.res.stringResource
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -52,7 +56,7 @@ internal fun LazyListScope.libraryLocalTab(
     if (!hasStorageAccess) {
         item(key = "local_storage") {
             Text(
-                text = "Or",
+                text = stringResource(R.string.toto_ui_or),
                 color = SearchColors.Primary,
                 fontSize = 13.sp,
                 fontWeight = FontWeight.Bold,
@@ -72,7 +76,7 @@ internal fun LazyListScope.libraryLocalTab(
 
     item(key = "local_manage") {
         Spacer(modifier = Modifier.height(12.dp))
-        LibraryManagePill(text = "Manage local", onClick = onManage)
+        LibraryManagePill(text = stringResource(R.string.toto_ui_manage_local), onClick = onManage)
     }
 }
 
@@ -95,7 +99,7 @@ private fun LocalImportCard(count: Int, onClick: () -> Unit, modifier: Modifier 
             )
             Spacer(modifier = Modifier.width(8.dp))
             Text(
-                text = "Imported from local",
+                text = stringResource(R.string.toto_ui_imported_from_local),
                 color = SearchColors.Secondary,
                 fontSize = 12.sp,
                 fontWeight = FontWeight.Medium,

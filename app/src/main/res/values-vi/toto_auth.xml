@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <string name="toto_auth_tagline">Âm nhạc của bạn. Không gian của riêng bạn.</string>
+  <string name="toto_auth_welcome">Chào mừng trở lại</string>
+  <string name="toto_auth_instruction">Đăng nhập bằng tài khoản được chủ app cấp.</string>
+  <string name="toto_auth_private">Ứng dụng riêng dành cho tài khoản được cấp quyền.</string>
+  <string name="toto_auth_show_password">Hiện mật khẩu</string>
+  <string name="toto_auth_hide_password">Ẩn mật khẩu</string>
+  <string name="toto_auth_other_account">Dùng tài khoản khác</string>
+  <string name="toto_auth_not_granted">Tài khoản chưa được bật quyền dùng app. Hãy nhờ chủ app cấp quyền, rồi đăng nhập lại.</string>
+  <string name="toto_auth_locked">Tài khoản đang bị khóa trong Supabase Auth. Vui lòng liên hệ chủ app.</string>
+  <string name="toto_auth_unconfirmed">Email chưa được xác nhận. Hãy nhờ chủ app xác nhận tài khoản.</string>
+  <string name="toto_auth_database">App chưa đọc được quyền tài khoản. Chủ app cần kiểm tra key, migration và quyền truy cập database Supabase.</string>
+  <string name="toto_auth_storage">Thiết bị chưa khôi phục được phiên an toàn. Vui lòng đăng nhập lại.</string>
+</resources>

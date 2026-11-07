@@ -2,6 +2,8 @@
 
 package com.mochyy.mochymusic.ui.screens.audiolab
 
+import com.mochyy.mochymusic.i18n.UiText
+
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.spring
 import androidx.compose.animation.core.tween
@@ -111,7 +113,7 @@ fun AudioLabScreen(
     ) {
         val equalizer: @Composable (Modifier) -> Unit = { modifier ->
             BigHubCard(
-                title = "Equalizer",
+                title = UiText.get(R.string.equalizer_header),
                 status = equalizerStatus(eq, presets.associate { it.id to it.name }),
                 on = eq.enabled,
                 onClick = { navController.navigate("equalizer") },
@@ -120,7 +122,7 @@ fun AudioLabScreen(
         }
         val effect: @Composable (Modifier) -> Unit = { modifier ->
             BigHubCard(
-                title = "Audio Effect",
+                title = UiText.get(R.string.toto_ui_more_audio_effect_c51c94),
                 status = effectsStatus(effects),
                 on = effects.isNotEmpty(),
                 onClick = { navController.navigate("audio_fx") },
@@ -129,7 +131,7 @@ fun AudioLabScreen(
         }
         val qualityCard: @Composable (Modifier) -> Unit = { modifier ->
             SmallHubCard(
-                title = "Audio Quality",
+                title = UiText.get(R.string.audio_quality_title),
                 status = qualityName(quality, firstProvider),
                 onClick = { navController.navigate("audio_quality") },
                 modifier = modifier,
@@ -137,7 +139,7 @@ fun AudioLabScreen(
         }
         val transition: @Composable (Modifier) -> Unit = { modifier ->
             SmallHubCard(
-                title = "Transition",
+                title = UiText.get(R.string.toto_ui_more_transition_4ead49),
                 status = when (mode.playable()) {
                     CrossmixMode.OFF -> "Off"
                     CrossmixMode.AUTO_CROSSFADE -> "Auto"

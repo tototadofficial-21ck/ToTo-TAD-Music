@@ -1,5 +1,9 @@
 package com.mochyy.mochymusic.ui.screens.setup
 
+import com.mochyy.mochymusic.R
+
+import com.mochyy.mochymusic.i18n.UiText
+
 import android.graphics.Bitmap
 import android.graphics.ImageDecoder
 import android.net.Uri
@@ -259,7 +263,7 @@ fun PhotoCropperContainer(
         }
 
         Text(
-            text = "Adjust your photo profile",
+            text = UiText.get(R.string.toto_setup_adjust_your_photo_profile),
             color = Color.White,
             fontWeight = FontWeight.Bold,
             fontSize = 18.sp,
@@ -285,7 +289,7 @@ fun PhotoCropperContainer(
                 .fillMaxWidth()
                 .height(48.dp)
         ) {
-            Text("Select new image", color = Color.White, fontWeight = FontWeight.Bold, fontSize = 16.sp)
+            Text(UiText.get(R.string.toto_setup_select_new_image), color = Color.White, fontWeight = FontWeight.Bold, fontSize = 16.sp)
         }
 
         Button(
@@ -333,7 +337,7 @@ fun PhotoCropperContainer(
                 .fillMaxWidth()
                 .height(48.dp)
         ) {
-            Text("Done", color = Color.White, fontWeight = FontWeight.Bold, fontSize = 16.sp)
+            Text(UiText.get(R.string.toto_setup_done), color = Color.White, fontWeight = FontWeight.Bold, fontSize = 16.sp)
         }
         }
     }

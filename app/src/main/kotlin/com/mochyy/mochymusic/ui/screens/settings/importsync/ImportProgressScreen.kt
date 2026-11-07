@@ -1,5 +1,7 @@
 package com.mochyy.mochymusic.ui.screens.settings.importsync
 
+import com.mochyy.mochymusic.i18n.UiText
+
 import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -78,7 +80,7 @@ fun ImportProgressScreen(
                 )
                 Spacer(Modifier.height(6.dp))
                 Text(
-                    "You can leave this page; the import keeps going and sends a notification when it's done.",
+                    UiText.get(R.string.toto_ui_more_you_can_leave_this_page_the_import_keeps_going_and_s_57b802),
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
@@ -115,7 +117,7 @@ fun ImportProgressScreen(
                 if (progress.isRunning) {
                     add(
                         SettingsItem(
-                            title = { Text("Stop import") },
+                            title = { Text(UiText.get(R.string.toto_ui_more_stop_import_81e596)) },
                             descriptionText = "Songs and playlists imported so far are kept",
                             icon = painterResource(R.drawable.close),
                             iconShape = CircleShape,
@@ -125,7 +127,7 @@ fun ImportProgressScreen(
                 } else {
                     add(
                         SettingsItem(
-                            title = { Text("Done") },
+                            title = { Text(UiText.get(R.string.done)) },
                             icon = painterResource(R.drawable.check),
                             iconShape = CircleShape,
                             onClick = {
@@ -138,7 +140,7 @@ fun ImportProgressScreen(
                 if (progress.unmatched.isNotEmpty()) {
                     add(
                         SettingsItem(
-                            title = { Text("Copy songs not found") },
+                            title = { Text(UiText.get(R.string.toto_ui_more_copy_songs_not_found_e25e68)) },
                             descriptionText = "To look them up by hand",
                             icon = painterResource(R.drawable.share),
                             iconShape = CircleShape,
@@ -163,7 +165,7 @@ fun ImportProgressScreen(
         if (progress.unmatched.isNotEmpty() && !progress.isRunning) {
             Spacer(Modifier.height(16.dp))
             SettingsGroup(
-                title = "Not found",
+                title = UiText.get(R.string.toto_ui_more_not_found_475c84),
                 style = SettingsGroupStyle.Grouped,
                 items = progress.unmatched.take(UNMATCHED_SHOWN).map { miss ->
                     SettingsItem(
@@ -176,7 +178,7 @@ fun ImportProgressScreen(
             if (progress.unmatched.size > UNMATCHED_SHOWN) {
                 Spacer(Modifier.height(8.dp))
                 Text(
-                    "and ${progress.unmatched.size - UNMATCHED_SHOWN} more. Copy the list to see them all.",
+                    UiText.get(R.string.toto_format_unmatched_more, progress.unmatched.size - UNMATCHED_SHOWN),
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )

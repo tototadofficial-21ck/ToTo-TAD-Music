@@ -2,6 +2,8 @@
 
 package com.mochyy.mochymusic.ui.screens.search
 
+import com.mochyy.mochymusic.i18n.UiText
+
 import androidx.activity.compose.BackHandler
 import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.animateFloatAsState
@@ -549,8 +551,8 @@ private fun SuggestionResultRow(
         is AlbumItem -> "Album" + (item.artists?.takeIf { it.isNotEmpty() }
             ?.let { " • " + it.joinToString { a -> a.name } } ?: "")
 
-        is ArtistItem -> "Artist"
-        is PlaylistItem -> "Playlist" + (item.author?.name?.let { " • $it" } ?: "")
+        is ArtistItem -> UiText.get(R.string.toto_more_artist)
+        is PlaylistItem -> UiText.get(R.string.toto_more_playlist) + (item.author?.name?.let { " • $it" } ?: "")
     }
 
     Row(

@@ -2,6 +2,8 @@
 
 package com.mochyy.mochymusic.ui.component
 
+import com.mochyy.mochymusic.i18n.UiText
+
 import android.content.Context
 import android.graphics.Shader
 import android.media.AudioAttributes
@@ -1048,12 +1050,43 @@ private fun HeroText(
     }
 }
 
+// Model labels remain stable; only presentation follows the app locale.
+private val HeroCopyResources = mapOf(
+    "Now playing" to R.string.toto_hero_now,
+    "Continue" to R.string.toto_hero_continue,
+    "Recently played" to R.string.toto_hero_recent,
+    "You may also like" to R.string.toto_hero_may_like,
+    "Because you like" to R.string.toto_hero_because_like,
+    "More from" to R.string.toto_hero_more_from,
+    "Because you played" to R.string.toto_hero_because_played,
+    "Inspired by" to R.string.toto_hero_inspired,
+    "Because you listen to" to R.string.toto_hero_because_listen,
+    "Similar to" to R.string.toto_hero_similar,
+    "Back in rotation" to R.string.toto_hero_rotation,
+    "Gacha here!" to R.string.toto_hero_gacha,
+    "Random plays" to R.string.toto_hero_random,
+    "From your playlists" to R.string.toto_hero_playlists,
+    "From your import" to R.string.toto_hero_import,
+    "Recommended from" to R.string.toto_hero_recommended,
+    "You got" to R.string.toto_hero_got,
+    "Play" to R.string.toto_hero_play,
+    "Pause" to R.string.toto_hero_pause,
+    "View" to R.string.toto_hero_view,
+    "roll!!" to R.string.toto_hero_roll,
+    "rolling!!" to R.string.toto_hero_rolling,
+)
+
+@Composable
+private fun localizedHeroCopy(value: String): String = HeroCopyResources[value]?.let {
+    androidx.compose.ui.res.stringResource(it)
+} ?: value
+
 /** "Because you like [tiny cover] Song": the reason, then the song it grew out of */
 @Composable
 private fun HeroLabelLine(label: HeroLabel) {
     Row(verticalAlignment = Alignment.CenterVertically) {
         Text(
-            text = label.text,
+            text = localizedHeroCopy(label.text),
             style = HomeLabelStyle,
             color = HeroLabelColor,
             maxLines = 1,
@@ -1143,13 +1176,13 @@ private fun HeroPill(
                     HeroPillKind.View -> Unit
                 }
                 Text(
-                    text = when (current) {
+                    text = localizedHeroCopy(when (current) {
                         HeroPillKind.Play -> "Play"
                         HeroPillKind.Pause -> "Pause"
                         HeroPillKind.View -> "View"
                         HeroPillKind.Roll -> "roll!!"
                         HeroPillKind.Rolling -> "rolling!!"
-                    },
+                    }),
                     style = HomeLabelStyle,
                     color = HeroPillContent,
                 )
@@ -1216,9 +1249,9 @@ private fun QuietHero(modifier: Modifier = Modifier) {
                 .align(Alignment.BottomStart)
                 .padding(start = HomeContentInset, end = HomeContentInset, bottom = 64.dp)
         ) {
-            Text(text = "Nothing here yet", style = HomeLabelStyle, color = HeroLabelColor, maxLines = 1)
+            Text(text = UiText.get(R.string.toto_ui_nothing_here_yet), style = HomeLabelStyle, color = HeroLabelColor, maxLines = 1)
             Text(
-                text = "Play something and it shows up here",
+                text = UiText.get(R.string.toto_ui_more_play_something_and_it_shows_up_here_400d24),
                 style = HomeTitleStyle,
                 color = Color.White,
                 maxLines = 2,
@@ -1966,7 +1999,7 @@ private fun GachaPage(
                     }
                 ),
                 title = if (result == null || rolling) {
-                    "Random plays"
+                    localizedHeroCopy("Random plays")
                 } else {
                     val artists = result.artists.joinToString(", ") { it.name }
                     if (artists.isNotEmpty()) "${result.title} - $artists" else result.title

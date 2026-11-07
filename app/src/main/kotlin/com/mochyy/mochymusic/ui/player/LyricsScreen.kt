@@ -2,6 +2,8 @@
 
 package com.mochyy.mochymusic.ui.player
 
+import androidx.compose.ui.res.stringResource
+
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.animateScrollBy
@@ -595,7 +597,7 @@ fun LyricsScreen(
                     LyricsLoadingDots(modifier = Modifier.align(Alignment.Center))
                 } else {
                     Text(
-                        text = "No lyrics found",
+                        text = stringResource(R.string.toto_ui_no_lyrics_found),
                         style = MaterialTheme.typography.bodyLarge,
                         color = Color.White.copy(alpha = 0.5f),
                         modifier = Modifier.align(Alignment.Center)

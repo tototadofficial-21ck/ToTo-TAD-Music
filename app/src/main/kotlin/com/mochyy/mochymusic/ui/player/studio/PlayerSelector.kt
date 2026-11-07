@@ -1,5 +1,7 @@
 package com.mochyy.mochymusic.ui.player.studio
 
+import com.mochyy.mochymusic.i18n.UiText
+
 import androidx.activity.compose.BackHandler
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.core.tween
@@ -441,7 +443,7 @@ fun PlayerSelectorOverlay(
                 ) {
                     Icon(
                         painter = painterResource(R.drawable.arrow_back_ios),
-                        contentDescription = "Back",
+                        contentDescription = UiText.get(R.string.back_button_desc),
                         tint = Color.White,
                         modifier = Modifier.size(15.dp).offset(x = 2.dp),
                     )
@@ -450,7 +452,7 @@ fun PlayerSelectorOverlay(
                     modifier = Modifier.align(Alignment.Center),
                     horizontalAlignment = Alignment.CenterHorizontally,
                 ) {
-                    Text("Styles", color = Color.White, style = studioText(StudioType.Title, FontWeight.Bold))
+                    Text(UiText.get(R.string.toto_ui_more_styles_52db56), color = Color.White, style = studioText(StudioType.Title, FontWeight.Bold))
                     AnimatedContent(
                         // the module style goes by the name its look gives it
                         targetState = styles.getOrNull(focused)?.let { style ->

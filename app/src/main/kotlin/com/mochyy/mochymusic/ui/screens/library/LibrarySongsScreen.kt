@@ -2,6 +2,10 @@
 
 package com.mochyy.mochymusic.ui.screens.library
 
+import com.mochyy.mochymusic.R
+
+import com.mochyy.mochymusic.i18n.UiText
+
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -30,8 +34,8 @@ fun LibrarySongsScreen(
     val menuState = LocalMenuState.current
 
     LibraryEntityListScreen(
-        title = "Songs",
-        subtitle = "All songs on your library listed here.",
+        title = UiText.get(R.string.toto_more_songs),
+        subtitle = UiText.get(R.string.toto_more_all_songs_on_your_library_listed_here),
         searchPlaceholder = "Find a song by its title or artist",
         items = songs,
         idOf = { it.id },
@@ -46,7 +50,7 @@ fun LibrarySongsScreen(
             val ordered = sortForLibraryIndex(songs) { it.song.title }
             playerConnection.playQueue(
                 ListQueue(
-                    title = "Songs",
+                    title = UiText.get(R.string.toto_more_songs),
                     items = ordered.map { it.toMediaItem() },
                     startIndex = ordered.indexOf(song).coerceAtLeast(0),
                 ),

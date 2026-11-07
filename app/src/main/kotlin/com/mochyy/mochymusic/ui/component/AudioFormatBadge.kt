@@ -2,6 +2,8 @@
 
 package com.mochyy.mochymusic.ui.component
 
+import com.mochyy.mochymusic.i18n.UiText
+
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.requiredSize
@@ -57,7 +59,7 @@ fun AudioFormatBadge(
     ) {
         Image(
             painter = painterResource(id = iconRes),
-            contentDescription = "Audio Format",
+            contentDescription = UiText.get(R.string.toto_ui_more_audio_format_091c67),
             colorFilter = if (tint != Color.Unspecified) ColorFilter.tint(contentColor) else null,
             modifier = Modifier.requiredSize(width = badgeWidth, height = height)
         )

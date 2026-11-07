@@ -1,5 +1,7 @@
 package com.mochyy.mochymusic.ui.screens.settings.importsync
 
+import com.mochyy.mochymusic.i18n.UiText
+
 import android.net.Uri
 import android.webkit.CookieManager
 import android.webkit.WebView
@@ -214,7 +216,7 @@ fun AccountImportScreen(
 
     when (val current = state) {
         AccountImportState.SigningIn -> CaptureWebView(
-            title = "Sign in to ${service.label}",
+            title = UiText.get(R.string.toto_format_account_signin, service.label),
             subtitle = if (viewModel.isResync) {
                 "On ${service.label}'s own page. Mochy only reads the playlist you're re-syncing"
             } else {
@@ -237,7 +239,7 @@ fun AccountImportScreen(
                 AccountImportState.NeedsYouTubeSignIn -> {
                     ImportInfoCard {
                         Text(
-                            "YouTube Music import uses the app's YouTube account. Sign in, then choose playlists.",
+                            UiText.get(R.string.toto_ui_more_youtube_music_import_uses_the_app_s_youtube_account__ab5b65),
                             style = MaterialTheme.typography.bodyLarge,
                         )
                     }
@@ -246,7 +248,7 @@ fun AccountImportScreen(
                         style = SettingsGroupStyle.Grouped,
                         items = listOf(
                             SettingsItem(
-                                title = { Text("Sign in to YouTube") },
+                                title = { Text(UiText.get(R.string.toto_ui_more_sign_in_to_youtube_2bcb0f)) },
                                 icon = painterResource(R.drawable.login),
                                 iconShape = CircleShape,
                                 onClick = { navController.navigate(YouTubeLoginRoute) },
@@ -265,7 +267,7 @@ fun AccountImportScreen(
                         style = SettingsGroupStyle.Grouped,
                         items = listOf(
                             SettingsItem(
-                                title = { Text("Stop") },
+                                title = { Text(UiText.get(R.string.toto_setup_stop)) },
                                 icon = painterResource(R.drawable.close),
                                 iconShape = CircleShape,
                                 onClick = viewModel::cancelReading,
@@ -283,7 +285,7 @@ fun AccountImportScreen(
                         items = buildList {
                             if (!current.signedOut) add(
                                 SettingsItem(
-                                    title = { Text("Try again") },
+                                    title = { Text(UiText.get(R.string.try_again)) },
                                     icon = painterResource(R.drawable.refresh),
                                     iconShape = CircleShape,
                                     onClick = viewModel::retry,
@@ -291,7 +293,7 @@ fun AccountImportScreen(
                             )
                             add(
                                 SettingsItem(
-                                    title = { Text("Sign in again") },
+                                    title = { Text(UiText.get(R.string.module_sign_in_again)) },
                                     icon = painterResource(R.drawable.login),
                                     iconShape = CircleShape,
                                     onClick = {
@@ -366,7 +368,7 @@ private fun PickForResyncContent(
 ) {
     ImportInfoCard {
         Text(
-            "Couldn't find \"$name\" in your ${service.label} library by its name. Which one is it?",
+            UiText.get(R.string.toto_format_find_library, name, service.label),
             style = MaterialTheme.typography.bodyLarge,
         )
     }
@@ -375,7 +377,7 @@ private fun PickForResyncContent(
         style = SettingsGroupStyle.Grouped,
         items = listOf(
             SettingsItem(
-                title = { Text("It's not in this account") },
+                title = { Text(UiText.get(R.string.toto_ui_more_it_s_not_in_this_account_30ede4)) },
                 descriptionText = "Paste the playlist's link instead",
                 icon = painterResource(R.drawable.link),
                 iconShape = CircleShape,
@@ -386,7 +388,7 @@ private fun PickForResyncContent(
     if (state.playlists.isEmpty()) return
     Spacer(Modifier.height(16.dp))
     SettingsGroup(
-        title = "${state.playlists.size} in your library",
+        title = UiText.get(R.string.toto_format_library_count, state.playlists.size),
         style = SettingsGroupStyle.Grouped,
         items = state.playlists.map { playlist ->
             SettingsItem(
@@ -471,7 +473,7 @@ private fun ChoosingContent(
     if (service == AccountService.YOUTUBE_MUSIC && autoSync) {
         Spacer(Modifier.height(12.dp))
         Text(
-            "Library sync is on, so saved YouTube playlists are already in your library. Importing makes separate local copies.",
+            UiText.get(R.string.toto_ui_more_library_sync_is_on_so_saved_youtube_playlists_are_al_f99e43),
             style = MaterialTheme.typography.bodySmall,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
@@ -481,13 +483,13 @@ private fun ChoosingContent(
 
     if (state.playlists.isEmpty()) {
         ImportInfoCard {
-            Text("No playlists in this account.", style = MaterialTheme.typography.bodyLarge)
+            Text(UiText.get(R.string.toto_ui_more_no_playlists_in_this_account_edd6a2), style = MaterialTheme.typography.bodyLarge)
         }
         return
     }
 
     SettingsGroup(
-        title = "${state.playlists.size} in your library",
+        title = UiText.get(R.string.toto_format_library_count, state.playlists.size),
         style = SettingsGroupStyle.Grouped,
         items = state.playlists.map { playlist ->
             val checked = playlist.id in state.selected
