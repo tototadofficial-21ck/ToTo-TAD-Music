@@ -251,3 +251,14 @@ Theo yêu cầu mới đã được người dùng chấp thuận, thay thế ch
 - Build debug thành công (1m12s), guard và diff check qua. Không chạy lại JVM cho thay đổi chỉ bỏ một hàng UI; bộ 144 tests gần nhất vẫn là lượt trước, không ghi nhận là đã chạy lại. Thêm AboutSheet vào vùng review bảo vệ và guard cảnh báo nếu nút nguồn cũ xuất hiện lại.
 
 - USB install -r Success, mở lại About thực tế: nhóm Liên kết và ủng hộ không còn Mã nguồn Mochy Music; vẫn thấy Tác giả và người đóng góp dự án gốc. APK 89621995 byte, SHA-256 `53b0121c46c761d316930e4ae42a15ec54cb4665f6721d8003b45d93f54231a1`.
+
+
+## Một hồ sơ chủ app trong Giới thiệu — 07/11/2026
+
+- Thay hai thẻ tác giả gốc bằng một PersonRow ToTo TAD Music, logo cá nhân, phụ đề Chủ app và mở trang link cá nhân. Đổi tiêu đề thành Chủ app, bỏ nút chủ app trùng ở phía trên.
+- Ghi công Roo/realidkroo và key/realkeichi giữ dạng chữ, không có avatar/link hồ sơ ở section này. OwnerSheet cũng ghi công bằng chữ thay vì mở hai profile cũ. Giữ giấy phép/copyright/các dự án nền tảng và ghi công còn lại.
+- Guard cảnh báo khi vòng lặp thẻ tác giả cũ được đưa lại. Checker tài nguyên 2.612/2.605 và diff check qua. Đang build/cài USB; không chạy JVM lại cho thay đổi trình bày UI.
+
+- Build debug thành công (2m1s), guard/checker/diff check qua. APK 89623247 byte, SHA-256 `6e9d3de50759a09324f8d805d957ea59698898435ce8e5a874059179e0d54b26`.
+
+- USB install -r Success. Đã mở About: mục Chủ app có đúng một thẻ ToTo TAD Music, không còn hai avatar/hàng bấm Roo/key; dòng ghi công gốc chỉ là Text. Bấm thẻ mới mở đúng Facebook, Instagram, Discord và Ủng hộ cá nhân. Nội dung không bị cắt trong vùng quan sát.

@@ -40,6 +40,6 @@ private fun OwnerContent(popup: PopupSheetState, onCredits: () -> Unit) {
         links.forEach { (label, url) -> TextButton(onClick = { context.openDevUrl(url) }) { Text(label) } }
         if (links.isEmpty()) Text(stringResource(R.string.toto_owner_links_pending))
         TextButton(onClick = { popup.showSupportSheet() }) { Text(stringResource(R.string.toto_owner_support)) }
-        TextButton(onClick = onCredits) { Text(stringResource(R.string.toto_upstream_credits)) }
+        Text(stringResource(R.string.toto_original_author_credit))
     }
 }

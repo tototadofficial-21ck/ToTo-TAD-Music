@@ -22,4 +22,6 @@
   <string name="toto_repo_commits">lần cập nhật mã</string>
   <string name="toto_repo_releases">bản phát hành</string>
   <string name="toto_owner_instagram_label">Instagram</string>
+  <string name="toto_owner_section">Chủ app</string>
+  <string name="toto_original_author_credit">Dự án gốc Mochy Music: Roo (realidkroo) và key (realkeichi).</string>
 </resources>

@@ -21,4 +21,5 @@ assert 'PersonalAuth.allowed' in read('app/src/main/kotlin/com/mochyy/mochymusic
 assert (root/'supabase/migrations/202611070001_account_profiles.sql').exists()
 assert read('LICENSE').find('GNU GENERAL PUBLIC LICENSE')>=0, 'Original GPL license missing'
 assert 'R.string.toto_ui_more_mochy_music_github_u2192_a5cc1a' not in read('app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/update/AboutSheet.kt'), 'Hidden upstream source action was restored'
+assert 'LeadDevs.forEach' not in read('app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/update/AboutSheet.kt'), 'Replaced upstream profile cards were restored'
 print('PASS: personal ID, approved assets, aliases, auth/profile integrations and GPL preserved. Review and runtime tests still required.')

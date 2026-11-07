@@ -416,11 +416,6 @@ private fun ColumnScope.AboutSheetContent(
             }
 
             Spacer(Modifier.height(18.dp))
-            AboutPillRow(
-                text = stringResource(R.string.toto_owner_title),
-                onClick = { popup.showOwnerSheet(onCredits = { onOpenDevSpace(0) }) },
-            )
-            Spacer(Modifier.height(18.dp))
             SectionHeader(stringResource(R.string.toto_about_actions))
             Spacer(Modifier.height(8.dp))
             Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
@@ -431,7 +426,7 @@ private fun ColumnScope.AboutSheetContent(
             }
 
             Spacer(Modifier.height(18.dp))
-            SectionHeader(stringResource(R.string.toto_upstream_credits))
+            SectionHeader(stringResource(R.string.toto_owner_section))
             Spacer(Modifier.height(8.dp))
             Column(
                 modifier = Modifier
@@ -440,17 +435,21 @@ private fun ColumnScope.AboutSheetContent(
                     .background(MenuRowSurface)
                     .padding(vertical = 6.dp),
             ) {
-                LeadDevs.forEach { dev ->
-                    PersonRow(
-                        name = dev.name,
-                        subtitle = null,
-                        avatarUrl = githubAvatarUrl(dev.githubUser),
-                        fallbackRes = dev.fallbackAvatar,
-                        showArrow = true,
-                        onClick = { onOpenDevSpace(dev.devSpaceIndex) },
-                    )
-                }
+                PersonRow(
+                    name = stringResource(R.string.app_name),
+                    subtitle = stringResource(R.string.toto_owner_section),
+                    avatarUrl = "",
+                    fallbackRes = R.drawable.toto_logo,
+                    showArrow = true,
+                    onClick = { popup.showOwnerSheet() },
+                )
             }
+            Text(
+                text = stringResource(R.string.toto_original_author_credit),
+                fontSize = 12.sp,
+                color = Color.White.copy(alpha = 0.65f),
+                modifier = Modifier.padding(top = 12.dp),
+            )
 
             Spacer(Modifier.height(18.dp))
             SectionHeader(stringResource(R.string.toto_base_credits))
@@ -658,11 +657,11 @@ private fun PersonRow(
             .clickable(interactionSource = interaction, indication = null, onClick = onClick)
             .padding(horizontal = 16.dp, vertical = 10.dp),
     ) {
-        GithubAvatar(
-            url = avatarUrl,
-            size = 44.dp,
-            fallbackRes = fallbackRes,
-        )
+        if (avatarUrl.isBlank() && fallbackRes != null) {
+            Image(painterResource(fallbackRes), null, Modifier.size(44.dp), contentScale = ContentScale.Fit)
+        } else {
+            GithubAvatar(url = avatarUrl, size = 44.dp, fallbackRes = fallbackRes)
+        }
         Spacer(Modifier.width(14.dp))
         Column(modifier = Modifier.weight(1f)) {
             Text(

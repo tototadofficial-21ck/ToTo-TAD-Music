@@ -22,4 +22,6 @@
   <string name="toto_repo_commits">commits</string>
   <string name="toto_repo_releases">releases</string>
   <string name="toto_owner_instagram_label">Instagram</string>
+  <string name="toto_owner_section">App owner</string>
+  <string name="toto_original_author_credit">Original Mochy Music project: Roo (realidkroo) and key (realkeichi).</string>
 </resources>
