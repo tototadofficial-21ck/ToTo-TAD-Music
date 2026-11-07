@@ -241,3 +241,13 @@ Theo yêu cầu mới đã được người dùng chấp thuận, thay thế ch
 - Tạo nhánh cục bộ toto/personal, lưu toàn bộ bản cá nhân đã kiểm tra và tag toto-stable-20261107. Không push. Local.properties, phiên đăng nhập, khóa ký và APK build không đưa vào Git.
 - Công cụ review_upstream.py chạy online và --no-fetch qua; check_personal_contract.py và check_personal_resources.py qua; diff check qua. Không chạy lại build/JVM vì lượt này chỉ thêm script/config/tài liệu, không sửa mã Android. APK nền hiện tại là bản 144 tests đã qua trước đó.
 - Guard chỉ là kiểm tra hồi quy tích hợp/nhận diện, không chứng minh an toàn quyền truy cập hay tự giải quyết xung đột. Quy trình nhận commit phải review và thử trên nhánh riêng/USB trước khi cập nhật bản ổn định.
+
+
+## Tạm ẩn nút mã nguồn ở Giới thiệu — 07/11/2026
+
+- Theo yêu cầu chủ app, bỏ hàng Mã nguồn Mochy Music khỏi nhóm hành động của AboutSheet; không để nút vô hiệu hoặc vùng bấm trống. Giữ phần ghi công, copyright và giấy phép. Repo cá nhân chưa có nên không tạo URL thay thế.
+- Đổi đúng một hàng UI; không đổi cơ chế cập nhật hoặc các URL ghi công trong màn tác giả gốc. Guard bản cá nhân và diff check qua; đang build/cài đè USB và kiểm tra màn thực tế.
+
+- Build debug thành công (1m12s), guard và diff check qua. Không chạy lại JVM cho thay đổi chỉ bỏ một hàng UI; bộ 144 tests gần nhất vẫn là lượt trước, không ghi nhận là đã chạy lại. Thêm AboutSheet vào vùng review bảo vệ và guard cảnh báo nếu nút nguồn cũ xuất hiện lại.
+
+- USB install -r Success, mở lại About thực tế: nhóm Liên kết và ủng hộ không còn Mã nguồn Mochy Music; vẫn thấy Tác giả và người đóng góp dự án gốc. APK 89621995 byte, SHA-256 `53b0121c46c761d316930e4ae42a15ec54cb4665f6721d8003b45d93f54231a1`.

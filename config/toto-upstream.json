@@ -33,6 +33,7 @@
     "app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/profile/*",
     "app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/donate/*",
     "app/src/main/res/mipmap-*/*",
-    "app/src/debug/res/*/*"
+    "app/src/debug/res/*/*",
+    "app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/update/AboutSheet.kt"
   ]
 }

@@ -428,10 +428,6 @@ private fun ColumnScope.AboutSheetContent(
                     text = UiText.get(R.string.toto_ui_more_support_me_please_3_u2192_eb53c9),
                     onClick = { popup.showSupportSheet() },
                 )
-                AboutPillRow(
-                    text = UiText.get(R.string.toto_ui_more_mochy_music_github_u2192_a5cc1a),
-                    onClick = { context.openUrl(GithubRepoUrl) },
-                )
             }
 
             Spacer(Modifier.height(18.dp))
