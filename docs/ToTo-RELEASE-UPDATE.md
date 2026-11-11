@@ -58,7 +58,7 @@ Trong Hồ sơ → Giới thiệu ứng dụng → Kiểm tra cập nhật:
 - Bản debug hoặc bản ký khác không mời cài release. Không gỡ app hay xóa dữ liệu để vượt lỗi chữ ký.
 - Hiện kiểm tra thủ công trong Giới thiệu; chưa tự thông báo khi mở app. Khi tải cần giữ màn này mở; lỗi mạng có thể thử lại từ đầu, chưa hỗ trợ resume.
 
-Source đã được đẩy lên GitHub. Bản phát hành đầu đang được chuẩn bị theo yêu cầu chủ app. Trước khi phát hành: review file được Git theo dõi, loại keystore/local.properties, cấu hình CI upstream và thông tin riêng không dành công khai; build/kiểm tra release mới có updater; thử release→release trên thiết bị hoặc emulator riêng, giữ bản debug trên điện thoại chủ app.
+Source đã được đẩy lên GitHub. Bản phát hành đầu 1.0.0 (v1000) đã được công khai theo yêu cầu chủ app ngày 11/11/2026. Trước khi phát hành: review file được Git theo dõi, loại keystore/local.properties, cấu hình CI upstream và thông tin riêng không dành công khai; build/kiểm tra release mới có updater; thử release→release trên thiết bị hoặc emulator riêng, giữ bản debug trên điện thoại chủ app.
 
 Khi được chủ app cho phép công khai, push source tương ứng đúng tag cùng LICENSE GPL và thay đổi; upload APK đã xác minh. Không upload khóa ký, cấu hình chứa mật khẩu hoặc log. Giữ bản mã nguồn tương ứng mỗi APK để tuân thủ GPL. Tải APK đầu tiên một lần; các bản release cùng khóa sau đó cài đè qua updater, không yêu cầu gỡ app.
 
@@ -71,3 +71,11 @@ Sau khi có Release, gửi đường dẫn trang Release cho người dùng; tro
 Chủ app tạo từng user trong Supabase Auth, sau đó cấp quyền enabled=true đúng UUID trong app_access theo migration và tài liệu Supabase hiện có. Không có đăng ký công khai. Không gửi mật khẩu qua repo/issue công khai.
 
 Giữ một bản sao riêng an toàn của keystore và cấu hình ký ngoài Mac. Các bản sau tăng VERSION_CODE, giữ applicationId và khóa ký. Bản đầu chưa xác minh luồng tải/cài release→release trên thiết bị; phải ghi giới hạn này trong Release notes.
+
+### Link đã phát hành
+
+- Trang Release: https://github.com/tototadofficial-21ck/ToTo-TAD-Music/releases/tag/v1000
+- APK tải trực tiếp: https://github.com/tototadofficial-21ck/ToTo-TAD-Music/releases/download/v1000/ToTo-TAD-Music.apk
+- Source tag: `v1000`, commit `9ddfda6d5a96fc2be34542da0ede0c3bb00e3ff8`.
+- SHA256 APK: `3f25575a29693419a74ae13f24cc38757434d0316155a20a862daefca2a7407f`.
+- Đã xác minh latest feed và tải APK công khai không cần đăng nhập GitHub; checksum tải về khớp bản local. Chưa thử tải/cài release→release trong app; không cài release lên điện thoại debug của chủ app.

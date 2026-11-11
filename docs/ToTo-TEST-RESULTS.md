@@ -350,3 +350,15 @@ Theo yêu cầu mới đã được người dùng chấp thuận, thay thế ch
 - Đổi GiantTextState của ProfileScreen và RecapStory sang resource tên ngắn ToTo TAD. Đổi cả các slideIn/reset/so sánh ở đoạn chuyển trang để không quay về MOCHY khi chạy hoặc kết thúc story. Giữ tốc độ, góc xoay và tương tác cũ.
 - Personal contract và diff --check PASS, tìm chuỗi cứng MOCHY trong hai file không còn kết quả. `assembleUniversalFossDebug` BUILD SUCCESSFUL (34s); không chạy lại JVM cho đổi nhãn này.
 - Cài đè APK debug trên cùng Samsung qua ADB Wi-Fi: Success; không gỡ app/clear dữ liệu. Đã gửi lệnh mở app; chưa kiểm tra trực quan toàn bộ chuỗi chuyển cảnh, cần chủ app mở lại thẻ cào xác nhận. Không build/publish APK release mới.
+
+
+## 2026-11-11 — phát hành công khai 1.0.0 (v1000)
+
+- Chủ app yêu cầu build và đăng APK để gửi người dùng. Giữ versionCode 1000 / versionName 1.0.0 vì chưa từng có APK release phân phối trước đó. Source đúng tag: 9ddfda6d5a96fc2be34542da0ede0c3bb00e3ff8. Không thay khóa hoặc applicationId.
+- Supabase URL/publishable key cục bộ có cấu hình (không in giá trị); private signing config/keystore vẫn ngoài Git. Personal contract, resource checker và diff --check PASS. Không chạy lại JVM cho phần nhãn/logo; 147 tests của updater/app đã đạt ở lần trước, Release notes phân biệt rõ.
+- `assembleUniversalFossRelease`: BUILD SUCCESSFUL (4m15s). 9 lỗi lint ExtraTranslation Indonesia từ code gốc vẫn có; không báo lint sạch. apksigner verify thành công, certificate khớp pin; APK đúng vn.ToTo.music, không debuggable, minSdk24, đủ 4 ABI universal, FOSS install permission hiện diện.
+- APK 30258629 bytes; SHA256 3f25575a29693419a74ae13f24cc38757434d0316155a20a862daefca2a7407f. Đã upload tên ToTo-TAD-Music.apk và checksum sidecar vào draft, xác minh digest/size từ GitHub API trước khi công khai. Sau đó publish stable/latest v1000 theo yêu cầu.
+- Đọc latest API không xác thực: v1000, draft=false, prerelease=false. Tải APK từ public browser_download_url, tính lại checksum/size: khớp local. Đây là kiểm tra tải HTTP, không thay thế cài Android thực tế.
+- Release: https://github.com/tototadofficial-21ck/ToTo-TAD-Music/releases/tag/v1000
+- APK: https://github.com/tototadofficial-21ck/ToTo-TAD-Music/releases/download/v1000/ToTo-TAD-Music.apk
+- Không cài release lên điện thoại chủ app đang dùng debug; chưa có ca release→release giữ phiên/thư viện, unknown sources/installer, cài mới và đăng nhập trên thiết bị người dùng. Release notes ghi rõ giới hạn. Chủ app cần tạo/cấp quyền tài khoản Supabase và sao lưu khóa ký riêng; agent không thực hiện thao tác admin Supabase.
