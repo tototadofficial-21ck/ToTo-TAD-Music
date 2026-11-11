@@ -295,3 +295,12 @@ Theo yêu cầu mới đã được người dùng chấp thuận, thay thế ch
 - Build tổng hợp cuối `:app:testUniversalFossDebugUnitTest :app:assembleUniversalFossDebug :app:assembleUniversalFossRelease`: BUILD SUCCESSFUL (9m04s). 147 tests đạt; các lỗi lint dịch cũ nêu trên vẫn tồn tại.
 - APK release cuối được apksigner verify; đúng applicationId vn.ToTo.music, versionCode 1000, versionName 1.0.0, minSdk24, không debuggable, permission cài APK FOSS có mặt, certificate khớp metadata. Bản sao để chuẩn bị phát hành: build/toto-release/ToTo-TAD-Music.apk (chưa phân phối, chưa test cài đè). Báo cáo checksum cục bộ: build/toto-release/verification.json.
 - Thử ADB Wi-Fi pair chưa thành công (protocol fault), devices/mdns vẫn trống. Không lưu mã ghép đôi vào tài liệu/log repo; chờ ghép đôi lại.
+
+
+### 2026-11-11 — cài và kiểm tra qua ADB Wi-Fi
+
+- Sau khi khởi động lại dịch vụ ADB trên Mac, ghép đôi Wi-Fi thành công với đúng Samsung SM-S948B/R5GL13NRSBZ. Không lưu mã ghép đôi. Dùng định danh ADB Wi-Fi cụ thể cho từng lệnh.
+- `install -r` APK universalFossDebug mới: Success; không gỡ app, không clear dữ liệu, không gặp lỗi chữ ký.
+- Mở app sau cài đè: vào Home với phiên/thư viện hiện hữu; không yêu cầu thiết lập hay đăng nhập lại trong lượt quan sát này. Chưa xác minh đầy đủ toàn bộ dữ liệu.
+- Mở Hồ sơ → Giới thiệu: Kiểm tra cập nhật hiển thị tiếng Việt. Bấm nút: hiện cảnh báo bản ký khác và hướng dẫn giữ bản cài đặt/dữ liệu hiện tại; không mở installer hay đề nghị cài release lên debug. Đóng hộp thoại thành công, không thấy app thoát trong thao tác này.
+- Chưa thử tải APK mới từ Release, cấp quyền cài APK, cài đè release→release, giữ phiên/thư viện sau nâng cấp release hoặc các nguồn phát trong lượt này. Không coi ca debug chặn khác chữ ký là bằng chứng luồng release đã qua.
