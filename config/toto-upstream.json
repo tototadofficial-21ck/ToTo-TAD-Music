@@ -40,6 +40,8 @@
     "config/toto-version.properties",
     "app/src/main/kotlin/com/mochyy/mochymusic/core/updater/PersonalUpdate*.kt",
     "app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/update/PersonalUpdateButton.kt",
-    "app/src/main/res/values*/toto_updates.xml"
+    "app/src/main/res/values*/toto_updates.xml",
+    "app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/recap/IdCardBack.kt",
+    "app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/recap/RecapStoryPages.kt"
   ]
 }

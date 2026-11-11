@@ -304,3 +304,11 @@ Theo yêu cầu mới đã được người dùng chấp thuận, thay thế ch
 - Mở app sau cài đè: vào Home với phiên/thư viện hiện hữu; không yêu cầu thiết lập hay đăng nhập lại trong lượt quan sát này. Chưa xác minh đầy đủ toàn bộ dữ liệu.
 - Mở Hồ sơ → Giới thiệu: Kiểm tra cập nhật hiển thị tiếng Việt. Bấm nút: hiện cảnh báo bản ký khác và hướng dẫn giữ bản cài đặt/dữ liệu hiện tại; không mở installer hay đề nghị cài release lên debug. Đóng hộp thoại thành công, không thấy app thoát trong thao tác này.
 - Chưa thử tải APK mới từ Release, cấp quyền cài APK, cài đè release→release, giữ phiên/thư viện sau nâng cấp release hoặc các nguồn phát trong lượt này. Không coi ca debug chặn khác chữ ký là bằng chứng luồng release đã qua.
+
+
+## 2026-11-11 — tên thương hiệu trên thẻ cào
+
+- Thay chữ vẽ cứng `SCRATCH · MOCHY` trên lớp phủ thẻ bằng resource: tiếng Việt `CÀO · ToTo TAD`, tiếng Anh `SCRATCH · ToTo TAD`. Biên nhận cuối recap dùng tên ngắn ToTo TAD. Giữ cơ chế cào và chuyển trang.
+- Thêm hai file recap vào protected_paths để review khi lấy upstream.
+- Resource/printf checker, personal contract và diff --check: PASS. `:app:assembleUniversalFossDebug`: BUILD SUCCESSFUL (2m43s). Không chạy lại JVM vì chỉ đổi nhãn; kết quả 147 tests ở thay đổi updater trước đó không tính là chạy lại cho thay đổi này. KSP có exception AWT trong log nhưng task/build hoàn tất; không thay công cụ build trong sửa nhãn này.
+- Cài đè debug trên cùng Samsung qua ADB Wi-Fi: Success. App mở lại vào Home, không yêu cầu đăng nhập trong lượt quan sát. Chưa xác nhận trực quan chữ Canvas trên thẻ cào ở hai locale; đã nhờ chủ app mở lại và xác nhận. Chưa build lại release/phát hành GitHub với thay đổi nhãn này.

@@ -830,7 +830,7 @@ private fun Receipt(data: RecapStoryData, modifier: Modifier) {
             .padding(horizontal = 26.dp, vertical = 40.dp),
     ) {
         ReceiptLine(dashes)
-        ReceiptLine("MOCHY")
+        ReceiptLine(UiText.get(R.string.toto_short_brand))
         ReceiptLine("${data.monthName} recap")
         ReceiptLine("printed at ${now.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))}/${now.format(DateTimeFormatter.ofPattern("HH:mm"))}")
         ReceiptLine(dashes)

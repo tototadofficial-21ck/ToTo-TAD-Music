@@ -24,4 +24,6 @@
   <string name="toto_owner_instagram_label">Instagram</string>
   <string name="toto_owner_section">App owner</string>
   <string name="toto_original_author_credit">Original Mochy Music project: Roo (realidkroo) and key (realkeichi).</string>
+  <string name="toto_scratch_coating">"SCRATCH · ToTo TAD · "</string>
+  <string name="toto_short_brand" translatable="false">ToTo TAD</string>
 </resources>
