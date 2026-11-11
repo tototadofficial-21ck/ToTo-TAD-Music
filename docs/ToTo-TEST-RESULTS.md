@@ -335,3 +335,11 @@ Theo yêu cầu mới đã được người dùng chấp thuận, thay thế ch
 - Thêm đầu README riêng cho ToTo, giữ README gốc làm tham khảo, GPL và ghi công. Chuẩn bị push source nhánh main tới personal repo do chủ app cung cấp; không tạo GitHub Release hoặc upload APK trong thao tác cập nhật source này.
 
 - Push `personal HEAD:main` bị GitHub từ chối HTTP403: tài khoản GitHub CLI hiện tại chưa có quyền ghi repo chủ app. Remote main vẫn trống. Không đổi remote sang repo khác, không force push và không yêu cầu mật khẩu/token qua chat. Chờ chủ app cấp quyền cộng tác viên hoặc đăng nhập đúng tài khoản để thử lại.
+
+
+### 2026-11-11 — GitHub source đã được công khai
+
+- Sau khi chủ repo gửi lời mời, đã chấp nhận đúng lời mời cộng tác viên cho ToTo-TAD-Music và xác minh quyền push.
+- Push HTTPS mặc định lần đầu lỗi HTTP400, remote chưa có main. Thử lại với HTTP/1.1 và buffer theo từng lệnh (không đổi cấu hình Git toàn máy): thành công.
+- Đã đẩy toàn bộ source/lịch sử hiện tại lên `https://github.com/tototadofficial-21ck/ToTo-TAD-Music`, nhánh main; GitHub API xác nhận commit khớp HEAD local tại thời điểm đẩy.
+- Chỉ công khai source, không upload APK, không tạo Release; API releases trả 0. Các ca kiểm thử release→release vẫn còn thiếu như ghi ở trên.
