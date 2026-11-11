@@ -44,6 +44,7 @@ import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.StrokeJoin
 import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.graphics.drawscope.rotate
 import androidx.compose.ui.graphics.drawscope.clipRect
 import androidx.compose.ui.graphics.drawscope.translate
 import androidx.compose.ui.graphics.graphicsLayer
@@ -312,16 +313,20 @@ private fun ScratchCoating(
             // repeated micro text, like a lottery ticket's coating
             val micro = measurer.measure(coatingLabel, microStyle, softWrap = false, maxLines = 1)
             clipRect(0f, 0f, strip.width, strip.height) {
-                var y = strip.height * 0.18f
-                var row = 0
-                while (y < strip.height) {
-                    var x = -((row * 37f) % micro.size.width)
-                    while (x < strip.width) {
-                        drawText(micro, topLeft = Offset(x, y - micro.size.height / 2f), alpha = 0.55f)
-                        x += micro.size.width
+                // Rotate only the printed pattern; keep the coating and scratch mask aligned.
+                rotate(-18f, pivot = Offset(strip.width / 2f, strip.height / 2f)) {
+                    val extent = kotlin.math.hypot(strip.width, strip.height)
+                    var y = strip.height / 2f - extent
+                    var row = 0
+                    while (y < strip.height / 2f + extent) {
+                        var x = -extent - ((row * 37f) % micro.size.width)
+                        while (x < strip.width + extent) {
+                            drawText(micro, topLeft = Offset(x, y - micro.size.height / 2f), alpha = 0.55f)
+                            x += micro.size.width
+                        }
+                        y += strip.height * 0.32f
+                        row++
                     }
-                    y += strip.height * 0.32f
-                    row++
                 }
             }
             drawPath(

@@ -312,3 +312,10 @@ Theo yêu cầu mới đã được người dùng chấp thuận, thay thế ch
 - Thêm hai file recap vào protected_paths để review khi lấy upstream.
 - Resource/printf checker, personal contract và diff --check: PASS. `:app:assembleUniversalFossDebug`: BUILD SUCCESSFUL (2m43s). Không chạy lại JVM vì chỉ đổi nhãn; kết quả 147 tests ở thay đổi updater trước đó không tính là chạy lại cho thay đổi này. KSP có exception AWT trong log nhưng task/build hoàn tất; không thay công cụ build trong sửa nhãn này.
 - Cài đè debug trên cùng Samsung qua ADB Wi-Fi: Success. App mở lại vào Home, không yêu cầu đăng nhập trong lượt quan sát. Chưa xác nhận trực quan chữ Canvas trên thẻ cào ở hai locale; đã nhờ chủ app mở lại và xác nhận. Chưa build lại release/phát hành GitHub với thay đổi nhãn này.
+
+
+### 2026-11-11 — họa tiết thẻ cào nghiêng
+
+- Chủ app xác nhận tên ToTo TAD trên lớp bạc đúng và đọc được, yêu cầu chữ nghiêng thay vì hàng ngang.
+- Xoay riêng họa tiết chữ -18 độ, mở rộng vùng lặp để không hở khi xoay, clip trong vùng lớp bạc; giữ nguyên đường cào và tương tác.
+- Debug assembly BUILD SUCCESSFUL (38s); personal contract và diff --check PASS. Cài đè qua Wi-Fi Success, mở app lại. Không chạy lại JVM cho thay đổi vẽ đơn giản; chưa build release mới. Chờ chủ app xác nhận trực quan độ nghiêng và thao tác cào.
