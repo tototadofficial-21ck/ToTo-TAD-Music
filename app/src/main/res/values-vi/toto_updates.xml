@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="toto_update_check">Kiểm tra cập nhật</string>
+    <string name="toto_update_title">Cập nhật ToTo TAD Music</string>
+    <string name="toto_update_checking">Đang kiểm tra phiên bản mới…</string>
+    <string name="toto_update_current">Chưa có phiên bản mới hơn.</string>
+    <string name="toto_update_available">Có phiên bản mới. Hãy tải xuống rồi xác nhận cài đặt trong Android. Dữ liệu ứng dụng được giữ lại.</string>
+    <string name="toto_update_debug">Bản này dùng khóa ký khác. Cập nhật trong app dành cho bản phát hành ToTo dùng khóa chính thức. Hãy giữ bản cài đặt và dữ liệu hiện tại.</string>
+    <string name="toto_update_error">Chưa thể kiểm tra, tải hoặc xác minh bản cập nhật. Hãy kiểm tra kết nối và thử lại.</string>
+    <string name="toto_update_downloading">Đang tải và xác minh APK… Vui lòng chờ.</string>
+    <string name="toto_update_permission">Cho phép cài đặt từ ứng dụng này trong cài đặt Android, sau đó quay lại và bấm Cài đặt.</string>
+    <string name="toto_update_ready">Xác nhận cài đặt trong Android. Nếu đã hủy, bấm Cài đặt để thử lại.</string>
+    <string name="toto_update_download">Tải bản cập nhật</string>
+    <string name="toto_update_install">Cài đặt</string>
+    <string name="toto_update_retry">Thử lại</string>
+</resources>

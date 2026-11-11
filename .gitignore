@@ -61,7 +61,13 @@ logcat*.txt
 crash*.txt
 app/*.json
 
-# Keystores
+# Keystores and private signing configuration
+*.jks
+*.keystore
+*.p12
+*.pfx
+release-signing.properties
+keystore.properties
 app/persistent-debug.keystore
 
 # Native & C++ build outputs
@@ -89,3 +95,7 @@ app/persistent-debug.keystore
 output-metadata.json
 vcs.xml
 lint/
+
+# Python bytecode
+__pycache__/
+*.pyc

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="toto_update_check">Check for updates</string>
+    <string name="toto_update_title">ToTo TAD Music updates</string>
+    <string name="toto_update_checking">Checking for a new release…</string>
+    <string name="toto_update_current">No newer release is available.</string>
+    <string name="toto_update_available">A new version is available. Download and confirm installation in Android. Your app data will be kept.</string>
+    <string name="toto_update_debug">This build uses a different signing key. In-app updates are available in the official ToTo release build. Keep this installation and its data.</string>
+    <string name="toto_update_error">Could not check, download or verify the update. Check your connection and try again.</string>
+    <string name="toto_update_downloading">Downloading and verifying the APK… Please wait.</string>
+    <string name="toto_update_permission">Allow updates from this app in Android settings, then return and tap Install.</string>
+    <string name="toto_update_ready">Confirm installation in Android. If you cancelled, tap Install to try again.</string>
+    <string name="toto_update_download">Download update</string>
+    <string name="toto_update_install">Install</string>
+    <string name="toto_update_retry">Try again</string>
+</resources>

@@ -1,7 +1,9 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import com.android.build.api.dsl.ApplicationExtension
 import java.util.Properties
+import java.io.File
 import java.security.MessageDigest
+import java.security.KeyStore
 import java.net.URL
 
 val localProperties = Properties()
@@ -18,6 +20,10 @@ plugins {
     alias(libs.plugins.protobufPlugin)
 }
 
+val personalVersion = Properties().apply {
+    rootProject.file("config/toto-version.properties").inputStream().use { load(it) }
+}
+
 extensions.configure<ApplicationExtension> {
     namespace = "com.mochyy.mochymusic"
     compileSdk = 36
@@ -26,10 +32,12 @@ extensions.configure<ApplicationExtension> {
     defaultConfig {
         applicationId = "vn.ToTo.music"
         buildConfigField("Boolean", "PERSONAL_BUILD", "true")
+        val releaseFingerprint = Regex(""""certificate_sha256"\s*:\s*"([a-f0-9]{64})"""").find(rootProject.file("config/toto-release-certificate.json").readText())!!.groupValues[1]
+        buildConfigField("String", "TOTO_RELEASE_CERT", "\"$releaseFingerprint\"")
         minSdk = 24
         targetSdk = 36
-        versionCode = 73
-        versionName = "8.3.2 build#1226"
+        versionCode = personalVersion.getProperty("VERSION_CODE").toInt().also { require(it > 73) }
+        versionName = personalVersion.getProperty("VERSION_NAME").also { require(it.isNotBlank()) }
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
@@ -142,14 +150,35 @@ extensions.configure<ApplicationExtension> {
         }
     }
 
-    // Release signing only works when the CI secrets are present. Locally they are not, which
-    // used to make `assembleRelease` unbuildable and left debug as the only variant anyone ever
-    // ran — and a debug Compose build is several times slower per frame than release, so all
-    // local performance impressions were being formed against the wrong binary.
-    val hasReleaseSigning = System.getenv("STORE_PASSWORD") != null &&
-        System.getenv("KEY_ALIAS") != null &&
-        System.getenv("KEY_PASSWORD") != null &&
-        file("keystore/release.keystore").exists()
+    // Personal release credentials live outside the repository. Never fall back to a debug key.
+    val signingPropertiesFile = System.getenv("TOTO_SIGNING_PROPERTIES")?.let { rootProject.file(it) }
+        ?: File(System.getProperty("user.home"), ".config/toto-tad-music/release-signing.properties")
+    val signingProperties = Properties()
+    if (signingPropertiesFile.isFile) signingPropertiesFile.inputStream().use { signingProperties.load(it) }
+    val releaseStore = signingProperties.getProperty("storeFile")?.takeIf { it.isNotBlank() }?.let { rootProject.file(it) }
+    val hasReleaseSigning = releaseStore?.isFile == true &&
+        listOf("storePassword", "keyAlias", "keyPassword").all { !signingProperties.getProperty(it).isNullOrBlank() }
+    val releaseRequested = gradle.startParameter.taskNames.any {
+        Regex("(?i)^(assemble|bundle|package).*release$").matches(it.substringAfterLast(':'))
+    }
+    if (releaseRequested) {
+        require(hasReleaseSigning) { "Personal release signing is not configured. Run scripts/prepare_release_signing.py in your Terminal first." }
+        require(!releaseStore!!.canonicalFile.toPath().startsWith(rootProject.rootDir.canonicalFile.toPath())) {
+            "Keep the private release keystore outside the repository."
+        }
+        val certificateMetadata = rootProject.file("config/toto-release-certificate.json")
+        require(certificateMetadata.isFile) { "Public release certificate metadata is missing." }
+        val expected = Regex(""""certificate_sha256"\s*:\s*"([a-f0-9]{64})"""")
+            .find(certificateMetadata.readText())?.groupValues?.get(1)
+        require(expected != null) { "Invalid public release certificate metadata." }
+        val keyStore = KeyStore.getInstance("PKCS12")
+        releaseStore.inputStream().use { keyStore.load(it, signingProperties.getProperty("storePassword").toCharArray()) }
+        val certificate = keyStore.getCertificate(signingProperties.getProperty("keyAlias"))
+        require(certificate != null) { "Configured signing alias has no certificate." }
+        val actual = MessageDigest.getInstance("SHA-256").digest(certificate.encoded).joinToString("") { "%02x".format(it) }
+        require(actual == expected) { "Release signing certificate differs from the recorded identity. Stop and restore the original key." }
+
+    }
 
     signingConfigs {
         create("persistentDebug") {
@@ -160,10 +189,10 @@ extensions.configure<ApplicationExtension> {
         }
         if (hasReleaseSigning) {
             create("release") {
-                storeFile = file("keystore/release.keystore")
-                storePassword = System.getenv("STORE_PASSWORD")
-                keyAlias = System.getenv("KEY_ALIAS")
-                keyPassword = System.getenv("KEY_PASSWORD")
+                storeFile = releaseStore
+                storePassword = signingProperties.getProperty("storePassword")
+                keyAlias = signingProperties.getProperty("keyAlias")
+                keyPassword = signingProperties.getProperty("keyPassword")
             }
         }
         getByName("debug") {
@@ -184,13 +213,7 @@ extensions.configure<ApplicationExtension> {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            // Fall back to the debug keystore locally so a release-quality build is always
-            // runnable on a dev machine. CI still signs with the real key when secrets exist.
-            signingConfig = if (hasReleaseSigning) {
-                signingConfigs.getByName("release")
-            } else {
-                signingConfigs.getByName("debug")
-            }
+            signingConfig = if (hasReleaseSigning) signingConfigs.getByName("release") else null
         }
         debug {
             // Personal debug uses the requested application ID.

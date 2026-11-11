@@ -416,6 +416,7 @@ private fun ColumnScope.AboutSheetContent(
             }
 
             Spacer(Modifier.height(18.dp))
+            PersonalUpdateButton()
             SectionHeader(stringResource(R.string.toto_about_actions))
             Spacer(Modifier.height(8.dp))
             Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {

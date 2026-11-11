@@ -34,6 +34,12 @@
     "app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/donate/*",
     "app/src/main/res/mipmap-*/*",
     "app/src/debug/res/*/*",
-    "app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/update/AboutSheet.kt"
+    "app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/update/AboutSheet.kt",
+    "config/toto-release-certificate.json",
+    "scripts/prepare_release_signing.py",
+    "config/toto-version.properties",
+    "app/src/main/kotlin/com/mochyy/mochymusic/core/updater/PersonalUpdate*.kt",
+    "app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/update/PersonalUpdateButton.kt",
+    "app/src/main/res/values*/toto_updates.xml"
   ]
 }

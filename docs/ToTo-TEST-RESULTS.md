@@ -262,3 +262,36 @@ Theo yêu cầu mới đã được người dùng chấp thuận, thay thế ch
 - Build debug thành công (2m1s), guard/checker/diff check qua. APK 89623247 byte, SHA-256 `6e9d3de50759a09324f8d805d957ea59698898435ce8e5a874059179e0d54b26`.
 
 - USB install -r Success. Đã mở About: mục Chủ app có đúng một thẻ ToTo TAD Music, không còn hai avatar/hàng bấm Roo/key; dòng ghi công gốc chỉ là Text. Bấm thẻ mới mở đúng Facebook, Instagram, Discord và Ủng hộ cá nhân. Nội dung không bị cắt trong vùng quan sát.
+
+
+## Chuẩn bị cập nhật trong app — bước 1, 08/11/2026
+
+- Chuẩn bị scripts/prepare_release_signing.py để người dùng tự nhập mật khẩu trong Terminal; không nhận mật khẩu qua chat, không tự tạo khóa trước khi người dùng chạy lệnh. Khóa/config riêng tư nằm ngoài repo, quyền 0600 trong thư mục 0700; metadata certificate công khai tách riêng. Không ghi đè khóa/config/metadata đã tồn tại.
+- Gradle release đọc cấu hình riêng và không còn fallback ký debug. Thử assembleUniversalFossDebug --dry-run: qua (kiểm tra cấu hình/task graph, không build APK mới). Thử assembleUniversalFossRelease --dry-run với config cố ý không tồn tại: dừng đúng lỗi thiếu signing trước khi build, không tạo APK giả release ký debug. Guard bản cá nhân và diff check qua.
+- Tại thời điểm chuẩn bị ban đầu chưa có khóa ký; các kết quả tạo khóa/build thực tế được ghi tiếp bên dưới. Chưa triển khai nguồn GitHub/trình cập nhật. App trên điện thoại giữ nguyên debug; không cài/gỡ/xóa dữ liệu. Đang chờ người dùng tự tạo khóa.
+
+### Người dùng đã tạo khóa — 08/11/2026
+
+- Người dùng xác nhận công cụ tạo khóa thành công. Kiểm tra chỉ trạng thái/mode file: keystore và private signing properties tồn tại, đều 0600; public certificate metadata có SHA-256 hợp lệ. Không in/thu thập mật khẩu hoặc nội dung file riêng tư.
+- Chuẩn bị version cá nhân 1.0.0 (versionCode 1000) trong config/toto-version.properties, tách khỏi version upstream. Thêm đối chiếu certificate với metadata công khai trước tác vụ release, không cho đổi signer nhầm.
+- Đang build universalFossRelease ký khóa riêng; chưa cài lên điện thoại debug, chưa phát hành GitHub, chưa thử cập nhật release → release. Người dùng chưa có repo và đang được hướng dẫn tạo.
+
+
+## 2026-11-11 — nguồn phát hành cá nhân và updater
+
+- Chủ app cung cấp repo `https://github.com/tototadofficial-21ck/ToTo-TAD-Music.git`. Đọc GitHub API và git ls-remote: repo public, chưa có commit/Release. Thêm remote local `personal`; `origin` giữ upstream, không push/publish.
+- Bản release đầu trước khi thêm updater build thành công (versionCode 1000 / versionName 1.0.0, minSdk 24). apksigner verify thành công, SHA256 certificate khớp metadata công khai. Không cài bản này lên máy đang dùng debug.
+- Thêm Kiểm tra cập nhật trong Giới thiệu, dùng latest stable release của repo riêng; yêu cầu tag v<versionCode>, asset ToTo-TAD-Music.apk và digest GitHub SHA256. Kiểm tra HTTPS/redirect, giới hạn kích thước, SHA256, package, phiên bản và certificate trước installer; quyền cài APK chỉ thêm cho FOSS. Debug không mời cài release khác khóa. Updater Mochy gốc vẫn chặn.
+- Giữ auth gate, nguồn nhạc, dữ liệu thư viện và khóa ký hiện có. Không tự gỡ app/clear data; không đọc/in mật khẩu ký. Public repo URL được cấu hình tập trung, nút mã nguồn cũ vẫn ẩn.
+- Guard personal contract, resource coverage/printf và git diff --check: PASS. Kiểm tra mới không chứa secret/JWT mẫu: PASS (không thay thế review toàn bộ lịch sử trước khi public).
+- ADB devices -l hiện không có thiết bị; emulator -list-avds không có AVD. Chưa cài/kiểm tra updater trên máy thật, chưa thử release→release, chưa thử cấp quyền unknown sources/hủy installer/tải bị ngắt, chưa xác nhận giữ phiên/thư viện sau nâng cấp. Repo chưa có asset để kiểm thử tải end-to-end.
+- Hiện kiểm tra cập nhật thủ công, chưa tự thông báo khi khởi động. Không coi APK sẵn sàng phân phối trước khi thử cài đè release→release.
+
+- JVM `:app:testUniversalFossDebugUnitTest`: 147 tests, 0 failures, 0 errors, 0 skipped; gồm 3 ca mới chặn redirect không tin cậy, phiên bản cũ và tag sai định dạng. Đây là unit test, chưa thay thế ca tải/cài APK thực tế.
+- Chủ app đang bật gỡ lỗi Wi-Fi; ADB devices/mdns chưa phát hiện máy. Đã hướng dẫn ghép đôi tại Terminal và đang chờ địa chỉ IP:cổng kết nối.
+
+- Release lintVital báo 9 `ExtraTranslation` trong values-in/player_bedside_strings.xml (thiếu chuỗi mặc định bedside_*); file không thay đổi so với review_base. Không sửa ngoài phạm vi, không báo lint sạch. Debug assembly mới đã hoàn tất; release tối ưu R8 đang chạy.
+
+- Build tổng hợp cuối `:app:testUniversalFossDebugUnitTest :app:assembleUniversalFossDebug :app:assembleUniversalFossRelease`: BUILD SUCCESSFUL (9m04s). 147 tests đạt; các lỗi lint dịch cũ nêu trên vẫn tồn tại.
+- APK release cuối được apksigner verify; đúng applicationId vn.ToTo.music, versionCode 1000, versionName 1.0.0, minSdk24, không debuggable, permission cài APK FOSS có mặt, certificate khớp metadata. Bản sao để chuẩn bị phát hành: build/toto-release/ToTo-TAD-Music.apk (chưa phân phối, chưa test cài đè). Báo cáo checksum cục bộ: build/toto-release/verification.json.
+- Thử ADB Wi-Fi pair chưa thành công (protocol fault), devices/mdns vẫn trống. Không lưu mã ghép đôi vào tài liệu/log repo; chờ ghép đôi lại.
