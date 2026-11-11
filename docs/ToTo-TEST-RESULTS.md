@@ -319,3 +319,10 @@ Theo yêu cầu mới đã được người dùng chấp thuận, thay thế ch
 - Chủ app xác nhận tên ToTo TAD trên lớp bạc đúng và đọc được, yêu cầu chữ nghiêng thay vì hàng ngang.
 - Xoay riêng họa tiết chữ -18 độ, mở rộng vùng lặp để không hở khi xoay, clip trong vùng lớp bạc; giữ nguyên đường cào và tương tác.
 - Debug assembly BUILD SUCCESSFUL (38s); personal contract và diff --check PASS. Cài đè qua Wi-Fi Success, mở app lại. Không chạy lại JVM cho thay đổi vẽ đơn giản; chưa build release mới. Chờ chủ app xác nhận trực quan độ nghiêng và thao tác cào.
+
+
+## 2026-11-11 — logo màn tổng kết
+
+- Xác định trên màn đang mở: logo Mochy góc trên bên phải trang biên nhận tổng kết, thuộc StoryLogo trong RecapStory.kt. Thay bằng drawable/toto_logo, dùng Image giữ màu gốc, khung vuông 44dp và điều chỉnh neo bên phải tương ứng; giữ chuyển động của logo.
+- Thêm file vào protected_paths khi review upstream. Personal contract và diff --check PASS; debug assembly đã khởi chạy trước khi chủ app thu hẹp yêu cầu, hoàn tất BUILD SUCCESSFUL (37s).
+- Chủ app yêu cầu chỉ sửa logo, tạm không test cập nhật. Không cài APK qua ADB, không chạy thử UI/JVM, không đổi version, không build release mới, không push/publish GitHub. Logo mới hiện chỉ có trong source/APK debug vừa build, chưa ở app đang cài trên điện thoại.

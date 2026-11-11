@@ -42,6 +42,7 @@
     "app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/update/PersonalUpdateButton.kt",
     "app/src/main/res/values*/toto_updates.xml",
     "app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/recap/IdCardBack.kt",
-    "app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/recap/RecapStoryPages.kt"
+    "app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/recap/RecapStoryPages.kt",
+    "app/src/main/kotlin/com/mochyy/mochymusic/ui/screens/recap/RecapStory.kt"
   ]
 }

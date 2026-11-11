@@ -600,16 +600,15 @@ private suspend fun animateDragBack(s: StoryState) {
 @Composable
 private fun StoryLogo(s: StoryState) {
     val geo = s.geo
-    Icon(
-        painter = painterResource(R.drawable.ic_mochy_mark),
+    Image(
+        painter = painterResource(R.drawable.toto_logo),
         contentDescription = null,
-        tint = Color.White,
         modifier = Modifier
-            .requiredSize(31.dp, 34.dp)
+            .requiredSize(44.dp)
             .graphicsLayer {
                 transformOrigin = TransformOrigin(0f, 0f)
                 val left = geo.inset
-                val right = geo.width - geo.inset - 31.dp.toPx()
+                val right = geo.width - geo.inset - 44.dp.toPx()
                 translationX = lerpF(left, right, s.logoSide.value)
                 translationY = geo.top + 32.dp.toPx()
             }
