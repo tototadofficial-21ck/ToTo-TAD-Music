@@ -303,7 +303,7 @@ fun ProfileScreen(navController: NavController) {
     val time = rememberRecapTime(running = !storyCovering, held = { profile.holdsPage || obscured.value })
     val measurer = rememberTextMeasurer()
     val giant = remember {
-        GiantTextState("MOCHY", filledRows = 0..0).apply { color = { lerp(HeaderText, StoryTextDark, expand) } }
+        GiantTextState(UiText.get(R.string.toto_short_brand), filledRows = 0..0).apply { color = { lerp(HeaderText, StoryTextDark, expand) } }
     }
 
     // whether there's a recap waiting, so the pull hint can say so now and then

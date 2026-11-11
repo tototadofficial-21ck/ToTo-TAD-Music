@@ -343,3 +343,10 @@ Theo yêu cầu mới đã được người dùng chấp thuận, thay thế ch
 - Push HTTPS mặc định lần đầu lỗi HTTP400, remote chưa có main. Thử lại với HTTP/1.1 và buffer theo từng lệnh (không đổi cấu hình Git toàn máy): thành công.
 - Đã đẩy toàn bộ source/lịch sử hiện tại lên `https://github.com/tototadofficial-21ck/ToTo-TAD-Music`, nhánh main; GitHub API xác nhận commit khớp HEAD local tại thời điểm đẩy.
 - Chỉ công khai source, không upload APK, không tạo Release; API releases trả 0. Các ca kiểm thử release→release vẫn còn thiếu như ghi ở trên.
+
+
+## 2026-11-11 — chữ chạy nền thẻ cào
+
+- Đổi GiantTextState của ProfileScreen và RecapStory sang resource tên ngắn ToTo TAD. Đổi cả các slideIn/reset/so sánh ở đoạn chuyển trang để không quay về MOCHY khi chạy hoặc kết thúc story. Giữ tốc độ, góc xoay và tương tác cũ.
+- Personal contract và diff --check PASS, tìm chuỗi cứng MOCHY trong hai file không còn kết quả. `assembleUniversalFossDebug` BUILD SUCCESSFUL (34s); không chạy lại JVM cho đổi nhãn này.
+- Cài đè APK debug trên cùng Samsung qua ADB Wi-Fi: Success; không gỡ app/clear dữ liệu. Đã gửi lệnh mở app; chưa kiểm tra trực quan toàn bộ chuỗi chuyển cảnh, cần chủ app mở lại thẻ cào xác nhận. Không build/publish APK release mới.
