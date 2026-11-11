@@ -333,3 +333,5 @@ Theo yêu cầu mới đã được người dùng chấp thuận, thay thế ch
 - Chủ app yêu cầu cài lên điện thoại và cập nhật GitHub. Cài đè APK universalFossDebug đã build có StoryLogo ToTo lên cùng Samsung qua ADB Wi-Fi: Success, không gỡ app/clear dữ liệu, không lỗi chữ ký. Đã gửi lệnh mở app. Chưa kiểm tra trực quan logo mới trong story ở lượt này.
 - Kiểm tra danh sách file/lịch sử Git không có local.properties, file ký riêng hoặc keystore. Quét mẫu secret/JWT/GitHub token trong file được theo dõi và patch lịch sử cá nhân: không có kết quả. Đây là kiểm tra mẫu, không phải chứng nhận không có mọi loại bí mật.
 - Thêm đầu README riêng cho ToTo, giữ README gốc làm tham khảo, GPL và ghi công. Chuẩn bị push source nhánh main tới personal repo do chủ app cung cấp; không tạo GitHub Release hoặc upload APK trong thao tác cập nhật source này.
+
+- Push `personal HEAD:main` bị GitHub từ chối HTTP403: tài khoản GitHub CLI hiện tại chưa có quyền ghi repo chủ app. Remote main vẫn trống. Không đổi remote sang repo khác, không force push và không yêu cầu mật khẩu/token qua chat. Chờ chủ app cấp quyền cộng tác viên hoặc đăng nhập đúng tài khoản để thử lại.
