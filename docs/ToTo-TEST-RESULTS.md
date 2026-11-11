@@ -326,3 +326,10 @@ Theo yêu cầu mới đã được người dùng chấp thuận, thay thế ch
 - Xác định trên màn đang mở: logo Mochy góc trên bên phải trang biên nhận tổng kết, thuộc StoryLogo trong RecapStory.kt. Thay bằng drawable/toto_logo, dùng Image giữ màu gốc, khung vuông 44dp và điều chỉnh neo bên phải tương ứng; giữ chuyển động của logo.
 - Thêm file vào protected_paths khi review upstream. Personal contract và diff --check PASS; debug assembly đã khởi chạy trước khi chủ app thu hẹp yêu cầu, hoàn tất BUILD SUCCESSFUL (37s).
 - Chủ app yêu cầu chỉ sửa logo, tạm không test cập nhật. Không cài APK qua ADB, không chạy thử UI/JVM, không đổi version, không build release mới, không push/publish GitHub. Logo mới hiện chỉ có trong source/APK debug vừa build, chưa ở app đang cài trên điện thoại.
+
+
+### 2026-11-11 — cài bản có logo mới và đưa source lên GitHub
+
+- Chủ app yêu cầu cài lên điện thoại và cập nhật GitHub. Cài đè APK universalFossDebug đã build có StoryLogo ToTo lên cùng Samsung qua ADB Wi-Fi: Success, không gỡ app/clear dữ liệu, không lỗi chữ ký. Đã gửi lệnh mở app. Chưa kiểm tra trực quan logo mới trong story ở lượt này.
+- Kiểm tra danh sách file/lịch sử Git không có local.properties, file ký riêng hoặc keystore. Quét mẫu secret/JWT/GitHub token trong file được theo dõi và patch lịch sử cá nhân: không có kết quả. Đây là kiểm tra mẫu, không phải chứng nhận không có mọi loại bí mật.
+- Thêm đầu README riêng cho ToTo, giữ README gốc làm tham khảo, GPL và ghi công. Chuẩn bị push source nhánh main tới personal repo do chủ app cung cấp; không tạo GitHub Release hoặc upload APK trong thao tác cập nhật source này.

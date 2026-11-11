@@ -1,3 +1,22 @@
+# ToTo TAD Music
+
+Bản Android cá nhân dựa trên Mochy Music, giữ giấy phép GPL-3.0 và ghi công dự án gốc. Application ID: `vn.ToTo.music`.
+
+- [Hướng dẫn cấu hình và bàn giao](docs/ToTo-TAD-Music.md)
+- [Phát hành, khóa ký và cập nhật trong app](docs/ToTo-RELEASE-UPDATE.md)
+- [Kết quả kiểm thử và các ca còn thiếu](docs/ToTo-TEST-RESULTS.md)
+- [Quy trình lấy cập nhật từ upstream](docs/ToTo-UPSTREAM.md)
+
+Tài khoản ứng dụng do chủ app cấp qua Supabase. Tên và ảnh hồ sơ được lưu theo tài khoản; nhạc, thư viện và cookie dịch vụ nhạc không được gửi lên Supabase. Cấu hình riêng và khóa ký không nằm trong repo.
+
+Nguồn cập nhật của bản cá nhân là repo này. APK Mochy gốc không dùng để cập nhật ToTo. Hiện chưa có Release công khai; không coi APK debug là bản phân phối chính thức. Xem tài liệu phát hành trước khi build/cài, đặc biệt về khác biệt khóa ký debug và release.
+
+---
+
+## README dự án gốc (tham khảo)
+
+Nội dung và liên kết bên dưới mô tả Mochy Music gốc; hướng dẫn riêng cho ToTo ở phần trên.
+
 <img width="1799" height="927" alt="fdb" src="https://github.com/user-attachments/assets/98652d23-a7cd-4c6f-945e-96a85273f61f" />
 
 <div align="center">
