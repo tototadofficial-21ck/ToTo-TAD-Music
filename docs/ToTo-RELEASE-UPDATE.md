@@ -2,7 +2,7 @@
 
 ## Bước 1: khóa ký riêng
 
-Chưa phát hành APK cho bạn bè, chưa bật trình cập nhật và chưa cài bản release lên điện thoại trong bước này. App trên điện thoại hiện vẫn là debug.
+Khóa ký riêng đã được tạo. Điện thoại chủ app hiện vẫn dùng bản debug; không cài release khác chữ ký đè lên máy này. Các bước tạo khóa bên dưới chỉ dành cho lần đầu, không tạo lại khóa khi đã có.
 
 Mở Terminal trên Mac và chạy:
 
@@ -35,7 +35,7 @@ Gradle đọc mặc định file cấu hình trên. Có thể đặt `TOTO_SIGNI
 1. Chốt versionName/versionCode riêng và build bản release ký bằng khóa trên; kiểm tra certificate/APK.
 2. Chuẩn bị repo GitHub riêng và GitHub Releases làm nguồn cập nhật. Chưa có link riêng thì không tự tạo đường dẫn hoặc dùng APK Mochy gốc.
 3. Thêm kiểm tra bản mới, thông tin phiên bản, tải APK an toàn và mở xác nhận cài đặt của Android; giữ nguyên applicationId và khóa ký, kiểm tra versionCode và chữ ký trước khi mở installer. Không tự cập nhật âm thầm hoặc bỏ qua xác nhận hệ thống.
-4. Thử cài đè release v1 → release v2 trên cùng khóa và kiểm tra dữ liệu/phiên. Chỉ sau khi qua mới phát cho bạn bè.
+4. Thử cài đè release v1 → release v2 trên cùng khóa và kiểm tra dữ liệu/phiên. Đây là ca cần xác minh; nếu chưa chạy phải ghi rõ trong ghi chú phát hành, không coi updater đã được kiểm chứng end-to-end.
 
 Khóa release mới khác khóa debug đang dùng. Chưa có phương án chuyển debug → release được thử trên máy này; không gỡ app, clear dữ liệu hay hứa cài đè trực tiếp giữa hai khóa khác nhau. Giữ nguyên bản debug của chủ app trong lúc chuẩn bị. Điều này không ảnh hưởng khả năng cài đè các bản release sau nếu ngay từ bản đầu chia sẻ dùng cùng khóa.
 
@@ -58,6 +58,16 @@ Trong Hồ sơ → Giới thiệu ứng dụng → Kiểm tra cập nhật:
 - Bản debug hoặc bản ký khác không mời cài release. Không gỡ app hay xóa dữ liệu để vượt lỗi chữ ký.
 - Hiện kiểm tra thủ công trong Giới thiệu; chưa tự thông báo khi mở app. Khi tải cần giữ màn này mở; lỗi mạng có thể thử lại từ đầu, chưa hỗ trợ resume.
 
-Chưa push mã hoặc tạo GitHub Release. Trước khi phát hành: review file được Git theo dõi, loại keystore/local.properties, cấu hình CI upstream và thông tin riêng không dành công khai; build/kiểm tra release mới có updater; thử release→release trên thiết bị hoặc emulator riêng, giữ bản debug trên điện thoại chủ app.
+Source đã được đẩy lên GitHub. Bản phát hành đầu đang được chuẩn bị theo yêu cầu chủ app. Trước khi phát hành: review file được Git theo dõi, loại keystore/local.properties, cấu hình CI upstream và thông tin riêng không dành công khai; build/kiểm tra release mới có updater; thử release→release trên thiết bị hoặc emulator riêng, giữ bản debug trên điện thoại chủ app.
 
 Khi được chủ app cho phép công khai, push source tương ứng đúng tag cùng LICENSE GPL và thay đổi; upload APK đã xác minh. Không upload khóa ký, cấu hình chứa mật khẩu hoặc log. Giữ bản mã nguồn tương ứng mỗi APK để tuân thủ GPL. Tải APK đầu tiên một lần; các bản release cùng khóa sau đó cài đè qua updater, không yêu cầu gỡ app.
+
+## Phát hành đầu 1.0.0 (v1000)
+
+Bản phát hành dành cho người dùng cài mới; versionCode 1000 / versionName 1.0.0, universal FOSS, ký bằng khóa ToTo riêng. Không gửi APK debug làm bản chính thức.
+
+Sau khi có Release, gửi đường dẫn trang Release cho người dùng; trong Assets chọn ToTo-TAD-Music.apk, cho phép cài từ trình duyệt khi Android yêu cầu, rồi đăng nhập bằng tài khoản do chủ app cấp. Không yêu cầu gỡ bản release cũ khi cập nhật cùng khóa. Nếu gặp lỗi chữ ký, dừng và liên hệ chủ app; không hướng dẫn xóa dữ liệu tự động.
+
+Chủ app tạo từng user trong Supabase Auth, sau đó cấp quyền enabled=true đúng UUID trong app_access theo migration và tài liệu Supabase hiện có. Không có đăng ký công khai. Không gửi mật khẩu qua repo/issue công khai.
+
+Giữ một bản sao riêng an toàn của keystore và cấu hình ký ngoài Mac. Các bản sau tăng VERSION_CODE, giữ applicationId và khóa ký. Bản đầu chưa xác minh luồng tải/cài release→release trên thiết bị; phải ghi giới hạn này trong Release notes.
